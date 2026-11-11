@@ -12,6 +12,11 @@ public class PlayerItem : MonoBehaviour
 {
     public float crossFade = 0.1f;
 
+    // Player clips for this item, from models/items.json (used by PlayerAnimations.Equip)
+    public string playerHold = "idle";
+    public string playerUse = "";
+    public string playerMove = "walk";
+
     Animation anim;
     Transform itemNode;
     Transform ring;

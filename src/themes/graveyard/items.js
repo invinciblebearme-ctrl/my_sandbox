@@ -1,5 +1,5 @@
 // Graveyard: player items.
-import { makeItem, muzzleFlash, glowPart, itemSchema, ITEM_KINDS } from '../../core/item.js';
+import { makeItem, muzzleFlash, glowPart, itemSchema, ITEM_KINDS, TWO_HANDED_MELEE, TWO_HANDED_GUN } from '../../core/item.js';
 
 const Z = Math.PI / 2; // rotate a Y-axis cylinder to point along Z
 
@@ -8,7 +8,7 @@ export const shovel = {
   defaults: { seed: 1, size: 1, woodColor: '#7a5234', metalColor: '#7d848c' },
   schema: itemSchema({ woodColor: '자루 색', metalColor: '날 색' }),
   build: (p) => makeItem(p, {
-    name: 'Shovel', kind: 'melee', decay: 0.3,
+    name: 'Shovel', kind: 'melee', decay: 0.3, player: TWO_HANDED_MELEE,
     shape(k, it) {
       const wood = k.mat('wood', p.woodColor);
       const metal = k.mat('metal', p.metalColor, { metalness: 0.5, roughness: 0.5 });
@@ -25,7 +25,7 @@ export const shotgun = {
   defaults: { seed: 2, size: 1, woodColor: '#6a4428', metalColor: '#3e4248' },
   schema: itemSchema({ woodColor: '개머리 색', metalColor: '총열 색' }),
   build: (p) => makeItem(p, {
-    name: 'Shotgun', kind: 'ranged',
+    name: 'Shotgun', kind: 'ranged', player: TWO_HANDED_GUN,
     shape(k, it, parts) {
       const wood = k.mat('wood', p.woodColor);
       const metal = k.mat('metal', p.metalColor, { metalness: 0.6, roughness: 0.4 });

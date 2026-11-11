@@ -11,14 +11,18 @@ import * as THREE from 'three';
 import { createKit } from './kit.js';
 import { finalizeMonster, TAU, keys, clamp01, smooth } from './monster.js';
 
+// `player`: which player clips go with the item (hold = while equipped, use = when used,
+// move = walking while equipped). Single items can override it (two-handed weapons).
 export const ITEM_KINDS = {
-  melee: { label: '🗡️ 근접 무기', ring: '#ffb04a', use: 'swing' },
-  ranged: { label: '🔫 원거리 무기', ring: '#ff6a3a', use: 'recoil' },
-  throw: { label: '💣 투척', ring: '#ffe14a', use: 'toss' },
-  heal: { label: '❤️ 회복', ring: '#6aff7a', use: 'drink' },
-  light: { label: '🔦 조명', ring: '#fff2b0', use: 'flicker' },
-  special: { label: '⭐ 특수', ring: '#6ac8ff', use: 'scan' },
+  melee: { label: '🗡️ 근접 무기', ring: '#ffb04a', use: 'swing', player: { hold: 'idle', use: 'meleeSwing', move: 'walk' } },
+  ranged: { label: '🔫 원거리 무기', ring: '#ff6a3a', use: 'recoil', player: { hold: 'aimPistol', use: 'shootPistol', move: 'walkAimPistol' } },
+  throw: { label: '💣 투척', ring: '#ffe14a', use: 'toss', player: { hold: 'idle', use: 'throw', move: 'walk' } },
+  heal: { label: '❤️ 회복', ring: '#6aff7a', use: 'drink', player: { hold: 'idle', use: 'useHeal', move: 'walk' } },
+  light: { label: '🔦 조명', ring: '#fff2b0', use: 'flicker', player: { hold: 'holdLight', use: 'holdLight', move: 'walk' } },
+  special: { label: '⭐ 특수', ring: '#6ac8ff', use: 'scan', player: { hold: 'idle', use: 'useSpecial', move: 'walk' } },
 };
+export const TWO_HANDED_MELEE = { use: 'meleeHeavy' };
+export const TWO_HANDED_GUN = { hold: 'aimRifle', use: 'shootRifle', move: 'walkAimRifle' };
 
 export const ITEM_ANIMS = {
   hover: {
@@ -98,7 +102,7 @@ export const ITEM_ANIMS = {
 
 // Builds an item. `shape(k, item, parts)` adds meshes to the `item` pivot and may
 // set parts.glow / flash / spark / lid / pump (pivots the use animation moves).
-export function makeItem(p, { name, kind, hoverY = 0.35, decay = 0, shape }) {
+export function makeItem(p, { name, kind, hoverY = 0.35, decay = 0, player = {}, shape }) {
   const k = createKit(p.seed, 0.6, p.horror);
   const root = k.pivot('root');
   root.name = name;
@@ -113,10 +117,12 @@ export function makeItem(p, { name, kind, hoverY = 0.35, decay = 0, shape }) {
   shape(k, item, parts);
   if (decay) k.decay(item, decay);
   item.scale.setScalar(p.size ?? 1);
-  return finalizeMonster(root, {
+  const obj = finalizeMonster(root, {
     rig: { item, ring, ...parts }, params: p, animations: ITEM_ANIMS,
     clips: { idle: 'hover', use: ITEM_KINDS[kind].use },
   });
+  obj.userData.itemInfo = { kind, player: { ...ITEM_KINDS[kind].player, ...player } };
+  return obj;
 }
 
 // Small reusable pieces -----------------------------------------------------------

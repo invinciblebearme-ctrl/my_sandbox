@@ -9,6 +9,8 @@ Polyfork 스타일의 **파라미터형 로우폴리 괴물** 모음입니다. �
 ![playground](docs/playground.png)
 ![playground closeups](docs/closeups-playground.png)
 ![items](docs/items.png)
+![players](docs/players.png)
+![player actions](docs/player-actions.png)
 ![closeups](docs/closeups.png)
 ![closeups desert](docs/closeups-desert.png)
 ![graveyard](docs/gallery.png)
@@ -30,6 +32,18 @@ Polyfork 스타일의 **파라미터형 로우폴리 괴물** 모음입니다. �
 
 **공포도** 슬라이더(0 귀여움 ~ 1 무서움, 기본 0.9)로 모든 괴물의 분위기를 한 번에 바꿉니다. 0.75 이상은 처음 만든 좀비와 같은 스타일(사각 눈구멍에 빛나는 눈, 빠진 이빨, 핏자국과 뼈, 울퉁불퉁한 표면)이고, 낮추면 으스스한 카툰 → 귀여운 버전이 됩니다. GLB 내보내기에도 적용되며 `models/`의 파일은 0.9로 만든 것입니다.
 
+### 플레이어 캐릭터
+좀비와 같은 박스형 로우폴리 생존자. 테마별 의상 6종(생존자 · 캠퍼 · 등산가 · 레인저 · 기지 정비사 · 동네 아이)이 같은 뼈대와 애니메이션 18개를 씁니다. 뷰어의 **종류 → 플레이어 캐릭터**에서 보고, **들고 있는 아이템**으로 현재 테마 아이템을 손에 쥐어 볼 수 있습니다(아이템에 맞는 애니메이션으로 자동 전환).
+
+| 구분 | 클립 |
+|---|---|
+| 기본 | `idle` `walk` `run` `hit` `death` `pickup` |
+| 총 | `aimPistol` `shootPistol` `walkAimPistol` (한손 총) · `aimRifle` `shootRifle` `walkAimRifle` (양손 총, 펌프 동작 포함) |
+| 근접 | `meleeSwing` (한손 내려치기) · `meleeHeavy` (양손 머리 위에서 내려찍기) |
+| 기타 | `throw` (던지기) · `useHeal` (마시기·먹기) · `holdLight` (불빛 비추며 둘러보기) · `useSpecial` (배지·카드 들어 보이기) |
+
+아이템마다 어떤 클립을 쓰는지는 [`models/items.json`](models/items.json)에 있습니다 (`playerHold` 들고 서 있을 때, `playerUse` 사용할 때, `playerMove` 들고 걸을 때).
+
 ## 실행
 [Node.js](https://nodejs.org)(LTS)를 설치한 뒤:
 ```bash
@@ -42,11 +56,12 @@ npm run dev      # 브라우저에서 http://localhost:5173
 Polyfork 키트 GLB를 `public/kits/`에 넣으면 테마를 고를 때 자동으로 불러옵니다 (없으면 간단한 대체 배경). 파일 이름은 [PLAN.md](PLAN.md) 표를 따르세요. 크기·높이는 패널의 "배경 키트"에서 맞춥니다. 키트 파일은 크기 때문에 git에 올리지 않습니다.
 
 ## Unity에서 쓰기
-괴물: `models/<테마>/<괴물>.glb`, 아이템: `models/<테마>/items/<아이템>.glb` (각 50~250KB)
+괴물: `models/<테마>/<괴물>.glb`, 아이템: `models/<테마>/items/<아이템>.glb`, 플레이어: `models/player/<의상>.glb` (각 50~250KB)
 1. Package Manager에서 **glTFast**(`com.unity.cloud.gltfast`)를 설치합니다.
 2. GLB를 `Assets`에 끌어 넣습니다. Inspector의 **Animation Method**를 `Legacy`로 두면 아래 스크립트로 바로 재생, `Mecanim`으로 바꾸면 Animator Controller에서 클립을 씁니다.
 3. 괴물 프리팹에 [`unity/MonsterAnimations.cs`](unity/MonsterAnimations.cs)를 붙이고 `Move()`, `Attack()`, `Hit()`, `Die()`를 호출합니다.
-4. 아이템 프리팹에는 [`unity/PlayerItem.cs`](unity/PlayerItem.cs)를 붙이고, 주울 때 `PickUp(손 Transform)`, 사용할 때 `Use()`를 호출합니다. 아이템은 `item` 노드의 원점이 손잡이라서 손에 붙이고 위치를 0으로 두면 됩니다. 줍고 나면 `pickupRing`은 꺼집니다.
+4. 아이템 프리팹에는 [`unity/PlayerItem.cs`](unity/PlayerItem.cs)를 붙이고 `playerHold/playerUse/playerMove`에 `items.json` 값을 넣습니다. 아이템은 `item` 노드의 원점이 손잡이라서 손에 붙이고 위치를 0으로 두면 됩니다. 줍고 나면 `pickupRing`은 꺼집니다.
+5. 플레이어 프리팹에는 [`unity/PlayerAnimations.cs`](unity/PlayerAnimations.cs)를 붙입니다. 이동 코드에서 매 프레임 `SetSpeed(속도)`, 아이템을 주우면 `Equip(아이템)`(오른손 `gripR`에 붙음), 사용할 때 `Use()`, 맞으면 `Hit()`, 죽으면 `Die()`. 쏘기·휘두르기 같은 동작은 상체에만 재생돼서 걸으면서도 쓸 수 있습니다.
 
 | 클립 | 재생 방식 |
 |---|---|
@@ -62,9 +77,10 @@ Polyfork 키트 GLB를 `public/kits/`에 넣으면 테마를 고를 때 자동�
 src/core/kit.js        로우폴리 메쉬·눈·입 도우미, 시드 RNG
 src/core/monster.js    기본 자세 저장, 애니메이션 재생/굽기, 관절별 메쉬 합치기
 src/rigs/              biped(2족) · quadruped(4족) · serpent(마디형) + 각 공용 애니메이션
-src/core/item.js       아이템 공통 구조(바닥 빛 고리, 손잡이 원점, idle/use 애니메이션)
+src/core/item.js       아이템 공통 구조(바닥 빛 고리, 손잡이 원점, idle/use 애니메이션, 플레이어 클립 매핑)
+src/player/            플레이어 캐릭터(의상 6종)와 애니메이션 18개
 src/themes/<테마>/      괴물 정의(monsters.js), 아이템(items.js), 배경 설정(index.js)
-unity/                 Unity용 스크립트 (괴물 애니메이션, 아이템 줍기/사용)
+unity/                 Unity용 스크립트 (괴물 애니메이션, 아이템 줍기/사용, 플레이어 애니메이션)
 ```
 
 ### 새 괴물 추가

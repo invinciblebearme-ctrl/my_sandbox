@@ -1,0 +1,254 @@
+{
+  "campground": {
+    "hatchet": {
+      "label": "손도끼",
+      "kind": "melee",
+      "file": "campground/items/hatchet.glb",
+      "playerHold": "idle",
+      "playerUse": "meleeSwing",
+      "playerMove": "walk"
+    },
+    "flareGun": {
+      "label": "신호탄 총",
+      "kind": "ranged",
+      "file": "campground/items/flareGun.glb",
+      "playerHold": "aimPistol",
+      "playerUse": "shootPistol",
+      "playerMove": "walkAimPistol"
+    },
+    "propaneBomb": {
+      "label": "부탄가스 폭탄",
+      "kind": "throw",
+      "file": "campground/items/propaneBomb.glb",
+      "playerHold": "idle",
+      "playerUse": "throw",
+      "playerMove": "walk"
+    },
+    "beanCan": {
+      "label": "콩 통조림",
+      "kind": "heal",
+      "file": "campground/items/beanCan.glb",
+      "playerHold": "idle",
+      "playerUse": "useHeal",
+      "playerMove": "walk"
+    },
+    "campLantern": {
+      "label": "캠핑 랜턴",
+      "kind": "light",
+      "file": "campground/items/campLantern.glb",
+      "playerHold": "holdLight",
+      "playerUse": "holdLight",
+      "playerMove": "walk"
+    }
+  },
+  "snow": {
+    "icePick": {
+      "label": "얼음 피켈",
+      "kind": "melee",
+      "file": "snow/items/icePick.glb",
+      "playerHold": "idle",
+      "playerUse": "meleeSwing",
+      "playerMove": "walk"
+    },
+    "snowSlingshot": {
+      "label": "눈뭉치 새총",
+      "kind": "ranged",
+      "file": "snow/items/snowSlingshot.glb",
+      "playerHold": "aimPistol",
+      "playerUse": "shootPistol",
+      "playerMove": "walkAimPistol"
+    },
+    "frostJar": {
+      "label": "서리 폭탄병",
+      "kind": "throw",
+      "file": "snow/items/frostJar.glb",
+      "playerHold": "idle",
+      "playerUse": "throw",
+      "playerMove": "walk"
+    },
+    "hotCocoa": {
+      "label": "핫초코",
+      "kind": "heal",
+      "file": "snow/items/hotCocoa.glb",
+      "playerHold": "idle",
+      "playerUse": "useHeal",
+      "playerMove": "walk"
+    },
+    "pineTorch": {
+      "label": "솔가지 횃불",
+      "kind": "light",
+      "file": "snow/items/pineTorch.glb",
+      "playerHold": "holdLight",
+      "playerUse": "holdLight",
+      "playerMove": "walk"
+    }
+  },
+  "desert": {
+    "pickaxe": {
+      "label": "광산 곡괭이",
+      "kind": "melee",
+      "file": "desert/items/pickaxe.glb",
+      "playerHold": "idle",
+      "playerUse": "meleeHeavy",
+      "playerMove": "walk"
+    },
+    "revolver": {
+      "label": "보안관 리볼버",
+      "kind": "ranged",
+      "file": "desert/items/revolver.glb",
+      "playerHold": "aimPistol",
+      "playerUse": "shootPistol",
+      "playerMove": "walkAimPistol"
+    },
+    "dynamite": {
+      "label": "다이너마이트",
+      "kind": "throw",
+      "file": "desert/items/dynamite.glb",
+      "playerHold": "idle",
+      "playerUse": "throw",
+      "playerMove": "walk"
+    },
+    "canteen": {
+      "label": "물통",
+      "kind": "heal",
+      "file": "desert/items/canteen.glb",
+      "playerHold": "idle",
+      "playerUse": "useHeal",
+      "playerMove": "walk"
+    },
+    "sheriffStar": {
+      "label": "보안관 배지",
+      "kind": "special",
+      "file": "desert/items/sheriffStar.glb",
+      "playerHold": "idle",
+      "playerUse": "useSpecial",
+      "playerMove": "walk"
+    }
+  },
+  "space": {
+    "heavyWrench": {
+      "label": "대형 렌치",
+      "kind": "melee",
+      "file": "space/items/heavyWrench.glb",
+      "playerHold": "idle",
+      "playerUse": "meleeSwing",
+      "playerMove": "walk"
+    },
+    "laserPistol": {
+      "label": "레이저 권총",
+      "kind": "ranged",
+      "file": "space/items/laserPistol.glb",
+      "playerHold": "aimPistol",
+      "playerUse": "shootPistol",
+      "playerMove": "walkAimPistol"
+    },
+    "plasmaGrenade": {
+      "label": "플라즈마 수류탄",
+      "kind": "throw",
+      "file": "space/items/plasmaGrenade.glb",
+      "playerHold": "idle",
+      "playerUse": "throw",
+      "playerMove": "walk"
+    },
+    "mediInjector": {
+      "label": "응급 주사기",
+      "kind": "heal",
+      "file": "space/items/mediInjector.glb",
+      "playerHold": "idle",
+      "playerUse": "useHeal",
+      "playerMove": "walk"
+    },
+    "keycard": {
+      "label": "보안 키카드",
+      "kind": "special",
+      "file": "space/items/keycard.glb",
+      "playerHold": "idle",
+      "playerUse": "useSpecial",
+      "playerMove": "walk"
+    }
+  },
+  "playground": {
+    "nailBat": {
+      "label": "못 박힌 야구배트",
+      "kind": "melee",
+      "file": "playground/items/nailBat.glb",
+      "playerHold": "idle",
+      "playerUse": "meleeHeavy",
+      "playerMove": "walk"
+    },
+    "waterBlaster": {
+      "label": "성수 물총",
+      "kind": "ranged",
+      "file": "playground/items/waterBlaster.glb",
+      "playerHold": "aimRifle",
+      "playerUse": "shootRifle",
+      "playerMove": "walkAimRifle"
+    },
+    "firecracker": {
+      "label": "폭죽 다발",
+      "kind": "throw",
+      "file": "playground/items/firecracker.glb",
+      "playerHold": "idle",
+      "playerUse": "throw",
+      "playerMove": "walk"
+    },
+    "giantLollipop": {
+      "label": "왕 막대사탕",
+      "kind": "heal",
+      "file": "playground/items/giantLollipop.glb",
+      "playerHold": "idle",
+      "playerUse": "useHeal",
+      "playerMove": "walk"
+    },
+    "flashlight": {
+      "label": "손전등",
+      "kind": "light",
+      "file": "playground/items/flashlight.glb",
+      "playerHold": "holdLight",
+      "playerUse": "holdLight",
+      "playerMove": "walk"
+    }
+  },
+  "graveyard": {
+    "shovel": {
+      "label": "무덤 삽",
+      "kind": "melee",
+      "file": "graveyard/items/shovel.glb",
+      "playerHold": "idle",
+      "playerUse": "meleeHeavy",
+      "playerMove": "walk"
+    },
+    "shotgun": {
+      "label": "쌍발 산탄총",
+      "kind": "ranged",
+      "file": "graveyard/items/shotgun.glb",
+      "playerHold": "aimRifle",
+      "playerUse": "shootRifle",
+      "playerMove": "walkAimRifle"
+    },
+    "holyWater": {
+      "label": "성수병",
+      "kind": "throw",
+      "file": "graveyard/items/holyWater.glb",
+      "playerHold": "idle",
+      "playerUse": "throw",
+      "playerMove": "walk"
+    },
+    "firstAid": {
+      "label": "낡은 구급상자",
+      "kind": "heal",
+      "file": "graveyard/items/firstAid.glb",
+      "playerHold": "idle",
+      "playerUse": "useHeal",
+      "playerMove": "walk"
+    },
+    "graveLantern": {
+      "label": "묘지기 랜턴",
+      "kind": "light",
+      "file": "graveyard/items/graveLantern.glb",
+      "playerHold": "holdLight",
+      "playerUse": "holdLight",
+      "playerMove": "walk"
+    }
+  }
+}

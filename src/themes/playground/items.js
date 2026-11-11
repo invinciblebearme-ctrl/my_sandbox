@@ -1,5 +1,5 @@
 // Playground: player items.
-import { makeItem, glowPart, itemSchema, ITEM_KINDS } from '../../core/item.js';
+import { makeItem, glowPart, itemSchema, ITEM_KINDS, TWO_HANDED_MELEE, TWO_HANDED_GUN } from '../../core/item.js';
 
 const Z = Math.PI / 2;
 
@@ -8,7 +8,7 @@ export const nailBat = {
   defaults: { seed: 51, size: 1, woodColor: '#c9a06a', tapeColor: '#2a2a2a' },
   schema: itemSchema({ woodColor: '배트 색', tapeColor: '테이프 색' }),
   build: (p) => makeItem(p, {
-    name: 'NailBat', kind: 'melee', decay: 0.4,
+    name: 'NailBat', kind: 'melee', decay: 0.4, player: TWO_HANDED_MELEE,
     shape(k, it) {
       const wood = k.mat('wood', p.woodColor);
       it.add(k.at(k.cyl(0.035, 0.016, 0.7, wood, 8, 0.004), 0, 0.25, 0));
@@ -32,7 +32,7 @@ export const waterBlaster = {
   defaults: { seed: 52, size: 1, bodyColor: '#ff8a2a', tankColor: '#6ac8ff' },
   schema: itemSchema({ bodyColor: '물총 색', tankColor: '물 색' }),
   build: (p) => makeItem(p, {
-    name: 'WaterBlaster', kind: 'ranged',
+    name: 'WaterBlaster', kind: 'ranged', player: TWO_HANDED_GUN,
     shape(k, it, parts) {
       const plastic = k.mat('plastic', p.bodyColor, { roughness: 0.4 });
       it.add(k.at(k.rot(k.box(0.04, 0.1, 0.05, plastic, 0.004), -0.3, 0, 0), 0, -0.04, -0.02));

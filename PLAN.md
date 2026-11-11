@@ -68,3 +68,9 @@
 
 - 노드: `Item` > `pickupRing`(바닥 빛 고리), `item`(손잡이가 원점). 근접 무기·조명은 +Y(위), 총·손전등은 +Z(앞)를 향함
 - 클립: `idle`(바닥에서 떠서 회전), `use`(휘두르기/반동/던지기/마시기/깜빡임/작동)
+
+## 플레이어 캐릭터 ✅
+- 의상 6종(테마별), 같은 뼈대: `hips > legL/R > kneeL/R`, `spine > neck > head`, `spine > armL/R > elbowL/R > handL/R > gripL/R`
+- 아이템은 `gripR`에 `item` 노드를 붙임 (팔을 앞으로 들면 grip +Z = 앞, +Y = 위)
+- 애니메이션 18개: 기본 6 + 총 6 + 근접 2 + 던지기·회복·조명·특수 4
+- 아이템 → 플레이어 클립 매핑: `models/items.json` (양손 무기: 삽·곡괭이·야구배트 = `meleeHeavy`, 산탄총·물총 = `aimRifle/shootRifle`)

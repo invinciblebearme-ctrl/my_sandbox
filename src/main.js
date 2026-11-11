@@ -4,6 +4,7 @@ import { GLTFExporter } from 'three/examples/jsm/exporters/GLTFExporter.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import GUI from 'lil-gui';
 import { THEMES } from './themes/index.js';
+import { PLAYERS } from './player/index.js';
 import { createKit } from './core/kit.js';
 import { setPose, bakeClips, disposeMonster, STANDARD_CLIPS } from './core/monster.js';
 
@@ -57,13 +58,14 @@ const view = {
   kitScale: 1,
   kitY: 0,
   horror: 0.9, // 0 = cute .. 1 = creepy (0.75+ matches the zombies), applies to every monster and the scenery
-  category: 'monsters', // 'monsters' | 'items'
+  category: 'monsters', // 'monsters' | 'items' | 'players'
+  heldItem: '', // players: key of an item of the current theme to hold in the right hand
 };
 let params = {};
 let current = null;
 let gallery = [];
 const theme = () => THEMES[view.theme];
-const entries = () => theme()[view.category] ?? {};
+const entries = () => (view.category === 'players' ? PLAYERS : theme()[view.category] ?? {});
 const def = () => entries()[view.monster];
 
 function build(d, p) {
@@ -72,9 +74,29 @@ function build(d, p) {
   return m;
 }
 
+const heldInfo = () => {
+  const d = theme().items?.[view.heldItem];
+  return d ? build(d, { ...d.defaults }).userData.itemInfo : null;
+};
+// Puts an item (from a theme's item list) into the player's right hand.
+function holdItem(player, themeKey, itemKey) {
+  const d = THEMES[themeKey]?.items?.[itemKey];
+  if (!d) return null;
+  const obj = build(d, { ...d.defaults });
+  const node = obj.userData.rig.item;
+  node.removeFromParent();
+  node.position.set(0, 0, 0);
+  node.rotation.set(0, 0, 0);
+  node.name = 'heldItem';
+  player.userData.rig.arms.R.grip.add(node);
+  disposeMonster(obj); // only the leftover pickup ring is still in it
+  return obj.userData.itemInfo;
+}
+
 function rebuild() {
   if (current) { scene.remove(current); disposeMonster(current); }
   current = build(def(), params);
+  if (view.category === 'players' && view.heldItem) holdItem(current, view.theme, view.heldItem);
   current.visible = !view.gallery;
   scene.add(current);
   window.__monster = current;
@@ -89,6 +111,12 @@ function setGallery(on) {
     const items = view.category === 'items'; // items are small: line them up closer
     list.forEach((d, i) => {
       const m = build(d, { ...d.defaults });
+      if (view.category === 'players') {
+        // each outfit holds the ranged weapon of its own theme
+        const themeItems = THEMES[d.theme]?.items ?? {};
+        const gun = Object.keys(themeItems).find((key) => build(themeItems[key], { ...themeItems[key].defaults }).userData.itemInfo.kind === 'ranged');
+        if (gun) holdItem(m, d.theme, gun);
+      }
       const x = i - (list.length - 1) / 2;
       m.position.set(x * (items ? 0.9 : 1.45), 0, -Math.abs(x) * (items ? 0 : 0.3));
       m.rotation.y = -x * 0.08;
@@ -186,6 +214,20 @@ function animOptions() {
 function selectMonster(key) {
   view.monster = key;
   params = structuredClone(def().defaults);
+  heldCtrl?.destroy();
+  heldCtrl = null;
+  if (view.category === 'players') {
+    const items = theme().items ?? {};
+    const opts = { '없음': '', ...Object.fromEntries(Object.entries(items).map(([k, d]) => [`${d.role} ${d.label}`, k])) };
+    if (!(view.heldItem in items)) view.heldItem = '';
+    heldCtrl = gui.add(view, 'heldItem', opts).name('들고 있는 아이템').onChange(() => {
+      rebuild();
+      const info = heldInfo();
+      view.animation = `clip:${info ? info.player.use : 'idle'}`;
+      animCtrl.updateDisplay();
+    });
+    heldCtrl.domElement.parentElement.insertBefore(heldCtrl.domElement, monsterCtrl.domElement.nextSibling);
+  }
   rebuild();
   view.animation = current.userData.clips.move ? 'clip:move' : 'clip:idle';
   animCtrl?.destroy();
@@ -220,8 +262,9 @@ function selectTheme(key) {
 
 const themeOpts = Object.fromEntries(Object.entries(THEMES).map(([k, t]) => [t.label, k]));
 const themeCtrl = gui.add(view, 'theme', themeOpts).name('테마').onChange(selectTheme);
-categoryCtrl = gui.add(view, 'category', { '괴물': 'monsters', '플레이어 아이템': 'items' }).name('종류')
+categoryCtrl = gui.add(view, 'category', { '괴물': 'monsters', '플레이어 아이템': 'items', '플레이어 캐릭터': 'players' }).name('종류')
   .onChange(() => selectTheme(view.theme));
+let heldCtrl;
 gui.add(view, 'animate').name('재생');
 gui.add(view, 'speed', 0.1, 2, 0.05).name('속도');
 gui.add(view, 'gallery').name('테마 전체 보기').onChange(setGallery);
@@ -234,12 +277,18 @@ gui.add(view, 'horror', 0, 1, 0.05).name('공포도 (0 귀여움 · 1 무서움)
 // GLB with the standard clips (idle, move, attack, hit, death, special).
 function exportGLB(obj, filename) {
   const clips = bakeClips(obj);
+  // a player's held item is a separate GLB: leave it out of the player file
+  const held = obj.getObjectByName('heldItem');
+  const heldParent = held?.parent;
+  held?.removeFromParent();
+  const restoreHeld = () => heldParent?.add(held);
   // userData would be written into the GLB as "extras" (the whole rig as JSON): leave it out
   const userData = obj.userData;
   obj.userData = {};
   return new Promise((resolve, reject) => {
     new GLTFExporter().parse(obj, (glb) => {
       obj.userData = userData;
+      restoreHeld();
       if (filename) {
         const a = document.createElement('a');
         a.href = URL.createObjectURL(new Blob([glb], { type: 'model/gltf-binary' }));
@@ -248,11 +297,12 @@ function exportGLB(obj, filename) {
         URL.revokeObjectURL(a.href);
       }
       resolve(glb);
-    }, (err) => { obj.userData = userData; reject(err); }, { binary: true, animations: clips });
+    }, (err) => { obj.userData = userData; restoreHeld(); reject(err); }, { binary: true, animations: clips });
   });
 }
 const actions = {
-  exportGLB: () => exportGLB(current, `${view.theme}-${view.category === 'items' ? 'item-' : ''}${view.monster}.glb`),
+  exportGLB: () => exportGLB(current, view.category === 'players' ? `player-${view.monster}.glb`
+    : `${view.theme}-${view.category === 'items' ? 'item-' : ''}${view.monster}.glb`),
   copyParams: () => navigator.clipboard?.writeText(JSON.stringify(params, null, 2)),
 };
 gui.add(actions, 'exportGLB').name('💾 GLB 내보내기 (Unity용 클립 포함)');
@@ -272,13 +322,23 @@ window.__view = view;
 window.__list = () => Object.fromEntries(Object.entries(THEMES).map(([t, th]) => [t, {
   monsters: Object.keys(th.monsters), items: Object.keys(th.items ?? {}),
 }]));
+window.__players = () => Object.keys(PLAYERS);
+window.__camera = (x, y, z) => { camera.position.set(x, y, z); controls.update(); };
+window.__hold = (itemKey, clip) => { view.heldItem = itemKey; rebuild(); if (clip) view.animation = `clip:${clip}`; };
+// item -> player clips, for models/items.json
+window.__itemManifest = () => Object.fromEntries(Object.entries(THEMES).filter(([, th]) => th.items).map(([t, th]) => [t,
+  Object.fromEntries(Object.entries(th.items).map(([k, d]) => {
+    const info = build(d, { ...d.defaults }).userData.itemInfo;
+    return [k, { label: d.label, kind: info.kind, file: `${t}/items/${k}.glb`, playerHold: info.player.hold, playerUse: info.player.use, playerMove: info.player.move }];
+  })),
+]));
 window.__gallery = (on) => { view.gallery = on; setGallery(on); };
 window.__select = (t, m, cat = 'monsters') => {
   if (t !== view.theme || cat !== view.category) { view.category = cat; categoryCtrl.updateDisplay(); selectTheme(t); }
   if (m) { selectMonster(m); monsterCtrl.updateDisplay(); }
 };
 window.__exportGLB = (t, m, cat = 'monsters') => {
-  const d = THEMES[t][cat][m];
+  const d = cat === 'players' ? PLAYERS[m] : THEMES[t][cat][m];
   return exportGLB(build(d, { ...d.defaults }));
 };
 window.__setHorror = (v) => { view.horror = v; applyTheme(); rebuild(); if (view.gallery) setGallery(true); };

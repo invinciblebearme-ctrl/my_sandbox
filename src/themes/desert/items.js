@@ -1,5 +1,5 @@
 // Desert town: player items.
-import { makeItem, muzzleFlash, glowPart, itemSchema, ITEM_KINDS } from '../../core/item.js';
+import { makeItem, muzzleFlash, glowPart, itemSchema, ITEM_KINDS, TWO_HANDED_MELEE, TWO_HANDED_GUN } from '../../core/item.js';
 
 const Z = Math.PI / 2;
 
@@ -8,7 +8,7 @@ export const pickaxe = {
   defaults: { seed: 31, size: 1, woodColor: '#8a6040', metalColor: '#6a6e74' },
   schema: itemSchema({ woodColor: '자루 색', metalColor: '날 색' }),
   build: (p) => makeItem(p, {
-    name: 'Pickaxe', kind: 'melee', decay: 0.3,
+    name: 'Pickaxe', kind: 'melee', decay: 0.3, player: TWO_HANDED_MELEE,
     shape(k, it) {
       const metal = k.mat('metal', p.metalColor, { metalness: 0.5, roughness: 0.5 });
       it.add(k.at(k.cyl(0.02, 0.024, 0.65, k.mat('wood', p.woodColor), 6, 0.004), 0, 0.2, 0));
