@@ -1,14 +1,20 @@
 // Parametric low-poly zombie.
 // createZombie(params) builds a THREE.Group from plain parameters, so changing
 // a value and calling it again rebuilds the model (size, colour, variant...).
-// Animations live in ./animations.js and are applied with setPose().
+// Animations live in ./animations.js; play them with setPose() from core/monster.js.
 import * as THREE from 'three';
 import { mergeVertices } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
+import { mulberry32 } from '../../core/kit.js';
+import { finalizeMonster } from '../../core/monster.js';
 import { ANIMATIONS } from './animations.js';
+
+// Which animation plays for each standard Unity clip name.
+const BASE_CLIPS = { idle: 'idle', move: 'shamble', attack: 'bite', hit: 'hit', death: 'death' };
+const clips = (over = {}) => ({ ...BASE_CLIPS, ...over });
 
 export const DEFAULT_PARAMS = {
   seed: 7,
-  animation: 'shamble', // key of ANIMATIONS
+  clips: clips(),
   height: 1.0, // overall scale (1 = ~1.8 m)
   bulk: 1.0, // body width / limb thickness
   hunch: 0.25, // forward lean of the spine (radians)
@@ -35,51 +41,39 @@ export const DEFAULT_PARAMS = {
 
 // Zombie types. Each one is just a set of parameters plus its own animation.
 export const PRESETS = {
-  walker: { animation: 'shamble' },
+  walker: { clips: clips() },
   runner: {
-    animation: 'sprint', height: 0.95, bulk: 0.75, hunch: 0.55, armReach: 1.0, armLength: 1.1,
+    clips: clips({ move: 'sprint', attack: 'lunge' }), height: 0.95, bulk: 0.75, hunch: 0.55, armReach: 1.0, armLength: 1.1,
     headTilt: 0.35, jawOpen: 0.55, skinColor: '#9aa58a', shirtColor: '#8a2c2c',
     pantsColor: '#3b4a5c', eyeColor: '#ff2b2b', eyeGlow: 2.5, hair: 0.8, rot: 0.7,
   },
   brute: {
-    animation: 'smash', height: 1.15, bulk: 1.55, hunch: 0.35, armReach: 0.55, armLength: 1.15,
+    clips: clips({ attack: 'smash' }), height: 1.15, bulk: 1.55, hunch: 0.35, armReach: 0.55, armLength: 1.15,
     headTilt: 0.1, jawOpen: 0.35, skinColor: '#5f7a48', shirtColor: '#6b5d4a',
     pantsColor: '#2f3540', eyeColor: '#ff5a1f', hair: 0.1, wounds: 6,
   },
   rotten: {
-    animation: 'lurch', bulk: 0.9, hunch: 0.4, armReach: 0.7, headTilt: 0.45, jawOpen: 0.6,
+    clips: clips({ move: 'lurch' }), bulk: 0.9, hunch: 0.4, armReach: 0.7, headTilt: 0.45, jawOpen: 0.6,
     rot: 1.0, missingArm: 'left', wounds: 10, hair: 0.25,
     skinColor: '#6d7d4d', shirtColor: '#4d5a3d', pantsColor: '#3a3127', eyeColor: '#b7ff00',
   },
   crawler: {
-    animation: 'crawl', legs: 'none', bulk: 0.85, hunch: 0, armReach: 0.3, headTilt: 0.15,
+    clips: clips({ idle: 'crawlIdle', move: 'crawl', attack: 'crawlBite', hit: 'crawlHit', death: 'crawlDeath' }), legs: 'none', bulk: 0.85, hunch: 0, armReach: 0.3, headTilt: 0.15,
     jawOpen: 0.45, rot: 0.9, wounds: 8, hair: 0.4, skinColor: '#8a9470',
     shirtColor: '#3d4a5a', eyeColor: '#e8ff4a',
   },
   bloater: {
-    animation: 'waddle', belly: 1, height: 1.05, bulk: 1.35, hunch: 0.05, armReach: 0.2,
+    clips: clips({ move: 'waddle', attack: 'burp' }), belly: 1, height: 1.05, bulk: 1.35, hunch: 0.05, armReach: 0.2,
     headTilt: 0.15, jawOpen: 0.3, hair: 0.05, wounds: 5, skinColor: '#8c9a4a',
     shirtColor: '#b8ae8c', pantsColor: '#4a4a3a', eyeColor: '#ffd400',
   },
   screamer: {
-    animation: 'scream', height: 1.1, bulk: 0.7, neckLength: 0.8, armLength: 1.25, hunch: 0.15,
+    clips: clips({ special: 'scream' }), height: 1.1, bulk: 0.7, neckLength: 0.8, armLength: 1.25, hunch: 0.15,
     armReach: 0.3, headTilt: 0.2, jawOpen: 0.6, hair: 1, hairColor: '#111111',
     skinColor: '#b0b8a8', shirtColor: '#2a2a2a', pantsColor: '#1f1f24',
     eyeColor: '#9ad9ff', eyeGlow: 3, wounds: 3,
   },
 };
-
-// Small deterministic RNG so the same seed always gives the same zombie.
-function mulberry32(seed) {
-  let a = seed >>> 0;
-  return () => {
-    a = (a + 0x6d2b79f5) >>> 0;
-    let t = a;
-    t = Math.imul(t ^ (t >>> 15), t | 1);
-    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
-    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-  };
-}
 
 export function createZombie(input = {}) {
   const p = { ...DEFAULT_PARAMS, ...input };
@@ -312,74 +306,10 @@ export function createZombie(input = {}) {
     arm.elbow.rotation.x = -0.15 - p.armReach * 0.1;
   }
 
-  const nodes = [hips, spine, belly, neck, head, jaw,
-    legs.L.leg, legs.L.knee, legs.R.leg, legs.R.knee,
-    arms.L.shoulder, arms.L.elbow, arms.R.shoulder, arms.R.elbow];
-  const rest = nodes.map((n) => ({
-    node: n, position: n.position.clone(), rotation: n.rotation.clone(), scale: n.scale.clone(),
-  }));
-  root.userData = { rig: { hips, spine, belly, neck, head, jaw, legs, arms }, nodes, rest, params: p };
-  return root;
-}
-
-// Puts every animated joint back to the rest pose defined by the parameters.
-export function resetPose(zombie) {
-  for (const r of zombie.userData.rest) {
-    r.node.position.copy(r.position);
-    r.node.rotation.copy(r.rotation);
-    r.node.scale.copy(r.scale);
-  }
-}
-
-// Applies animation `name` at `time` seconds (defaults to the zombie's own one).
-export function setPose(zombie, time, name = zombie.userData.params.animation) {
-  resetPose(zombie);
-  const anim = ANIMATIONS[name];
-  if (!anim) return;
-  const u = (((time / anim.duration) % 1) + 1) % 1; // 0..1 through one loop
-  anim.apply(zombie.userData.rig, u, zombie.userData.params);
-}
-
-// Bakes every animation into AnimationClips (for GLB export / AnimationMixer).
-export function bakeClips(zombie, names = Object.keys(ANIMATIONS), fps = 30) {
-  const { nodes } = zombie.userData;
-  const clips = names.map((name) => {
-    const { duration } = ANIMATIONS[name];
-    const frames = Math.round(duration * fps);
-    const times = [];
-    const data = nodes.map(() => ({ p: [], q: [], s: [] }));
-    for (let f = 0; f <= frames; f++) {
-      const t = (f / frames) * duration;
-      times.push(t);
-      setPose(zombie, f === frames ? 0 : t, name); // last frame == first: seamless loop
-      nodes.forEach((n, i) => {
-        data[i].p.push(...n.position.toArray());
-        data[i].q.push(...n.quaternion.toArray());
-        data[i].s.push(...n.scale.toArray());
-      });
-    }
-    const tracks = [];
-    // only keep position/scale tracks that actually change (saves file size)
-    const moves = (arr) => arr.some((v, k) => Math.abs(v - arr[k % 3]) > 1e-5);
-    nodes.forEach((n, i) => {
-      tracks.push(new THREE.QuaternionKeyframeTrack(`${n.name}.quaternion`, times, data[i].q));
-      if (moves(data[i].p)) tracks.push(new THREE.VectorKeyframeTrack(`${n.name}.position`, times, data[i].p));
-      if (moves(data[i].s)) tracks.push(new THREE.VectorKeyframeTrack(`${n.name}.scale`, times, data[i].s));
-    });
-    return new THREE.AnimationClip(name, duration, tracks);
+  return finalizeMonster(root, {
+    rig: { hips, spine, belly, neck, head, jaw, legs, arms },
+    params: p,
+    animations: ANIMATIONS,
+    clips: p.clips,
   });
-  resetPose(zombie);
-  return clips;
-}
-
-// Frees geometry and materials of a zombie that is no longer used.
-export function disposeZombie(zombie) {
-  const mats = new Set();
-  zombie.traverse((o) => {
-    if (o.isMesh) {
-      o.geometry.dispose();
-      mats.add(o.material);
-    }
-  });
-  mats.forEach((m) => m.dispose());
 }
