@@ -3,5 +3,6 @@ import graveyard from './graveyard/index.js';
 import campground from './campground/index.js';
 import snow from './snow/index.js';
 import desert from './desert/index.js';
+import space from './space/index.js';
 
-export const THEMES = { campground, snow, desert, graveyard };
+export const THEMES = { campground, snow, desert, space, graveyard };
