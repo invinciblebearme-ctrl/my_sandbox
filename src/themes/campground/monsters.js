@@ -69,6 +69,7 @@ export const swampy = {
     k.smile(f, { y: face.cy - 0.0, z: surf(face, 0) + 0.005, width: 0.2 });
     k.cheeks(f, { y: face.cy + 0.03, z: surf(face, 0.03) - 0.01, spacing: 0.25 });
     root.scale.setScalar(p.size);
+    k.decay(root);
     return finalizeMonster(root, {
       rig, params: p, animations: BIPED_ANIMS,
       clips: { idle: 'idle', move: 'waddle', attack: 'clap', hit: 'hit', death: 'melt' },
@@ -102,6 +103,7 @@ export const wolfPup = {
     // fluffy cheek tufts
     for (const [, s] of sides) rig.head.add(k.at(k.rot(k.cone(0.05, 0.12, fur, 4), 0, 0, s * 1.9), s * p.headSize * 0.55, -p.headSize * 0.15, 0));
     root.scale.setScalar(p.size);
+    k.decay(root);
     return finalizeMonster(root, {
       rig, params: p, animations: QUAD_ANIMS,
       clips: { idle: 'idle', move: 'gallop', attack: 'pounce', hit: 'hit', death: 'death', special: 'howl' },
@@ -147,6 +149,7 @@ export const bigBear = {
     rig.eyes = k.eyes(h, { y: face.cy + 0.07, z: 0.25, spacing: 0.11, size: 0.065 });
     k.cheeks(h, { y: face.cy - 0.04, z: 0.24, spacing: 0.19, size: 0.045 });
     root.scale.setScalar(p.size);
+    k.decay(root);
     return finalizeMonster(root, {
       rig, params: p, animations: BIPED_ANIMS,
       clips: { idle: 'idle', move: 'waddle', attack: 'pound', hit: 'hit', death: 'flop' },
@@ -269,6 +272,7 @@ export const tentMimic = {
       pegs.push(peg);
     }
     root.scale.setScalar(p.size);
+    k.decay(root);
     return finalizeMonster(root, {
       rig: { body, roof, tongue, flag, pegs, eyes }, params: p, animations: TENT_ANIMS,
       clips: { idle: 'idle', move: 'hop', attack: 'chomp', hit: 'hit', death: 'collapse' },
@@ -306,6 +310,7 @@ export const lakeEel = {
       root.add(k.at(k.scl(k.ball(k.rand(0.04, 0.07), pebble, 0, 0.01), 1, 0.6, 1), Math.sin(a) * 0.55, 0.02, Math.cos(a) * 0.55));
     }
     root.scale.setScalar(p.size);
+    k.decay(root);
     return finalizeMonster(root, {
       rig, params: p, animations: SERPENT_ANIMS,
       clips: { idle: 'idle', move: 'swim', attack: 'strike', hit: 'hit', death: 'death', special: 'emerge' },
@@ -449,6 +454,7 @@ export const sporeShroom = {
       spores.push(sp);
     }
     root.scale.setScalar(p.size);
+    k.decay(root);
     return finalizeMonster(root, {
       rig: { body, cap, feet, arms, spores, eyes }, params: p, animations: MUSH_ANIMS,
       clips: { idle: 'idle', move: 'hop', attack: 'puff', hit: 'hit', death: 'death' },
@@ -599,6 +605,7 @@ export const campfireWisp = {
     // a little shadow disc on the ground so it reads as floating
     root.add(k.at(k.scl(k.cyl(0.25, 0.25, 0.005, k.mat('shadow', '#1d2a1a', { roughness: 1 }), 12), 1, 1, 1), 0, 0.005, 0));
     root.scale.setScalar(p.size);
+    k.decay(root);
     return finalizeMonster(root, {
       rig: { float, tip, hands, sparks, eyes }, params: p, animations: WISP_ANIMS,
       clips: { idle: 'idle', move: 'drift', attack: 'fireball', hit: 'hit', death: 'fizzle', special: 'rally' },

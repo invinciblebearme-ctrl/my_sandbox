@@ -415,4 +415,68 @@ export const ANIMATIONS = {
       }
     },
   },
+  // ---- extra moves used by other themes -------------------------------------
+
+  // Raises the right hand straight ahead and fires twice (rig.muzzle optional).
+  shoot: {
+    label: '총 쏘기',
+    duration: 1.4,
+    apply(rig, u) {
+      const aim = keys(u, [[0, 0], [0.25, 1], [0.85, 1], [1, 0]]);
+      const kick = Math.max(0, 1 - Math.abs(u - 0.45) / 0.05) + Math.max(0, 1 - Math.abs(u - 0.68) / 0.05);
+      const sh = rig.arms.R.shoulder;
+      sh.rotation.x = lerp(sh.rotation.x, -1.5, aim) - kick * 0.35;
+      sh.rotation.z = lerp(sh.rotation.z, 0.05, aim);
+      rig.arms.R.elbow.rotation.x = lerp(rig.arms.R.elbow.rotation.x, 0, aim);
+      const shL = rig.arms.L.shoulder;
+      shL.rotation.x = lerp(shL.rotation.x, 0.15, aim);
+      rig.spine.rotation.x -= kick * 0.08;
+      rig.spine.rotation.y -= aim * 0.25;
+      rig.head.rotation.y -= aim * 0.15;
+      if (rig.muzzle) rig.muzzle.scale.setScalar(kick > 0.3 ? kick * 1.2 : 0.001);
+    },
+  },
+
+  // Ghost: floats and drifts forward.
+  hover: {
+    label: '둥둥 떠서 이동',
+    duration: 1.8,
+    apply(rig, u) {
+      const w = u * TAU;
+      rig.hips.position.y += 0.08 + Math.sin(w) * 0.07;
+      rig.hips.rotation.z += Math.sin(w) * 0.06;
+      rig.spine.rotation.x += 0.15;
+      rig.head.rotation.z += Math.sin(w) * 0.12;
+      for (const [n, sign] of sides) {
+        rig.arms[n].shoulder.rotation.x += -0.2 + Math.sin(w + sign) * 0.1;
+        rig.arms[n].shoulder.rotation.z += sign * Math.sin(w) * 0.05;
+      }
+      rig.jaw.rotation.x += Math.abs(Math.sin(w * 2)) * 0.15;
+    },
+  },
+  hoverIdle: {
+    label: '제자리에 떠 있기',
+    duration: 3,
+    apply(rig, u) {
+      const w = u * TAU;
+      rig.hips.position.y += 0.08 + Math.sin(w) * 0.05;
+      rig.hips.rotation.y += Math.sin(w) * 0.15;
+      rig.head.rotation.z += Math.sin(w) * 0.1;
+      for (const [n, sign] of sides) rig.arms[n].shoulder.rotation.x += 0.3 + Math.sin(w + sign) * 0.05;
+    },
+  },
+  // Ghost death: rises, spins and fades away.
+  vanish: {
+    label: '사라지기',
+    duration: 1.6,
+    loop: false,
+    apply(rig, u) {
+      const f = keys(u, [[0, 0], [0.2, -0.1], [1, 1]]);
+      rig.hips.position.y += f * 0.5;
+      rig.hips.scale.setScalar(Math.max(0.001, 1 - f));
+      rig.spine.rotation.y += f * 3;
+      for (const [n, sign] of sides) rig.arms[n].shoulder.rotation.z += sign * f * 1.2;
+      rig.jaw.rotation.x += f * 0.4;
+    },
+  },
 };

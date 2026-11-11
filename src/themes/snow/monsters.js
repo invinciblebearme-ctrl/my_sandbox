@@ -56,6 +56,7 @@ export const snowman = {
     rig.projectile.scale.setScalar(0.001);
     rig.hips.add(rig.projectile);
     root.scale.setScalar(p.size);
+    k.decay(root);
     return finalizeMonster(root, {
       rig, params: p, animations: BIPED_ANIMS,
       clips: { idle: 'idle', move: 'waddle', attack: 'throw', hit: 'hit', death: 'melt' },
@@ -86,6 +87,7 @@ export const frostFox = {
     for (const [n] of sides) rig.ears[n].scale.setScalar(1.35);
     k.cheeks(rig.head, { y: -p.headSize * 0.05, z: p.headSize * 0.5, spacing: p.headSize * 0.36, size: 0.03 });
     root.scale.setScalar(p.size);
+    k.decay(root);
     return finalizeMonster(root, {
       rig, params: p, animations: QUAD_ANIMS,
       clips: { idle: 'idle', move: 'gallop', attack: 'pounce', hit: 'hit', death: 'death', special: 'howl' },
@@ -129,6 +131,7 @@ export const yeti = {
     for (const [, s] of sides) h.add(k.at(k.cone(0.015, 0.04, fang, 4), s * 0.035, face.cy - 0.1, 0.275));
     k.cheeks(h, { y: face.cy - 0.04, z: 0.25, spacing: 0.15, size: 0.035 });
     root.scale.setScalar(p.size);
+    k.decay(root);
     return finalizeMonster(root, {
       rig, params: p, animations: BIPED_ANIMS,
       clips: { idle: 'idle', move: 'waddle', attack: 'pound', hit: 'hit', death: 'flop' },
@@ -160,6 +163,7 @@ export const icicleSpider = {
     k.smile(rig.head, { y: -0.02, z: 0.25, width: 0.08, segs: 4, thick: 0.016 });
     k.cheeks(rig.head, { y: 0.02, z: 0.22, spacing: 0.11, size: 0.025 });
     root.scale.setScalar(p.size);
+    k.decay(root);
     return finalizeMonster(root, {
       rig, params: p, animations: SPIDER_ANIMS,
       clips: { idle: 'idle', move: 'scuttle', attack: 'stab', hit: 'hit', death: 'curl' },
@@ -278,6 +282,7 @@ export const snowShark = {
     k.smile(body, { y: -0.035, z: 0.445, width: 0.14, curve: 0.3 });
     body.add(jaw);
     root.scale.setScalar(p.size);
+    k.decay(root);
     return finalizeMonster(root, {
       rig: { base, body, tail, jaw, eyes }, params: p, animations: SHARK_ANIMS,
       clips: { idle: 'lurk', move: 'swim', attack: 'leap', hit: 'hit', death: 'bellyUp', special: 'emerge' },
@@ -397,6 +402,7 @@ export const bombSnowball = {
       chunks.push(c);
     }
     root.scale.setScalar(p.size);
+    k.decay(root);
     return finalizeMonster(root, {
       rig: { body, fuse, spark, chunks, eyes }, params: p, animations: BOMB_ANIMS,
       clips: { idle: 'idle', move: 'roll', attack: 'boom', hit: 'hit', death: 'crumble' },
@@ -563,6 +569,7 @@ export const blizzardFairy = {
     swirl({ flakes }, 0, 0.45, 0);
     root.add(k.cyl(0.18, 0.18, 0.005, k.mat('shadow', '#9ab0c4', { roughness: 1 }), 12));
     root.scale.setScalar(p.size);
+    k.decay(root);
     return finalizeMonster(root, {
       rig: { float, wings, hands, star, flakes, eyes }, params: p, animations: FAIRY_ANIMS,
       clips: { idle: 'idle', move: 'fly', attack: 'zap', hit: 'hit', death: 'fall', special: 'blizzard' },

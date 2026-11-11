@@ -16,13 +16,19 @@ export function mulberry32(seed) {
   };
 }
 
-// horror: 0 = cute (round eyes, smiles, rosy cheeks) .. 1 = creepy (glowing slit
-// eyes, angry brows, jagged teeth, darker and less saturated colours).
-export function createKit(seed = 1, jitterScale = 1, horror = 0) {
+// horror: 0 = cute (round eyes, smiles, rosy cheeks)
+//         0.4+ = creepy cartoon (glowing slit eyes, angry brows, jagged teeth)
+//         0.75+ = zombie style, matching the graveyard zombies: square glowing eyes in
+//                 dark sockets, broken teeth, lumpy surfaces, blood patches and bones
+// eyeColor: glow colour of zombie-style eyes.
+export const ZOMBIE_STYLE = 0.75;
+
+export function createKit(seed = 1, jitterScale = 1, horror = 0, { eyeColor = '#d8ff3a' } = {}) {
   const rng = mulberry32(seed);
   const rand = (a, b) => a + (b - a) * rng();
   const mats = {};
   const h = Math.min(1, Math.max(0, horror));
+  const zombie = h >= ZOMBIE_STYLE;
 
   // colours lose saturation and get darker as horror goes up (glowing parts keep theirs)
   const grim = (color, keep = false) => {
@@ -30,7 +36,7 @@ export function createKit(seed = 1, jitterScale = 1, horror = 0) {
     if (keep || h === 0) return c;
     const hsl = {};
     c.getHSL(hsl);
-    return c.setHSL(hsl.h, hsl.s * (1 - 0.45 * h), hsl.l * (1 - 0.35 * h));
+    return c.setHSL(hsl.h, hsl.s * (1 - 0.4 * h), hsl.l * (1 - 0.3 * h));
   };
   // keepColor / keepGlow are hints for this kit only, not material properties
   const withoutKeep = ({ keepColor: _keep, keepGlow: _glow, ...rest }) => rest;
@@ -41,7 +47,7 @@ export function createKit(seed = 1, jitterScale = 1, horror = 0) {
     }));
   // Glowing parts drift toward an eerie ghost-fire green as horror goes up.
   const glow = (name, color, intensity = 1.5) => {
-    const c = new THREE.Color(color).lerp(new THREE.Color('#9dff5a'), h * 0.55);
+    const c = new THREE.Color(color).lerp(new THREE.Color('#9dff5a'), Math.min(h, ZOMBIE_STYLE) * 0.55);
     return mat(name, c, { emissive: c, emissiveIntensity: intensity, roughness: 0.5 });
   };
 
@@ -61,7 +67,8 @@ export function createKit(seed = 1, jitterScale = 1, horror = 0) {
     return geo;
   };
   const mesh = (geo, material, jitter = 0) => {
-    const m = new THREE.Mesh(jitter > 0 ? jitterGeo(geo, jitter * jitterScale) : geo, material);
+    const amount = jitter * jitterScale * (1 + h * 0.8); // the scarier, the lumpier
+    const m = new THREE.Mesh(amount > 0 ? jitterGeo(geo, amount) : geo, material);
     m.castShadow = true;
     m.receiveShadow = true;
     return m;
@@ -73,8 +80,10 @@ export function createKit(seed = 1, jitterScale = 1, horror = 0) {
 
   const box = (w, h, d, material, jitter = 0.01, seg = 1) =>
     mesh(new THREE.BoxGeometry(w, h, d, seg, seg, seg), material, jitter);
-  const ball = (r, material, detail = 1, jitter = 0) =>
-    mesh(new THREE.IcosahedronGeometry(r, detail), material, jitter);
+  // zombie style: fewer facets and always a little lumpy (except tiny details)
+  const ball = (r, material, detail = 1, jitter = 0) => mesh(
+    new THREE.IcosahedronGeometry(r, zombie && detail > 1 ? detail - 1 : detail), material,
+    jitter || (zombie && r > 0.08 ? r * 0.05 : 0));
   const cone = (r, h, material, seg = 6, jitter = 0) =>
     mesh(new THREE.ConeGeometry(r, h, seg), material, jitter);
   const cyl = (rt, rb, h, material, seg = 7, jitter = 0) =>
@@ -87,6 +96,13 @@ export function createKit(seed = 1, jitterScale = 1, horror = 0) {
   // red slit pupil, no highlight.
   const eye = (name, size, { pupil = '#1d1b26', white = '#ffffff', look = 0 } = {}) => {
     const e = pivot(name);
+    if (zombie) {
+      // like the zombies: dark square socket with a small glowing pupil
+      e.add(box(size * 1.35, size * 0.9, size * 0.6, mat('socket', '#1a0b0b', { keepColor: true }), 0));
+      e.add(at(box(size * 0.8, size * 0.5, size * 0.5, mat('zombieEye', eyeColor, { emissive: eyeColor, emissiveIntensity: 1.5 + h }), 0),
+        look * size * 0.2, 0, size * 0.2));
+      return e;
+    }
     // white sclera turns into a dark socket; the pupil starts to glow
     const whiteCol = new THREE.Color(white).lerp(new THREE.Color('#231a1e'), Math.min(1, h * 1.15));
     e.add(ball(size, mat('eyeWhite', whiteCol, { keepColor: true }), 1));
@@ -106,11 +122,16 @@ export function createKit(seed = 1, jitterScale = 1, horror = 0) {
   // Adds two eyes to `parent`, returns [eyeL, eyeR]. Creepy eyes get angry brows
   // and slightly different sizes.
   const eyes = (parent, { y, z, spacing, size, prefix = 'eye', ...opts }) => {
-    const odd = 1 + h * 0.25;
+    const odd = zombie ? 1 : 1 + h * 0.25;
+    const droop = zombie ? -rand(0.1, 0.4) * size : h * size * 0.15; // one droopy eye
     const l = at(eye(`${prefix}L`, size * odd, opts), spacing, y, z);
-    const r = at(eye(`${prefix}R`, size / odd, opts), -spacing, y + h * size * 0.15, z);
+    const r = at(eye(`${prefix}R`, size / odd, opts), -spacing, y + droop, z);
     parent.add(l, r);
-    if (h > 0.3) {
+    if (zombie) {
+      // sockets tilt inward a little (angry, uneven)
+      l.rotation.z = rand(0.1, 0.3);
+      r.rotation.z = -rand(0.0, 0.25);
+    } else if (h > 0.3) {
       const brow = mat('brow', '#1a1418');
       for (const [s, e] of [[1, l], [-1, r]]) {
         const b = box(size * 1.6, size * 0.28, size * 0.3, brow, 0);
@@ -123,6 +144,21 @@ export function createKit(seed = 1, jitterScale = 1, horror = 0) {
 
   // Mouth. Cute: a curved smile. Creepy: a gaping frown full of jagged teeth.
   const smile = (parent, { y, z, width, color = '#3a1f2b', thick = 0.025, curve = 0.5, segs = 5 }) => {
+    if (zombie) {
+      // like the zombies: dark mouth slot with broken, yellowed teeth
+      const w = width * 1.15;
+      const tall = width * 0.35;
+      parent.add(at(box(w, tall, thick * 1.5, mat('mouthDark', '#1a0b0b', { keepColor: true }), 0), 0, y - tall * 0.2, z - thick * 0.3));
+      const tooth = mat('zombieTeeth', '#c9be8a', { keepColor: true });
+      const n = Math.max(4, segs);
+      for (let i = 0; i < n; i++) {
+        if (rng() < 0.22) continue; // missing tooth
+        const tw = (w / n) * 0.8;
+        const th = tall * rand(0.3, 0.55);
+        parent.add(at(box(tw, th, thick, tooth, 0), (i + 0.5 - n / 2) * (w / n), y - tall * 0.2 + tall / 2 - th / 2, z + thick * 0.2));
+      }
+      return;
+    }
     if (h < 0.4) {
       const m = mat('smile', color);
       for (let i = 0; i < segs; i++) {
@@ -155,6 +191,7 @@ export function createKit(seed = 1, jitterScale = 1, horror = 0) {
 
   // Rosy cheeks when cute, dark sunken eye bags when creepy.
   const cheeks = (parent, { y, z, spacing, size = 0.05, color = '#ff9aa8' }) => {
+    if (zombie) return;
     const m = h < 0.4 ? mat('cheek', color, { roughness: 1 }) : mat('eyeBags', '#2a1a24', { roughness: 1, keepColor: true });
     for (const s of [-1, 1]) {
       const c = scl(ball(size, m, 1), 1, h < 0.4 ? 0.6 : 0.35, 0.35);
@@ -162,5 +199,44 @@ export function createKit(seed = 1, jitterScale = 1, horror = 0) {
     }
   };
 
-  return { rng, rand, horror: h, mats, mat, glow, mesh, at, rot, scl, pivot, box, ball, cone, cyl, dome, eye, eyes, smile, cheeks };
+  // Zombie style only: blood patches and bone shards stuck onto the body surface
+  // (picked from real mesh vertices, so it works for any monster shape).
+  const SKIP = /eye|pupil|shine|brow|mouth|fang|teeth|tooth|cheek|smile|socket|blood|bone|tongue|shadow|water|spore|spark/i;
+  const decay = (root, amount = 1) => {
+    if (h < 0.6) return;
+    root.updateMatrixWorld(true);
+    const parts = [];
+    root.traverse((o) => {
+      if (!o.isMesh || SKIP.test(o.material.name) || o.material.emissiveIntensity > 0 && o.material.emissive.getHex()) return;
+      o.geometry.computeBoundingSphere();
+      const r = o.geometry.boundingSphere.radius * Math.max(o.scale.x, o.scale.y, o.scale.z);
+      if (r > 0.08) parts.push({ o, r });
+    });
+    if (!parts.length) return;
+    const total = parts.reduce((a, p) => a + p.r, 0);
+    const pick = () => { let t = rng() * total; for (const p of parts) { t -= p.r; if (t <= 0) return p.o; } return parts[0].o; };
+    const blood = mat('blood', '#6e1212', { keepColor: true, roughness: 0.4 });
+    const boneMat = mat('bone', '#d9d2b6', { keepColor: true });
+    const count = Math.round((4 + 10 * h) * amount);
+    const pos = new THREE.Vector3();
+    const nrm = new THREE.Vector3();
+    for (let i = 0; i < count; i++) {
+      const o = pick();
+      const g = o.geometry;
+      if (!g.attributes.normal) g.computeVertexNormals();
+      const vi = Math.floor(rng() * g.attributes.position.count);
+      o.updateMatrix();
+      pos.fromBufferAttribute(g.attributes.position, vi).applyMatrix4(o.matrix);
+      nrm.fromBufferAttribute(g.attributes.normal, vi).applyMatrix3(new THREE.Matrix3().getNormalMatrix(o.matrix)).normalize();
+      const isBone = rng() < 0.22;
+      const piece = isBone ? cone(0.015, rand(0.06, 0.11), boneMat, 4) : box(rand(0.05, 0.13), rand(0.04, 0.1), 0.016, blood, 0.005);
+      piece.position.copy(pos).addScaledVector(nrm, isBone ? 0.03 : 0.004);
+      piece.lookAt(pos.clone().addScaledVector(nrm, 1));
+      if (isBone) piece.rotateX(Math.PI / 2);
+      else piece.rotateZ(rand(0, Math.PI));
+      o.parent.add(piece);
+    }
+  };
+
+  return { rng, rand, horror: h, zombie, decay, mats, mat, glow, mesh, at, rot, scl, pivot, box, ball, cone, cyl, dome, eye, eyes, smile, cheeks };
 }

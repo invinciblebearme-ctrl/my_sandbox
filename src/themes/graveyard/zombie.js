@@ -75,17 +75,23 @@ export const PRESETS = {
   },
 };
 
-export function createZombie(input = {}) {
-  const p = { ...DEFAULT_PARAMS, ...input };
+// decorate(parts): optional callback used by other themes to add outfits and
+// props (hats, guns, badges...) before the model is finalized.
+export function createZombie(input = {}, decorate = null) {
+  const p = { ghost: 0, ...DEFAULT_PARAMS, ...input };
   const rng = mulberry32(p.seed);
   const rand = (a, b) => a + (b - a) * rng();
   const b = p.bulk;
   const L = p.armLength;
 
   const mats = {};
+  // ghost > 0: every surface glows faintly and turns see-through
+  const ghostly = (color) => (p.ghost > 0
+    ? { emissive: color, emissiveIntensity: 0.45 * p.ghost, transparent: true, opacity: 1 - 0.35 * p.ghost }
+    : {});
   const mat = (name, color, extra = {}) =>
     (mats[name] ??= new THREE.MeshStandardMaterial({
-      name, color, flatShading: true, roughness: 0.9, metalness: 0, ...extra,
+      name, color, flatShading: true, roughness: 0.9, metalness: 0, ...ghostly(color), ...extra,
     }));
   const skin = mat('skin', p.skinColor);
   const shirt = mat('shirt', p.shirtColor);
@@ -124,7 +130,7 @@ export function createZombie(input = {}) {
   const pivot = (name, x, y, z) => at(Object.assign(new THREE.Group(), { name }), x, y, z);
 
   const root = new THREE.Group();
-  root.name = 'Zombie';
+  root.name = p.name ?? 'Zombie';
   root.scale.setScalar(p.height);
 
   // ---- Hips & legs ----------------------------------------------------------
@@ -139,6 +145,7 @@ export function createZombie(input = {}) {
     leg.add(knee);
     hips.add(leg);
     legs[name] = { leg, knee };
+    if (p.legs === 'ghost') continue; // the misty tail is added below
     if (p.legs === 'none') {
       // ragged stump with a bone sticking out
       leg.add(at(box(0.17 * b, 0.12, 0.19 * b, pants, 0.02), 0, -0.05, 0));
@@ -153,6 +160,16 @@ export function createZombie(input = {}) {
       knee.add(at(box(0.11 * b, 0.12, 0.12 * b, skin, 0.01), 0, -0.36, 0));
     }
     knee.add(at(box(0.15 * b, 0.08, 0.27, mat('shoes', '#231d18'), 0.012), 0, -0.45, 0.05));
+  }
+
+  if (p.legs === 'ghost') {
+    // misty tail instead of legs
+    const tail = mesh(new THREE.ConeGeometry(0.22 * b, 0.75, 7), shirt, 0.02);
+    tail.rotation.x = Math.PI;
+    hips.add(at(tail, 0, -0.42, 0));
+    const tip = mesh(new THREE.ConeGeometry(0.08 * b, 0.3, 5), shirt, 0.01);
+    tip.rotation.set(Math.PI, 0, 0.5);
+    hips.add(at(tip, 0.06, -0.85, -0.03));
   }
 
   // ---- Spine, torso ---------------------------------------------------------
@@ -306,8 +323,10 @@ export function createZombie(input = {}) {
     arm.elbow.rotation.x = -0.15 - p.armReach * 0.1;
   }
 
+  const rig = { hips, spine, belly, neck, head, jaw, legs, arms };
+  decorate?.({ THREE, rig, p, mat, mesh, box, at, pivot, rand, rng, skin, shirt, pants, bone, blood, dark, b, L });
   return finalizeMonster(root, {
-    rig: { hips, spine, belly, neck, head, jaw, legs, arms },
+    rig,
     params: p,
     animations: ANIMATIONS,
     clips: p.clips,

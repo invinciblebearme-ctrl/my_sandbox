@@ -56,7 +56,7 @@ const view = {
   kitVisible: true,
   kitScale: 1,
   kitY: 0,
-  horror: 0.7, // 0 = cute .. 1 = creepy, applies to every monster and the scenery
+  horror: 0.9, // 0 = cute .. 1 = creepy (0.75+ matches the zombies), applies to every monster and the scenery
 };
 let params = {};
 let current = null;
