@@ -1,17 +1,24 @@
 // Parametric low-poly zombie.
 // createZombie(params) builds a THREE.Group from plain parameters, so changing
 // a value and calling it again rebuilds the model (size, colour, variant...).
+// Animations live in ./animations.js and are applied with setPose().
 import * as THREE from 'three';
 import { mergeVertices } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
+import { ANIMATIONS } from './animations.js';
 
 export const DEFAULT_PARAMS = {
   seed: 7,
+  animation: 'shamble', // key of ANIMATIONS
   height: 1.0, // overall scale (1 = ~1.8 m)
   bulk: 1.0, // body width / limb thickness
   hunch: 0.25, // forward lean of the spine (radians)
   armReach: 0.85, // 0 = arms hanging, 1 = arms straight forward
+  armLength: 1.0, // arm length multiplier
+  neckLength: 0, // 0 = normal, 1 = long, unnatural neck
   headTilt: 0.25, // sideways head tilt (radians)
   jawOpen: 0.25, // 0..0.6
+  belly: 0, // 0 = none, 1 = huge bloated belly
+  legs: 'full', // 'full' | 'none' (torso only, for crawlers)
   rot: 0.5, // vertex jitter: how lumpy / decayed the body looks
   missingArm: 'none', // 'none' | 'left' | 'right'
   tornClothes: true,
@@ -26,22 +33,39 @@ export const DEFAULT_PARAMS = {
   bloodColor: '#6e1212',
 };
 
+// Zombie types. Each one is just a set of parameters plus its own animation.
 export const PRESETS = {
-  walker: {},
-  brute: {
-    height: 1.15, bulk: 1.55, hunch: 0.35, armReach: 0.55, headTilt: 0.1,
-    jawOpen: 0.35, skinColor: '#5f7a48', shirtColor: '#6b5d4a', pantsColor: '#2f3540',
-    eyeColor: '#ff5a1f', hair: 0.1, wounds: 6,
-  },
+  walker: { animation: 'shamble' },
   runner: {
-    height: 0.95, bulk: 0.75, hunch: 0.55, armReach: 1.0, headTilt: 0.35,
-    jawOpen: 0.55, skinColor: '#9aa58a', shirtColor: '#8a2c2c', pantsColor: '#3b4a5c',
-    eyeColor: '#ff2b2b', eyeGlow: 2.5, hair: 0.8, rot: 0.7,
+    animation: 'sprint', height: 0.95, bulk: 0.75, hunch: 0.55, armReach: 1.0, armLength: 1.1,
+    headTilt: 0.35, jawOpen: 0.55, skinColor: '#9aa58a', shirtColor: '#8a2c2c',
+    pantsColor: '#3b4a5c', eyeColor: '#ff2b2b', eyeGlow: 2.5, hair: 0.8, rot: 0.7,
+  },
+  brute: {
+    animation: 'smash', height: 1.15, bulk: 1.55, hunch: 0.35, armReach: 0.55, armLength: 1.15,
+    headTilt: 0.1, jawOpen: 0.35, skinColor: '#5f7a48', shirtColor: '#6b5d4a',
+    pantsColor: '#2f3540', eyeColor: '#ff5a1f', hair: 0.1, wounds: 6,
   },
   rotten: {
-    bulk: 0.9, hunch: 0.4, armReach: 0.7, headTilt: 0.45, jawOpen: 0.6,
+    animation: 'lurch', bulk: 0.9, hunch: 0.4, armReach: 0.7, headTilt: 0.45, jawOpen: 0.6,
     rot: 1.0, missingArm: 'left', wounds: 10, hair: 0.25,
     skinColor: '#6d7d4d', shirtColor: '#4d5a3d', pantsColor: '#3a3127', eyeColor: '#b7ff00',
+  },
+  crawler: {
+    animation: 'crawl', legs: 'none', bulk: 0.85, hunch: 0, armReach: 0.3, headTilt: 0.15,
+    jawOpen: 0.45, rot: 0.9, wounds: 8, hair: 0.4, skinColor: '#8a9470',
+    shirtColor: '#3d4a5a', eyeColor: '#e8ff4a',
+  },
+  bloater: {
+    animation: 'waddle', belly: 1, height: 1.05, bulk: 1.35, hunch: 0.05, armReach: 0.2,
+    headTilt: 0.15, jawOpen: 0.3, hair: 0.05, wounds: 5, skinColor: '#8c9a4a',
+    shirtColor: '#b8ae8c', pantsColor: '#4a4a3a', eyeColor: '#ffd400',
+  },
+  screamer: {
+    animation: 'scream', height: 1.1, bulk: 0.7, neckLength: 0.8, armLength: 1.25, hunch: 0.15,
+    armReach: 0.3, headTilt: 0.2, jawOpen: 0.6, hair: 1, hairColor: '#111111',
+    skinColor: '#b0b8a8', shirtColor: '#2a2a2a', pantsColor: '#1f1f24',
+    eyeColor: '#9ad9ff', eyeGlow: 3, wounds: 3,
   },
 };
 
@@ -62,6 +86,7 @@ export function createZombie(input = {}) {
   const rng = mulberry32(p.seed);
   const rand = (a, b) => a + (b - a) * rng();
   const b = p.bulk;
+  const L = p.armLength;
 
   const mats = {};
   const mat = (name, color, extra = {}) =>
@@ -116,26 +141,54 @@ export function createZombie(input = {}) {
   for (const side of [-1, 1]) {
     const name = side < 0 ? 'R' : 'L';
     const leg = pivot(`leg${name}`, side * 0.11 * b, 0, 0);
-    leg.add(at(box(0.17 * b, 0.47, 0.19 * b, pants, 0.015), 0, -0.22, 0));
     const knee = pivot(`knee${name}`, 0, -0.45, 0);
+    leg.add(knee);
+    hips.add(leg);
+    legs[name] = { leg, knee };
+    if (p.legs === 'none') {
+      // ragged stump with a bone sticking out
+      leg.add(at(box(0.17 * b, 0.12, 0.19 * b, pants, 0.02), 0, -0.05, 0));
+      leg.add(at(box(0.15 * b, 0.03, 0.17 * b, blood, 0.01), 0, -0.12, 0));
+      leg.add(at(mesh(new THREE.CylinderGeometry(0.02, 0.028, 0.1, 5), bone), 0, -0.17, 0));
+      continue;
+    }
+    leg.add(at(box(0.17 * b, 0.47, 0.19 * b, pants, 0.015), 0, -0.22, 0));
     knee.add(at(box(0.15 * b, 0.42, 0.16 * b, pants, 0.015), 0, -0.2, 0));
     // torn trouser leg showing a bit of skin
     if (p.tornClothes && rng() < 0.5) {
       knee.add(at(box(0.11 * b, 0.12, 0.12 * b, skin, 0.01), 0, -0.36, 0));
     }
     knee.add(at(box(0.15 * b, 0.08, 0.27, mat('shoes', '#231d18'), 0.012), 0, -0.45, 0.05));
-    leg.add(knee);
-    hips.add(leg);
-    legs[name] = { leg, knee };
   }
 
   // ---- Spine, torso ---------------------------------------------------------
   const spine = pivot('spine', 0, 0, 0);
   hips.add(spine);
   spine.add(at(box(0.38 * b, 0.2, 0.23 * b, pants, 0.015), 0, 0.02, 0));
-  const torsoH = 0.55;
-  spine.add(at(box(0.44 * b, torsoH, 0.26 * b, shirt, 0.025, 2), 0, 0.37, 0));
-  // belly skin visible through the torn shirt
+  spine.add(at(box(0.44 * b, 0.55, 0.26 * b, shirt, 0.025, 2), 0, 0.37, 0));
+
+  // bloated belly (its own pivot so animations can make it wobble)
+  const belly = pivot('belly', 0, 0.26, 0.06 * b);
+  spine.add(belly);
+  if (p.belly > 0) {
+    const r = 0.2 * b * (0.6 + 0.6 * p.belly);
+    const blob = mesh(new THREE.IcosahedronGeometry(r, 1), skin, 0.03);
+    blob.scale.set(1.05, 0.95, 1);
+    belly.add(blob);
+    // stretched shirt over the top half
+    const cover = mesh(new THREE.IcosahedronGeometry(r * 1.02, 1), shirt, 0.02);
+    cover.scale.set(1.08, 0.5, 1.02);
+    belly.add(at(cover, 0, r * 0.45, 0));
+    // pustules
+    const pus = mat('pustules', '#c9d23a', { emissive: '#6b7a10', emissiveIntensity: 0.6, roughness: 0.3 });
+    for (let i = 0; i < 4 + Math.round(p.belly * 6); i++) {
+      const a = rand(-1.5, 1.5);
+      const y = rand(-0.7, 0.3);
+      const pz = mesh(new THREE.IcosahedronGeometry(rand(0.025, 0.05), 0), pus);
+      belly.add(at(pz, Math.sin(a) * r * Math.sqrt(1 - y * y), y * r, Math.cos(a) * r * Math.sqrt(1 - y * y)));
+    }
+  }
+
   if (p.tornClothes) {
     spine.add(at(box(0.3 * b, 0.12, 0.2 * b, skin, 0.015), 0, 0.12, 0.05));
     for (let i = 0; i < 6; i++) {
@@ -143,11 +196,20 @@ export function createZombie(input = {}) {
       shard.rotation.x = Math.PI; // point down
       spine.add(at(shard, (-0.18 + i * 0.072) * b, 0.06, (rng() < 0.5 ? -1 : 1) * 0.11 * b));
     }
-    // exposed ribs on the chest
-    for (let i = 0; i < 3; i++) {
-      spine.add(at(box(0.16 * b, 0.022, 0.02, bone, 0), -0.08 * b, 0.42 + i * 0.05, 0.135 * b));
+    // exposed ribs on the chest (hidden behind a big belly)
+    if (p.belly < 0.3) {
+      for (let i = 0; i < 3; i++) {
+        spine.add(at(box(0.16 * b, 0.022, 0.02, bone, 0), -0.08 * b, 0.42 + i * 0.05, 0.135 * b));
+      }
+      spine.add(at(box(0.2 * b, 0.17, 0.012, dark, 0), -0.08 * b, 0.47, 0.128 * b));
     }
-    spine.add(at(box(0.2 * b, 0.17, 0.012, dark, 0), -0.08 * b, 0.47, 0.128 * b));
+  }
+  // dragging spine/guts behind a legless torso
+  if (p.legs === 'none') {
+    spine.add(at(box(0.2 * b, 0.06, 0.15 * b, blood, 0.015), 0, -0.1, 0));
+    for (let i = 0; i < 3; i++) {
+      spine.add(at(box(0.05, 0.045, 0.05, bone, 0.006), 0, -0.13 - i * 0.06, -0.03));
+    }
   }
   // wound patches on the torso
   for (let i = 0; i < p.wounds; i++) {
@@ -159,16 +221,18 @@ export function createZombie(input = {}) {
   }
 
   // ---- Neck & head ----------------------------------------------------------
+  const neckH = 0.12 + p.neckLength * 0.22;
   const neck = pivot('neck', 0, 0.65, 0.01);
   spine.add(neck);
-  neck.add(at(mesh(new THREE.CylinderGeometry(0.06, 0.07, 0.12, 5), skin, 0.008), 0, 0.04, 0));
-  const head = pivot('head', 0, 0.09, 0.01);
+  neck.add(at(mesh(new THREE.CylinderGeometry(0.055, 0.07, neckH, 5), skin, 0.008), 0, neckH / 2 - 0.02, 0));
+  const head = pivot('head', 0, neckH - 0.03, 0.01);
   neck.add(head);
   head.add(at(box(0.26, 0.28, 0.27, skin, 0.018, 2), 0, 0.17, 0));
   // brow ridge and nose
   head.add(at(box(0.25, 0.04, 0.05, skin, 0.01), 0, 0.235, 0.125));
-  head.add(at(mesh(new THREE.ConeGeometry(0.03, 0.07, 3), skin), 0, 0.18, 0.15));
-  head.children.at(-1).rotation.x = Math.PI / 2;
+  const nose = mesh(new THREE.ConeGeometry(0.03, 0.07, 3), skin);
+  nose.rotation.x = Math.PI / 2;
+  head.add(at(nose, 0, 0.18, 0.15));
   // eyes: dark sockets + glowing pupils (one slightly droopy)
   for (const side of [-1, 1]) {
     const droop = side < 0 ? rand(0, 0.025) : 0;
@@ -197,7 +261,7 @@ export function createZombie(input = {}) {
   // hair tufts
   const tufts = Math.round(p.hair * 14);
   for (let i = 0; i < tufts; i++) {
-    const t = mesh(new THREE.ConeGeometry(rand(0.025, 0.045), rand(0.06, 0.14), 4), hairMat);
+    const t = mesh(new THREE.ConeGeometry(rand(0.025, 0.045), rand(0.06, 0.14) * (1 + p.hair * 0.5), 4), hairMat);
     at(t, rand(-0.11, 0.11), 0.31, rand(-0.12, 0.09));
     t.rotation.set(rand(-0.6, 0.6), rand(0, Math.PI), rand(-0.6, 0.6));
     head.add(t);
@@ -212,79 +276,100 @@ export function createZombie(input = {}) {
     const shoulder = pivot(`arm${name}`, side * (0.22 * b + 0.05), 0.6, 0);
     spine.add(shoulder);
     shoulder.add(at(box(0.14 * b, 0.15, 0.14 * b, shirt, 0.015), 0, -0.06, 0));
+    const elbow = pivot(`elbow${name}`, 0, -0.32 * L, 0);
+    shoulder.add(elbow);
+    arms[name] = { shoulder, elbow };
 
     const missing = (p.missingArm === 'left' && name === 'L') || (p.missingArm === 'right' && name === 'R');
     if (missing) {
       // stump: bone poking out of a bloody sleeve
       shoulder.add(at(box(0.1 * b, 0.04, 0.1 * b, blood, 0.01), 0, -0.14, 0));
       shoulder.add(at(mesh(new THREE.CylinderGeometry(0.02, 0.025, 0.12, 5), bone), 0, -0.2, 0));
-      arms[name] = { shoulder, elbow: null };
       continue;
     }
-    shoulder.add(at(box(0.1 * b, 0.32, 0.1 * b, skin, 0.015), 0, -0.17, 0));
-    const elbow = pivot(`elbow${name}`, 0, -0.32, 0);
-    shoulder.add(elbow);
-    elbow.add(at(box(0.09 * b, 0.3, 0.09 * b, skin, 0.015), 0, -0.15, 0));
-    elbow.add(at(box(0.1 * b, 0.11, 0.05, skin, 0.01), 0, -0.34, 0));
+    shoulder.add(at(box(0.1 * b, 0.32 * L, 0.1 * b, skin, 0.015), 0, -0.17 * L, 0));
+    elbow.add(at(box(0.09 * b, 0.3 * L, 0.09 * b, skin, 0.015), 0, -0.15 * L, 0));
+    elbow.add(at(box(0.1 * b, 0.11, 0.05, skin, 0.01), 0, -0.3 * L - 0.04, 0));
     // claw-like fingers
     for (let f = 0; f < 3; f++) {
-      const finger = mesh(new THREE.ConeGeometry(0.014, 0.08, 4), skin);
+      const finger = mesh(new THREE.ConeGeometry(0.014, 0.08 * L, 4), skin);
       finger.rotation.x = Math.PI;
-      elbow.add(at(finger, (-0.03 + f * 0.03) * b, -0.43, 0));
+      elbow.add(at(finger, (-0.03 + f * 0.03) * b, -0.3 * L - 0.13, 0));
     }
-    if (rng() < 0.5) elbow.add(at(box(0.05, 0.06, 0.02, blood, 0.008), 0, -0.12, 0.05 * b));
-    arms[name] = { shoulder, elbow };
+    if (rng() < 0.5) elbow.add(at(box(0.05, 0.06, 0.02, blood, 0.008), 0, -0.12 * L, 0.05 * b));
   }
 
-  // ---- Rest pose ------------------------------------------------------------
+  // ---- Rest pose (from parameters), snapshotted so animations stay additive --
+  spine.rotation.x = p.hunch;
+  head.rotation.set(0.1, 0, p.headTilt);
+  jaw.rotation.x = p.jawOpen;
+  legs.L.leg.rotation.z = -0.04;
+  legs.R.leg.rotation.z = 0.04;
   const reach = -p.armReach * Math.PI * 0.47;
-  const base = {
-    hunch: p.hunch,
-    headTilt: p.headTilt,
-    jawOpen: p.jawOpen,
-    armR: reach + rand(-0.1, 0.1),
-    armL: reach + rand(-0.1, 0.1),
-    elbow: -0.15 - p.armReach * 0.1,
-  };
-  root.userData.rig = { hips, spine, neck, head, jaw, legs, arms };
-  root.userData.base = base;
-  root.userData.params = p;
-  setPose(root, 0, 0);
+  for (const [name, arm] of Object.entries(arms)) {
+    const sign = name === 'L' ? 1 : -1;
+    arm.shoulder.rotation.set(reach + rand(-0.1, 0.1), 0, sign * 0.05);
+    arm.elbow.rotation.x = -0.15 - p.armReach * 0.1;
+  }
+
+  const nodes = [hips, spine, belly, neck, head, jaw,
+    legs.L.leg, legs.L.knee, legs.R.leg, legs.R.knee,
+    arms.L.shoulder, arms.L.elbow, arms.R.shoulder, arms.R.elbow];
+  const rest = nodes.map((n) => ({
+    node: n, position: n.position.clone(), rotation: n.rotation.clone(), scale: n.scale.clone(),
+  }));
+  root.userData = { rig: { hips, spine, belly, neck, head, jaw, legs, arms }, nodes, rest, params: p };
   return root;
 }
 
-// Applies the shambling walk cycle. `amount` 0 gives the rest pose.
-export function setPose(zombie, time, amount = 1) {
-  const { rig, base } = zombie.userData;
-  const ph = time * 3.2;
-  const s = Math.sin(ph);
-  const a = amount;
-
-  rig.legs.L.leg.rotation.x = s * 0.35 * a;
-  rig.legs.R.leg.rotation.x = -s * 0.35 * a;
-  rig.legs.L.knee.rotation.x = Math.max(0, -s) * 0.6 * a;
-  rig.legs.R.knee.rotation.x = Math.max(0, s) * 0.6 * a;
-  // drag one leg a little: the classic limp
-  rig.legs.R.leg.rotation.z = 0.04;
-  rig.legs.L.leg.rotation.z = -0.04;
-
-  rig.hips.position.y = 0.95 - Math.abs(Math.cos(ph)) * 0.03 * a;
-  rig.hips.rotation.y = s * 0.12 * a;
-  rig.spine.rotation.x = base.hunch + Math.abs(s) * 0.05 * a;
-  rig.spine.rotation.z = s * 0.08 * a;
-  rig.spine.rotation.y = -s * 0.1 * a;
-
-  rig.head.rotation.z = base.headTilt + Math.sin(ph * 0.5) * 0.12 * a;
-  rig.head.rotation.x = 0.1 + Math.sin(ph * 0.7) * 0.08 * a;
-  rig.jaw.rotation.x = base.jawOpen + Math.abs(Math.sin(time * 5)) * 0.15 * a;
-
-  for (const name of ['L', 'R']) {
-    const arm = rig.arms[name];
-    const sign = name === 'L' ? 1 : -1;
-    arm.shoulder.rotation.x = base[`arm${name}`] + Math.sin(ph * 2 + sign) * 0.06 * a;
-    arm.shoulder.rotation.z = sign * (0.05 + Math.sin(ph) * 0.04 * a);
-    if (arm.elbow) arm.elbow.rotation.x = base.elbow + Math.sin(ph * 2) * 0.05 * a;
+// Puts every animated joint back to the rest pose defined by the parameters.
+export function resetPose(zombie) {
+  for (const r of zombie.userData.rest) {
+    r.node.position.copy(r.position);
+    r.node.rotation.copy(r.rotation);
+    r.node.scale.copy(r.scale);
   }
+}
+
+// Applies animation `name` at `time` seconds (defaults to the zombie's own one).
+export function setPose(zombie, time, name = zombie.userData.params.animation) {
+  resetPose(zombie);
+  const anim = ANIMATIONS[name];
+  if (!anim) return;
+  const u = (((time / anim.duration) % 1) + 1) % 1; // 0..1 through one loop
+  anim.apply(zombie.userData.rig, u, zombie.userData.params);
+}
+
+// Bakes every animation into AnimationClips (for GLB export / AnimationMixer).
+export function bakeClips(zombie, names = Object.keys(ANIMATIONS), fps = 30) {
+  const { nodes } = zombie.userData;
+  const clips = names.map((name) => {
+    const { duration } = ANIMATIONS[name];
+    const frames = Math.round(duration * fps);
+    const times = [];
+    const data = nodes.map(() => ({ p: [], q: [], s: [] }));
+    for (let f = 0; f <= frames; f++) {
+      const t = (f / frames) * duration;
+      times.push(t);
+      setPose(zombie, f === frames ? 0 : t, name); // last frame == first: seamless loop
+      nodes.forEach((n, i) => {
+        data[i].p.push(...n.position.toArray());
+        data[i].q.push(...n.quaternion.toArray());
+        data[i].s.push(...n.scale.toArray());
+      });
+    }
+    const tracks = [];
+    // only keep position/scale tracks that actually change (saves file size)
+    const moves = (arr) => arr.some((v, k) => Math.abs(v - arr[k % 3]) > 1e-5);
+    nodes.forEach((n, i) => {
+      tracks.push(new THREE.QuaternionKeyframeTrack(`${n.name}.quaternion`, times, data[i].q));
+      if (moves(data[i].p)) tracks.push(new THREE.VectorKeyframeTrack(`${n.name}.position`, times, data[i].p));
+      if (moves(data[i].s)) tracks.push(new THREE.VectorKeyframeTrack(`${n.name}.scale`, times, data[i].s));
+    });
+    return new THREE.AnimationClip(name, duration, tracks);
+  });
+  resetPose(zombie);
+  return clips;
 }
 
 // Frees geometry and materials of a zombie that is no longer used.

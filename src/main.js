@@ -2,7 +2,8 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { GLTFExporter } from 'three/examples/jsm/exporters/GLTFExporter.js';
 import GUI from 'lil-gui';
-import { createZombie, setPose, disposeZombie, DEFAULT_PARAMS, PRESETS } from './zombie.js';
+import { createZombie, setPose, bakeClips, disposeZombie, DEFAULT_PARAMS, PRESETS } from './zombie.js';
+import { ANIMATIONS } from './animations.js';
 
 // ---- Scene ------------------------------------------------------------------
 const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
@@ -53,8 +54,9 @@ const stoneMat = new THREE.MeshStandardMaterial({ color: '#6b6e70', flatShading:
 
 // ---- Zombie ------------------------------------------------------------------
 const params = { ...DEFAULT_PARAMS };
-const view = { animate: true, preset: 'walker' };
+const view = { type: 'walker', animate: true, speed: 1, gallery: false };
 let zombie = null;
+let gallery = [];
 
 function rebuild() {
   if (zombie) {
@@ -62,20 +64,54 @@ function rebuild() {
     disposeZombie(zombie);
   }
   zombie = createZombie(params);
+  zombie.visible = !view.gallery;
   scene.add(zombie);
   window.__zombie = zombie; // handy for debugging in the console
 }
 rebuild();
 
+// every zombie type side by side, each playing its own animation
+function setGallery(on) {
+  gallery.forEach((z) => { scene.remove(z); disposeZombie(z); });
+  gallery = [];
+  zombie.visible = !on;
+  if (on) {
+    const names = Object.keys(PRESETS);
+    names.forEach((name, i) => {
+      const z = createZombie({ ...DEFAULT_PARAMS, ...PRESETS[name], seed: 7 + i });
+      const k = i - (names.length - 1) / 2;
+      z.position.set(k * 1.2, 0, -Math.abs(k) * 0.3);
+      z.rotation.y = -k * 0.08;
+      scene.add(z);
+      gallery.push(z);
+    });
+    camera.position.set(1.1, 1.7, 8.2); // shifted so the GUI panel does not cover anyone
+    controls.target.set(1.1, 0.8, 0);
+    scene.fog.near = 11;
+    scene.fog.far = 24;
+  } else {
+    scene.fog.near = 6;
+    scene.fog.far = 16;
+    camera.position.set(2.4, 1.7, 3.4);
+    controls.target.set(0, 1.0, 0);
+  }
+}
+
 // ---- GUI ---------------------------------------------------------------------
 const gui = new GUI({ title: 'Zombie 🧟' });
 const onChange = () => rebuild();
+const refresh = () => gui.controllersRecursive().forEach((c) => c.updateDisplay());
+const animOptions = Object.fromEntries(Object.entries(ANIMATIONS).map(([k, a]) => [a.label, k]));
 
-gui.add(view, 'preset', Object.keys(PRESETS)).name('프리셋').onChange((name) => {
+gui.add(view, 'type', Object.keys(PRESETS)).name('좀비 종류').onChange((name) => {
   Object.assign(params, DEFAULT_PARAMS, PRESETS[name], { seed: params.seed });
-  gui.controllersRecursive().forEach((c) => c.updateDisplay());
+  refresh();
   rebuild();
 });
+gui.add(params, 'animation', animOptions).name('애니메이션').onChange(onChange);
+gui.add(view, 'animate').name('재생');
+gui.add(view, 'speed', 0.1, 2, 0.05).name('속도');
+gui.add(view, 'gallery').name('전체 갤러리 보기').onChange(setGallery);
 
 const shape = gui.addFolder('형태');
 shape.add(params, 'seed', 1, 999, 1).name('시드').onChange(onChange);
@@ -83,8 +119,13 @@ shape.add(params, 'height', 0.6, 1.5, 0.01).name('키').onChange(onChange);
 shape.add(params, 'bulk', 0.6, 1.8, 0.01).name('덩치').onChange(onChange);
 shape.add(params, 'hunch', 0, 0.8, 0.01).name('구부정함').onChange(onChange);
 shape.add(params, 'armReach', 0, 1, 0.01).name('팔 뻗기').onChange(onChange);
+shape.add(params, 'armLength', 0.8, 1.4, 0.01).name('팔 길이').onChange(onChange);
+shape.add(params, 'neckLength', 0, 1, 0.01).name('목 길이').onChange(onChange);
+shape.add(params, 'belly', 0, 1, 0.01).name('부푼 배').onChange(onChange);
+shape.add(params, 'legs', { '있음': 'full', '없음': 'none' }).name('다리').onChange(onChange);
 shape.add(params, 'headTilt', -0.6, 0.6, 0.01).name('고개 기울기').onChange(onChange);
 shape.add(params, 'jawOpen', 0, 0.6, 0.01).name('입 벌림').onChange(onChange);
+shape.close();
 
 const decay = gui.addFolder('부패');
 decay.add(params, 'rot', 0, 1.5, 0.01).name('울퉁불퉁함').onChange(onChange);
@@ -92,6 +133,7 @@ decay.add(params, 'missingArm', ['none', 'left', 'right']).name('잃은 팔').on
 decay.add(params, 'tornClothes').name('찢어진 옷').onChange(onChange);
 decay.add(params, 'wounds', 0, 14, 1).name('상처 수').onChange(onChange);
 decay.add(params, 'hair', 0, 1, 0.01).name('머리카락').onChange(onChange);
+decay.close();
 
 const colors = gui.addFolder('색상');
 colors.addColor(params, 'skinColor').name('피부').onChange(onChange);
@@ -102,6 +144,26 @@ colors.addColor(params, 'bloodColor').name('피').onChange(onChange);
 colors.addColor(params, 'eyeColor').name('눈').onChange(onChange);
 colors.add(params, 'eyeGlow', 0, 5, 0.1).name('눈 발광').onChange(onChange);
 colors.close();
+
+// GLB with every animation baked in as a clip (the zombie's own one first).
+function exportGLB(z, filename) {
+  const own = z.userData.params.animation;
+  const names = [own, ...Object.keys(ANIMATIONS).filter((n) => n !== own)];
+  const clips = bakeClips(z, names);
+  return new Promise((resolve, reject) => {
+    new GLTFExporter().parse(z, (glb) => {
+      if (filename) {
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(new Blob([glb], { type: 'model/gltf-binary' }));
+        a.download = filename;
+        a.click();
+        URL.revokeObjectURL(a.href);
+      }
+      resolve(glb);
+    }, reject, { binary: true, animations: clips });
+  });
+}
+window.__exportGLB = (input) => exportGLB(createZombie(typeof input === 'string' ? PRESETS[input] : input)); // used by scripts/tests
 
 const actions = {
   randomize() {
@@ -114,32 +176,27 @@ const actions = {
     params.headTilt = (Math.random() - 0.5) * 0.9;
     params.armReach = 0.4 + Math.random() * 0.6;
     params.missingArm = ['none', 'none', 'left', 'right'][Math.floor(Math.random() * 4)];
-    gui.controllersRecursive().forEach((c) => c.updateDisplay());
+    refresh();
     rebuild();
   },
-  exportGLB() {
-    setPose(zombie, 0, 0); // export in rest pose
-    new GLTFExporter().parse(zombie, (glb) => {
-      const a = document.createElement('a');
-      a.href = URL.createObjectURL(new Blob([glb], { type: 'model/gltf-binary' }));
-      a.download = `zombie-${params.seed}.glb`;
-      a.click();
-      URL.revokeObjectURL(a.href);
-    }, (err) => console.error(err), { binary: true });
-  },
+  exportGLB: () => exportGLB(zombie, `zombie-${view.type}-${params.seed}.glb`),
   copyParams() {
     navigator.clipboard?.writeText(JSON.stringify(params, null, 2));
   },
 };
-gui.add(view, 'animate').name('걷기 애니메이션');
 gui.add(actions, 'randomize').name('🎲 랜덤 좀비');
-gui.add(actions, 'exportGLB').name('💾 GLB 내보내기');
+gui.add(actions, 'exportGLB').name('💾 GLB 내보내기 (애니메이션 포함)');
 gui.add(actions, 'copyParams').name('📋 파라미터 복사(JSON)');
 
 // ---- Loop --------------------------------------------------------------------
 const clock = new THREE.Clock();
+let time = 0;
+window.__setTime = (t) => { time = t; }; // lets screenshot scripts pick a frame
+window.__view = view;
 renderer.setAnimationLoop(() => {
-  setPose(zombie, clock.getElapsedTime(), view.animate ? 1 : 0);
+  const dt = clock.getDelta();
+  if (view.animate) time += dt * view.speed; // paused = frozen on the current frame
+  for (const z of view.gallery ? gallery : [zombie]) setPose(z, time);
   controls.update();
   renderer.render(scene, camera);
 });
