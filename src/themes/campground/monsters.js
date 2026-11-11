@@ -30,7 +30,7 @@ export const swampy = {
     bellyColor: { label: '배 색' }, flowerColor: { label: '꽃 색' },
   },
   build(p) {
-    const k = createKit(p.seed, p.lumpy);
+    const k = createKit(p.seed, p.lumpy, p.horror);
     const body = k.mat('body', p.bodyColor);
     const moss = k.mat('moss', p.mossColor);
     const { root, rig, face } = buildBiped(k, {
@@ -87,7 +87,7 @@ export const wolfPup = {
     furColor: { label: '털 색' }, bellyColor: { label: '배 색' }, bandanaColor: { label: '두건 색' },
   },
   build(p) {
-    const k = createKit(p.seed, 1);
+    const k = createKit(p.seed, 1, p.horror);
     const fur = k.mat('fur', p.furColor);
     const { root, rig } = buildQuadruped(k, {
       name: 'WolfPup', len: 0.62, width: 0.34, height: 0.3, legLen: 0.26, headSize: p.headSize, snout: 0.13,
@@ -120,7 +120,7 @@ export const bigBear = {
     furColor: { label: '털 색' }, bellyColor: { label: '배·주둥이 색' }, scarfColor: { label: '목도리 색' },
   },
   build(p) {
-    const k = createKit(p.seed, 0.6);
+    const k = createKit(p.seed, 0.6, p.horror);
     const fur = k.mat('fur', p.furColor);
     const light = k.mat('belly', p.bellyColor);
     const { root, rig, face } = buildBiped(k, {
@@ -228,7 +228,7 @@ export const tentMimic = {
   defaults: { seed: 9, size: 1, tentColor: '#f29b4b', stripeColor: '#ffd56a', flagColor: '#5ab4ff' },
   schema: { ...common, tentColor: { label: '텐트 색' }, stripeColor: { label: '줄무늬 색' }, flagColor: { label: '깃발 색' } },
   build(p) {
-    const k = createKit(p.seed, 0.5);
+    const k = createKit(p.seed, 0.5, p.horror);
     const tent = k.mat('tent', p.tentColor);
     const stripe = k.mat('stripe', p.stripeColor);
     const r = 0.42;
@@ -286,7 +286,7 @@ export const lakeEel = {
     bodyColor: { label: '몸 색' }, stripeColor: { label: '줄무늬 색' }, finColor: { label: '지느러미 색' }, waterColor: { label: '물웅덩이 색' },
   },
   build(p) {
-    const k = createKit(p.seed, 0.6);
+    const k = createKit(p.seed, 0.6, p.horror);
     const { root, rig } = buildSerpent(k, {
       name: 'LakeEel', segs: p.segments, segLen: 0.19, radius: 0.13, taper: 0.2, headR: 0.21,
       mats: [k.mat('body', p.bodyColor), k.mat('stripe', p.stripeColor)],
@@ -400,7 +400,7 @@ export const sporeShroom = {
     capColor: { label: '갓 색' }, spotColor: { label: '점 색' }, stemColor: { label: '기둥 색' }, sporeColor: { label: '포자 색' },
   },
   build(p) {
-    const k = createKit(p.seed, 0.6);
+    const k = createKit(p.seed, 0.6, p.horror);
     const stem = k.mat('stem', p.stemColor);
     const root = k.pivot('root');
     root.name = 'SporeShroom';
@@ -563,7 +563,7 @@ export const campfireWisp = {
     glow: { label: '발광', min: 0, max: 3, step: 0.05 },
   },
   build(p) {
-    const k = createKit(p.seed, 0.4);
+    const k = createKit(p.seed, 0.4, p.horror);
     const flame = k.glow('flame', p.flameColor, p.glow);
     const tipMat = k.glow('tip', p.tipColor, p.glow);
     const root = k.pivot('root');

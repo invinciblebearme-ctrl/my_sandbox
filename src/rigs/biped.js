@@ -120,6 +120,27 @@ export const BIPED_ANIMS = {
       blinkEyes(rig, crouch > 0.8 ? 0.7 : 0);
     },
   },
+  // Overhand throw. Uses optional rig.held (ball in the right hand) and
+  // rig.projectile (a ball on the hips that flies forward).
+  throw: {
+    label: '던지기',
+    duration: 1.3,
+    apply(rig, u) {
+      const arm = keys(u, [[0, 0], [0.35, -3.5], [0.48, -1.1], [0.7, -0.6], [1, 0]]);
+      rig.arms.R.rotation.x += arm;
+      rig.body.rotation.y += keys(u, [[0, 0], [0.35, 0.35], [0.5, -0.25], [1, 0]]);
+      rig.body.rotation.x += keys(u, [[0, 0], [0.35, -0.1], [0.5, 0.15], [1, 0]]);
+      const released = u > 0.45 && u < 0.92;
+      if (rig.held) rig.held.scale.setScalar(released ? 0.001 : 1);
+      if (rig.projectile) {
+        const f = smooth((u - 0.45) / 0.45);
+        const d = rig.dims;
+        rig.projectile.position.set(-d.bodyR * d.sx * 0.9, d.cy + d.bodyR * d.sy * 0.4 + Math.sin(f * Math.PI) * 0.4 - f * 0.3, 0.3 + f * 2.6);
+        rig.projectile.scale.setScalar(released ? 1 - f * 0.3 : 0.001);
+      }
+      blinkEyes(rig, u > 0.42 && u < 0.5 ? 0.6 : 0);
+    },
+  },
   hit: {
     label: '피격',
     duration: 0.6,

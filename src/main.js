@@ -56,6 +56,7 @@ const view = {
   kitVisible: true,
   kitScale: 1,
   kitY: 0,
+  horror: 0.7, // 0 = cute .. 1 = creepy, applies to every monster and the scenery
 };
 let params = {};
 let current = null;
@@ -64,7 +65,7 @@ const theme = () => THEMES[view.theme];
 const def = () => theme().monsters[view.monster];
 
 function build(d, p) {
-  const m = d.build(p);
+  const m = d.build({ ...p, horror: view.horror });
   m.traverse((o) => { if (o.isMesh) o.castShadow = o.receiveShadow = true; });
   return m;
 }
@@ -102,8 +103,9 @@ function setGallery(on) {
 
 function applyFog() {
   const [near, far] = theme().env.fog;
-  scene.fog.near = view.gallery ? near + 5 : near;
-  scene.fog.far = view.gallery ? far + 8 : far;
+  const close = 1 - view.horror * 0.45; // thicker fog at night
+  scene.fog.near = (view.gallery ? near + 5 : near) * close;
+  scene.fog.far = (view.gallery ? far + 8 : far) * close;
 }
 
 const loader = new GLTFLoader();
@@ -126,17 +128,31 @@ async function loadKit() {
   }
 }
 
+// Theme lighting, pushed toward a moonlit night as the horror level goes up.
+function applyLighting() {
+  const env = theme().env;
+  const h = view.horror;
+  const night = (c, target, amount) => new THREE.Color(c).lerp(new THREE.Color(target), amount);
+  const sky = night(env.sky, '#141826', h * 0.85);
+  scene.background = sky;
+  scene.fog.color.copy(sky);
+  ground.material.color.copy(night(env.ground, '#1c2220', h * 0.6));
+  hemi.color.copy(night(env.hemi[0], '#8f9cc4', h));
+  hemi.groundColor.copy(night(env.hemi[1], '#1a1420', h));
+  hemi.intensity = env.hemi[2] * (1 - 0.45 * h);
+  sun.color.copy(night(env.sun[0], '#b3c4ff', h));
+  sun.intensity = env.sun[1] * (1 - 0.4 * h);
+  rim.color.copy(night(env.rim[0], '#8a5cff', h));
+  rim.intensity = env.rim[1] + h * 1.2; // eerie back light keeps silhouettes readable
+  applyFog();
+}
+
 function applyTheme() {
   const env = theme().env;
-  scene.background = new THREE.Color(env.sky);
-  scene.fog.color.set(env.sky);
-  ground.material.color.set(env.ground);
-  hemi.color.set(env.hemi[0]); hemi.groundColor.set(env.hemi[1]); hemi.intensity = env.hemi[2];
-  sun.color.set(env.sun[0]); sun.intensity = env.sun[1];
-  rim.color.set(env.rim[0]); rim.intensity = env.rim[1];
+  applyLighting();
   props.traverse((o) => { if (o.isMesh) o.geometry.dispose(); });
   props.clear();
-  env.props?.(createKit(1, 1), props);
+  env.props?.(createKit(1, 1, view.horror), props);
   loadKit();
 }
 
@@ -196,6 +212,11 @@ const themeCtrl = gui.add(view, 'theme', themeOpts).name('테마').onChange(sele
 gui.add(view, 'animate').name('재생');
 gui.add(view, 'speed', 0.1, 2, 0.05).name('속도');
 gui.add(view, 'gallery').name('테마 전체 보기').onChange(setGallery);
+gui.add(view, 'horror', 0, 1, 0.05).name('공포도 (0 귀여움 · 1 무서움)').onFinishChange(() => {
+  applyTheme();
+  rebuild();
+  if (view.gallery) setGallery(true);
+});
 
 // GLB with the standard clips (idle, move, attack, hit, death, special).
 function exportGLB(obj, filename) {
@@ -240,8 +261,9 @@ window.__gallery = (on) => { view.gallery = on; setGallery(on); };
 window.__select = (t, m) => { if (t !== view.theme) selectTheme(t); if (m) { selectMonster(m); monsterCtrl.updateDisplay(); } };
 window.__exportGLB = (t, m) => {
   const d = THEMES[t].monsters[m];
-  return exportGLB(d.build({ ...d.defaults }));
+  return exportGLB(build(d, { ...d.defaults }));
 };
+window.__setHorror = (v) => { view.horror = v; applyTheme(); rebuild(); if (view.gallery) setGallery(true); };
 
 // ---- Loop -----------------------------------------------------------------------
 const clock = new THREE.Clock();
