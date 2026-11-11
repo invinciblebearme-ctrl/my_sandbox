@@ -1,5 +1,6 @@
 // Graveyard theme: the original parametric zombies.
 import { createZombie, DEFAULT_PARAMS, PRESETS } from './zombie.js';
+import { ITEMS } from './items.js';
 
 const schema = {
   seed: { label: '시드', min: 1, max: 999, step: 1 },
@@ -57,4 +58,5 @@ export default {
     schema,
     build: createZombie,
   }])),
+  items: ITEMS,
 };

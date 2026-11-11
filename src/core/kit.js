@@ -238,5 +238,5 @@ export function createKit(seed = 1, jitterScale = 1, horror = 0, { eyeColor = '#
     }
   };
 
-  return { rng, rand, horror: h, zombie, decay, mats, mat, glow, mesh, at, rot, scl, pivot, box, ball, cone, cyl, dome, eye, eyes, smile, cheeks };
+  return { THREE, rng, rand, horror: h, zombie, decay, mats, mat, glow, mesh, at, rot, scl, pivot, box, ball, cone, cyl, dome, eye, eyes, smile, cheeks };
 }

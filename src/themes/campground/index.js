@@ -1,5 +1,6 @@
 // Campground & Lake theme.
 import { swampy, wolfPup, bigBear, tentMimic, lakeEel, sporeShroom, campfireWisp } from './monsters.js';
+import { ITEMS } from './items.js';
 
 export default {
   label: '🏕️ 숲속 캠핑장',
@@ -31,4 +32,5 @@ export default {
     },
   },
   monsters: { swampy, wolfPup, bigBear, tentMimic, lakeEel, sporeShroom, campfireWisp },
+  items: ITEMS,
 };

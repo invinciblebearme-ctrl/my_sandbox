@@ -1,5 +1,6 @@
 // Frontier Town (desert) theme.
 import { skeletonCowboy, zombieCoyote, cactusGolem, rattlesnake, sandworm, tumbleweed, ghostSheriff } from './monsters.js';
+import { ITEMS } from './items.js';
 
 export default {
   label: '🤠 사막 마을',
@@ -29,4 +30,5 @@ export default {
     },
   },
   monsters: { skeletonCowboy, zombieCoyote, cactusGolem, rattlesnake, sandworm, tumbleweed, ghostSheriff },
+  items: ITEMS,
 };

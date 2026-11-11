@@ -1,5 +1,6 @@
 // Space Base theme.
 import { infectedAstronaut, alienBug, securityBot, morphSlime, ventTentacle, acidEgg, commandDrone } from './monsters.js';
+import { ITEMS } from './items.js';
 
 export default {
   label: '🚀 우주 기지',
@@ -34,4 +35,5 @@ export default {
     },
   },
   monsters: { infectedAstronaut, alienBug, securityBot, morphSlime, ventTentacle, acidEgg, commandDrone },
+  items: ITEMS,
 };

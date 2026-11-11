@@ -6,7 +6,9 @@ Polyfork 스타일의 **파라미터형 로우폴리 괴물** 모음입니다. �
 ![snow](docs/snow.png)
 ![desert](docs/desert.png)
 ![space](docs/space.png)
-![neighborhood](docs/neighborhood.png)
+![playground](docs/playground.png)
+![playground closeups](docs/closeups-playground.png)
+![items](docs/items.png)
 ![closeups](docs/closeups.png)
 ![closeups desert](docs/closeups-desert.png)
 ![graveyard](docs/gallery.png)
@@ -18,7 +20,11 @@ Polyfork 스타일의 **파라미터형 로우폴리 괴물** 모음입니다. �
 | ❄️ 눈 내리는 마을 | 눈사람 · 서리 여우 · 설인 · 고드름 거미 · 눈 속 상어 · 폭탄 눈덩이 · 눈보라 요정 |
 | 🤠 사막 마을 | 해골 카우보이 · 좀비 코요테 · 선인장 골렘 · 방울뱀 · 모래 벌레 · 회전초 괴물 · 유령 보안관 |
 | 🚀 우주 기지 | 감염된 우주인 · 외계 벌레 · 폭주한 경비 로봇 · 변신 슬라임 · 환풍구 촉수 · 산성 알 · 지휘 드론 |
-| 🏘️ 동네 골목 | 마네킹 · 광견 들개 · 쓰레기통 골렘 · 그림자 고양이 · 하수구 악어 · 풍선 괴물 · 확성기 로봇 |
+| 🛝 동네 놀이터 | 고장 난 인형 · 광견 들개 · 정글짐 골렘 · 그네 미믹 · 모래밭 벌레 · 풍선 괴물 · 오르골 광대 상자 |
+| 🏘️ 동네 골목 (백업) | 마네킹 · 광견 들개 · 쓰레기통 골렘 · 그림자 고양이 · 하수구 악어 · 풍선 괴물 · 확성기 로봇 |
+
+### 플레이어 아이템
+테마마다 근접 무기 · 원거리 무기 · 투척 · 회복 · 조명/특수 5종 (총 30종). 뷰어에서 **종류 → 플레이어 아이템**으로 봅니다. 목록은 [PLAN.md](PLAN.md)에 있습니다.
 | 🪦 묘지 | 워커 · 러너 · 브루트 · 부패한 좀비 · 크롤러 · 블로터 · 스크리머 |
 
 
@@ -36,10 +42,11 @@ npm run dev      # 브라우저에서 http://localhost:5173
 Polyfork 키트 GLB를 `public/kits/`에 넣으면 테마를 고를 때 자동으로 불러옵니다 (없으면 간단한 대체 배경). 파일 이름은 [PLAN.md](PLAN.md) 표를 따르세요. 크기·높이는 패널의 "배경 키트"에서 맞춥니다. 키트 파일은 크기 때문에 git에 올리지 않습니다.
 
 ## Unity에서 쓰기
-`models/<테마>/<괴물>.glb` (각 100~200KB)
+괴물: `models/<테마>/<괴물>.glb`, 아이템: `models/<테마>/items/<아이템>.glb` (각 50~250KB)
 1. Package Manager에서 **glTFast**(`com.unity.cloud.gltfast`)를 설치합니다.
 2. GLB를 `Assets`에 끌어 넣습니다. Inspector의 **Animation Method**를 `Legacy`로 두면 아래 스크립트로 바로 재생, `Mecanim`으로 바꾸면 Animator Controller에서 클립을 씁니다.
-3. 프리팹에 [`unity/MonsterAnimations.cs`](unity/MonsterAnimations.cs)를 붙이고 `Move()`, `Attack()`, `Hit()`, `Die()`를 호출합니다.
+3. 괴물 프리팹에 [`unity/MonsterAnimations.cs`](unity/MonsterAnimations.cs)를 붙이고 `Move()`, `Attack()`, `Hit()`, `Die()`를 호출합니다.
+4. 아이템 프리팹에는 [`unity/PlayerItem.cs`](unity/PlayerItem.cs)를 붙이고, 주울 때 `PickUp(손 Transform)`, 사용할 때 `Use()`를 호출합니다. 아이템은 `item` 노드의 원점이 손잡이라서 손에 붙이고 위치를 0으로 두면 됩니다. 줍고 나면 `pickupRing`은 꺼집니다.
 
 | 클립 | 재생 방식 |
 |---|---|
@@ -55,8 +62,9 @@ Polyfork 키트 GLB를 `public/kits/`에 넣으면 테마를 고를 때 자동�
 src/core/kit.js        로우폴리 메쉬·눈·입 도우미, 시드 RNG
 src/core/monster.js    기본 자세 저장, 애니메이션 재생/굽기, 관절별 메쉬 합치기
 src/rigs/              biped(2족) · quadruped(4족) · serpent(마디형) + 각 공용 애니메이션
-src/themes/<테마>/      괴물 정의(파라미터·GUI 스키마·빌드 함수·클립 매핑)와 배경 설정
-unity/                 Unity용 재생 스크립트
+src/core/item.js       아이템 공통 구조(바닥 빛 고리, 손잡이 원점, idle/use 애니메이션)
+src/themes/<테마>/      괴물 정의(monsters.js), 아이템(items.js), 배경 설정(index.js)
+unity/                 Unity용 스크립트 (괴물 애니메이션, 아이템 줍기/사용)
 ```
 
 ### 새 괴물 추가

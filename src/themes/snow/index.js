@@ -1,5 +1,6 @@
 // Alpine & Snow village theme.
 import { snowman, frostFox, yeti, icicleSpider, snowShark, bombSnowball, blizzardFairy } from './monsters.js';
+import { ITEMS } from './items.js';
 
 export default {
   label: '❄️ 눈 내리는 마을',
@@ -31,4 +32,5 @@ export default {
     },
   },
   monsters: { snowman, frostFox, yeti, icicleSpider, snowShark, bombSnowball, blizzardFairy },
+  items: ITEMS,
 };

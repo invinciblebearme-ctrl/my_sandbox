@@ -1,8 +1,8 @@
-// Neighborhood Pathways theme.
+// Neighborhood Pathways - alley version (kept as a backup of the original set).
 import { mannequin, strayDog, trashGolem, shadowCat, sewerGator, balloonMonster, megaphoneBot } from './monsters.js';
 
 export default {
-  label: '🏘️ 동네 골목',
+  label: '🏘️ 동네 골목 (백업)',
   env: {
     sky: '#a9c0dc', fog: [12, 30], ground: '#6f8a5a',
     hemi: ['#ffffff', '#5a5a4a', 1.3], sun: ['#ffe8c8', 2.2], rim: ['#ffb37a', 0.7],

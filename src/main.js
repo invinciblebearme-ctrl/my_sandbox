@@ -57,12 +57,14 @@ const view = {
   kitScale: 1,
   kitY: 0,
   horror: 0.9, // 0 = cute .. 1 = creepy (0.75+ matches the zombies), applies to every monster and the scenery
+  category: 'monsters', // 'monsters' | 'items'
 };
 let params = {};
 let current = null;
 let gallery = [];
 const theme = () => THEMES[view.theme];
-const def = () => theme().monsters[view.monster];
+const entries = () => theme()[view.category] ?? {};
+const def = () => entries()[view.monster];
 
 function build(d, p) {
   const m = d.build({ ...p, horror: view.horror });
@@ -83,17 +85,23 @@ function setGallery(on) {
   gallery = [];
   if (current) current.visible = !on;
   if (on) {
-    const entries = Object.values(theme().monsters);
-    entries.forEach((d, i) => {
+    const list = Object.values(entries());
+    const items = view.category === 'items'; // items are small: line them up closer
+    list.forEach((d, i) => {
       const m = build(d, { ...d.defaults });
-      const x = i - (entries.length - 1) / 2;
-      m.position.set(x * 1.45, 0, -Math.abs(x) * 0.3);
+      const x = i - (list.length - 1) / 2;
+      m.position.set(x * (items ? 0.9 : 1.45), 0, -Math.abs(x) * (items ? 0 : 0.3));
       m.rotation.y = -x * 0.08;
       scene.add(m);
       gallery.push(m);
     });
-    camera.position.set(1.1, 1.9, 9.2);
-    controls.target.set(1.1, 0.7, 0);
+    if (items) {
+      camera.position.set(0, 0.8, 3.0);
+      controls.target.set(0, 0.32, 0);
+    } else {
+      camera.position.set(1.1, 1.9, 9.2);
+      controls.target.set(1.1, 0.7, 0);
+    }
   } else {
     camera.position.set(2.2, 1.6, 3.6);
     controls.target.set(0, 0.7, 0);
@@ -158,6 +166,7 @@ function applyTheme() {
 
 // ---- GUI ----------------------------------------------------------------------
 const gui = new GUI({ title: 'Monsters 👾' });
+let categoryCtrl;
 let monsterCtrl;
 let animCtrl;
 let paramFolder;
@@ -168,7 +177,8 @@ function animOptions() {
   const { clips, animations } = sample.userData;
   disposeMonster(sample);
   const opts = {};
-  for (const c of STANDARD_CLIPS) if (clips[c]) opts[`⭐ ${c} · ${animations[clips[c]].label}`] = `clip:${c}`;
+  const names = [...STANDARD_CLIPS, ...Object.keys(clips).filter((c) => !STANDARD_CLIPS.includes(c))];
+  for (const c of names) if (clips[c]) opts[`⭐ ${c} · ${animations[clips[c]].label}`] = `clip:${c}`;
   for (const [key, a] of Object.entries(animations)) opts[`${key} · ${a.label}`] = `anim:${key}`;
   return opts;
 }
@@ -177,7 +187,7 @@ function selectMonster(key) {
   view.monster = key;
   params = structuredClone(def().defaults);
   rebuild();
-  view.animation = 'clip:move';
+  view.animation = current.userData.clips.move ? 'clip:move' : 'clip:idle';
   animCtrl?.destroy();
   animCtrl = gui.add(view, 'animation', animOptions()).name('애니메이션');
   animCtrl.domElement.parentElement.insertBefore(animCtrl.domElement, monsterCtrl.domElement.nextSibling);
@@ -197,11 +207,12 @@ function selectMonster(key) {
 
 function selectTheme(key) {
   view.theme = key;
-  const keys = Object.keys(theme().monsters);
-  const opts = Object.fromEntries(keys.map((k) => [`${theme().monsters[k].role} ${theme().monsters[k].label}`, k]));
+  if (!Object.keys(entries()).length) { view.category = 'monsters'; categoryCtrl?.updateDisplay(); }
+  const keys = Object.keys(entries());
+  const opts = Object.fromEntries(keys.map((k) => [`${entries()[k].role} ${entries()[k].label}`, k]));
   monsterCtrl?.destroy();
-  monsterCtrl = gui.add(view, 'monster', opts).name('괴물').onChange(selectMonster);
-  monsterCtrl.domElement.parentElement.insertBefore(monsterCtrl.domElement, themeCtrl.domElement.nextSibling);
+  monsterCtrl = gui.add(view, 'monster', opts).name(view.category === 'items' ? '아이템' : '괴물').onChange(selectMonster);
+  monsterCtrl.domElement.parentElement.insertBefore(monsterCtrl.domElement, categoryCtrl.domElement.nextSibling);
   applyTheme();
   selectMonster(keys[0]);
   monsterCtrl.updateDisplay();
@@ -209,6 +220,8 @@ function selectTheme(key) {
 
 const themeOpts = Object.fromEntries(Object.entries(THEMES).map(([k, t]) => [t.label, k]));
 const themeCtrl = gui.add(view, 'theme', themeOpts).name('테마').onChange(selectTheme);
+categoryCtrl = gui.add(view, 'category', { '괴물': 'monsters', '플레이어 아이템': 'items' }).name('종류')
+  .onChange(() => selectTheme(view.theme));
 gui.add(view, 'animate').name('재생');
 gui.add(view, 'speed', 0.1, 2, 0.05).name('속도');
 gui.add(view, 'gallery').name('테마 전체 보기').onChange(setGallery);
@@ -239,7 +252,7 @@ function exportGLB(obj, filename) {
   });
 }
 const actions = {
-  exportGLB: () => exportGLB(current, `${view.theme}-${view.monster}.glb`),
+  exportGLB: () => exportGLB(current, `${view.theme}-${view.category === 'items' ? 'item-' : ''}${view.monster}.glb`),
   copyParams: () => navigator.clipboard?.writeText(JSON.stringify(params, null, 2)),
 };
 gui.add(actions, 'exportGLB').name('💾 GLB 내보내기 (Unity용 클립 포함)');
@@ -256,11 +269,16 @@ setGallery(false);
 
 // hooks for scripts / tests
 window.__view = view;
-window.__list = () => Object.fromEntries(Object.entries(THEMES).map(([t, th]) => [t, Object.keys(th.monsters)]));
+window.__list = () => Object.fromEntries(Object.entries(THEMES).map(([t, th]) => [t, {
+  monsters: Object.keys(th.monsters), items: Object.keys(th.items ?? {}),
+}]));
 window.__gallery = (on) => { view.gallery = on; setGallery(on); };
-window.__select = (t, m) => { if (t !== view.theme) selectTheme(t); if (m) { selectMonster(m); monsterCtrl.updateDisplay(); } };
-window.__exportGLB = (t, m) => {
-  const d = THEMES[t].monsters[m];
+window.__select = (t, m, cat = 'monsters') => {
+  if (t !== view.theme || cat !== view.category) { view.category = cat; categoryCtrl.updateDisplay(); selectTheme(t); }
+  if (m) { selectMonster(m); monsterCtrl.updateDisplay(); }
+};
+window.__exportGLB = (t, m, cat = 'monsters') => {
+  const d = THEMES[t][cat][m];
   return exportGLB(build(d, { ...d.defaults }));
 };
 window.__setHorror = (v) => { view.horror = v; applyTheme(); rebuild(); if (view.gallery) setGallery(true); };
@@ -274,7 +292,7 @@ renderer.setAnimationLoop(() => {
   if (view.animate) time += dt * view.speed;
   const [kind, name] = view.animation.split(':');
   // clip:<standard name> -> that monster's animation for it; anim:<key> -> exact animation
-  const resolve = (m) => (kind === 'clip' ? m.userData.clips[name] ?? m.userData.clips.move : name);
+  const resolve = (m) => (kind === 'clip' ? m.userData.clips[name] ?? m.userData.clips.move ?? m.userData.clips.idle : name);
   for (const m of view.gallery ? gallery : [current]) setPose(m, time, resolve(m));
   controls.update();
   renderer.render(scene, camera);
