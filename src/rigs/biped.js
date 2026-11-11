@@ -9,6 +9,8 @@ export function buildBiped(k, o) {
     bodyR = 0.4, bodyScale = [1, 1.1, 0.95], bodyMat,
     headR = 0, headMat = bodyMat, legLen = 0.22, legR = 0.09, legMat = bodyMat, footMat = legMat,
     armLen = 0.32, armR = 0.07, armMat = bodyMat, handMat = armMat, legSpread = 0.45,
+    bodyShape = 'ball', // 'ball' | 'can' (upright cylinder, e.g. a trash can)
+    headShape = 'ball', // 'ball' | 'none' (empty head pivot to attach your own)
   } = o;
   const [sx, sy, sz] = bodyScale;
   const root = k.pivot('root'); // the Group returned to the caller
@@ -28,7 +30,8 @@ export function buildBiped(k, o) {
   const body = k.pivot('body');
   hips.add(body);
   const cy = bodyR * sy * 0.85;
-  body.add(k.at(k.scl(k.ball(bodyR, bodyMat, 2, 0.02), sx, sy, sz), 0, cy, 0));
+  if (bodyShape === 'can') body.add(k.at(k.scl(k.cyl(bodyR * 0.95, bodyR * 0.85, bodyR * 2, bodyMat, 10, 0.012), sx, sy, sz), 0, cy, 0));
+  else body.add(k.at(k.scl(k.ball(bodyR, bodyMat, 2, 0.02), sx, sy, sz), 0, cy, 0));
 
   const arms = {};
   for (const [n, side] of [['L', 1], ['R', -1]]) {
@@ -44,7 +47,7 @@ export function buildBiped(k, o) {
   let face = { parent: body, cy, r: bodyR * sz, ry: bodyR * sy };
   if (headR > 0) {
     head = k.pivot('head', 0, cy + bodyR * sy * 0.8, 0);
-    head.add(k.at(k.ball(headR, headMat, 2, 0.015), 0, headR * 0.85, 0));
+    if (headShape === 'ball') head.add(k.at(k.ball(headR, headMat, 2, 0.015), 0, headR * 0.85, 0));
     body.add(head);
     face = { parent: head, cy: headR * 0.85, r: headR, ry: headR };
   }

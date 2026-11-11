@@ -1,7 +1,7 @@
 // Friendly four-legged rig (wolves, coyotes, dogs, bugs...). Facing +Z.
 //
 // Joints: body > legFL/FR/BL/BR > kneeXX, neck > head > jaw, earL/earR, tail > tail2
-import { TAU, keys, blink, smooth } from '../core/monster.js';
+import { TAU, keys, blink, smooth, clamp01 } from '../core/monster.js';
 
 export function buildQuadruped(k, o) {
   const {
@@ -47,7 +47,7 @@ export function buildQuadruped(k, o) {
   const earNodes = {};
   for (const [n, x] of [['L', 1], ['R', -1]]) {
     const ear = k.pivot(`ear${n}`, x * headSize * 0.3, headSize * 0.42, -headSize * 0.05);
-    if (ears === 'round') ear.add(k.at(k.scl(k.ball(headSize * 0.16, furMat, 1), 1, 1, 0.5), 0, headSize * 0.08, 0));
+    if (ears === 'none') { /* empty pivot so animations still work */ } else if (ears === 'round') ear.add(k.at(k.scl(k.ball(headSize * 0.16, furMat, 1), 1, 1, 0.5), 0, headSize * 0.08, 0));
     else {
       ear.add(k.at(k.cone(headSize * 0.14, headSize * 0.32, furMat, 4), 0, headSize * 0.14, 0));
       if (earInnerMat) ear.add(k.at(k.cone(headSize * 0.08, headSize * 0.2, earInnerMat, 4), 0, headSize * 0.11, headSize * 0.05));
@@ -158,6 +158,20 @@ export const QUAD_ANIMS = {
       rig.head.rotation.z -= f * 0.3;
       rig.tail.rotation.x -= f * 0.6;
       blinkEyes(rig, smooth(u / 0.5) * 0.92);
+    },
+  },
+  // Rises out of a hole in the ground (sewer, burrow...).
+  emerge: {
+    label: '구멍에서 기어나오기',
+    duration: 1.4,
+    loop: false,
+    apply(rig, u) {
+      const up = keys(u, [[0, 0], [0.6, 1.05], [0.8, 0.97], [1, 1]]);
+      const d = rig.dims;
+      rig.body.position.y -= (1 - up) * (d.legLen + d.height * 1.5);
+      rig.body.rotation.x -= (1 - up) * 0.9;
+      rig.jaw.rotation.x += Math.sin(Math.PI * clamp01(u)) * 0.5;
+      blinkEyes(rig, u < 0.4 ? 0.9 : 0);
     },
   },
   howl: {

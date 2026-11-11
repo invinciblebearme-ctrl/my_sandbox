@@ -4,5 +4,6 @@ import campground from './campground/index.js';
 import snow from './snow/index.js';
 import desert from './desert/index.js';
 import space from './space/index.js';
+import neighborhood from './neighborhood/index.js';
 
-export const THEMES = { campground, snow, desert, space, graveyard };
+export const THEMES = { campground, snow, desert, space, neighborhood, graveyard };
