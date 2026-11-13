@@ -17,6 +17,13 @@ public class PlayerItem : MonoBehaviour
     public string playerUse = "";
     public string playerMove = "walk";
 
+    // Magic staff only: projectile spawned at the `castPoint` node when the use clip
+    // reaches releaseTime (fraction of the clip). From models/items.json (magic).
+    public GameObject projectilePrefab;
+    [Range(0f, 1f)] public float releaseTime = 0.55f;
+    public Transform CastPoint => castPoint;
+    Transform castPoint;
+
     Animation anim;
     Transform itemNode;
     Transform ring;
@@ -26,6 +33,7 @@ public class PlayerItem : MonoBehaviour
         anim = GetComponentInChildren<Animation>();
         itemNode = FindDeep(transform, "item");
         ring = FindDeep(transform, "pickupRing");
+        castPoint = FindDeep(transform, "castPoint");
         if (anim != null && anim["idle"] != null)
         {
             anim["idle"].wrapMode = WrapMode.Loop;

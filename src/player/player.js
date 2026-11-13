@@ -12,16 +12,18 @@ import { PLAYER_ANIMS } from './animations.js';
 export const PLAYER_DEFAULTS = {
   seed: 1, height: 1, build: 1,
   skinColor: '#e0b494', hairColor: '#3a2a20', shirtColor: '#5a6a5a', pantsColor: '#3a4a6a', shoeColor: '#2a2420',
-  headgear: 'hair', // hair | beanie | hood | cowboy | headset | cap
+  headgear: 'hair', // hair | beanie | hood | cowboy | headset | cap | wizardHat
   headgearColor: '#2a2a2a', backpack: true, backpackColor: '#6a5a3a', vest: false, vestColor: '#8a6a3a',
   scarf: false, scarfColor: '#b03a2a', gloves: false, gloveColor: '#3a3a3a',
+  robe: false, robeColor: '#3a3a8a', trimColor: '#e8c04a', beard: false, beardColor: '#e8e4dc',
 };
 
 export const PLAYER_SCHEMA = {
   seed: { label: '시드', min: 1, max: 999, step: 1 },
   height: { label: '키', min: 0.8, max: 1.2, step: 0.01 },
   build: { label: '체격', min: 0.8, max: 1.3, step: 0.01 },
-  headgear: { label: '머리', options: { 머리카락: 'hair', 비니: 'beanie', 후드: 'hood', 카우보이모자: 'cowboy', 헤드셋: 'headset', 야구모자: 'cap' } },
+  headgear: { label: '머리', options: { 머리카락: 'hair', 비니: 'beanie', 후드: 'hood', 카우보이모자: 'cowboy', 헤드셋: 'headset', 야구모자: 'cap', 마법사모자: 'wizardHat' } },
+  robe: { label: '로브' }, beard: { label: '수염' }, robeColor: { label: '로브 색' }, trimColor: { label: '로브 장식 색' }, beardColor: { label: '수염 색' },
   backpack: { label: '배낭' }, vest: { label: '조끼' }, scarf: { label: '목도리' }, gloves: { label: '장갑' },
   skinColor: { label: '피부 색' }, hairColor: { label: '머리카락 색' }, shirtColor: { label: '상의 색' },
   pantsColor: { label: '바지 색' }, shoeColor: { label: '신발 색' }, headgearColor: { label: '모자 색' },
@@ -61,11 +63,29 @@ export function createPlayer(input = {}) {
     legs[n] = { leg, knee };
   }
 
+  if (p.robe) {
+    // flared skirt to just below the knees (legs swing inside it, shins and shoes show)
+    const robe = k.mat('robe', p.robeColor);
+    const trim = k.mat('robeTrim', p.trimColor, { metalness: 0.3 });
+    hips.add(k.at(k.cyl(0.24 * b, 0.36 * b, 0.62, robe, 8, 0.006), 0, -0.26, 0));
+    hips.add(k.at(k.cyl(0.365 * b, 0.37 * b, 0.05, trim, 8), 0, -0.56, 0));
+    hips.add(k.at(k.box(0.05, 0.6, 0.02, trim, 0), 0, -0.26, 0.31 * b));
+  }
+
   const spine = k.pivot('spine');
   hips.add(spine);
   spine.add(k.at(box(0.36 * b, 0.2, 0.22 * b, pants), 0, 0.02, 0));
   spine.add(k.at(box(0.42 * b, 0.55, 0.25 * b, shirt, 0.008), 0, 0.37, 0));
   spine.add(k.at(box(0.38 * b, 0.05, 0.23 * b, k.mat('belt', '#2a2018')), 0, 0.12, 0));
+  if (p.robe) {
+    const robe = k.mat('robe', p.robeColor);
+    const trim = k.mat('robeTrim', p.trimColor, { metalness: 0.3 });
+    spine.add(k.at(box(0.44 * b, 0.56, 0.27 * b, robe, 0.008), 0, 0.37, 0));
+    for (const s of [-1, 1]) spine.add(k.at(k.rot(box(0.05, 0.5, 0.02, trim, 0), 0, 0, s * 0.18), s * 0.05, 0.4, 0.14 * b));
+    spine.add(k.at(box(0.4 * b, 0.06, 0.29 * b, k.mat('sash', p.trimColor)), 0, 0.14, 0));
+    spine.add(k.at(box(0.1, 0.12, 0.06, k.mat('pouch', '#6a4a2e')), 0.14 * b, 0.07, 0.13 * b));
+    spine.add(k.at(box(0.5 * b, 0.1, 0.3 * b, robe, 0.01), 0, 0.62, 0)); // shoulder cape
+  }
   if (p.vest) {
     const vest = k.mat('vest', p.vestColor);
     for (const s of [-1, 1]) spine.add(k.at(box(0.15 * b, 0.42, 0.27 * b, vest), s * 0.12 * b, 0.4, 0));
@@ -101,7 +121,24 @@ export function createPlayer(input = {}) {
   head.add(k.at(box(0.035, 0.05, 0.03, skin, 0), 0, 0.13, 0.135));
   head.add(k.at(box(0.07, 0.012, 0.01, k.mat('mouth', '#7a3a3a'), 0), 0, 0.075, 0.126));
   for (const s of [-1, 1]) head.add(k.at(box(0.025, 0.05, 0.04, skin, 0), s * 0.125, 0.15, 0));
+  if (p.beard) {
+    const beard = k.mat('beard', p.beardColor);
+    head.add(k.at(box(0.25, 0.1, 0.06, beard, 0.01), 0, 0.06, 0.11));
+    head.add(k.at(k.rot(k.cone(0.1, 0.22, beard, 4, 0.01), Math.PI - 0.25, Math.PI / 4, 0), 0, -0.04, 0.12));
+    head.add(k.at(box(0.12, 0.025, 0.03, beard, 0), 0, 0.1, 0.135)); // moustache
+  }
   // headgear
+  if (p.headgear === 'wizardHat') {
+    const hat = gear;
+    const band = k.mat('hatBand', p.trimColor ?? '#e8c04a', { metalness: 0.3 });
+    head.add(k.at(k.cyl(0.29, 0.3, 0.025, hat, 10, 0.008), 0, 0.29, 0));
+    head.add(k.at(k.cyl(0.13, 0.155, 0.16, hat, 8, 0.006), 0, 0.37, 0));
+    head.add(k.at(k.cyl(0.158, 0.16, 0.04, band, 8), 0, 0.31, 0));
+    head.add(k.at(k.rot(k.cyl(0.07, 0.13, 0.2, hat, 7, 0.006), -0.25, 0, 0), 0, 0.53, -0.025));
+    head.add(k.at(k.rot(k.cone(0.07, 0.22, hat, 7, 0.006), -0.7, 0, 0), 0, 0.69, -0.1)); // bent tip
+    head.add(k.at(k.ball(0.03, k.mat('hatStar', p.trimColor ?? '#e8c04a', { emissive: '#ffd24a', emissiveIntensity: 1.2 }), 0), 0, 0.37, 0.15));
+    head.add(k.at(box(0.26, 0.14, 0.06, hair, 0.01), 0, 0.2, -0.11)); // hair under the hat
+  }
   if (p.headgear === 'hair' || p.headgear === 'headset') {
     head.add(k.at(box(0.26, 0.07, 0.27, hair, 0.01), 0, 0.3, -0.005));
     head.add(k.at(box(0.26, 0.15, 0.06, hair, 0.01), 0, 0.22, -0.11));
@@ -135,9 +172,10 @@ export function createPlayer(input = {}) {
   const arms = {};
   for (const [n, s] of [['L', 1], ['R', -1]]) {
     const arm = k.pivot(`arm${n}`, s * (0.21 * b + 0.05), 0.6, 0);
-    arm.add(k.at(box(0.12 * b, 0.32, 0.12 * b, shirt), 0, -0.15, 0));
+    arm.add(k.at(box(0.12 * b, 0.32, 0.12 * b, p.robe ? k.mat('robe', p.robeColor) : shirt), 0, -0.15, 0));
     const elbow = k.pivot(`elbow${n}`, 0, -0.3, 0);
-    elbow.add(k.at(box(0.1 * b, 0.27, 0.1 * b, p.vest ? skin : shirt), 0, -0.13, 0));
+    elbow.add(k.at(box(0.1 * b, 0.27, 0.1 * b, p.vest ? skin : p.robe ? k.mat('robe', p.robeColor) : shirt), 0, -0.13, 0));
+    if (p.robe) elbow.add(k.at(k.cyl(0.085 * b, 0.11 * b, 0.12, k.mat('robeTrim', p.trimColor, { metalness: 0.3 }), 6), 0, -0.22, 0)); // wide cuff
     const hand = k.pivot(`hand${n}`, 0, -0.28, 0);
     hand.add(k.at(box(0.09 * b, 0.1, 0.06, handMat), 0, -0.04, 0));
     hand.add(k.at(box(0.03, 0.05, 0.03, handMat, 0), s * -0.045 * b, -0.02, 0.03)); // thumb

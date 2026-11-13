@@ -5,8 +5,10 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import GUI from 'lil-gui';
 import { THEMES } from './themes/index.js';
 import { PLAYERS } from './player/index.js';
+import { MAGIC_ITEMS, MAGIC_EFFECTS } from './magic/index.js';
+import { CAST_RELEASE } from './player/animations.js';
 import { createKit } from './core/kit.js';
-import { setPose, bakeClips, disposeMonster, STANDARD_CLIPS } from './core/monster.js';
+import { setPose, resetPose, bakeClips, disposeMonster, STANDARD_CLIPS, clamp01 } from './core/monster.js';
 
 // ---- Scene ------------------------------------------------------------------
 const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
@@ -65,7 +67,10 @@ let params = {};
 let current = null;
 let gallery = [];
 const theme = () => THEMES[view.theme];
-const entries = () => (view.category === 'players' ? PLAYERS : theme()[view.category] ?? {});
+// magic items are shared by every stage: listed with each theme's own items
+const allItems = (t = view.theme) => ({ ...(THEMES[t]?.items ?? {}), ...MAGIC_ITEMS });
+const entries = () => (view.category === 'players' ? PLAYERS
+  : view.category === 'items' ? { ...allItems(), ...MAGIC_EFFECTS } : theme()[view.category] ?? {});
 const def = () => entries()[view.monster];
 
 function build(d, p) {
@@ -75,12 +80,12 @@ function build(d, p) {
 }
 
 const heldInfo = () => {
-  const d = theme().items?.[view.heldItem];
+  const d = allItems()[view.heldItem];
   return d ? build(d, { ...d.defaults }).userData.itemInfo : null;
 };
 // Puts an item (from a theme's item list) into the player's right hand.
 function holdItem(player, themeKey, itemKey) {
-  const d = THEMES[themeKey]?.items?.[itemKey];
+  const d = allItems(themeKey)[itemKey];
   if (!d) return null;
   const obj = build(d, { ...d.defaults });
   const node = obj.userData.rig.item;
@@ -112,9 +117,9 @@ function setGallery(on) {
     list.forEach((d, i) => {
       const m = build(d, { ...d.defaults });
       if (view.category === 'players') {
-        // each outfit holds the ranged weapon of its own theme
+        // each outfit holds the ranged weapon of its own theme (or its own item)
         const themeItems = THEMES[d.theme]?.items ?? {};
-        const gun = Object.keys(themeItems).find((key) => build(themeItems[key], { ...themeItems[key].defaults }).userData.itemInfo.kind === 'ranged');
+        const gun = d.holds ?? Object.keys(themeItems).find((key) => build(themeItems[key], { ...themeItems[key].defaults }).userData.itemInfo.kind === 'ranged');
         if (gun) holdItem(m, d.theme, gun);
       }
       const x = i - (list.length - 1) / 2;
@@ -217,7 +222,8 @@ function selectMonster(key) {
   heldCtrl?.destroy();
   heldCtrl = null;
   if (view.category === 'players') {
-    const items = theme().items ?? {};
+    const items = allItems();
+    if (def().holds) view.heldItem = def().holds; // e.g. the wizard starts with the staff
     const opts = { '없음': '', ...Object.fromEntries(Object.entries(items).map(([k, d]) => [`${d.role} ${d.label}`, k])) };
     if (!(view.heldItem in items)) view.heldItem = '';
     heldCtrl = gui.add(view, 'heldItem', opts).name('들고 있는 아이템').onChange(() => {
@@ -229,7 +235,9 @@ function selectMonster(key) {
     heldCtrl.domElement.parentElement.insertBefore(heldCtrl.domElement, monsterCtrl.domElement.nextSibling);
   }
   rebuild();
-  view.animation = current.userData.clips.move ? 'clip:move' : 'clip:idle';
+  const firstClip = Object.keys(current.userData.clips)[0];
+  view.animation = `clip:${current.userData.clips.move ? 'move' : current.userData.clips.idle ? 'idle' : firstClip}`;
+  if (view.category === 'players' && def().holds) view.animation = `clip:${heldInfo()?.player.use ?? 'idle'}`;
   animCtrl?.destroy();
   animCtrl = gui.add(view, 'animation', animOptions()).name('애니메이션');
   animCtrl.domElement.parentElement.insertBefore(animCtrl.domElement, monsterCtrl.domElement.nextSibling);
@@ -253,7 +261,7 @@ function selectTheme(key) {
   const keys = Object.keys(entries());
   const opts = Object.fromEntries(keys.map((k) => [`${entries()[k].role} ${entries()[k].label}`, k]));
   monsterCtrl?.destroy();
-  monsterCtrl = gui.add(view, 'monster', opts).name(view.category === 'items' ? '아이템' : '괴물').onChange(selectMonster);
+  monsterCtrl = gui.add(view, 'monster', opts).name({ items: '아이템', players: '캐릭터' }[view.category] ?? '괴물').onChange(selectMonster);
   monsterCtrl.domElement.parentElement.insertBefore(monsterCtrl.domElement, categoryCtrl.domElement.nextSibling);
   applyTheme();
   selectMonster(keys[0]);
@@ -319,29 +327,67 @@ setGallery(false);
 
 // hooks for scripts / tests
 window.__view = view;
-window.__list = () => Object.fromEntries(Object.entries(THEMES).map(([t, th]) => [t, {
-  monsters: Object.keys(th.monsters), items: Object.keys(th.items ?? {}),
-}]));
+window.__list = () => ({
+  ...Object.fromEntries(Object.entries(THEMES).map(([t, th]) => [t, {
+    monsters: Object.keys(th.monsters), items: Object.keys(th.items ?? {}),
+  }])),
+  magic: { effects: Object.keys(MAGIC_EFFECTS), items: Object.keys(MAGIC_ITEMS) },
+});
 window.__players = () => Object.keys(PLAYERS);
 window.__camera = (x, y, z) => { camera.position.set(x, y, z); controls.update(); };
 window.__hold = (itemKey, clip) => { view.heldItem = itemKey; rebuild(); if (clip) view.animation = `clip:${clip}`; };
 // item -> player clips, for models/items.json
-window.__itemManifest = () => Object.fromEntries(Object.entries(THEMES).filter(([, th]) => th.items).map(([t, th]) => [t,
-  Object.fromEntries(Object.entries(th.items).map(([k, d]) => {
-    const info = build(d, { ...d.defaults }).userData.itemInfo;
-    return [k, { label: d.label, kind: info.kind, file: `${t}/items/${k}.glb`, playerHold: info.player.hold, playerUse: info.player.use, playerMove: info.player.move }];
-  })),
-]));
+const manifestOf = (t, items) => Object.fromEntries(Object.entries(items).map(([k, d]) => {
+  const info = build(d, { ...d.defaults }).userData.itemInfo;
+  return [k, { label: d.label, kind: info.kind, file: `${t}/items/${k}.glb`, playerHold: info.player.hold, playerUse: info.player.use, playerMove: info.player.move }];
+}));
+window.__itemManifest = () => ({
+  ...Object.fromEntries(Object.entries(THEMES).filter(([, th]) => th.items).map(([t, th]) => [t, manifestOf(t, th.items)])),
+  magic: {
+    ...manifestOf('magic', MAGIC_ITEMS),
+    healingFireball: { label: MAGIC_EFFECTS.healingFireball.label, kind: 'projectile', file: 'magic/healingFireball.glb', spawnAt: 'castPoint', releaseTime: CAST_RELEASE },
+  },
+});
 window.__gallery = (on) => { view.gallery = on; setGallery(on); };
 window.__select = (t, m, cat = 'monsters') => {
   if (t !== view.theme || cat !== view.category) { view.category = cat; categoryCtrl.updateDisplay(); selectTheme(t); }
   if (m) { selectMonster(m); monsterCtrl.updateDisplay(); }
 };
 window.__exportGLB = (t, m, cat = 'monsters') => {
-  const d = cat === 'players' ? PLAYERS[m] : THEMES[t][cat][m];
+  const d = cat === 'players' ? PLAYERS[m] : t === 'magic' ? { ...MAGIC_ITEMS, ...MAGIC_EFFECTS }[m] : THEMES[t][cat][m];
   return exportGLB(build(d, { ...d.defaults }));
 };
 window.__setHorror = (v) => { view.horror = v; applyTheme(); rebuild(); if (view.gallery) setGallery(true); };
+
+// ---- Fireball demo: while a staff holder plays castFireball, show the projectile ----
+const demoBall = build(MAGIC_EFFECTS.healingFireball, { ...MAGIC_EFFECTS.healingFireball.defaults });
+demoBall.visible = false;
+scene.add(demoBall);
+const tmpV = new THREE.Vector3();
+function fireballDemo(player, animKey, t) {
+  const point = player?.visible && animKey === 'castFireball' ? player.getObjectByName('castPoint') : null;
+  demoBall.visible = !!point;
+  if (!point) return;
+  const cast = player.userData.animations.castFireball;
+  const tt = t % (cast.duration + 0.8); // same cycle as the viewer's one-shot playback
+  const release = CAST_RELEASE * cast.duration;
+  const { rig, animations } = demoBall.userData;
+  const lift = rig.ball.position.y;
+  resetPose(demoBall);
+  player.updateMatrixWorld(true);
+  point.getWorldPosition(tmpV);
+  if (tt < release) {
+    animations.charge.apply(rig, clamp01(tt / release));
+  } else {
+    const fly = Math.min(tt - release, 0.45);
+    const fwd = new THREE.Vector3(0, 0, 1).applyQuaternion(player.quaternion);
+    tmpV.addScaledVector(fwd, fly * 7);
+    if (tt - release < 0.45) animations.fly.apply(rig, ((tt - release) / animations.fly.duration) % 1);
+    else animations.impact.apply(rig, clamp01((tt - release - 0.45) / animations.impact.duration));
+    demoBall.quaternion.copy(player.quaternion);
+  }
+  demoBall.position.copy(tmpV).y -= lift;
+}
 
 // ---- Loop -----------------------------------------------------------------------
 const clock = new THREE.Clock();
@@ -352,8 +398,9 @@ renderer.setAnimationLoop(() => {
   if (view.animate) time += dt * view.speed;
   const [kind, name] = view.animation.split(':');
   // clip:<standard name> -> that monster's animation for it; anim:<key> -> exact animation
-  const resolve = (m) => (kind === 'clip' ? m.userData.clips[name] ?? m.userData.clips.move ?? m.userData.clips.idle : name);
+  const resolve = (m) => (kind === 'clip' ? m.userData.clips[name] ?? m.userData.clips.move ?? m.userData.clips.idle ?? Object.values(m.userData.clips)[0] : name);
   for (const m of view.gallery ? gallery : [current]) setPose(m, time, resolve(m));
+  fireballDemo(view.gallery ? null : current, resolve(current), time);
   controls.update();
   renderer.render(scene, camera);
 });

@@ -1,9 +1,11 @@
+using System.Collections;
 using UnityEngine;
 
 // Plays the player GLB clips (models/player/*.glb) and handles held items.
 //
 // Clips: idle, walk, run, hit, death, pickup, aimPistol, shootPistol, aimRifle, shootRifle,
-//        meleeSwing, meleeHeavy, throw, useHeal, holdLight, useSpecial, walkAimPistol, walkAimRifle
+//        meleeSwing, meleeHeavy, throw, useHeal, holdLight, useSpecial, walkAimPistol, walkAimRifle,
+//        holdStaff, walkStaff, castFireball (wizard + healing staff)
 // Which clips go with which item is in models/items.json (playerHold / playerUse / playerMove);
 // copy those values into the PlayerItem component of each item prefab.
 //
@@ -23,8 +25,8 @@ public class PlayerAnimations : MonoBehaviour
     string holdClip = "idle", useClip = "", moveClip = "walk";
     bool dead;
 
-    static readonly string[] Loops = { "idle", "walk", "run", "aimPistol", "aimRifle", "holdLight", "walkAimPistol", "walkAimRifle" };
-    static readonly string[] Actions = { "shootPistol", "shootRifle", "meleeSwing", "meleeHeavy", "throw", "useHeal", "useSpecial", "hit", "pickup" };
+    static readonly string[] Loops = { "idle", "walk", "run", "aimPistol", "aimRifle", "holdLight", "walkAimPistol", "walkAimRifle", "holdStaff", "walkStaff" };
+    static readonly string[] Actions = { "shootPistol", "shootRifle", "meleeSwing", "meleeHeavy", "throw", "useHeal", "useSpecial", "castFireball", "hit", "pickup" };
 
     void Awake()
     {
@@ -64,7 +66,27 @@ public class PlayerAnimations : MonoBehaviour
         PlayAction("pickup");
     }
 
-    public void Use() { if (!string.IsNullOrEmpty(useClip)) PlayAction(useClip); }
+    public void Use()
+    {
+        if (string.IsNullOrEmpty(useClip)) return;
+        PlayAction(useClip);
+        // magic staff: shoot the projectile when the cast animation releases it
+        if (held != null && held.projectilePrefab != null && anim[useClip] != null)
+            StartCoroutine(Release(held, anim[useClip].length * held.releaseTime));
+    }
+
+    IEnumerator Release(PlayerItem item, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        if (dead || item != held) yield break;
+        Vector3 from = item.CastPoint != null ? item.CastPoint.position : transform.position + Vector3.up * 1.5f;
+        Vector3 dir = transform.forward;
+        dir.y = 0f;
+        var go = Instantiate(item.projectilePrefab);
+        var ball = go.GetComponent<HealingFireball>();
+        if (ball != null) ball.Launch(gameObject, from, dir.normalized);
+        else go.transform.SetPositionAndRotation(from, Quaternion.LookRotation(dir.normalized));
+    }
     public void Hit() => PlayAction("hit");
 
     public void Die()

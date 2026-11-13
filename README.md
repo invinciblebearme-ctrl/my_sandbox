@@ -33,7 +33,7 @@ Polyfork 스타일의 **파라미터형 로우폴리 괴물** 모음입니다. �
 **공포도** 슬라이더(0 귀여움 ~ 1 무서움, 기본 0.9)로 모든 괴물의 분위기를 한 번에 바꿉니다. 0.75 이상은 처음 만든 좀비와 같은 스타일(사각 눈구멍에 빛나는 눈, 빠진 이빨, 핏자국과 뼈, 울퉁불퉁한 표면)이고, 낮추면 으스스한 카툰 → 귀여운 버전이 됩니다. GLB 내보내기에도 적용되며 `models/`의 파일은 0.9로 만든 것입니다.
 
 ### 플레이어 캐릭터
-좀비와 같은 박스형 로우폴리 생존자. 테마별 의상 6종(생존자 · 캠퍼 · 등산가 · 레인저 · 기지 정비사 · 동네 아이)이 같은 뼈대와 애니메이션 18개를 씁니다. 뷰어의 **종류 → 플레이어 캐릭터**에서 보고, **들고 있는 아이템**으로 현재 테마 아이템을 손에 쥐어 볼 수 있습니다(아이템에 맞는 애니메이션으로 자동 전환).
+좀비와 같은 박스형 로우폴리 생존자. 테마별 의상 6종(생존자 · 캠퍼 · 등산가 · 레인저 · 기지 정비사 · 동네 아이)과 모든 스테이지용 **치유 마법사**가 같은 뼈대와 애니메이션 21개를 씁니다. 뷰어의 **종류 → 플레이어 캐릭터**에서 보고, **들고 있는 아이템**으로 현재 테마 아이템을 손에 쥐어 볼 수 있습니다(아이템에 맞는 애니메이션으로 자동 전환).
 
 | 구분 | 클립 |
 |---|---|
@@ -41,6 +41,17 @@ Polyfork 스타일의 **파라미터형 로우폴리 괴물** 모음입니다. �
 | 총 | `aimPistol` `shootPistol` `walkAimPistol` (한손 총) · `aimRifle` `shootRifle` `walkAimRifle` (양손 총, 펌프 동작 포함) |
 | 근접 | `meleeSwing` (한손 내려치기) · `meleeHeavy` (양손 머리 위에서 내려찍기) |
 | 기타 | `throw` (던지기) · `useHeal` (마시기·먹기) · `holdLight` (불빛 비추며 둘러보기) · `useSpecial` (배지·카드 들어 보이기) |
+| 마법 | `holdStaff` (지팡이 들고 대기) · `walkStaff` (지팡이 짚으며 걷기) · `castFireball` (지팡이를 들어 힘을 모은 뒤 앞으로 내밀어 발사) |
+
+### 치유 마법사 ✨
+![wizard](docs/wizard.png)
+
+로브 · 마법사 모자 · 흰 수염 차림의 마법사(`models/player/wizard.glb`). 어느 스테이지에서나 쓰도록 테마에 묶지 않았습니다.
+
+- **치유의 지팡이** `models/magic/items/healingStaff.glb`: 오른손 `gripR`에 붙이는 지팡이. 끝의 `orb`가 시전할 때 빛나고, 그 앞의 빈 노드 `castPoint`가 파이어볼이 나오는 위치입니다.
+- **치유 파이어볼** `models/magic/healingFireball.glb`: 금빛 불꽃과 초록 치유 빛이 섞인 공에 `+` 십자가 돌아갑니다. 클립 `fly` (날아가기, 반복) · `charge` (커지기) · `impact` (터지며 빛 고리와 십자가가 퍼짐). +Z 방향으로 날아갑니다.
+- 게임에서의 동작([`unity/HealingFireball.cs`](unity/HealingFireball.cs)): 앞으로 날아가다 무언가에 맞으면 터지고, 반경 안의 **괴물은 피해**(`TakeDamage`), **플레이어는 회복**(`Heal`, 시전자 포함 여부 선택)합니다.
+- `castFireball`의 55% 지점(`items.json`의 `releaseTime`)에서 파이어볼이 나갑니다. 뷰어에서 마법사를 고르면 지팡이를 들고 파이어볼이 날아가는 모습까지 보입니다.
 
 아이템마다 어떤 클립을 쓰는지는 [`models/items.json`](models/items.json)에 있습니다 (`playerHold` 들고 서 있을 때, `playerUse` 사용할 때, `playerMove` 들고 걸을 때).
 
@@ -62,6 +73,7 @@ Polyfork 키트 GLB를 `public/kits/`에 넣으면 테마를 고를 때 자동�
 3. 괴물 프리팹에 [`unity/MonsterAnimations.cs`](unity/MonsterAnimations.cs)를 붙이고 `Move()`, `Attack()`, `Hit()`, `Die()`를 호출합니다.
 4. 아이템 프리팹에는 [`unity/PlayerItem.cs`](unity/PlayerItem.cs)를 붙이고 `playerHold/playerUse/playerMove`에 `items.json` 값을 넣습니다. 아이템은 `item` 노드의 원점이 손잡이라서 손에 붙이고 위치를 0으로 두면 됩니다. 줍고 나면 `pickupRing`은 꺼집니다.
 5. 플레이어 프리팹에는 [`unity/PlayerAnimations.cs`](unity/PlayerAnimations.cs)를 붙입니다. 이동 코드에서 매 프레임 `SetSpeed(속도)`, 아이템을 주우면 `Equip(아이템)`(오른손 `gripR`에 붙음), 사용할 때 `Use()`, 맞으면 `Hit()`, 죽으면 `Die()`. 쏘기·휘두르기 같은 동작은 상체에만 재생돼서 걸으면서도 쓸 수 있습니다.
+6. 마법사: 지팡이의 `PlayerItem`에 `playerHold=holdStaff`, `playerUse=castFireball`, `playerMove=walkStaff`를 넣고, `healingFireball.glb`에 [`unity/HealingFireball.cs`](unity/HealingFireball.cs)를 붙여 만든 프리팹을 **Projectile Prefab**에 넣습니다. `Use()`를 부르면 시전 동작 중 `castPoint`에서 파이어볼이 발사됩니다. 괴물에는 `Monster` 태그와 `TakeDamage(float)`, 플레이어에는 `Player` 태그와 `Heal(float)` 메서드가 있으면 됩니다.
 
 | 클립 | 재생 방식 |
 |---|---|
@@ -78,9 +90,10 @@ src/core/kit.js        로우폴리 메쉬·눈·입 도우미, 시드 RNG
 src/core/monster.js    기본 자세 저장, 애니메이션 재생/굽기, 관절별 메쉬 합치기
 src/rigs/              biped(2족) · quadruped(4족) · serpent(마디형) + 각 공용 애니메이션
 src/core/item.js       아이템 공통 구조(바닥 빛 고리, 손잡이 원점, idle/use 애니메이션, 플레이어 클립 매핑)
-src/player/            플레이어 캐릭터(의상 6종)와 애니메이션 18개
+src/player/            플레이어 캐릭터(의상 7종)와 애니메이션 21개
+src/magic/             치유의 지팡이 · 치유 파이어볼 (모든 스테이지 공용)
 src/themes/<테마>/      괴물 정의(monsters.js), 아이템(items.js), 배경 설정(index.js)
-unity/                 Unity용 스크립트 (괴물 애니메이션, 아이템 줍기/사용, 플레이어 애니메이션)
+unity/                 Unity용 스크립트 (괴물 애니메이션, 아이템 줍기/사용, 플레이어 애니메이션, 치유 파이어볼)
 ```
 
 ### 새 괴물 추가

@@ -2,8 +2,9 @@
 import { createPlayer, PLAYER_DEFAULTS, PLAYER_SCHEMA } from './player.js';
 
 // theme: the outfit's home theme (the gallery hands it that theme's ranged weapon)
-const outfit = (label, role, theme, over) => ({
-  label, role, theme, defaults: { ...PLAYER_DEFAULTS, ...over }, schema: PLAYER_SCHEMA, build: createPlayer,
+// holds: item the gallery puts in its hand instead (e.g. the wizard's staff)
+const outfit = (label, role, theme, over, holds) => ({
+  label, role, theme, holds, defaults: { ...PLAYER_DEFAULTS, ...over }, schema: PLAYER_SCHEMA, build: createPlayer,
 });
 
 export const PLAYERS = {
@@ -30,4 +31,9 @@ export const PLAYERS = {
     seed: 6, height: 0.88, build: 0.9, skinColor: '#f0c8a4', shirtColor: '#e8c03a', pantsColor: '#3a5a9a',
     headgear: 'cap', headgearColor: '#d8302a', backpack: true, backpackColor: '#5a9ad8',
   }),
+  wizard: outfit('치유 마법사', '✨ 모든 스테이지', null, {
+    seed: 7, skinColor: '#e8c0a0', hairColor: '#d8d4cc', shirtColor: '#3a3a8a', pantsColor: '#2a2a4a', shoeColor: '#4a3020',
+    headgear: 'wizardHat', headgearColor: '#2e3a8a', backpack: false, robe: true, robeColor: '#34409a', trimColor: '#e8c04a',
+    beard: true, beardColor: '#e8e4dc',
+  }, 'healingStaff'),
 };

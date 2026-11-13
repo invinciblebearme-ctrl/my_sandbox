@@ -20,6 +20,7 @@ export const ITEM_KINDS = {
   heal: { label: '❤️ 회복', ring: '#6aff7a', use: 'drink', player: { hold: 'idle', use: 'useHeal', move: 'walk' } },
   light: { label: '🔦 조명', ring: '#fff2b0', use: 'flicker', player: { hold: 'holdLight', use: 'holdLight', move: 'walk' } },
   special: { label: '⭐ 특수', ring: '#6ac8ff', use: 'scan', player: { hold: 'idle', use: 'useSpecial', move: 'walk' } },
+  magic: { label: '✨ 마법', ring: '#b38aff', use: 'cast', player: { hold: 'holdStaff', use: 'castFireball', move: 'walkStaff' } },
 };
 export const TWO_HANDED_MELEE = { use: 'meleeHeavy' };
 export const TWO_HANDED_GUN = { hold: 'aimRifle', use: 'shootRifle', move: 'walkAimRifle' };
@@ -96,6 +97,19 @@ export const ITEM_ANIMS = {
       rig.item.rotation.y += Math.sin(u * TAU) * 0.6 * p;
       rig.item.position.y += p * 0.12;
       if (rig.glow) rig.glow.scale.setScalar(1 + p * (0.4 + Math.abs(Math.sin(u * TAU * 5)) * 0.4));
+    },
+  },
+  cast: {
+    label: '마법 시전 (구슬이 빛남)',
+    duration: 1.3,
+    loop: false,
+    apply(rig, u) {
+      const charge = keys(u, [[0, 0], [0.45, 1], [0.52, 1.6], [0.7, 0.4], [1, 0]]);
+      if (rig.glow) {
+        rig.glow.scale.setScalar(1 + charge * 0.6 + Math.sin(u * TAU * 6) * 0.06 * charge);
+        rig.glow.rotation.y += u * TAU;
+      }
+      rig.item.rotation.x += keys(u, [[0, 0], [0.45, -0.3], [0.55, 0.5], [1, 0]]);
     },
   },
 };

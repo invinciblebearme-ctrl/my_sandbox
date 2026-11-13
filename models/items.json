@@ -250,5 +250,22 @@
       "playerUse": "holdLight",
       "playerMove": "walk"
     }
+  },
+  "magic": {
+    "healingStaff": {
+      "label": "치유의 지팡이",
+      "kind": "magic",
+      "file": "magic/items/healingStaff.glb",
+      "playerHold": "holdStaff",
+      "playerUse": "castFireball",
+      "playerMove": "walkStaff"
+    },
+    "healingFireball": {
+      "label": "치유 파이어볼 (투사체)",
+      "kind": "projectile",
+      "file": "magic/healingFireball.glb",
+      "spawnAt": "castPoint",
+      "releaseTime": 0.55
+    }
   }
 }

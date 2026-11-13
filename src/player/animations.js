@@ -47,6 +47,15 @@ function rifleAim(rig, t = 1) {
   rig.head.rotation.x += 0.05 * t;
 }
 
+// Staff held upright in front: forearm level and forward, so the staff (+Y of the grip) stands vertical.
+function staffHold(rig, t = 1) {
+  armPose(rig, 'R', { x: -0.32, z: 0.05, elbow: -1.25 }, t);
+  armPose(rig, 'L', { x: -0.1, z: 0.12, elbow: -0.25 }, t);
+}
+
+// Fireball cast timing (fraction of castFireball): the fireball leaves the staff here.
+export const CAST_RELEASE = 0.55;
+
 export const PLAYER_ANIMS = {
   // ---- basics -----------------------------------------------------------------
   idle: {
@@ -273,6 +282,58 @@ export const PLAYER_ANIMS = {
       rig.arms.R.arm.rotation.z -= Math.sin(swipe * Math.PI) * 0.35 * lift;
       rig.spine.rotation.y -= lift * 0.15;
       rig.head.rotation.x += lift * 0.08;
+    },
+  },
+
+  // ---- magic (healing staff) ---------------------------------------------------------
+  holdStaff: {
+    label: '지팡이 들고 대기',
+    duration: 3,
+    apply(rig, u) {
+      breathe(rig, u);
+      staffHold(rig);
+      rig.head.rotation.y += Math.sin(u * TAU) * 0.2;
+      rig.arms.R.arm.rotation.x += Math.sin(u * TAU) * 0.03;
+      // left hand drifts as if feeling for magic
+      rig.arms.L.hand.rotation.z += Math.sin(u * TAU * 2) * 0.15;
+    },
+  },
+  castFireball: {
+    label: '치유 파이어볼 시전',
+    duration: 1.3,
+    loop: false,
+    apply(rig, u) {
+      // 0-0.45 raise the staff and gather power, 0.5 thrust (release), then recover
+      const charge = keys(u, [[0, 0], [0.4, 1], [0.48, 1], [0.55, 0], [1, 0]]);
+      const thrust = keys(u, [[0, 0], [0.42, 0], [0.52, 1], [0.75, 1], [1, 0]]);
+      const rest = 1 - Math.max(charge, thrust);
+      staffHold(rig, rest);
+      armPose(rig, 'R', { x: -2.5, z: -0.15, elbow: -0.35 }, charge);
+      armPose(rig, 'L', { x: -1.1, z: -0.3, elbow: -1.3 }, charge); // palm toward the orb
+      armPose(rig, 'R', { x: -1.5, z: 0.05, elbow: -0.05 }, thrust);
+      armPose(rig, 'L', { x: -1.45, z: -0.25, elbow: -0.1 }, thrust); // open palm pushes forward
+      rig.arms.R.hand.rotation.x -= thrust * 0.6; // tip the orb toward the target
+      rig.arms.L.hand.rotation.x += thrust * 0.9;
+      rig.spine.rotation.x += -charge * 0.18 + thrust * 0.22;
+      rig.spine.rotation.y += charge * 0.2 - thrust * 0.1;
+      rig.head.rotation.x += charge * 0.1 - thrust * 0.1;
+      rig.hips.position.y -= thrust * 0.05;
+      rig.legs.L.leg.rotation.x -= thrust * 0.4;
+      rig.legs.L.knee.rotation.x += thrust * 0.3;
+      rig.legs.R.leg.rotation.x += thrust * 0.2;
+      rig.arms.R.arm.rotation.z += Math.sin(u * TAU * 8) * 0.02 * charge; // trembling with power
+    },
+  },
+  walkStaff: {
+    label: '지팡이 짚으며 걷기',
+    duration: 1.1,
+    apply(rig, u) {
+      const s = Math.sin(u * TAU);
+      legsWalk(rig, u, 0.42);
+      staffHold(rig);
+      rig.arms.R.arm.rotation.x += s * 0.12; // staff swings with the steps
+      rig.arms.L.arm.rotation.x -= s * 0.3;
+      rig.spine.rotation.y += s * 0.06;
     },
   },
 
