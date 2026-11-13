@@ -72,10 +72,16 @@
 ## 플레이어 캐릭터 ✅
 - 의상 6종(테마별), 같은 뼈대: `hips > legL/R > kneeL/R`, `spine > neck > head`, `spine > armL/R > elbowL/R > handL/R > gripL/R`
 - 아이템은 `gripR`에 `item` 노드를 붙임 (팔을 앞으로 들면 grip +Z = 앞, +Y = 위)
-- 애니메이션 21개: 기본 6 + 총 6 + 근접 2 + 던지기·회복·조명·특수 4 + 마법 3
+- 애니메이션 25개: 기본 6 + 총 6 + 근접 2 + 던지기·회복·조명·특수 4 + 마법 3 + 무공 4
 - 아이템 → 플레이어 클립 매핑: `models/items.json` (양손 무기: 삽·곡괭이·야구배트 = `meleeHeavy`, 산탄총·물총 = `aimRifle/shootRifle`)
 
 ## 치유 마법사 ✅ (모든 스테이지 공용)
 - 의상 `wizard`: 로브(무릎 아래까지), 굽은 마법사 모자, 흰 수염
 - 치유의 지팡이 (`magic`): `holdStaff` / `castFireball` / `walkStaff`, 끝에 `castPoint`
 - 치유 파이어볼 투사체: `fly` · `charge` · `impact` — 맞으면 터져서 괴물 피해 + 반경 안 플레이어 회복 (`unity/HealingFireball.cs`)
+
+## 무협 고수 · 항룡십팔장 ✅ (모든 스테이지 공용)
+- 의상 `martialHero`: 상투머리 + 머리띠, 교령 저고리, 허리띠, 손목 보호대, 각반
+- 초식: 항룡유회(원을 그리고 밀어냄) · 비룡재천(도약 후 내려침) · 신룡파미(돌아서 뒤로 침), 대기 `martialIdle`
+- 장력 투사체 `dragonPalm`: 손바닥 자국 + 바람 고리 + 금빛 용(게임 연출, 끌 수 있음). 관통하며 피해·넉백 (`unity/DragonPalm.cs`, `unity/MartialArts.cs`)
+- 남은 15초식은 백로그

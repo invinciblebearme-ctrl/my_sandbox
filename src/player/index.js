@@ -36,4 +36,9 @@ export const PLAYERS = {
     headgear: 'wizardHat', headgearColor: '#2e3a8a', backpack: false, robe: true, robeColor: '#34409a', trimColor: '#e8c04a',
     beard: true, beardColor: '#e8e4dc',
   }, 'healingStaff'),
+  martialHero: outfit('무협 고수', '🐉 모든 스테이지', null, {
+    seed: 8, skinColor: '#e0b494', hairColor: '#1a1614', shirtColor: '#e8e0cc', pantsColor: '#4a4e58', shoeColor: '#1e1e22',
+    headgear: 'topknot', headgearColor: '#2a4a8a', backpack: false, martial: true, trimColor: '#2a4a8a', sashColor: '#2a4a8a',
+    gloveColor: '#6a4a2e',
+  }),
 };

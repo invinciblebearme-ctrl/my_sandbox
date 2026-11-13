@@ -16,13 +16,15 @@ export const PLAYER_DEFAULTS = {
   headgearColor: '#2a2a2a', backpack: true, backpackColor: '#6a5a3a', vest: false, vestColor: '#8a6a3a',
   scarf: false, scarfColor: '#b03a2a', gloves: false, gloveColor: '#3a3a3a',
   robe: false, robeColor: '#3a3a8a', trimColor: '#e8c04a', beard: false, beardColor: '#e8e4dc',
+  martial: false, sashColor: '#2a4a8a', // martial-arts outfit: cross collar, sash, bracers, leg wraps
 };
 
 export const PLAYER_SCHEMA = {
   seed: { label: '시드', min: 1, max: 999, step: 1 },
   height: { label: '키', min: 0.8, max: 1.2, step: 0.01 },
   build: { label: '체격', min: 0.8, max: 1.3, step: 0.01 },
-  headgear: { label: '머리', options: { 머리카락: 'hair', 비니: 'beanie', 후드: 'hood', 카우보이모자: 'cowboy', 헤드셋: 'headset', 야구모자: 'cap', 마법사모자: 'wizardHat' } },
+  headgear: { label: '머리', options: { 머리카락: 'hair', 비니: 'beanie', 후드: 'hood', 카우보이모자: 'cowboy', 헤드셋: 'headset', 야구모자: 'cap', 마법사모자: 'wizardHat', 상투머리: 'topknot' } },
+  martial: { label: '무협복' }, sashColor: { label: '허리띠 색' },
   robe: { label: '로브' }, beard: { label: '수염' }, robeColor: { label: '로브 색' }, trimColor: { label: '로브 장식 색' }, beardColor: { label: '수염 색' },
   backpack: { label: '배낭' }, vest: { label: '조끼' }, scarf: { label: '목도리' }, gloves: { label: '장갑' },
   skinColor: { label: '피부 색' }, hairColor: { label: '머리카락 색' }, shirtColor: { label: '상의 색' },
@@ -58,6 +60,7 @@ export function createPlayer(input = {}) {
     const knee = k.pivot(`knee${n}`, 0, -0.45, 0);
     knee.add(k.at(box(0.14 * b, 0.42, 0.15 * b, pants), 0, -0.2, 0));
     knee.add(k.at(box(0.15 * b, 0.09, 0.27, shoe), 0, -0.45, 0.05));
+    if (p.martial) knee.add(k.at(box(0.155 * b, 0.2, 0.165 * b, k.mat('legWrap', '#d8d0c0')), 0, -0.3, 0)); // cloth leg wraps
     leg.add(knee);
     hips.add(leg);
     legs[n] = { leg, knee };
@@ -85,6 +88,15 @@ export function createPlayer(input = {}) {
     spine.add(k.at(box(0.4 * b, 0.06, 0.29 * b, k.mat('sash', p.trimColor)), 0, 0.14, 0));
     spine.add(k.at(box(0.1, 0.12, 0.06, k.mat('pouch', '#6a4a2e')), 0.14 * b, 0.07, 0.13 * b));
     spine.add(k.at(box(0.5 * b, 0.1, 0.3 * b, robe, 0.01), 0, 0.62, 0)); // shoulder cape
+  }
+  if (p.martial) {
+    // cross-collar (wrap-over) jacket, wide sash with hanging knot
+    const trim = k.mat('collar', p.trimColor);
+    const sash = k.mat('sash', p.sashColor);
+    spine.add(k.at(k.rot(box(0.06, 0.4, 0.02, trim, 0), 0, 0, -0.5), 0.04, 0.47, 0.13 * b));
+    spine.add(k.at(k.rot(box(0.06, 0.22, 0.02, trim, 0), 0, 0, 0.5), -0.08, 0.56, 0.128 * b));
+    spine.add(k.at(box(0.44 * b, 0.1, 0.27 * b, sash, 0.006), 0, 0.14, 0));
+    for (const s of [-1, 1]) spine.add(k.at(k.rot(box(0.05, 0.2, 0.02, sash, 0.004), 0, 0, s * 0.12), 0.12 * b + s * 0.03, 0.0, 0.14 * b));
   }
   if (p.vest) {
     const vest = k.mat('vest', p.vestColor);
@@ -163,6 +175,15 @@ export function createPlayer(input = {}) {
     head.add(k.at(k.cyl(0.13, 0.15, 0.15, gear, 8, 0.006), 0, 0.37, -0.01));
     head.add(k.at(box(0.26, 0.05, 0.02, hair, 0.01), 0, 0.22, -0.12));
   }
+  if (p.headgear === 'topknot') {
+    // hair tied up in a bun, cloth headband with two tails flying back
+    head.add(k.at(box(0.26, 0.07, 0.27, hair, 0.01), 0, 0.3, -0.005));
+    head.add(k.at(box(0.26, 0.14, 0.06, hair, 0.01), 0, 0.22, -0.11));
+    head.add(k.at(box(0.08, 0.08, 0.08, hair, 0.01), 0, 0.37, -0.02));
+    const band = gear;
+    head.add(k.at(box(0.27, 0.035, 0.275, band, 0), 0, 0.255, 0));
+    for (const s of [-1, 1]) head.add(k.at(k.rot(box(0.035, 0.2, 0.012, band, 0.004), 0.6, 0, s * 0.25), s * 0.04, 0.17, -0.18));
+  }
   if (p.headgear === 'cap') {
     head.add(k.at(box(0.27, 0.08, 0.27, gear, 0.006), 0, 0.3, 0));
     head.add(k.at(box(0.22, 0.015, 0.12, gear, 0), 0, 0.27, -0.18)); // brim worn backwards
@@ -175,6 +196,7 @@ export function createPlayer(input = {}) {
     arm.add(k.at(box(0.12 * b, 0.32, 0.12 * b, p.robe ? k.mat('robe', p.robeColor) : shirt), 0, -0.15, 0));
     const elbow = k.pivot(`elbow${n}`, 0, -0.3, 0);
     elbow.add(k.at(box(0.1 * b, 0.27, 0.1 * b, p.vest ? skin : p.robe ? k.mat('robe', p.robeColor) : shirt), 0, -0.13, 0));
+    if (p.martial) elbow.add(k.at(box(0.11 * b, 0.12, 0.11 * b, k.mat('bracer', p.gloveColor)), 0, -0.2, 0)); // wrist guards
     if (p.robe) elbow.add(k.at(k.cyl(0.085 * b, 0.11 * b, 0.12, k.mat('robeTrim', p.trimColor, { metalness: 0.3 }), 6), 0, -0.22, 0)); // wide cuff
     const hand = k.pivot(`hand${n}`, 0, -0.28, 0);
     hand.add(k.at(box(0.09 * b, 0.1, 0.06, handMat), 0, -0.04, 0));

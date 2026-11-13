@@ -267,5 +267,44 @@
       "spawnAt": "castPoint",
       "releaseTime": 0.55
     }
+  },
+  "wuxia": {
+    "dragonPalm": {
+      "label": "항룡장 장력 (투사체)",
+      "kind": "projectile",
+      "file": "wuxia/dragonPalm.glb",
+      "skills": {
+        "palmKangLong": {
+          "label": "항룡유회 亢龍有悔",
+          "releaseTime": 0.55,
+          "spawnAt": "handR",
+          "direction": [
+            0,
+            0,
+            1
+          ]
+        },
+        "palmFeiLong": {
+          "label": "비룡재천 飛龍在天",
+          "releaseTime": 0.62,
+          "spawnAt": "handR",
+          "direction": [
+            0,
+            -0.55,
+            1
+          ]
+        },
+        "palmShenLong": {
+          "label": "신룡파미 神龍擺尾",
+          "releaseTime": 0.5,
+          "spawnAt": "handR",
+          "direction": [
+            0,
+            0,
+            -1
+          ]
+        }
+      }
+    }
   }
 }

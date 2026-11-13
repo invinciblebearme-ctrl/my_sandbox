@@ -53,6 +53,22 @@ function staffHold(rig, t = 1) {
   armPose(rig, 'L', { x: -0.1, z: 0.12, elbow: -0.25 }, t);
 }
 
+// Martial-arts ready stance: knees bent, left palm forward, right fist at the waist.
+function martialStance(rig, t = 1) {
+  rig.hips.position.y -= 0.07 * t;
+  rig.legs.L.leg.rotation.x -= 0.3 * t;
+  rig.legs.L.knee.rotation.x += 0.35 * t;
+  rig.legs.R.leg.rotation.x += 0.2 * t;
+  rig.legs.R.knee.rotation.x += 0.3 * t;
+  rig.spine.rotation.y += 0.15 * t;
+  armPose(rig, 'L', { x: -1.15, z: -0.1, elbow: -0.75 }, t);
+  armPose(rig, 'R', { x: 0.25, z: -0.15, elbow: -1.75 }, t);
+  rig.arms.L.hand.rotation.x -= 0.7 * t; // fingers up, palm out
+}
+
+// Dragon palm release times (fraction of each clip): the palm force leaves the hand here.
+export const PALM_RELEASE = { palmKangLong: 0.55, palmFeiLong: 0.62, palmShenLong: 0.5 };
+
 // Fireball cast timing (fraction of castFireball): the fireball leaves the staff here.
 export const CAST_RELEASE = 0.55;
 
@@ -334,6 +350,99 @@ export const PLAYER_ANIMS = {
       rig.arms.R.arm.rotation.x += s * 0.12; // staff swings with the steps
       rig.arms.L.arm.rotation.x -= s * 0.3;
       rig.spine.rotation.y += s * 0.06;
+    },
+  },
+
+  // ---- martial arts: 항룡십팔장 (Eighteen Dragon-Subduing Palms) ------------------------
+  // Based on the novel: 亢龍有悔 is shown as left leg slightly bent, right arm curved
+  // inward, the right palm drawing a circle and then pushing straight out. The force is
+  // hard and overwhelming, but the point of the move is holding power in reserve (悔),
+  // so the push stops short and the body stays rooted instead of over-committing.
+  martialIdle: {
+    label: '무협 기마 자세 (대기)',
+    duration: 3,
+    apply(rig, u) {
+      martialStance(rig);
+      breathe(rig, u, 1.2);
+      rig.hips.position.y -= Math.sin(u * TAU) * 0.01; // slow breathing sinks the stance
+      rig.arms.L.arm.rotation.x += Math.sin(u * TAU) * 0.04;
+    },
+  },
+  palmKangLong: {
+    label: '항룡유회 (亢龍有悔) · 원을 그린 뒤 밀어내는 장',
+    duration: 1.5,
+    loop: false,
+    apply(rig, u) {
+      const set = keys(u, [[0, 0], [0.12, 1], [0.85, 1], [1, 0]]); // sink into the stance
+      const circle = clamp01((u - 0.12) / 0.36); // right palm draws one circle
+      const draw = keys(u, [[0, 0], [0.12, 1], [0.48, 1], [0.55, 0], [1, 0]]);
+      const push = keys(u, [[0, 0], [0.48, 0], [0.56, 1], [0.78, 1], [1, 0]]);
+      rig.hips.position.y -= 0.12 * set;
+      rig.legs.L.leg.rotation.x -= 0.4 * set + 0.1 * push; // left leg forward, slightly bent
+      rig.legs.L.knee.rotation.x += 0.4 * set;
+      rig.legs.R.leg.rotation.x += 0.3 * set + 0.1 * push; // right leg braced behind
+      rig.legs.R.knee.rotation.x += 0.1 * set;
+      // right arm curved inward, the hand traces a circle in front of the chest
+      const a = circle * TAU;
+      armPose(rig, 'R', { x: -0.95 - Math.sin(a) * 0.35, z: -0.35 + Math.cos(a) * 0.25, elbow: -1.35 + Math.sin(a) * 0.15 }, draw);
+      rig.arms.R.hand.rotation.x -= 0.5 * draw;
+      // push: arm straight out, wrist bent back, fingers up (stops just short of full reach)
+      armPose(rig, 'R', { x: -1.5, z: 0.05, elbow: -0.12 }, push);
+      rig.arms.R.hand.rotation.x -= 1.15 * push;
+      rig.arms.R.arm.rotation.x += Math.sin(u * TAU * 14) * 0.015 * push; // force trembling through the arm
+      // left hand guards the chest, then pulls back to the waist as the right pushes
+      armPose(rig, 'L', { x: -0.7, z: -0.25, elbow: -1.6 }, draw);
+      armPose(rig, 'L', { x: 0.25, z: 0.1, elbow: -1.7 }, push);
+      rig.spine.rotation.y += -0.3 * draw + 0.4 * push; // coil, then drive the right shoulder forward
+      rig.spine.rotation.x += 0.12 * push;
+      rig.head.rotation.y += 0.25 * draw - 0.35 * push; // eyes stay on the target
+    },
+  },
+  palmFeiLong: {
+    label: '비룡재천 (飛龍在天) · 뛰어올라 내려치는 장',
+    duration: 1.7,
+    loop: false,
+    apply(rig, u) {
+      const crouch = keys(u, [[0, 0], [0.18, 1], [0.26, 0.6], [0.32, 0], [0.74, 0], [0.8, 0.8], [1, 0]]);
+      const air = keys(u, [[0, 0], [0.24, 0], [0.42, 1], [0.55, 0.95], [0.75, 0], [1, 0]]);
+      const tuck = keys(u, [[0, 0], [0.26, 0], [0.4, 1], [0.6, 0.6], [0.74, 0], [1, 0]]);
+      const raise = keys(u, [[0, 0], [0.2, 0], [0.42, 1], [0.55, 0], [1, 0]]);
+      const strike = keys(u, [[0, 0], [0.5, 0], [0.62, 1], [0.85, 1], [1, 0]]);
+      rig.hips.position.y += air * 0.75 - crouch * 0.3;
+      for (const [n] of sides) {
+        rig.legs[n].leg.rotation.x -= crouch * 0.8 + tuck * 0.9;
+        rig.legs[n].knee.rotation.x += crouch * 1.4 + tuck * 1.6;
+      }
+      rig.spine.rotation.x += crouch * 0.35 - raise * 0.2 + strike * 0.45;
+      for (const [n, s] of sides) armPose(rig, n, { x: 0.5, z: s * 0.3, elbow: -0.3 }, crouch); // arms swing back
+      for (const [n, s] of sides) armPose(rig, n, { x: -2.9, z: s * 0.2, elbow: -0.2 }, raise); // reach for the sky
+      // in the air: both palms drive down and forward
+      armPose(rig, 'R', { x: -1.0, z: 0.1, elbow: -0.05 }, strike);
+      armPose(rig, 'L', { x: -0.9, z: -0.15, elbow: -0.1 }, strike);
+      rig.arms.R.hand.rotation.x -= 0.9 * strike;
+      rig.arms.L.hand.rotation.x -= 0.9 * strike;
+      rig.head.rotation.x += 0.2 * strike;
+    },
+  },
+  palmShenLong: {
+    label: '신룡파미 (神龍擺尾) · 몸을 돌려 뒤로 치는 장',
+    duration: 1.4,
+    loop: false,
+    apply(rig, u) {
+      const turn = keys(u, [[0, 0], [0.15, -0.2], [0.45, 1], [0.75, 1], [1, 0]]);
+      const hit = keys(u, [[0, 0], [0.35, 0], [0.5, 1], [0.72, 1], [1, 0]]);
+      // the whole body whips around like a tail and the right palm strikes behind
+      rig.hips.rotation.y += turn * 1.45;
+      rig.spine.rotation.y += turn * 1.35;
+      rig.head.rotation.y += turn * 0.25;
+      rig.hips.position.y -= 0.1 * hit;
+      rig.legs.L.leg.rotation.x += hit * 0.55; // left leg sweeps back like a tail
+      rig.legs.L.knee.rotation.x += hit * 0.4;
+      rig.legs.R.knee.rotation.x += hit * 0.35;
+      armPose(rig, 'R', { x: -1.45, z: 0.15, elbow: -0.1 }, hit);
+      rig.arms.R.hand.rotation.x -= 1.1 * hit;
+      armPose(rig, 'L', { x: 0.35, z: 0.25, elbow: -1.4 }, hit);
+      rig.spine.rotation.x += 0.15 * hit;
     },
   },
 

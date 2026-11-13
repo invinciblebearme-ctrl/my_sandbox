@@ -7,6 +7,7 @@ import { THEMES } from './themes/index.js';
 import { PLAYERS } from './player/index.js';
 import { MAGIC_ITEMS, MAGIC_EFFECTS } from './magic/index.js';
 import { CAST_RELEASE } from './player/animations.js';
+import { WUXIA_EFFECTS, PALM_SKILLS } from './wuxia/index.js';
 import { createKit } from './core/kit.js';
 import { setPose, resetPose, bakeClips, disposeMonster, STANDARD_CLIPS, clamp01 } from './core/monster.js';
 
@@ -70,7 +71,7 @@ const theme = () => THEMES[view.theme];
 // magic items are shared by every stage: listed with each theme's own items
 const allItems = (t = view.theme) => ({ ...(THEMES[t]?.items ?? {}), ...MAGIC_ITEMS });
 const entries = () => (view.category === 'players' ? PLAYERS
-  : view.category === 'items' ? { ...allItems(), ...MAGIC_EFFECTS } : theme()[view.category] ?? {});
+  : view.category === 'items' ? { ...allItems(), ...MAGIC_EFFECTS, ...WUXIA_EFFECTS } : theme()[view.category] ?? {});
 const def = () => entries()[view.monster];
 
 function build(d, p) {
@@ -332,9 +333,10 @@ window.__list = () => ({
     monsters: Object.keys(th.monsters), items: Object.keys(th.items ?? {}),
   }])),
   magic: { effects: Object.keys(MAGIC_EFFECTS), items: Object.keys(MAGIC_ITEMS) },
+  wuxia: { effects: Object.keys(WUXIA_EFFECTS) },
 });
 window.__players = () => Object.keys(PLAYERS);
-window.__camera = (x, y, z) => { camera.position.set(x, y, z); controls.update(); };
+window.__camera = (x, y, z, tx, ty, tz) => { camera.position.set(x, y, z); if (tx !== undefined) controls.target.set(tx, ty, tz); controls.update(); };
 window.__hold = (itemKey, clip) => { view.heldItem = itemKey; rebuild(); if (clip) view.animation = `clip:${clip}`; };
 // item -> player clips, for models/items.json
 const manifestOf = (t, items) => Object.fromEntries(Object.entries(items).map(([k, d]) => {
@@ -347,6 +349,12 @@ window.__itemManifest = () => ({
     ...manifestOf('magic', MAGIC_ITEMS),
     healingFireball: { label: MAGIC_EFFECTS.healingFireball.label, kind: 'projectile', file: 'magic/healingFireball.glb', spawnAt: 'castPoint', releaseTime: CAST_RELEASE },
   },
+  wuxia: {
+    dragonPalm: {
+      label: WUXIA_EFFECTS.dragonPalm.label, kind: 'projectile', file: 'wuxia/dragonPalm.glb',
+      skills: Object.fromEntries(Object.entries(PALM_SKILLS).map(([clip, sk]) => [clip, { label: sk.label, releaseTime: sk.release, spawnAt: sk.from, direction: sk.dir }])),
+    },
+  },
 });
 window.__gallery = (on) => { view.gallery = on; setGallery(on); };
 window.__select = (t, m, cat = 'monsters') => {
@@ -354,39 +362,54 @@ window.__select = (t, m, cat = 'monsters') => {
   if (m) { selectMonster(m); monsterCtrl.updateDisplay(); }
 };
 window.__exportGLB = (t, m, cat = 'monsters') => {
-  const d = cat === 'players' ? PLAYERS[m] : t === 'magic' ? { ...MAGIC_ITEMS, ...MAGIC_EFFECTS }[m] : THEMES[t][cat][m];
+  const d = cat === 'players' ? PLAYERS[m] : t === 'magic' || t === 'wuxia' ? { ...MAGIC_ITEMS, ...MAGIC_EFFECTS, ...WUXIA_EFFECTS }[m] : THEMES[t][cat][m];
   return exportGLB(build(d, { ...d.defaults }));
 };
 window.__setHorror = (v) => { view.horror = v; applyTheme(); rebuild(); if (view.gallery) setGallery(true); };
 
-// ---- Fireball demo: while a staff holder plays castFireball, show the projectile ----
-const demoBall = build(MAGIC_EFFECTS.healingFireball, { ...MAGIC_EFFECTS.healingFireball.defaults });
-demoBall.visible = false;
-scene.add(demoBall);
+// ---- Skill demo: show the projectile a clip launches (healing fireball, dragon palm) ----
+const SKILL_FX = {
+  castFireball: { effect: MAGIC_EFFECTS.healingFireball, release: CAST_RELEASE, from: 'castPoint', dir: [0, 0, 1], speed: 7, fly: 0.45 },
+  ...Object.fromEntries(Object.entries(PALM_SKILLS).map(([clip, sk]) => [clip,
+    { effect: WUXIA_EFFECTS.dragonPalm, release: sk.release, from: sk.from, dir: sk.dir, speed: 6, fly: 0.5 }])),
+};
+const demos = new Map();
 const tmpV = new THREE.Vector3();
-function fireballDemo(player, animKey, t) {
-  const point = player?.visible && animKey === 'castFireball' ? player.getObjectByName('castPoint') : null;
-  demoBall.visible = !!point;
+const FWD = new THREE.Vector3(0, 0, 1);
+function skillDemo(player, animKey, t) {
+  const fx = player?.visible ? SKILL_FX[animKey] : null;
+  const point = fx && player.getObjectByName(fx.from);
+  for (const [effect, obj] of demos) obj.visible = !!point && effect === fx.effect;
   if (!point) return;
-  const cast = player.userData.animations.castFireball;
-  const tt = t % (cast.duration + 0.8); // same cycle as the viewer's one-shot playback
-  const release = CAST_RELEASE * cast.duration;
-  const { rig, animations } = demoBall.userData;
-  const lift = rig.ball.position.y;
-  resetPose(demoBall);
+  if (!demos.has(fx.effect)) {
+    const obj = build(fx.effect, { ...fx.effect.defaults });
+    scene.add(obj);
+    demos.set(fx.effect, obj);
+  }
+  const demo = demos.get(fx.effect);
+  demo.visible = true;
+  const clip = player.userData.animations[animKey];
+  const tt = t % (clip.duration + 0.8); // same cycle as the viewer's one-shot playback
+  const release = fx.release * clip.duration;
+  const { rig, animations } = demo.userData;
+  resetPose(demo);
+  const lift = demo.children[0].position.y; // effects are lifted inside their GLB
   player.updateMatrixWorld(true);
-  point.getWorldPosition(tmpV);
+  const dir = new THREE.Vector3(...fx.dir).normalize().applyQuaternion(player.quaternion);
   if (tt < release) {
+    point.getWorldPosition(tmpV);
     animations.charge.apply(rig, clamp01(tt / release));
   } else {
-    const fly = Math.min(tt - release, 0.45);
-    const fwd = new THREE.Vector3(0, 0, 1).applyQuaternion(player.quaternion);
-    tmpV.addScaledVector(fwd, fly * 7);
-    if (tt - release < 0.45) animations.fly.apply(rig, ((tt - release) / animations.fly.duration) % 1);
-    else animations.impact.apply(rig, clamp01((tt - release - 0.45) / animations.impact.duration));
-    demoBall.quaternion.copy(player.quaternion);
+    // launched: keep flying from where the hand was at release
+    if (!demo.userData.launch || tt - release < demo.userData.lastT) demo.userData.launch = point.getWorldPosition(new THREE.Vector3());
+    demo.userData.lastT = tt - release;
+    const fly = Math.min(tt - release, fx.fly);
+    tmpV.copy(demo.userData.launch).addScaledVector(dir, fly * fx.speed);
+    if (tt - release < fx.fly) animations.fly.apply(rig, ((tt - release) / animations.fly.duration) % 1);
+    else animations.impact.apply(rig, clamp01((tt - release - fx.fly) / animations.impact.duration));
   }
-  demoBall.position.copy(tmpV).y -= lift;
+  demo.quaternion.setFromUnitVectors(FWD, dir);
+  demo.position.copy(tmpV).addScaledVector(new THREE.Vector3(0, -lift, 0).applyQuaternion(demo.quaternion), 1);
 }
 
 // ---- Loop -----------------------------------------------------------------------
@@ -400,7 +423,7 @@ renderer.setAnimationLoop(() => {
   // clip:<standard name> -> that monster's animation for it; anim:<key> -> exact animation
   const resolve = (m) => (kind === 'clip' ? m.userData.clips[name] ?? m.userData.clips.move ?? m.userData.clips.idle ?? Object.values(m.userData.clips)[0] : name);
   for (const m of view.gallery ? gallery : [current]) setPose(m, time, resolve(m));
-  fireballDemo(view.gallery ? null : current, resolve(current), time);
+  skillDemo(view.gallery ? null : current, resolve(current), time);
   controls.update();
   renderer.render(scene, camera);
 });

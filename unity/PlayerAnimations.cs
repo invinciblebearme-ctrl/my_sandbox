@@ -5,7 +5,8 @@ using UnityEngine;
 //
 // Clips: idle, walk, run, hit, death, pickup, aimPistol, shootPistol, aimRifle, shootRifle,
 //        meleeSwing, meleeHeavy, throw, useHeal, holdLight, useSpecial, walkAimPistol, walkAimRifle,
-//        holdStaff, walkStaff, castFireball (wizard + healing staff)
+//        holdStaff, walkStaff, castFireball (wizard + healing staff),
+//        martialIdle, palmKangLong, palmFeiLong, palmShenLong (martial hero, see MartialArts.cs)
 // Which clips go with which item is in models/items.json (playerHold / playerUse / playerMove);
 // copy those values into the PlayerItem component of each item prefab.
 //
@@ -18,14 +19,17 @@ public class PlayerAnimations : MonoBehaviour
 {
     public float crossFade = 0.15f;
     public float runSpeed = 3f;
+    // idle clip when nothing is held (martial hero: "martialIdle")
+    public string emptyHandIdle = "idle";
 
     Animation anim;
     Transform gripR;
     PlayerItem held;
     string holdClip = "idle", useClip = "", moveClip = "walk";
     bool dead;
+    float busyUntil; // a full-body clip is playing: SetSpeed waits
 
-    static readonly string[] Loops = { "idle", "walk", "run", "aimPistol", "aimRifle", "holdLight", "walkAimPistol", "walkAimRifle", "holdStaff", "walkStaff" };
+    static readonly string[] Loops = { "idle", "walk", "run", "aimPistol", "aimRifle", "holdLight", "walkAimPistol", "walkAimRifle", "holdStaff", "walkStaff", "martialIdle" };
     static readonly string[] Actions = { "shootPistol", "shootRifle", "meleeSwing", "meleeHeavy", "throw", "useHeal", "useSpecial", "castFireball", "hit", "pickup" };
 
     void Awake()
@@ -45,13 +49,25 @@ public class PlayerAnimations : MonoBehaviour
             s.layer = 1;
             if (spine != null) s.AddMixingTransform(spine, true);
         }
-        anim.Play("idle");
+        holdClip = emptyHandIdle;
+        anim.Play(anim[holdClip] != null ? holdClip : "idle");
+    }
+
+    // Plays a one-shot full-body clip (martial-arts palms use the legs too).
+    public void PlayFullBody(string clip)
+    {
+        if (dead || anim[clip] == null) return;
+        anim[clip].wrapMode = WrapMode.Once;
+        anim[clip].layer = 0;
+        busyUntil = Time.time + anim[clip].length;
+        anim.CrossFade(clip, crossFade * 0.5f);
+        anim.CrossFadeQueued(holdClip, crossFade);
     }
 
     // speed in m/s from your character controller
     public void SetSpeed(float speed)
     {
-        if (dead) return;
+        if (dead || Time.time < busyUntil) return;
         string clip = speed < 0.1f ? holdClip : speed >= runSpeed ? "run" : moveClip;
         if (anim[clip] != null && !anim.IsPlaying(clip)) anim.CrossFade(clip, crossFade);
     }
