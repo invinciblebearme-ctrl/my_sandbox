@@ -162,4 +162,82 @@ export const EDU_VFX = {
     r.arrows.scale.setScalar(Math.max(0.001, keys(u, [[0, 1.8], [0.5, 0.8], [1, 0]])));
     r.arrows.rotation.y += u * 1.5;
   }, { duration: 0.5 }),
+
+  // ---- boss effects (spawn at the target spot on the floor) ----------------------------------
+  fx_boss_root_spike: effect('fx_boss_root_spike', '보스: 뿌리 솟구치기', { rootColor: '#7a5236', glowColor: '#d8ff6a' }, (k, fx, r, p) => {
+    r.spikes = k.pivot('spikes');
+    const bark = k.mat('rootBark', p.rootColor);
+    for (let i = 0; i < 5; i++) {
+      const a = (i / 5) * TAU;
+      const sp = k.pivot(`spike${i}`, Math.cos(a) * 0.35 * (i ? 1 : 0), 0, Math.sin(a) * 0.35 * (i ? 1 : 0));
+      sp.add(k.at(k.rot(k.cone(0.12, 1.0, bark, 5, 0.02), (i ? 0.25 : 0) * Math.sin(a), 0, (i ? -0.25 : 0) * Math.cos(a)), 0, 0.5, 0));
+      r.spikes.add(sp);
+    }
+    fx.add(r.spikes);
+    r.warn = k.pivot('warn', 0, 0.02, 0);
+    r.warn.add(k.rot(k.mesh(new k.THREE.TorusGeometry(0.7, 0.03, 3, 18), glowMat(k, 'rootWarn', p.glowColor, 2)), Z, 0, 0));
+    fx.add(r.warn);
+  }, (r, u) => {
+    r.warn.scale.setScalar(Math.max(0.001, keys(u, [[0, 0.3], [0.3, 1], [0.45, 1], [0.6, 0]])));
+    const up = keys(u, [[0, 0], [0.35, 0], [0.45, 1.1], [0.55, 1], [0.85, 1], [1, 0]]);
+    r.spikes.children.forEach((s) => s.scale.set(1, Math.max(0.001, up), 1));
+  }, { duration: 1.4 }),
+
+  fx_boss_page_storm: effect('fx_boss_page_storm', '보스: 페이지 폭풍 (반복)', { pageColor: '#f6eed8', glowColor: '#d8a0ff' }, (k, fx, r, p) => {
+    r.storm = k.pivot('storm');
+    const pm = k.mat('stormPage', p.pageColor);
+    for (let i = 0; i < 18; i++) {
+      const a = (i / 18) * TAU * 3;
+      const pg = k.pivot(`page${i}`, Math.cos(a) * (0.6 + i * 0.06), 0.2 + i * 0.12, Math.sin(a) * (0.6 + i * 0.06));
+      pg.add(k.rot(k.box(0.16, 0.2, 0.006, pm, 0), 0.4, a, 0.3));
+      r.storm.add(pg);
+    }
+    r.storm.add(k.at(k.cyl(1.4, 0.6, 2.4, glowMat(k, 'stormWind', p.glowColor, 1, 0.15), 10), 0, 1.2, 0));
+    fx.add(r.storm);
+  }, (r, u) => { r.storm.rotation.y += u * TAU; r.storm.children.forEach((pg, i) => { pg.position.y += Math.sin(u * TAU + i) * 0.08; }); }, { loop: true, duration: 1.6 }),
+
+  fx_boss_ink_pool: effect('fx_boss_ink_pool', '보스: 잉크 웅덩이 (떨어져서 퍼짐)', { inkColor: '#2a2d5a', shineColor: '#6a74d8' }, (k, fx, r, p) => {
+    r.drop = k.pivot('drop', 0, 3, 0);
+    r.drop.add(k.scl(k.ball(0.25, k.mat('inkDrop', p.inkColor, { roughness: 0.3 }), 1), 1, 1.4, 1));
+    fx.add(r.drop);
+    r.pool = k.pivot('pool', 0, 0.01, 0);
+    r.pool.add(k.scl(k.cyl(1, 1, 0.02, k.mat('inkPool', p.inkColor, { roughness: 0.2 }), 14, 0.02), 1, 1, 0.9));
+    for (let i = 0; i < 4; i++) r.pool.add(k.at(k.scl(k.ball(0.08, k.mat('inkShine', p.shineColor), 0), 1, 0.2, 1), Math.cos(i * 1.7) * 0.6, 0.02, Math.sin(i * 1.7) * 0.5));
+    fx.add(r.pool);
+  }, (r, u) => {
+    const fall = smooth(clamp01(u / 0.3));
+    r.drop.position.y -= fall * 3;
+    r.drop.scale.setScalar(u < 0.3 ? 1 : 0.001);
+    r.pool.scale.setScalar(Math.max(0.001, keys(u, [[0, 0], [0.3, 0], [0.45, 1.1], [0.55, 1], [0.85, 1], [1, 0]])));
+  }, { duration: 3 }),
+
+  fx_boss_time_zone: effect('fx_boss_time_zone', '보스: 시간 정지 영역 (반복)', { zoneColor: '#8ad8ff', handColor: '#ffffff' }, (k, fx, r, p) => {
+    r.zone = k.pivot('zone', 0, 0.02, 0);
+    r.zone.add(k.rot(k.mesh(new k.THREE.TorusGeometry(2, 0.05, 3, 24), glowMat(k, 'zoneRim', p.zoneColor, 2)), Z, 0, 0));
+    r.zone.add(k.scl(k.cyl(2, 2, 0.01, glowMat(k, 'zoneFloor', p.zoneColor, 0.8, 0.2), 24), 1, 1, 1));
+    for (let i = 0; i < 12; i++) { const a = (i / 12) * TAU; r.zone.add(k.at(k.rot(k.box(0.06, 0.02, 0.25, glowMat(k, 'zoneTick', p.handColor, 2), 0), 0, -a, 0), Math.cos(a) * 1.75, 0.01, Math.sin(a) * 1.75)); }
+    fx.add(r.zone);
+    r.hands = k.pivot('hands', 0, 0.03, 0);
+    r.hands.add(k.at(k.box(0.08, 0.02, 1.4, glowMat(k, 'zoneHand', p.handColor, 2), 0), 0, 0, 0.7));
+    r.hands.add(k.at(k.rot(k.box(0.1, 0.02, 0.9, glowMat(k, 'zoneHand', p.handColor, 2), 0), 0, 1.2, 0), Math.sin(1.2) * 0.45, 0, Math.cos(1.2) * 0.45));
+    fx.add(r.hands);
+  }, (r, u) => { r.hands.rotation.y -= Math.floor(u * 12) / 12 * TAU * 0.25; r.zone.scale.setScalar(1 + Math.sin(u * TAU) * 0.02); }, { loop: true, duration: 2 }),
+
+  fx_boss_shadow_spikes: effect('fx_boss_shadow_spikes', '최종 보스: 그림자 가시', { shadowColor: '#2a1a4a', glowColor: '#d8a0ff' }, (k, fx, r, p) => {
+    r.spikes = k.pivot('spikes');
+    for (let i = 0; i < 7; i++) {
+      const a = (i / 7) * TAU;
+      const sp = k.pivot(`spike${i}`, Math.cos(a) * (i ? 0.6 : 0), 0, Math.sin(a) * (i ? 0.6 : 0));
+      sp.add(k.at(k.cone(0.15, 1.2, k.mat('shadowSpike', p.shadowColor, { emissive: p.glowColor, emissiveIntensity: 0.3 }), 4), 0, 0.6, 0));
+      r.spikes.add(sp);
+    }
+    fx.add(r.spikes);
+    r.warn = k.pivot('warn', 0, 0.02, 0);
+    r.warn.add(k.rot(k.mesh(new k.THREE.TorusGeometry(1, 0.03, 3, 18), glowMat(k, 'spikeWarn', p.glowColor, 2)), Z, 0, 0));
+    fx.add(r.warn);
+  }, (r, u) => {
+    r.warn.scale.setScalar(Math.max(0.001, keys(u, [[0, 0.3], [0.3, 1], [0.45, 1], [0.6, 0]])));
+    const up = keys(u, [[0, 0], [0.35, 0], [0.45, 1.1], [0.55, 1], [0.85, 1], [1, 0]]);
+    r.spikes.children.forEach((s, i) => s.scale.set(1, Math.max(0.001, up * (i ? 0.8 : 1.2)), 1));
+  }, { duration: 1.4 }),
 };

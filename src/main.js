@@ -270,7 +270,7 @@ function selectTheme(key) {
   const keys = Object.keys(entries());
   const opts = Object.fromEntries(keys.map((k) => [`${entries()[k].role} ${entries()[k].label}`, k]));
   monsterCtrl?.destroy();
-  monsterCtrl = gui.add(view, 'monster', opts).name({ items: '아이템', players: '캐릭터', characters: '캐릭터', props: '타일·소품', vfx: '효과' }[view.category] ?? '괴물').onChange(selectMonster);
+  monsterCtrl = gui.add(view, 'monster', opts).name({ items: '아이템', players: '캐릭터', characters: '캐릭터', bosses: '보스', props: '타일·소품', vfx: '효과' }[view.category] ?? '괴물').onChange(selectMonster);
   monsterCtrl.domElement.parentElement.insertBefore(monsterCtrl.domElement, categoryCtrl.domElement.nextSibling);
   applyTheme();
   selectMonster(keys[0]);
@@ -279,7 +279,7 @@ function selectTheme(key) {
 
 const themeOpts = Object.fromEntries(Object.entries(THEMES).map(([k, t]) => [t.label, k]));
 const themeCtrl = gui.add(view, 'theme', themeOpts).name('테마').onChange(selectTheme);
-categoryCtrl = gui.add(view, 'category', { '괴물': 'monsters', '플레이어 아이템': 'items', '플레이어 캐릭터': 'players', '[교육 ARPG] 캐릭터': 'characters', '[교육 ARPG] 타일·소품': 'props', '[교육 ARPG] 효과': 'vfx' }).name('종류')
+categoryCtrl = gui.add(view, 'category', { '괴물': 'monsters', '플레이어 아이템': 'items', '플레이어 캐릭터': 'players', '[교육 ARPG] 캐릭터': 'characters', '[교육 ARPG] 보스': 'bosses', '[교육 ARPG] 타일·소품': 'props', '[교육 ARPG] 효과': 'vfx' }).name('종류')
   .onChange(() => selectTheme(view.theme));
 let heldCtrl;
 gui.add(view, 'animate').name('재생');
@@ -374,7 +374,7 @@ window.__exportGLB = (t, m, cat = 'monsters') => {
   return exportGLB(build(d, { ...d.defaults }));
 };
 // ---- educational ARPG set: list, manifest and item icons --------------------------------
-const EDU_CATS = ['characters', 'monsters', 'items', 'props', 'vfx'];
+const EDU_CATS = ['characters', 'monsters', 'bosses', 'items', 'props', 'vfx'];
 window.__eduList = () => Object.fromEntries(EDU_CATS.map((c) => [c, Object.keys(THEMES.edu[c])]));
 window.__eduManifest = () => Object.fromEntries(EDU_CATS.map((c) => [c, Object.fromEntries(Object.entries(THEMES.edu[c]).map(([key, d]) => {
   const o = d.build({ ...d.defaults });
