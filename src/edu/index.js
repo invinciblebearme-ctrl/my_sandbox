@@ -3,6 +3,7 @@
 // Output layout follows the spec: public/models/{characters,monsters,props,items,vfx}/.
 import { warrior, starHunter, sage } from './warrior.js';
 import { EDU_MONSTERS, EDU_PROJECTILES } from './monsters.js';
+import { EDU_MONSTERS_2 } from './monsters2.js';
 import { EDU_ITEMS } from './items.js';
 import { FOREST_ALL, FOREST_PROPS } from './forest.js';
 import { EDU_VFX } from './vfx.js';
@@ -22,7 +23,7 @@ export default {
     },
   },
   characters: { warrior, starHunter, sage },
-  monsters: { ...EDU_MONSTERS, ...EDU_PROJECTILES },
+  monsters: { ...EDU_MONSTERS, ...EDU_PROJECTILES, ...EDU_MONSTERS_2 },
   items: EDU_ITEMS,
   props: FOREST_ALL,
   vfx: EDU_VFX,

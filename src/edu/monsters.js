@@ -13,9 +13,9 @@ const Z = Math.PI / 2;
 const CLIPS = (m) => Object.fromEntries(m.map((c) => [c, c]));
 
 // spawn: rises out of a glowing ring (scale up with a little overshoot)
-const spawnScale = (u) => Math.max(0.001, keys(u, [[0, 0], [0.6, 1.15], [0.8, 0.95], [1, 1]]));
-const ringPulse = (ring, u) => ring.scale.setScalar(Math.max(0.001, Math.sin(Math.PI * clamp01(u * 1.2)) * 1.2));
-function spawnRing(k, parent, color, r = 0.4) {
+export const spawnScale = (u) => Math.max(0.001, keys(u, [[0, 0], [0.6, 1.15], [0.8, 0.95], [1, 1]]));
+export const ringPulse = (ring, u) => ring.scale.setScalar(Math.max(0.001, Math.sin(Math.PI * clamp01(u * 1.2)) * 1.2));
+export function spawnRing(k, parent, color, r = 0.4) {
   const ring = k.pivot('spawnRing', 0, 0.02, 0);
   ring.add(k.rot(k.mesh(new k.THREE.TorusGeometry(r, 0.025, 3, 16), glowMat(k, 'spawnGlow', color, 2)), Z, 0, 0));
   ring.scale.setScalar(0.001);
