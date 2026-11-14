@@ -1,0 +1,372 @@
+{
+  "sfx": {
+    "quiz_popup": {
+      "label": "퀴즈 팝업 등장",
+      "file": "audio/sfx/sfx_quiz_popup.ogg",
+      "seconds": 0.43
+    },
+    "quiz_select": {
+      "label": "보기 선택",
+      "file": "audio/sfx/sfx_quiz_select.ogg",
+      "seconds": 0.08
+    },
+    "quiz_correct": {
+      "label": "정답",
+      "file": "audio/sfx/sfx_quiz_correct.ogg",
+      "seconds": 0.44
+    },
+    "quiz_wrong": {
+      "label": "오답",
+      "file": "audio/sfx/sfx_quiz_wrong.ogg",
+      "seconds": 0.34
+    },
+    "quiz_perfect": {
+      "label": "퍼펙트",
+      "file": "audio/sfx/sfx_quiz_perfect.ogg",
+      "seconds": 0.42
+    },
+    "quiz_tick": {
+      "label": "시간 임박 째깍",
+      "file": "audio/sfx/sfx_quiz_tick.ogg",
+      "seconds": 1.0
+    },
+    "quiz_timeout": {
+      "label": "시간 초과",
+      "file": "audio/sfx/sfx_quiz_timeout.ogg",
+      "seconds": 0.6
+    },
+    "quiz_combo_up": {
+      "label": "콤보 상승",
+      "file": "audio/sfx/sfx_quiz_combo_up.ogg",
+      "seconds": 0.08
+    },
+    "quiz_wisdom_burst": {
+      "label": "지혜 폭발",
+      "file": "audio/sfx/sfx_quiz_wisdom_burst.ogg",
+      "seconds": 0.8
+    },
+    "sword_swing": {
+      "label": "검 휘두르기",
+      "file": "audio/sfx/sfx_sword_swing.ogg",
+      "seconds": 0.22
+    },
+    "hit_1": {
+      "label": "타격 1",
+      "file": "audio/sfx/sfx_hit_1.ogg",
+      "seconds": 0.18
+    },
+    "hit_2": {
+      "label": "타격 2",
+      "file": "audio/sfx/sfx_hit_2.ogg",
+      "seconds": 0.16
+    },
+    "hit_3": {
+      "label": "타격 3",
+      "file": "audio/sfx/sfx_hit_3.ogg",
+      "seconds": 0.2
+    },
+    "crit": {
+      "label": "치명타",
+      "file": "audio/sfx/sfx_crit.ogg",
+      "seconds": 0.39
+    },
+    "arrow_shot": {
+      "label": "화살 발사",
+      "file": "audio/sfx/sfx_arrow_shot.ogg",
+      "seconds": 0.2
+    },
+    "cast_fire": {
+      "label": "마법 시전 (불)",
+      "file": "audio/sfx/sfx_cast_fire.ogg",
+      "seconds": 0.6
+    },
+    "cast_ice": {
+      "label": "마법 시전 (얼음)",
+      "file": "audio/sfx/sfx_cast_ice.ogg",
+      "seconds": 0.4
+    },
+    "cast_lightning": {
+      "label": "마법 시전 (번개)",
+      "file": "audio/sfx/sfx_cast_lightning.ogg",
+      "seconds": 0.35
+    },
+    "impact": {
+      "label": "착탄",
+      "file": "audio/sfx/sfx_impact.ogg",
+      "seconds": 0.4
+    },
+    "shield_block": {
+      "label": "방패 막기",
+      "file": "audio/sfx/sfx_shield_block.ogg",
+      "seconds": 0.25
+    },
+    "step_grass": {
+      "label": "발소리 (풀)",
+      "file": "audio/sfx/sfx_step_grass.ogg",
+      "seconds": 0.08
+    },
+    "step_stone": {
+      "label": "발소리 (돌)",
+      "file": "audio/sfx/sfx_step_stone.ogg",
+      "seconds": 0.05
+    },
+    "step_wood": {
+      "label": "발소리 (나무)",
+      "file": "audio/sfx/sfx_step_wood.ogg",
+      "seconds": 0.07
+    },
+    "player_hit": {
+      "label": "플레이어 피격",
+      "file": "audio/sfx/sfx_player_hit.ogg",
+      "seconds": 0.15
+    },
+    "player_down": {
+      "label": "플레이어 쓰러짐",
+      "file": "audio/sfx/sfx_player_down.ogg",
+      "seconds": 0.39
+    },
+    "level_up": {
+      "label": "레벨업",
+      "file": "audio/sfx/sfx_level_up.ogg",
+      "seconds": 0.44
+    },
+    "potion_drink": {
+      "label": "물약 마시기",
+      "file": "audio/sfx/sfx_potion_drink.ogg",
+      "seconds": 0.39
+    },
+    "monster_attack": {
+      "label": "몬스터 공격",
+      "file": "audio/sfx/sfx_monster_attack.ogg",
+      "seconds": 0.18
+    },
+    "monster_hit": {
+      "label": "몬스터 피격",
+      "file": "audio/sfx/sfx_monster_hit.ogg",
+      "seconds": 0.14
+    },
+    "monster_vanish": {
+      "label": "몬스터 소멸 (빛 조각)",
+      "file": "audio/sfx/sfx_monster_vanish.ogg",
+      "seconds": 0.39
+    },
+    "slime_hop": {
+      "label": "슬라임 통통",
+      "file": "audio/sfx/sfx_slime_hop.ogg",
+      "seconds": 0.12
+    },
+    "boss_roar": {
+      "label": "보스 포효",
+      "file": "audio/sfx/sfx_boss_roar.ogg",
+      "seconds": 1.2
+    },
+    "boss_phase": {
+      "label": "보스 페이즈 전환",
+      "file": "audio/sfx/sfx_boss_phase.ogg",
+      "seconds": 1.0
+    },
+    "drop_common": {
+      "label": "드랍 (일반)",
+      "file": "audio/sfx/sfx_drop_common.ogg",
+      "seconds": 0.1
+    },
+    "drop_magic": {
+      "label": "드랍 (마법)",
+      "file": "audio/sfx/sfx_drop_magic.ogg",
+      "seconds": 0.1
+    },
+    "drop_rare": {
+      "label": "드랍 (희귀)",
+      "file": "audio/sfx/sfx_drop_rare.ogg",
+      "seconds": 0.43
+    },
+    "drop_legendary": {
+      "label": "드랍 (전설)",
+      "file": "audio/sfx/sfx_drop_legendary.ogg",
+      "seconds": 1.2
+    },
+    "pickup": {
+      "label": "줍기",
+      "file": "audio/sfx/sfx_pickup.ogg",
+      "seconds": 0.06
+    },
+    "equip": {
+      "label": "장착",
+      "file": "audio/sfx/sfx_equip.ogg",
+      "seconds": 0.12
+    },
+    "gold": {
+      "label": "골드",
+      "file": "audio/sfx/sfx_gold.ogg",
+      "seconds": 0.1
+    },
+    "inventory_move": {
+      "label": "인벤토리 이동",
+      "file": "audio/sfx/sfx_inventory_move.ogg",
+      "seconds": 0.07
+    },
+    "ui_click": {
+      "label": "버튼 클릭",
+      "file": "audio/sfx/sfx_ui_click.ogg",
+      "seconds": 0.04
+    },
+    "ui_hover": {
+      "label": "버튼 올리기",
+      "file": "audio/sfx/sfx_ui_hover.ogg",
+      "seconds": 0.03
+    },
+    "ui_open": {
+      "label": "창 열기",
+      "file": "audio/sfx/sfx_ui_open.ogg",
+      "seconds": 0.12
+    },
+    "ui_close": {
+      "label": "창 닫기",
+      "file": "audio/sfx/sfx_ui_close.ogg",
+      "seconds": 0.12
+    },
+    "ui_error": {
+      "label": "오류 (공간 부족 등)",
+      "file": "audio/sfx/sfx_ui_error.ogg",
+      "seconds": 0.1
+    },
+    "quest_complete": {
+      "label": "퀘스트 완료",
+      "file": "audio/sfx/sfx_quest_complete.ogg",
+      "seconds": 0.47
+    },
+    "chest_open": {
+      "label": "상자 열기",
+      "file": "audio/sfx/sfx_chest_open.ogg",
+      "seconds": 0.43
+    },
+    "door_open": {
+      "label": "문 열기",
+      "file": "audio/sfx/sfx_door_open.ogg",
+      "seconds": 0.8
+    },
+    "door_unlock": {
+      "label": "잠금 해제",
+      "file": "audio/sfx/sfx_door_unlock.ogg",
+      "seconds": 0.41
+    },
+    "stairs": {
+      "label": "계단 (다음 층)",
+      "file": "audio/sfx/sfx_stairs.ogg",
+      "seconds": 0.49
+    },
+    "portal": {
+      "label": "포탈",
+      "file": "audio/sfx/sfx_portal.ogg",
+      "seconds": 1.2
+    },
+    "pot_break": {
+      "label": "항아리 깨기",
+      "file": "audio/sfx/sfx_pot_break.ogg",
+      "seconds": 0.3
+    },
+    "skill_whirlwind": {
+      "label": "회전베기",
+      "file": "audio/sfx/sfx_skill_whirlwind.ogg",
+      "seconds": 0.2
+    },
+    "skill_ground_slam": {
+      "label": "대지 강타",
+      "file": "audio/sfx/sfx_skill_ground_slam.ogg",
+      "seconds": 0.7
+    },
+    "skill_heal": {
+      "label": "회복",
+      "file": "audio/sfx/sfx_skill_heal.ogg",
+      "seconds": 0.49
+    },
+    "skill_teleport": {
+      "label": "순간이동",
+      "file": "audio/sfx/sfx_skill_teleport.ogg",
+      "seconds": 0.4
+    },
+    "skill_arrow_rain": {
+      "label": "화살비",
+      "file": "audio/sfx/sfx_skill_arrow_rain.ogg",
+      "seconds": 0.15
+    },
+    "skill_meteor": {
+      "label": "유성",
+      "file": "audio/sfx/sfx_skill_meteor.ogg",
+      "seconds": 1.0
+    },
+    "skill_buff": {
+      "label": "버프 (함성·보호막)",
+      "file": "audio/sfx/sfx_skill_buff.ogg",
+      "seconds": 0.43
+    }
+  },
+  "bgm": {
+    "title": {
+      "label": "타이틀",
+      "file": "audio/bgm/bgm_title.ogg",
+      "seconds": 40.0,
+      "loop": true
+    },
+    "village": {
+      "label": "등불 마을",
+      "file": "audio/bgm/bgm_village.ogg",
+      "seconds": 43.64,
+      "loop": true
+    },
+    "stage1_forest": {
+      "label": "속삭이는 숲 (탐험)",
+      "file": "audio/bgm/bgm_stage1_forest.ogg",
+      "seconds": 36.92,
+      "loop": true
+    },
+    "stage2_library": {
+      "label": "무너진 대도서관 (탐험)",
+      "file": "audio/bgm/bgm_stage2_library.ogg",
+      "seconds": 40.0,
+      "loop": true
+    },
+    "stage3_clocktower": {
+      "label": "얼어붙은 시계탑 (탐험)",
+      "file": "audio/bgm/bgm_stage3_clocktower.ogg",
+      "seconds": 34.29,
+      "loop": true
+    },
+    "stage4_abyss": {
+      "label": "망각의 심연 (탐험)",
+      "file": "audio/bgm/bgm_stage4_abyss.ogg",
+      "seconds": 45.71,
+      "loop": true
+    },
+    "boss": {
+      "label": "보스전",
+      "file": "audio/bgm/bgm_boss.ogg",
+      "seconds": 26.67,
+      "loop": true
+    },
+    "final_boss": {
+      "label": "최종 보스전",
+      "file": "audio/bgm/bgm_final_boss.ogg",
+      "seconds": 25.6,
+      "loop": true
+    },
+    "quiz_loop": {
+      "label": "퀴즈 팝업 대기 루프",
+      "file": "audio/bgm/bgm_quiz_loop.ogg",
+      "seconds": 7.27,
+      "loop": true
+    },
+    "jingle_victory": {
+      "label": "승리 징글",
+      "file": "audio/bgm/bgm_jingle_victory.ogg",
+      "seconds": 2.05,
+      "loop": false
+    },
+    "jingle_gameover": {
+      "label": "게임 오버 징글",
+      "file": "audio/bgm/bgm_jingle_gameover.ogg",
+      "seconds": 2.05,
+      "loop": false
+    }
+  }
+}
