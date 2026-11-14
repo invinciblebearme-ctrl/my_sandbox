@@ -282,6 +282,7 @@ const clipsOf = (a) => Object.fromEntries(Object.keys(a).map((c) => [c, c]));
 
 export const warrior = {
   label: '수호기사', role: '🛡️ 플레이어', file: 'characters/warrior.glb',
+  release: { attack: WARRIOR_ATTACK_HIT, cast: WARRIOR_CAST_RELEASE },
   defaults: {
     seed: 101, size: 1, weaponTier: 1, shieldTier: 1,
     mainColor: '#c9d3de', clothColor: '#3b6fd1', trimColor: '#f2c14e', accentColor: '#e8433a',
@@ -351,6 +352,7 @@ export const HUNTER_ANIMS = {
 };
 export const starHunter = {
   label: '별사냥꾼', role: '🏹 플레이어', file: 'characters/star_hunter.glb',
+  release: { attack: HUNTER_RELEASE, cast: 0.5 },
   defaults: {
     seed: 102, size: 1, weaponTier: 1,
     mainColor: '#8a5a32', clothColor: '#3a8a5a', trimColor: '#e8d070', accentColor: '#ffd34a',
@@ -413,6 +415,7 @@ export const SAGE_ANIMS = {
 };
 export const sage = {
   label: '현자', role: '🔮 플레이어', file: 'characters/sage.glb',
+  release: { attack: SAGE_RELEASE, cast: SAGE_RELEASE },
   defaults: {
     seed: 103, size: 1, weaponTier: 1, bookTier: 1,
     mainColor: '#e8e0f0', clothColor: '#5a4ab8', trimColor: '#f2c14e', accentColor: '#8ad8ff',

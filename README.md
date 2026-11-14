@@ -69,13 +69,16 @@ Polyfork 스타일의 **파라미터형 로우폴리 괴물** 모음입니다. �
 
 아이템마다 어떤 클립을 쓰는지는 [`models/items.json`](models/items.json)에 있습니다 (`playerHold` 들고 서 있을 때, `playerUse` 사용할 때, `playerMove` 들고 걸을 때).
 
-## 📚 교육용 ARPG 「망각의 그림자」 MVP 세트 (별도 게임)
+## 📚 교육용 ARPG 「망각의 그림자」 전체 세트 (별도 게임)
 좀비 게임과 별개인 학생용 핵앤슬래시 게임의 에셋입니다. 귀여운 톤이고 고어가 없으며, three.js에서 바로 쓸 수 있습니다.
-- 수호기사 (클립 8개)
-- 숲 몬스터 3종과 투사체
-- 장비·물약·골드 33종과 아이콘 PNG
-- 속삭이는 숲 타일·소품 35종
-- 공용 이펙트 11종
+- 캐릭터: 클래스 3종, NPC 5명, 마스코트 루미.
+- 몬스터: 일반 12종과 보스 4종.
+- 아이템 73종과 아이콘.
+- 스킬 24종과 각종 효과.
+- UI·퀴즈 UI·초상화·타이틀 PNG.
+- 효과음 60개와 BGM 11곡. 모두 코드로 생성했습니다.
+
+스테이지는 Polyfork 키트를 쓰기로 했습니다.
 
 결과물과 사용법은 [models/edu/README.md](models/edu/README.md)에 있습니다. 뷰어에서는 **테마 → [교육 ARPG] 속삭이는 숲**을 고릅니다.
 
@@ -121,7 +124,8 @@ src/player/            플레이어 캐릭터(의상 8종)와 애니메이션 25
 src/magic/             치유의 지팡이 · 치유 파이어볼 (모든 스테이지 공용)
 src/wuxia/             항룡장 장력 이펙트와 초식별 발사 설정
 src/themes/<테마>/      괴물 정의(monsters.js), 아이템(items.js), 배경 설정(index.js)
-src/edu/               교육용 ARPG MVP 세트 (수호기사, 숲 몬스터, 장비, 숲 타일셋, 효과) → models/edu/public/
+src/edu/               교육용 ARPG 모델 (클래스, NPC, 몬스터, 보스, 아이템, 스킬·효과) → models/edu/public/
+tools/ui/, tools/audio/ 교육용 ARPG UI 이미지와 사운드 생성기
 unity/                 Unity용 스크립트 (괴물 애니메이션, 아이템 줍기/사용, 플레이어 애니메이션, 치유 파이어볼, 무공)
 ```
 

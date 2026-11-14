@@ -368,6 +368,7 @@ const FIREFLY_ANIMS = {
 
 export const fireflySpirit = {
   label: '반딧불 정령', role: '③ 원거리형', file: 'monsters/m03_firefly.glb',
+  get release() { return FIREFLY_RELEASE; },
   defaults: { seed: 203, size: 1, bodyColor: '#3a8a7a', glowColor: '#d8ff6a', wingColor: '#bff4ff', bellyColor: '#2a5a6a' },
   schema: { ...sizeSchema, ...colorSchema({ bodyColor: '몸 색', glowColor: '빛 색', wingColor: '날개 색', bellyColor: '배 색' }) },
   build(p) {

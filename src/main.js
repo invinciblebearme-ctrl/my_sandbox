@@ -387,6 +387,9 @@ window.__eduManifest = () => Object.fromEntries(EDU_CATS.map((c) => [c, Object.f
     parts: Object.keys(rig).filter((n) => rig[n]?.isObject3D),
   };
   if (d.light) entry.light = d.light;
+  if (d.timing) entry.timing = d.timing; // bosses: fraction of each attack when it hits
+  if (d.skill) entry.skill = d.skill; // skills: { id, cls, kind, color }
+  if (d.release) entry.release = d.release; // ranged monsters: fraction of `attack` when the shot leaves
   if (o.userData.eduItem) entry.icon = o.userData.eduItem.icon;
   disposeMonster(o);
   return [key, entry];

@@ -49,7 +49,11 @@
         "frags",
         "weapon",
         "shield"
-      ]
+      ],
+      "release": {
+        "attack": 0.5,
+        "cast": 0.5
+      }
     },
     "starHunter": {
       "label": "별사냥꾼",
@@ -103,7 +107,11 @@
         "arrow",
         "string",
         "star"
-      ]
+      ],
+      "release": {
+        "attack": 0.55,
+        "cast": 0.5
+      }
     },
     "sage": {
       "label": "현자",
@@ -157,7 +165,11 @@
         "orb",
         "cover",
         "pages"
-      ]
+      ],
+      "release": {
+        "attack": 0.5,
+        "cast": 0.5
+      }
     },
     "npcMerchant": {
       "label": "상인 (상점)",
@@ -476,7 +488,8 @@
         "charge",
         "ring",
         "frags"
-      ]
+      ],
+      "release": 0.45
     },
     "fireflyOrb": {
       "label": "반딧불 빛 구슬 (투사체)",
@@ -577,7 +590,8 @@
         "pageOut",
         "ring",
         "frags"
-      ]
+      ],
+      "release": 0.5
     },
     "inkGolem": {
       "label": "잉크 골렘",
@@ -877,7 +891,11 @@
         "portal",
         "ring",
         "frags"
-      ]
+      ],
+      "release": {
+        "start": 0.35,
+        "end": 0.8
+      }
     },
     "grimoirePage": {
       "label": "마법서 페이지 (투사체)",
@@ -956,7 +974,15 @@
         "canopy",
         "ring",
         "frags"
-      ]
+      ],
+      "timing": {
+        "attack1": 0.5,
+        "attack2": 0.55,
+        "attack3": [
+          0.3,
+          0.8
+        ]
+      }
     },
     "forbiddenLord": {
       "label": "금서의 군주",
@@ -1010,7 +1036,15 @@
         "orbit",
         "ring",
         "frags"
-      ]
+      ],
+      "timing": {
+        "attack1": [
+          0.25,
+          0.85
+        ],
+        "attack2": 0.5,
+        "attack3": 0.55
+      }
     },
     "timeKeeper": {
       "label": "얼어붙은 시간지기",
@@ -1066,7 +1100,12 @@
         "pend",
         "ring",
         "frags"
-      ]
+      ],
+      "timing": {
+        "attack1": 0.5,
+        "attack2": 0.55,
+        "attack3": 0.5
+      }
     },
     "oblivionSource": {
       "label": "망각의 근원",
@@ -1129,7 +1168,19 @@
         "beam",
         "ring",
         "frags"
-      ]
+      ],
+      "timing": {
+        "attack1": [
+          0.35,
+          0.8
+        ],
+        "attack2": 0.5,
+        "attack3": 0.5,
+        "attack4": [
+          0.25,
+          0.85
+        ]
+      }
     }
   },
   "items": {
@@ -3096,7 +3147,13 @@
         "castRing",
         "castSparks",
         "arc"
-      ]
+      ],
+      "skill": {
+        "id": "whirlwind",
+        "cls": "knight",
+        "kind": "melee",
+        "color": "#bfe8ff"
+      }
     },
     "skill_knight_shield_charge": {
       "label": "방패 돌진 (이동)",
@@ -3116,7 +3173,13 @@
         "castRing",
         "castSparks",
         "dash"
-      ]
+      ],
+      "skill": {
+        "id": "shield_charge",
+        "cls": "knight",
+        "kind": "move",
+        "color": "#8ad8ff"
+      }
     },
     "skill_knight_ground_slam": {
       "label": "대지 강타 (범위)",
@@ -3138,7 +3201,13 @@
         "wave",
         "rocks",
         "crack"
-      ]
+      ],
+      "skill": {
+        "id": "ground_slam",
+        "cls": "knight",
+        "kind": "area",
+        "color": "#ffd36a"
+      }
     },
     "skill_knight_war_cry": {
       "label": "수호의 함성 (버프) (버프)",
@@ -3159,7 +3228,13 @@
         "castSparks",
         "shout",
         "aura"
-      ]
+      ],
+      "skill": {
+        "id": "war_cry",
+        "cls": "knight",
+        "kind": "aura",
+        "color": "#ffb43a"
+      }
     },
     "skill_knight_counter_stance": {
       "label": "반격 태세 (버프)",
@@ -3179,7 +3254,13 @@
         "castRing",
         "castSparks",
         "guard"
-      ]
+      ],
+      "skill": {
+        "id": "counter_stance",
+        "cls": "knight",
+        "kind": "aura",
+        "color": "#ffffff"
+      }
     },
     "skill_knight_light_blade": {
       "label": "빛의 검 (근접)",
@@ -3199,7 +3280,13 @@
         "castRing",
         "castSparks",
         "blade"
-      ]
+      ],
+      "skill": {
+        "id": "light_blade",
+        "cls": "knight",
+        "kind": "melee",
+        "color": "#fff3a0"
+      }
     },
     "skill_knight_taunt": {
       "label": "도발 (버프)",
@@ -3220,7 +3307,13 @@
         "castSparks",
         "mark",
         "pulse"
-      ]
+      ],
+      "skill": {
+        "id": "taunt",
+        "cls": "knight",
+        "kind": "aura",
+        "color": "#ff6a4a"
+      }
     },
     "skill_knight_sanctuary": {
       "label": "성역 (범위)",
@@ -3240,7 +3333,13 @@
         "castRing",
         "castSparks",
         "holy"
-      ]
+      ],
+      "skill": {
+        "id": "sanctuary",
+        "cls": "knight",
+        "kind": "area",
+        "color": "#fff3a0"
+      }
     },
     "skill_hunter_multi_shot": {
       "label": "다중 사격 (투사체)",
@@ -3266,7 +3365,13 @@
         "trail",
         "shot",
         "boom"
-      ]
+      ],
+      "skill": {
+        "id": "multi_shot",
+        "cls": "hunter",
+        "kind": "projectile",
+        "color": "#ffd34a"
+      }
     },
     "skill_hunter_piercing_arrow": {
       "label": "관통 화살 (투사체)",
@@ -3292,7 +3397,13 @@
         "trail",
         "shot",
         "boom"
-      ]
+      ],
+      "skill": {
+        "id": "piercing_arrow",
+        "cls": "hunter",
+        "kind": "projectile",
+        "color": "#8ad8ff"
+      }
     },
     "skill_hunter_trap": {
       "label": "덫 설치 (범위)",
@@ -3313,7 +3424,13 @@
         "castSparks",
         "jaws",
         "net"
-      ]
+      ],
+      "skill": {
+        "id": "trap",
+        "cls": "hunter",
+        "kind": "area",
+        "color": "#a0ff6a"
+      }
     },
     "skill_hunter_roll": {
       "label": "구르기 (이동)",
@@ -3333,7 +3450,13 @@
         "castRing",
         "castSparks",
         "dust"
-      ]
+      ],
+      "skill": {
+        "id": "roll",
+        "cls": "hunter",
+        "kind": "move",
+        "color": "#e8d8b8"
+      }
     },
     "skill_hunter_poison_arrow": {
       "label": "독화살 (투사체)",
@@ -3359,7 +3482,13 @@
         "trail",
         "shot",
         "boom"
-      ]
+      ],
+      "skill": {
+        "id": "poison_arrow",
+        "cls": "hunter",
+        "kind": "projectile",
+        "color": "#8aff4a"
+      }
     },
     "skill_hunter_arrow_rain": {
       "label": "화살비 (범위)",
@@ -3380,7 +3509,13 @@
         "castSparks",
         "rain",
         "mark"
-      ]
+      ],
+      "skill": {
+        "id": "arrow_rain",
+        "cls": "hunter",
+        "kind": "area",
+        "color": "#ffd34a"
+      }
     },
     "skill_hunter_hawk": {
       "label": "매 소환 (버프)",
@@ -3401,7 +3536,13 @@
         "castSparks",
         "orbit",
         "hawk"
-      ]
+      ],
+      "skill": {
+        "id": "hawk",
+        "cls": "hunter",
+        "kind": "aura",
+        "color": "#c89a5a"
+      }
     },
     "skill_hunter_snipe": {
       "label": "저격 (투사체)",
@@ -3427,7 +3568,13 @@
         "trail",
         "shot",
         "boom"
-      ]
+      ],
+      "skill": {
+        "id": "snipe",
+        "cls": "hunter",
+        "kind": "projectile",
+        "color": "#ffffff"
+      }
     },
     "skill_sage_fireball": {
       "label": "화염구 (투사체)",
@@ -3453,7 +3600,13 @@
         "trail",
         "shot",
         "boom"
-      ]
+      ],
+      "skill": {
+        "id": "fireball",
+        "cls": "sage",
+        "kind": "projectile",
+        "color": "#ff7a2a"
+      }
     },
     "skill_sage_ice_spear": {
       "label": "얼음 창 (투사체)",
@@ -3479,7 +3632,13 @@
         "trail",
         "shot",
         "boom"
-      ]
+      ],
+      "skill": {
+        "id": "ice_spear",
+        "cls": "sage",
+        "kind": "projectile",
+        "color": "#8ad8ff"
+      }
     },
     "skill_sage_chain_lightning": {
       "label": "연쇄 번개 (범위)",
@@ -3499,7 +3658,13 @@
         "castRing",
         "castSparks",
         "bolt"
-      ]
+      ],
+      "skill": {
+        "id": "chain_lightning",
+        "cls": "sage",
+        "kind": "area",
+        "color": "#fff36a"
+      }
     },
     "skill_sage_teleport": {
       "label": "순간이동 (이동)",
@@ -3519,7 +3684,13 @@
         "castRing",
         "castSparks",
         "poof"
-      ]
+      ],
+      "skill": {
+        "id": "teleport",
+        "cls": "sage",
+        "kind": "move",
+        "color": "#d8a0ff"
+      }
     },
     "skill_sage_mana_shield": {
       "label": "마나 보호막 (버프)",
@@ -3539,7 +3710,13 @@
         "castRing",
         "castSparks",
         "bubble"
-      ]
+      ],
+      "skill": {
+        "id": "mana_shield",
+        "cls": "sage",
+        "kind": "aura",
+        "color": "#6aa8ff"
+      }
     },
     "skill_sage_fire_wall": {
       "label": "화염 벽 (범위)",
@@ -3559,7 +3736,13 @@
         "castRing",
         "castSparks",
         "wall"
-      ]
+      ],
+      "skill": {
+        "id": "fire_wall",
+        "cls": "sage",
+        "kind": "area",
+        "color": "#ff7a2a"
+      }
     },
     "skill_sage_blizzard": {
       "label": "눈보라 (범위)",
@@ -3579,7 +3762,13 @@
         "castRing",
         "castSparks",
         "storm"
-      ]
+      ],
+      "skill": {
+        "id": "blizzard",
+        "cls": "sage",
+        "kind": "area",
+        "color": "#bff0ff"
+      }
     },
     "skill_sage_meteor": {
       "label": "유성 (범위)",
@@ -3601,7 +3790,13 @@
         "rock",
         "mark",
         "blast"
-      ]
+      ],
+      "skill": {
+        "id": "meteor",
+        "cls": "sage",
+        "kind": "area",
+        "color": "#ff8a3a"
+      }
     }
   }
 }

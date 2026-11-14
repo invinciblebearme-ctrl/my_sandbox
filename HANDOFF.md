@@ -26,36 +26,24 @@
   - 추천 목록은 아래 "Polyfork 추천"에 있다.
   - 이미 만든 숲 타일셋(`props/stage1_*`)은 대체될 수 있다.
 
-## 남은 작업 (사용자 요청: "나머지 모두 진행", 스테이지는 제외)
-1. 클래스 2종: 별사냥꾼(활·석궁, 활은 왼손), 현자(지팡이 + 마법서).
-   - `src/edu/warrior.js`의 몸 생성부를 공용 함수로 빼서 같이 쓴다.
-   - 클립: idle, walk, attack, cast, hit, death, drink, victory.
-2. 무기·소모품 추가:
-   - 무기: 양손검, 단궁·장궁, 석궁, 지팡이, 마법서, 허리띠.
-   - 소모품: 회복의 샘물, 귀환·감정 두루마리, 힌트 깃털, 시간의 모래시계, 두 번째 기회 부적, 열쇠.
-   - 전설 전용 아이템 10~15종, 바닥 드랍 공용 모델 6종.
-   - `src/edu/items.js`에 추가한다.
-3. 일반 몬스터 9종 (`src/edu/monsters.js` 방식 그대로):
-   - 도서관: 책벌레 애벌레, 날개 달린 마법서(페이지 투사체), 잉크 골렘
-   - 시계탑: 태엽 쥐, 눈사람 경비병(얼음 방패), 시계추 박쥐
-   - 심연: 그림자 메아리(순간이동), 지워진 기사(깜빡임), 망각의 눈(레이저·소환)
-4. 보스 4종과 전용 이펙트:
-   - 보스: 올드루트, 금서의 군주, 얼어붙은 시간지기, 망각의 근원(3페이즈)
-   - 클립: idle, walk, 공격 패턴 3~4종, phase, hit, death, intro
-5. NPC 5명(상인, 대장장이, 창고지기, 기록관, 촌장)과 마스코트 부엉이 루미.
-   - 루미의 표정 6종은 클립으로 만든다.
-6. 이펙트:
-   - 스킬 24종(클래스당 8개, 시전·투사체·착탄)과 스킬 아이콘
-   - 상태 이상 4종, 마을 포탈
-   - 엘리트 오라 6종
-7. 2D·UI PNG (Playwright로 캔버스나 3D를 렌더링해 생성):
-   - 퀴즈 UI: 패널 9-slice, 보기·OX 버튼 4상태, 키패드, 타이머, 행동 아이콘, PERFECT/GOOD/SAFE/MISS, 정답·오답 이펙트, 콤보, 집중 게이지, 해설 창
-   - HUD, 체력바, 인벤토리, 툴팁, 미니맵 아이콘, 커서, 데미지 숫자 비트맵 폰트
-   - 초상화와 퀴즈 반응 표정, 타이틀, 로딩 화면
-   - 한글 폰트는 npm의 OFL 폰트(pretendard, galmuri)를 쓰고 라이선스를 기록한다.
-8. 사운드:
-   - 효과음 약 60개, BGM 약 10곡을 합성으로 만든다.
-   - ffmpeg가 설치되어 있으니 OGG로 저장한다.
+## 진행 상황
+에셋 목록 1~9절을 모두 만들었다. 스테이지 타일셋과 마을 건물은 Polyfork 키트로 대체하기로 했다. 결과물 설명은 `models/edu/README.md`에 있다.
+
+| 단계 | 내용 | 상태 |
+|---|---|---|
+| 1 | 별사냥꾼·현자, 무기·소모품·퀴즈 도구·바닥 드랍 | 완료 |
+| 2 | 일반 몬스터 9종 (도서관·시계탑·심연) | 완료 |
+| 3 | 보스 4종 + 보스 효과 | 완료 |
+| 4 | NPC 5명 + 부엉이 루미 (표정 6종) | 완료 |
+| 5 | 스킬 24종, 상태 이상, 포탈, 엘리트 오라, 전설 아이템 12종 | 완료 |
+| 6 | 스테이지 타일셋·마을 건물 | Polyfork로 대체 (직접 만들지 않음) |
+| 7 | UI·퀴즈 UI·초상화·카드·스킬 아이콘·타이틀·로딩 (PNG) | 완료 |
+| 8 | 효과음 60개, BGM 11곡 (합성) | 완료. 직접 들어 보지는 못함 |
+
+남은 일:
+- 사용자 피드백 반영. 특히 사운드는 귀로 확인이 필요하다.
+- Polyfork 키트를 고른 뒤 색과 규격 맞추기.
+- 게임 코드에 넣어 테스트하기.
 
 ## 작업 방법
 ```bash
@@ -65,7 +53,11 @@ cp tools/edu-manifest.cjs _m.cjs && node _m.cjs /tmp/m.json; rm _m.cjs   # 전�
 cp tools/edu-shot.cjs _s.cjs && node _s.cjs <출력폴더>; rm _s.cjs         # 스크린샷
 cp tools/edu-export.cjs _e.cjs && node _e.cjs models/edu; rm _e.cjs      # GLB·아이콘·manifest 내보내기
 cp tools/verify.mjs _v.mjs && node _v.mjs models/edu/public/models/monsters; rm _v.mjs  # GLB 검증
+node tools/ui/ui-gen.cjs models/edu      # UI PNG
+node tools/ui/art-gen.cjs models/edu     # 초상화·카드·스킬 아이콘·타이틀·로딩 (preview 서버 필요)
+python3 tools/audio/synth.py models/edu  # 효과음·BGM
 ```
+- 확인용 시트: `tools/edu-sheet.cjs`(카테고리 격자), `tools/edu-poses.cjs`(한 모델의 여러 동작), `tools/ui/sheet.py`(PNG 시트).
 - 스크립트는 저장소 루트로 복사해서 실행해야 `playwright`와 `three`를 찾는다.
 - 새 카테고리나 항목을 `src/edu/index.js`에 넣으면 뷰어, manifest, 내보내기에 자동으로 들어간다.
   - 항목 정의: `defaults`, `schema`, `build`, `file`
