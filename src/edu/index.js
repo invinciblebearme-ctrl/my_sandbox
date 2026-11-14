@@ -1,7 +1,7 @@
 // 교육용 핵앤슬래시 ARPG "망각의 그림자" — MVP asset set (stage 1, 속삭이는 숲).
 // A separate game from the zombie sets: cute, no gore, horror always 0.
 // Output layout follows the spec: public/models/{characters,monsters,props,items,vfx}/.
-import { warrior } from './warrior.js';
+import { warrior, starHunter, sage } from './warrior.js';
 import { EDU_MONSTERS, EDU_PROJECTILES } from './monsters.js';
 import { EDU_ITEMS } from './items.js';
 import { FOREST_ALL, FOREST_PROPS } from './forest.js';
@@ -21,7 +21,7 @@ export default {
       place(FOREST_PROPS.stage1_rock_01, 3.6, 1.6);
     },
   },
-  characters: { warrior },
+  characters: { warrior, starHunter, sage },
   monsters: { ...EDU_MONSTERS, ...EDU_PROJECTILES },
   items: EDU_ITEMS,
   props: FOREST_ALL,

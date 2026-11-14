@@ -209,6 +209,158 @@ function goldShape(k, g, big) {
   }
 }
 
+export function greatswordShape(k, g, t = 1) {
+  const m = mats(k, t);
+  const len = [0, 0.9, 1.0, 1.1][t];
+  g.add(k.at(k.cyl(0.025, 0.025, 0.3, m.leather, 5), 0, -0.05, 0)); // long two-hand grip
+  g.add(k.at(k.ball(0.045, m.trim, 0), 0, -0.22, 0));
+  g.add(k.at(k.box([0, 0.3, 0.36, 0.42][t], 0.05, 0.07, t === 1 ? m.dark : m.trim, 0), 0, 0.12, 0));
+  g.add(k.at(k.box(0.11, len, 0.022, m.metal, 0), 0, 0.15 + len / 2, 0));
+  g.add(k.at(k.scl(diamond(k, 0.078, 0.18, m.metal), 1, 1, 0.28), 0, 0.15 + len + 0.09, 0));
+  g.add(k.at(k.box(0.02, len * 0.85, 0.026, m.dark, 0), 0, 0.15 + len * 0.45, 0));
+  if (m.gem) g.add(k.at(k.ball(0.035, m.gem, 0), 0, 0.12, 0.04));
+  if (t === 3) g.add(k.at(k.box(0.03, len * 0.6, 0.028, glowMat(k, 'rune', '#ffe9a0', 1.6), 0), 0, 0.15 + len * 0.4, 0));
+}
+
+// bow: riser at the origin (the grip), limbs along +-Y, belly bulging toward +Z, string behind
+export function bowShape(k, g, t = 1) {
+  const m = mats(k, t);
+  const half = [0, 0.38, 0.5, 0.55][t]; // short bow, long bow, star bow
+  const wood = t === 3 ? k.mat('starWood', '#f2e6c0') : m.wood;
+  g.add(k.box(0.04, 0.14, 0.05, m.leather, 0)); // grip wrap
+  const segs = 4;
+  for (const s of [-1, 1]) {
+    for (let i = 0; i < segs; i++) {
+      const a0 = (i / segs) * 1.0; const a1 = ((i + 1) / segs) * 1.0;
+      const y0 = Math.sin(a0) * half; const y1 = Math.sin(a1) * half;
+      const z0 = (Math.cos(a0) - 1) * half * 0.35; const z1 = (Math.cos(a1) - 1) * half * 0.35;
+      const len = Math.hypot(y1 - y0, z1 - z0);
+      const limb = k.box(0.03, len, 0.035 - i * 0.004, wood, 0);
+      limb.position.set(0, s * (y0 + y1) / 2, (z0 + z1) / 2 + 0.03);
+      limb.rotation.x = s * Math.atan2(z1 - z0, y1 - y0) * -1;
+      g.add(limb);
+    }
+    g.add(k.at(k.ball(0.022, t === 1 ? m.dark : m.trim, 0), 0, s * Math.sin(1) * half, (Math.cos(1) - 1) * half * 0.35 + 0.03));
+  }
+  const tipZ = (Math.cos(1) - 1) * half * 0.35 + 0.03;
+  const string = k.pivot('bowString', 0, 0, tipZ);
+  string.add(k.box(0.006, Math.sin(1) * half * 2, 0.006, k.mat('string', '#f2f0e8'), 0));
+  g.add(string);
+  if (m.gem) g.add(k.at(k.ball(0.025, m.gem, 0), 0, 0.09, 0.04));
+  if (t === 3) for (const s of [-1, 1]) g.add(k.at(k.mesh(new k.THREE.OctahedronGeometry(0.04, 0), glowMat(k, 'bowStar', '#fff3a0', 2.2)), 0, s * Math.sin(1) * half, tipZ));
+}
+
+// crossbow: grip at the origin, stock along +Z, limbs across X at the front
+export function crossbowShape(k, g, t = 1) {
+  const m = mats(k, t);
+  g.add(k.at(k.box(0.05, 0.06, 0.5, m.wood, 0.003), 0, 0.03, 0.15));
+  g.add(k.at(k.rot(k.box(0.04, 0.12, 0.05, m.wood, 0), 0.3, 0, 0), 0, -0.04, 0)); // pistol grip
+  g.add(k.at(k.box(0.06, 0.07, 0.14, m.dark, 0), 0, 0.03, -0.12)); // butt
+  for (const s of [-1, 1]) g.add(k.at(k.rot(k.box(0.24, 0.03, 0.03, t === 2 ? m.metal : m.wood, 0), 0, s * -0.35, 0), s * 0.11, 0.05, 0.36));
+  g.add(k.at(k.box(0.4, 0.006, 0.006, k.mat('string', '#f2f0e8'), 0), 0, 0.06, 0.29));
+  g.add(k.at(k.box(0.012, 0.012, 0.34, k.mat('bolt', '#c8a070'), 0), 0, 0.075, 0.25));
+  if (m.gem) g.add(k.at(k.ball(0.025, m.gem, 0), 0, 0.07, 0.05));
+}
+
+// staff: grip at the origin, shaft along +Y, glowing orb on top (`staffOrb`)
+export function staffShape(k, g, t = 1) {
+  const m = mats(k, t);
+  const orbColor = ['', '#ff9a4a', '#8ad8ff', '#d8a0ff'][t];
+  g.add(k.at(k.cyl(0.02, 0.026, 1.25, m.wood, 6, 0.004), 0, 0.22, 0));
+  g.add(k.at(k.cyl(0.03, 0.03, 0.03, m.trim, 6), 0, 0.1, 0));
+  g.add(k.at(k.cone(0.026, 0.07, m.trim, 5), 0, -0.42, 0));
+  if (t === 1) { // twisted branch top
+    for (const s of [-1, 1]) g.add(k.at(k.rot(k.cyl(0.012, 0.018, 0.16, m.wood, 4), 0, 0, s * 0.5), s * 0.04, 0.9, 0));
+  } else {
+    g.add(k.at(k.cyl(0.05, 0.03, 0.06, m.trim, 6), 0, 0.85, 0));
+    for (let i = 0; i < 3; i++) {
+      const a = (i / 3) * Math.PI * 2;
+      g.add(k.at(k.rot(k.cone(0.012, 0.16, m.trim, 4), Math.sin(a) * 0.35, 0, -Math.cos(a) * 0.35), Math.cos(a) * 0.05, 0.94, Math.sin(a) * 0.05));
+    }
+  }
+  const orb = k.pivot('staffOrb', 0, 0.98, 0);
+  orb.add(k.ball(0.06, glowMat(k, `staffOrb${t}`, orbColor, 2.2), 1));
+  if (t === 3) orb.add(k.ball(0.09, glowMat(k, 'staffHalo', orbColor, 1.2, 0.35), 1));
+  g.add(orb);
+}
+
+// spellbook: a sheet in the XY plane facing +Z, spine at -X; `bookCover` opens around the spine
+export function bookShape(k, g, t = 1) {
+  const coverMat = k.mat(`bookCover${t}`, t === 1 ? '#7a3a2a' : '#2a3a8a');
+  const trimMat = k.mat(`bookTrim${t}`, '#f2c14e', { metalness: 0.6, roughness: 0.35 });
+  g.add(k.at(k.box(0.22, 0.28, 0.015, coverMat, 0), 0, 0, -0.025)); // back cover
+  const pages = k.pivot('bookPages');
+  pages.add(k.box(0.2, 0.26, 0.035, k.mat('pages', '#f6eed8'), 0));
+  g.add(pages);
+  const cover = k.pivot('bookCover', -0.11, 0, 0.025);
+  cover.add(k.at(k.box(0.22, 0.28, 0.015, coverMat, 0), 0.11, 0, 0));
+  cover.add(k.at(k.box(0.06, 0.06, 0.01, t === 2 ? glowMat(k, 'bookRune', '#8ad8ff', 2) : trimMat, 0), 0.11, 0, 0.01));
+  for (const y of [-0.12, 0.12]) cover.add(k.at(k.box(0.05, 0.03, 0.017, trimMat, 0), 0.19, y, 0)); // corners
+  g.add(cover);
+  g.add(k.at(k.box(0.025, 0.28, 0.07, coverMat, 0), -0.11, 0, 0)); // spine
+}
+
+function beltShape(k, g, t) {
+  const m = mats(k, t);
+  g.add(k.scl(k.mesh(new k.THREE.TorusGeometry(0.15, 0.025, 3, 12), t === 1 ? m.leather : m.dark), 1, 0.8, 1));
+  g.add(k.at(k.box(0.07, 0.06, 0.03, m.trim, 0), 0, 0, 0.12));
+  for (const a of [1.2, 1.9, -1.2]) g.add(k.at(k.box(0.06, 0.07, 0.04, m.leather, 0), Math.sin(a) * 0.14, -0.03, Math.cos(a) * 0.11)); // pouches
+  if (m.gem) g.add(k.at(k.ball(0.018, m.gem, 0), 0, 0, 0.14));
+}
+
+// ---- consumables and quiz helpers ----------------------------------------------------------
+function scrollShape(k, g, kind) {
+  const paper = k.mat('scrollPaper', '#f2e6c8');
+  const seal = kind === 'return' ? glowMat(k, 'sealReturn', '#ffb43a', 1.6) : glowMat(k, 'sealIdentify', '#8ad8ff', 1.6);
+  g.add(k.at(k.rot(k.cyl(0.035, 0.035, 0.2, paper, 6), 0, 0, Math.PI / 2), 0, 0.035, 0));
+  for (const s of [-1, 1]) g.add(k.at(k.rot(k.cyl(0.015, 0.015, 0.04, k.mat('rod', '#8a5a32'), 5), 0, 0, Math.PI / 2), s * 0.12, 0.035, 0));
+  g.add(k.at(k.rot(k.cyl(0.036, 0.036, 0.03, k.mat('ribbon', kind === 'return' ? '#d84a3a' : '#3a6ad8'), 6), 0, 0, Math.PI / 2), 0, 0.035, 0));
+  g.add(k.at(k.cyl(0.02, 0.02, 0.012, seal, 6), 0, 0.072, 0));
+}
+function featherShape(k, g) {
+  const f = k.mat('featherWhite', '#f6f2ff');
+  g.add(k.at(k.rot(k.cyl(0.005, 0.007, 0.32, k.mat('quill', '#c8b080'), 4), 0, 0, 0.4), 0, 0.15, 0));
+  for (let i = 0; i < 6; i++) for (const s of [-1, 1]) g.add(k.at(k.rot(k.box(0.06 - i * 0.006, 0.028, 0.006, f, 0), 0, 0, s * 0.6 + 0.4), -Math.sin(0.4) * (0.04 + i * 0.04) * -1 + s * 0.02, 0.06 + i * 0.04, 0));
+  g.add(k.at(k.mesh(new k.THREE.OctahedronGeometry(0.02, 0), glowMat(k, 'hintSpark', '#fff3a0', 2.4)), -0.08, 0.3, 0));
+}
+function hourglassShape(k, g) {
+  const wood = k.mat('hgWood', '#8a5a32');
+  const glass = k.mat('hgGlass', '#e8f6ff', { transparent: true, opacity: 0.35, depthWrite: false });
+  const sand = glowMat(k, 'hgSand', '#ffd36a', 0.8);
+  for (const y of [0, 0.28]) g.add(k.at(k.cyl(0.08, 0.08, 0.025, wood, 6), 0, y, 0));
+  for (const a of [0, 2.1, 4.2]) g.add(k.at(k.cyl(0.008, 0.008, 0.28, wood, 4), Math.cos(a) * 0.065, 0.14, Math.sin(a) * 0.065));
+  g.add(k.at(k.cone(0.055, 0.12, glass, 7), 0, 0.075, 0));
+  g.add(k.at(k.rot(k.cone(0.055, 0.12, glass, 7), Math.PI, 0, 0), 0, 0.205, 0));
+  g.add(k.at(k.cone(0.045, 0.05, sand, 7), 0, 0.04, 0));
+  g.add(k.at(k.rot(k.cone(0.03, 0.05, sand, 7), Math.PI, 0, 0), 0, 0.235, 0));
+}
+function charmShape(k, g) {
+  const gold = k.mat('charmGold', '#f2c14e', { metalness: 0.35, roughness: 0.35 });
+  g.add(k.at(k.mesh(new k.THREE.TorusGeometry(0.02, 0.006, 3, 8), gold), 0, 0.2, 0));
+  g.add(k.at(k.scl(k.ball(0.07, glowMat(k, 'charmClover', '#6aff8a', 1.2), 0), 1, 1, 0.35), 0, 0.12, 0));
+  for (let i = 0; i < 4; i++) { const a = i * Math.PI / 2 + Math.PI / 4; g.add(k.at(k.scl(k.ball(0.04, glowMat(k, 'charmClover', '#6aff8a', 1.2), 0), 1, 1, 0.4), Math.cos(a) * 0.045, 0.12 + Math.sin(a) * 0.045, 0.01)); }
+  g.add(k.at(k.box(0.035, 0.035, 0.02, gold, 0), 0, 0.12, 0.03));
+}
+function keyShape(k, g) {
+  const gold = k.mat('keyGold', '#f2c14e', { metalness: 0.35, roughness: 0.35 });
+  g.add(k.at(k.mesh(new k.THREE.TorusGeometry(0.04, 0.012, 3, 8), gold), 0, 0.2, 0));
+  g.add(k.at(k.box(0.018, 0.18, 0.018, gold, 0), 0, 0.07, 0));
+  g.add(k.at(k.box(0.05, 0.02, 0.018, gold, 0), 0.025, -0.01, 0));
+  g.add(k.at(k.box(0.035, 0.02, 0.018, gold, 0), 0.018, 0.03, 0));
+  g.add(k.at(k.ball(0.014, glowMat(k, 'keyGem', '#8ad8ff', 2), 0), 0, 0.2, 0.01));
+}
+
+// generic floor-drop bundles (shown before the exact item is identified)
+function dropShape(k, g, kind) {
+  const cloth = k.mat('dropCloth', '#8a6a4a');
+  const tie = k.mat('dropTie', '#e8d070');
+  if (kind === 'weapon') { swordShape(k, g, 1); g.rotation.z = 1.2; return; }
+  if (kind === 'armor') { g.add(k.at(k.scl(k.ball(0.16, cloth, 0, 0.01), 1.3, 0.6, 1), 0, 0.08, 0)); g.add(k.at(k.box(0.3, 0.03, 0.04, tie, 0), 0, 0.12, 0)); return; }
+  if (kind === 'jewelry') { g.add(k.at(k.box(0.16, 0.1, 0.12, k.mat('jewelBox', '#7a3a6a'), 0.003), 0, 0.05, 0)); g.add(k.at(k.box(0.17, 0.02, 0.13, tie, 0), 0, 0.1, 0)); g.add(k.at(k.mesh(new k.THREE.OctahedronGeometry(0.03, 0), glowMat(k, 'jewelSpark', '#ff8ad8', 2)), 0, 0.14, 0)); return; }
+  if (kind === 'potion') { potionShape(k, g, 'hp', 2); return; }
+  if (kind === 'scroll') { scrollShape(k, g, 'identify'); return; }
+  goldShape(k, g, false);
+}
 // ---- item GLBs --------------------------------------------------------------------------
 const ITEM_ANIMS = {
   drop: {
@@ -261,5 +413,25 @@ for (const kind of ['hp', 'mp']) {
 }
 add('gold_small', '골드 (소량)', '🪙 골드', 0.02, (k, g) => goldShape(k, g, false), { seed: 398, scale: 1.5 });
 add('gold_large', '골드 (다량)', '🪙 골드', 0.02, (k, g) => goldShape(k, g, true), { seed: 399, scale: 1.5 });
+for (const t of [1, 2, 3]) {
+  add(`weapon_greatsword_t${t}`, `양손검 ${TIER_NAME[t]}`, '⚔️ 무기', 0.3, (k, g) => greatswordShape(k, g, t), { seed: 410 + t });
+  add(`weapon_bow_t${t}`, `${['', '단궁', '장궁', '별빛 활'][t]}`, '🏹 무기', 0.4, (k, g) => bowShape(k, g, t), { seed: 420 + t });
+  add(`weapon_staff_t${t}`, `지팡이 ${TIER_NAME[t]}`, '🪄 무기', 0.5, (k, g) => staffShape(k, g, t), { seed: 430 + t });
+}
+for (const t of [1, 2]) {
+  add(`weapon_crossbow_t${t}`, `석궁 ${TIER_NAME[t]}`, '🏹 무기', 0.2, (k, g) => crossbowShape(k, g, t), { seed: 440 + t });
+  add(`offhand_spellbook_t${t}`, `마법서 ${TIER_NAME[t]}`, '📖 보조무기', 0.3, (k, g) => bookShape(k, g, t), { seed: 450 + t, scale: 1.2 });
+  add(`belt_t${t}`, `허리띠 ${TIER_NAME[t]}`, '🎗️ 허리띠', 0.15, (k, g) => beltShape(k, g, t), { seed: 460 + t });
+}
+add('potion_spring', '회복의 샘물 (체력+마나)', '🧪 소모품', 0.15, (k, g) => potionShape(k, g, 'both', 3), { seed: 470, scale: 1.5 });
+add('scroll_return', '마을 귀환 두루마리', '📜 소모품', 0.1, (k, g) => scrollShape(k, g, 'return'), { seed: 471, scale: 1.4 });
+add('scroll_identify', '감정 두루마리', '📜 소모품', 0.1, (k, g) => scrollShape(k, g, 'identify'), { seed: 472, scale: 1.4 });
+add('quiz_hint_feather', '힌트 깃털 (오답 2개 제거)', '🪶 퀴즈 도구', 0.1, (k, g) => featherShape(k, g), { seed: 473, scale: 1.3 });
+add('quiz_hourglass', '시간의 모래시계 (+5초)', '⏳ 퀴즈 도구', 0.1, (k, g) => hourglassShape(k, g), { seed: 474, scale: 1.3 });
+add('quiz_second_chance', '두 번째 기회 부적', '🍀 퀴즈 도구', 0.1, (k, g) => charmShape(k, g), { seed: 475, scale: 1.4 });
+add('key', '열쇠', '🗝️ 열쇠', 0.15, (k, g) => keyShape(k, g), { seed: 476, scale: 1.4 });
+for (const kind of ['weapon', 'armor', 'jewelry', 'potion', 'scroll', 'gold']) {
+  add(`drop_${kind}`, `바닥 드랍 (${{ weapon: '무기', armor: '방어구', jewelry: '장신구', potion: '물약', scroll: '두루마리', gold: '골드' }[kind]})`, '📦 바닥 드랍', 0.05, (k, g) => dropShape(k, g, kind), { seed: 480, scale: kind === 'weapon' ? 1 : 1.3 });
+}
 
 export const EDU_ITEMS = list;
