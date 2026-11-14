@@ -512,6 +512,28 @@ window.__renderScene = (items, opts = {}) => {
   shotRenderer.shadowMap.enabled = false;
   return shotRenderer.domElement.toDataURL('image/png');
 };
+// Render a GLB file (base64) fitted to the frame: used to review downloaded Polyfork parts.
+window.__renderGLB = async (b64, { w = 256, h = 256, bg = '#2a3444' } = {}) => {
+  const bin = Uint8Array.from(atob(b64), (c) => c.charCodeAt(0)).buffer;
+  const gltf = await new Promise((res, rej) => loader.parse(bin, '', res, rej));
+  shotRenderer ??= new THREE.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: true });
+  shotRenderer.setPixelRatio(1);
+  shotRenderer.setSize(w, h);
+  const s = new THREE.Scene();
+  s.add(new THREE.HemisphereLight('#ffffff', '#55606a', 2.0));
+  const key1 = new THREE.DirectionalLight('#fff4e0', 2.4); key1.position.set(2, 4, 3); s.add(key1);
+  s.add(gltf.scene);
+  const box = new THREE.Box3().setFromObject(gltf.scene);
+  const size = box.getSize(new THREE.Vector3());
+  const c = box.getCenter(new THREE.Vector3());
+  const camera = new THREE.PerspectiveCamera(30, w / h, 0.01, 500);
+  camera.position.copy(c).addScaledVector(new THREE.Vector3(0.55, 0.45, 1).normalize(), size.length() / 2 / Math.sin(15 * Math.PI / 180));
+  camera.lookAt(c);
+  shotRenderer.setClearColor(bg, 1);
+  shotRenderer.render(s, camera);
+  gltf.scene.traverse((o) => { if (o.isMesh) { o.geometry.dispose(); [].concat(o.material).forEach((m) => m.dispose()); } });
+  return { png: shotRenderer.domElement.toDataURL('image/png'), size: size.toArray().map((v) => +v.toFixed(2)), min: box.min.toArray().map((v) => +v.toFixed(2)) };
+};
 window.__setHorror = (v) => { view.horror = v; applyTheme(); rebuild(); if (view.gallery) setGallery(true); };
 
 // ---- Skill demo: show the projectile a clip launches (healing fireball, dragon palm) ----

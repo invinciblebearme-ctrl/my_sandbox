@@ -1,11 +1,13 @@
 # 망각의 그림자: 전체 에셋 (교육용 핵앤슬래시 ARPG)
 
-에셋 제작 목록(1~9절)의 에셋을 코드로 만들었다. 스테이지 타일셋과 마을 건물은 직접 만들지 않고 Polyfork 키트를 쓰기로 했다([추천 목록](#스테이지-polyfork-키트)).
+에셋 제작 목록(1~9절)의 에셋을 코드로 만들었다. 스테이지와 마을 건물은 Polyfork의 무료 모델에서 골라 받았다([스테이지](#스테이지-polyfork-모델-modelspropsstage0stage4)).
 
 - 규격: 1 unit = 1 m = 던전 1칸, 정면 +Z, 단색 flat shading.
 - 고어 없음: 쓰러지면 빛 조각과 글자 파편으로 흩어진다.
 - 쓰는 법: `public/` 폴더를 게임 저장소에 그대로 복사하면 문서의 파일 이름 규칙대로 들어간다.
-- 라이선스: 모델·UI·사운드는 모두 이 저장소의 코드로 직접 생성한 오리지널이다. 폰트만 외부 것(SIL OFL)이다. 자세한 내용은 [CREDITS.md](CREDITS.md)에 있다.
+- 라이선스: 모델·UI·사운드는 이 저장소의 코드로 직접 생성한 오리지널이다. 외부 것은 두 가지다. 자세한 내용은 [CREDITS.md](CREDITS.md)에 있다.
+  - 폰트: SIL OFL.
+  - 스테이지 모델: Polyfork, CC BY 4.0 또는 Polyfork 라이선스.
 
 ![타이틀](../../docs/edu-title.png)
 
@@ -18,7 +20,8 @@
 | 일반 몬스터 12종 + 투사체 2종 | 14 | `models/monsters/` |
 | 보스 4종 | 4 | `models/monsters/b0*.glb` |
 | 아이템 (장비·소모품·퀴즈 도구·바닥 드랍·전설 12종) | 73 | `models/items/` + `icons/items/*.png` |
-| 숲 타일셋 (MVP 때 만든 것, Polyfork로 대체 가능) | 35 | `models/props/` |
+| 숲 임시 타일셋 (직접 제작, 상자·문·계단·항아리 포함) | 35 | `models/props/stage1_*.glb` |
+| 스테이지 모델 (Polyfork, 지역 5곳) | 185 | `models/props/stage0`~`stage4/` |
 | 효과 (공용·보스·상태 이상·포탈·엘리트 오라·기본 투사체) | 29 | `models/vfx/` |
 | 스킬 (클래스당 8개) + 스킬 아이콘 48·96px | 24 | `models/vfx/skills/` + `icons/skills/` |
 | UI·퀴즈 UI PNG | 131 | `ui/quiz/`, `ui/hud/`, `ui/title/` |
@@ -231,16 +234,33 @@ mixer.update(dt); // 매 프레임
 ```
 - 조명 소품과 계단에는 `lightPoint` 노드가 있다. `manifest.json`의 `light` 값으로 그 자리에 PointLight를 붙인다.
 
-## 스테이지: Polyfork 키트
-아래는 검색 결과 기준이다. 실제 부품 목록과 가격은 https://polyfork.dev/kits 에서 확인한다.
+## 스테이지: Polyfork 모델 (`models/props/stage0`~`stage4`)
+Polyfork 키트에서 지역마다 어울리는 부품만 골라 받았다. 모두 무료 저해상도 모델이고 GLB다.
+- 크기: 실제 크기(미터)라 게임 규격과 같다.
+- 고른 기준:
+  - 뼈·해골·고문 도구 같은 고어 에셋은 뺐다.
+  - 트럭·현대식 문처럼 판타지와 안 맞는 것도 뺐다.
+- 고른 목록: `tools/polyfork/select.json`. 이 파일을 고치고 `python3 tools/polyfork/fetch.py models/edu`를 실행하면 다시 받는다.
+- [`polyfork-manifest.json`](polyfork-manifest.json): 파일마다 원래 Polyfork id, 키트, 삼각형 수, 크기(m), 출처 줄.
 
-| 지역 | 추천 |
-|---|---|
-| 등불 마을 | Medieval Village Kit |
-| 속삭이는 숲 | Nature & Forest Kit |
-| 무너진 대도서관 | 전용 키트 없음. Bookshelf, Library Book Stack 등 개별 에셋 + 던전 키트를 갈색·금색으로 |
-| 얼어붙은 시계탑 | Alpine and Snow Kit + Ice Chunk, Whimsical Gear Hub |
-| 망각의 심연 | Dungeon & Crypt Kit를 보라·검정으로. 뼈 같은 고어 에셋은 빼기 |
+| 폴더 | 지역 | 개수 | 출처 키트 |
+|---|---|---|---|
+| `stage0/` | 등불 마을 | 53 | Medieval Village Kit (집, 선술집, 대장간, 우물, 풍차, 시장 가판대, 성벽, 땅 타일·지형) |
+| `stage1/` | 속삭이는 숲 | 39 | Nature & Forest Kit (나무 6종, 바위, 버섯, 다리, 우물, 등불 기둥, 동물, 땅·물 지형) |
+| `stage2/` | 무너진 대도서관 | 38 | University (서가, 열람 책상, 대계단, 아치 회랑) + Dungeon & Crypt (사슬 독서대, 두루마리 선반, 연금술 작업대, 돌바닥·벽, 샹들리에, 나선 계단) + 책장 3종 |
+| `stage3/` | 얼어붙은 시계탑 | 28 | Alpine and Snow (얼어붙은 폭포, 눈 덮인 나무·바위, 산장, 눈 타일) + 시계탑, 시계 기둥, 시간 코어 2종, 톱니 장식, 얼음 덩어리 |
+| `stage4/` | 망각의 심연 | 27 | Dragons Lair (동굴 벽·아치, 수정 무리, 종유석, 흑요석 바위, 부서진 기둥, 독안개) + Dungeon & Crypt (룬석, 쇠창살 문, 우물, 함정) + 포탈, 수정 |
+
+![마을](../../docs/edu-polyfork-stage0.png)
+![숲](../../docs/edu-polyfork-stage1.png)
+![도서관](../../docs/edu-polyfork-stage2.png)
+![시계탑](../../docs/edu-polyfork-stage3.png)
+![심연](../../docs/edu-polyfork-stage4.png)
+
+- **라이선스:** CC BY 4.0(출처 표기, 공유 가능) 또는 Polyfork 라이선스(표기 없이 게임에 사용, 파일 재배포 금지) 중 고른다.
+  - 저장소를 공개하거나 파일을 나눠 줄 거면 CC BY로 쓰고 [POLYFORK_CREDITS.md](POLYFORK_CREDITS.md)를 크레딧에 넣는다.
+- **확인 필요 1:** Polyfork 모델의 정면 방향은 모델마다 다를 수 있다. 배치할 때 돌려서 맞춘다.
+- **확인 필요 2:** 마을 예배당(`stage0_stone_chapel`) 지붕에 십자가가 있다. 교육용으로 신경 쓰이면 빼면 된다.
 
 ## 다시 만들기
 1. `npm install`

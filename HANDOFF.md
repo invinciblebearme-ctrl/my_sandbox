@@ -36,13 +36,13 @@
 | 3 | 보스 4종 + 보스 효과 | 완료 |
 | 4 | NPC 5명 + 부엉이 루미 (표정 6종) | 완료 |
 | 5 | 스킬 24종, 상태 이상, 포탈, 엘리트 오라, 전설 아이템 12종 | 완료 |
-| 6 | 스테이지 타일셋·마을 건물 | Polyfork로 대체 (직접 만들지 않음) |
+| 6 | 스테이지·마을 건물 | Polyfork 무료 모델 185개를 지역별로 받음 (`models/props/stage0`~`4`, `tools/polyfork/`) |
 | 7 | UI·퀴즈 UI·초상화·카드·스킬 아이콘·타이틀·로딩 (PNG) | 완료 |
 | 8 | 효과음 60개, BGM 11곡 (합성) | 완료. 직접 들어 보지는 못함 |
 
 남은 일:
 - 사용자 피드백 반영. 특히 사운드는 귀로 확인이 필요하다.
-- Polyfork 키트를 고른 뒤 색과 규격 맞추기.
+- Polyfork 모델의 정면 방향과 색을 지역 분위기에 맞추기 (필요하면).
 - 게임 코드에 넣어 테스트하기.
 
 ## 작업 방법
@@ -75,4 +75,5 @@ python3 tools/audio/synth.py models/edu  # 효과음·BGM
 | 없는 테마 | https://polyfork.dev/steer 에서 맞춤 키트를 요청할 수 있다 |
 
 - 네트워크: 개인 환경 **my_sandbox**는 polyfork.ai와 polyfork.dev를 허용한다. 새 세션도 이 환경을 고르면 같은 접속 설정을 쓴다.
-- 이 세션에서는 웹 페치 도구로 사이트를 열지 못했다. 새 세션에서는 `curl https://polyfork.dev/llms.txt`로 카탈로그와 API를 확인한다.
+- curl이나 python으로 API(`https://polyfork.dev/api/kits`, `/api/assets?q=`)를 읽는다. 무료 GLB는 `/cdn/<id>.glb`에서 키 없이 받는다.
+- 웹 페치 도구로는 사이트가 열리지 않았다.

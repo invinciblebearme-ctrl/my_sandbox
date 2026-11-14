@@ -1,0 +1,3150 @@
+{
+  "license": "Polyfork free low poly mesh files: CC BY 4.0 with the credit line, or the Polyfork licence (no credit, files not redistributed). https://polyfork.dev/licensing",
+  "assets": {
+    "stage0_anvil": {
+      "stage": "stage0",
+      "stageLabel": "등불 마을",
+      "title": "Anvil",
+      "file": "models/props/stage0/stage0_anvil.glb",
+      "polyforkId": "anvil-1286cb",
+      "kit": "medieval-village-kit-ca0b43",
+      "triangles": 686,
+      "size_m": {
+        "x": 0.81,
+        "y": 0.82,
+        "z": 0.76
+      },
+      "origin_y": 0,
+      "credit": "Anvil by Polyfork (https://polyfork.dev/asset/anvil-1286cb), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/anvil-1286cb"
+    },
+    "stage0_timber_barn": {
+      "stage": "stage0",
+      "stageLabel": "등불 마을",
+      "title": "Timber Barn",
+      "file": "models/props/stage0/stage0_timber_barn.glb",
+      "polyforkId": "timber-barn-90b3ce",
+      "kit": "medieval-village-kit-ca0b43",
+      "triangles": 1382,
+      "size_m": {
+        "x": 4,
+        "y": 5.35,
+        "z": 6.91
+      },
+      "origin_y": 0,
+      "credit": "Timber Barn by Polyfork (https://polyfork.dev/asset/timber-barn-90b3ce), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/timber-barn-90b3ce"
+    },
+    "stage0_barrel": {
+      "stage": "stage0",
+      "stageLabel": "등불 마을",
+      "title": "Barrel",
+      "file": "models/props/stage0/stage0_barrel.glb",
+      "polyforkId": "barrel-aadc94",
+      "kit": "medieval-village-kit-ca0b43",
+      "triangles": 564,
+      "size_m": {
+        "x": 0.89,
+        "y": 0.92,
+        "z": 0.89
+      },
+      "origin_y": 0,
+      "credit": "Barrel by Polyfork (https://polyfork.dev/asset/barrel-aadc94), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/barrel-aadc94"
+    },
+    "stage0_blacksmith_forge": {
+      "stage": "stage0",
+      "stageLabel": "등불 마을",
+      "title": "Blacksmith Forge",
+      "file": "models/props/stage0/stage0_blacksmith_forge.glb",
+      "polyforkId": "blacksmith-forge-09fa85",
+      "kit": "medieval-village-kit-ca0b43",
+      "triangles": 1668,
+      "size_m": {
+        "x": 5.08,
+        "y": 3.96,
+        "z": 4.03
+      },
+      "origin_y": 0,
+      "credit": "Blacksmith Forge by Polyfork (https://polyfork.dev/asset/blacksmith-forge-09fa85), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/blacksmith-forge-09fa85"
+    },
+    "stage0_clay_bread_oven": {
+      "stage": "stage0",
+      "stageLabel": "등불 마을",
+      "title": "Clay Bread Oven",
+      "file": "models/props/stage0/stage0_clay_bread_oven.glb",
+      "polyforkId": "clay-bread-oven-860b06",
+      "kit": "medieval-village-kit-ca0b43",
+      "triangles": 564,
+      "size_m": {
+        "x": 1.59,
+        "y": 1.52,
+        "z": 1.55
+      },
+      "origin_y": 0,
+      "credit": "Clay Bread Oven by Polyfork (https://polyfork.dev/asset/clay-bread-oven-860b06), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/clay-bread-oven-860b06"
+    },
+    "stage0_wooden_bridge": {
+      "stage": "stage0",
+      "stageLabel": "등불 마을",
+      "title": "Wooden Bridge",
+      "file": "models/props/stage0/stage0_wooden_bridge.glb",
+      "polyforkId": "wooden-bridge-9d2308",
+      "kit": "medieval-village-kit-ca0b43",
+      "triangles": 752,
+      "size_m": {
+        "x": 3,
+        "y": 1.32,
+        "z": 1.06
+      },
+      "origin_y": 0,
+      "credit": "Wooden Bridge by Polyfork (https://polyfork.dev/asset/wooden-bridge-9d2308), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/wooden-bridge-9d2308"
+    },
+    "stage0_bush": {
+      "stage": "stage0",
+      "stageLabel": "등불 마을",
+      "title": "Bush",
+      "file": "models/props/stage0/stage0_bush.glb",
+      "polyforkId": "bush-8bb596",
+      "kit": "medieval-village-kit-ca0b43",
+      "triangles": 260,
+      "size_m": {
+        "x": 0.95,
+        "y": 0.62,
+        "z": 0.82
+      },
+      "origin_y": 0,
+      "credit": "Bush by Polyfork (https://polyfork.dev/asset/bush-8bb596), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/bush-8bb596"
+    },
+    "stage0_wooden_cart": {
+      "stage": "stage0",
+      "stageLabel": "등불 마을",
+      "title": "Wooden Cart",
+      "file": "models/props/stage0/stage0_wooden_cart.glb",
+      "polyforkId": "wooden-cart-bf83d8",
+      "kit": "medieval-village-kit-ca0b43",
+      "triangles": 1746,
+      "size_m": {
+        "x": 1.57,
+        "y": 1.39,
+        "z": 2.52
+      },
+      "origin_y": 0,
+      "credit": "Wooden Cart by Polyfork (https://polyfork.dev/asset/wooden-cart-bf83d8), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/wooden-cart-bf83d8"
+    },
+    "stage0_stone_chapel": {
+      "stage": "stage0",
+      "stageLabel": "등불 마을",
+      "title": "Stone Chapel",
+      "file": "models/props/stage0/stage0_stone_chapel.glb",
+      "polyforkId": "stone-chapel-03e774",
+      "kit": "medieval-village-kit-ca0b43",
+      "triangles": 1949,
+      "size_m": {
+        "x": 4.47,
+        "y": 8.15,
+        "z": 6.41
+      },
+      "origin_y": 0,
+      "credit": "Stone Chapel by Polyfork (https://polyfork.dev/asset/stone-chapel-03e774), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/stone-chapel-03e774"
+    },
+    "stage0_village_chicken": {
+      "stage": "stage0",
+      "stageLabel": "등불 마을",
+      "title": "Village Chicken",
+      "file": "models/props/stage0/stage0_village_chicken.glb",
+      "polyforkId": "village-chicken-9ba715",
+      "kit": "medieval-village-kit-ca0b43",
+      "triangles": 1190,
+      "size_m": {
+        "x": 0.14,
+        "y": 0.35,
+        "z": 0.39
+      },
+      "origin_y": 0,
+      "credit": "Village Chicken by Polyfork (https://polyfork.dev/asset/village-chicken-9ba715), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/village-chicken-9ba715"
+    },
+    "stage0_thatched_cottage": {
+      "stage": "stage0",
+      "stageLabel": "등불 마을",
+      "title": "Thatched Cottage",
+      "file": "models/props/stage0/stage0_thatched_cottage.glb",
+      "polyforkId": "thatched-cottage-0e63f5",
+      "kit": "medieval-village-kit-ca0b43",
+      "triangles": 1764,
+      "size_m": {
+        "x": 6,
+        "y": 5.06,
+        "z": 3.97
+      },
+      "origin_y": 0,
+      "credit": "Thatched Cottage by Polyfork (https://polyfork.dev/asset/thatched-cottage-0e63f5), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/thatched-cottage-0e63f5"
+    },
+    "stage0_wooden_crate": {
+      "stage": "stage0",
+      "stageLabel": "등불 마을",
+      "title": "Wooden Crate",
+      "file": "models/props/stage0/stage0_wooden_crate.glb",
+      "polyforkId": "wooden-crate-b9c96a",
+      "kit": "medieval-village-kit-ca0b43",
+      "triangles": 700,
+      "size_m": {
+        "x": 0.9,
+        "y": 0.61,
+        "z": 0.66
+      },
+      "origin_y": 0,
+      "credit": "Wooden Crate by Polyfork (https://polyfork.dev/asset/wooden-crate-b9c96a), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/wooden-crate-b9c96a"
+    },
+    "stage0_dirt_terrain_blob": {
+      "stage": "stage0",
+      "stageLabel": "등불 마을",
+      "title": "Dirt Terrain Blob",
+      "file": "models/props/stage0/stage0_dirt_terrain_blob.glb",
+      "polyforkId": "dirt-terrain-blob-7227e6",
+      "kit": "medieval-village-kit-ca0b43",
+      "triangles": 360,
+      "size_m": {
+        "x": 6.97,
+        "y": 0.74,
+        "z": 6.26
+      },
+      "origin_y": 0,
+      "credit": "Dirt Terrain Blob by Polyfork (https://polyfork.dev/asset/dirt-terrain-blob-7227e6), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/dirt-terrain-blob-7227e6"
+    },
+    "stage0_wooden_fence": {
+      "stage": "stage0",
+      "stageLabel": "등불 마을",
+      "title": "Wooden Fence",
+      "file": "models/props/stage0/stage0_wooden_fence.glb",
+      "polyforkId": "wooden-fence-3d8ee7",
+      "kit": "medieval-village-kit-ca0b43",
+      "triangles": 464,
+      "size_m": {
+        "x": 2,
+        "y": 1.22,
+        "z": 0.15
+      },
+      "origin_y": 0,
+      "credit": "Wooden Fence by Polyfork (https://polyfork.dev/asset/wooden-fence-3d8ee7), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/wooden-fence-3d8ee7"
+    },
+    "stage0_flower_planter": {
+      "stage": "stage0",
+      "stageLabel": "등불 마을",
+      "title": "Flower Planter",
+      "file": "models/props/stage0/stage0_flower_planter.glb",
+      "polyforkId": "flower-planter-500ed2",
+      "kit": "medieval-village-kit-ca0b43",
+      "triangles": 606,
+      "size_m": {
+        "x": 0.82,
+        "y": 0.35,
+        "z": 0.32
+      },
+      "origin_y": 0,
+      "credit": "Flower Planter by Polyfork (https://polyfork.dev/asset/flower-planter-500ed2), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/flower-planter-500ed2"
+    },
+    "stage0_wooden_gate": {
+      "stage": "stage0",
+      "stageLabel": "등불 마을",
+      "title": "Wooden Gate",
+      "file": "models/props/stage0/stage0_wooden_gate.glb",
+      "polyforkId": "wooden-gate-0e001c",
+      "kit": "medieval-village-kit-ca0b43",
+      "triangles": 630,
+      "size_m": {
+        "x": 2.03,
+        "y": 1.72,
+        "z": 0.4
+      },
+      "origin_y": 0,
+      "credit": "Wooden Gate by Polyfork (https://polyfork.dev/asset/wooden-gate-0e001c), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/wooden-gate-0e001c"
+    },
+    "stage0_village_gatehouse": {
+      "stage": "stage0",
+      "stageLabel": "등불 마을",
+      "title": "Village Gatehouse",
+      "file": "models/props/stage0/stage0_village_gatehouse.glb",
+      "polyforkId": "village-gatehouse-181a9e",
+      "kit": "medieval-village-kit-ca0b43",
+      "triangles": 1628,
+      "size_m": {
+        "x": 6,
+        "y": 6.8,
+        "z": 1.99
+      },
+      "origin_y": 0,
+      "credit": "Village Gatehouse by Polyfork (https://polyfork.dev/asset/village-gatehouse-181a9e), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/village-gatehouse-181a9e"
+    },
+    "stage0_stilted_granary": {
+      "stage": "stage0",
+      "stageLabel": "등불 마을",
+      "title": "Stilted Granary",
+      "file": "models/props/stage0/stage0_stilted_granary.glb",
+      "polyforkId": "stilted-granary-3e7d7d",
+      "kit": "medieval-village-kit-ca0b43",
+      "triangles": 1424,
+      "size_m": {
+        "x": 2,
+        "y": 2.71,
+        "z": 1.99
+      },
+      "origin_y": 0,
+      "credit": "Stilted Granary by Polyfork (https://polyfork.dev/asset/stilted-granary-3e7d7d), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/stilted-granary-3e7d7d"
+    },
+    "stage0_grass_terrain_blob": {
+      "stage": "stage0",
+      "stageLabel": "등불 마을",
+      "title": "Grass Terrain Blob",
+      "file": "models/props/stage0/stage0_grass_terrain_blob.glb",
+      "polyforkId": "grass-terrain-blob-389daa",
+      "kit": "medieval-village-kit-ca0b43",
+      "triangles": 140,
+      "size_m": {
+        "x": 8.11,
+        "y": 0.08,
+        "z": 6
+      },
+      "origin_y": 0,
+      "credit": "Grass Terrain Blob by Polyfork (https://polyfork.dev/asset/grass-terrain-blob-389daa), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/grass-terrain-blob-389daa"
+    },
+    "stage0_grass_tuft": {
+      "stage": "stage0",
+      "stageLabel": "등불 마을",
+      "title": "Grass Tuft",
+      "file": "models/props/stage0/stage0_grass_tuft.glb",
+      "polyforkId": "grass-tuft-5ccff0",
+      "kit": "medieval-village-kit-ca0b43",
+      "triangles": 544,
+      "size_m": {
+        "x": 0.67,
+        "y": 0.45,
+        "z": 0.57
+      },
+      "origin_y": 0,
+      "credit": "Grass Tuft by Polyfork (https://polyfork.dev/asset/grass-tuft-5ccff0), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/grass-tuft-5ccff0"
+    },
+    "stage0_dirt_ground_tile": {
+      "stage": "stage0",
+      "stageLabel": "등불 마을",
+      "title": "Dirt Ground Tile",
+      "file": "models/props/stage0/stage0_dirt_ground_tile.glb",
+      "polyforkId": "dirt-ground-tile-da4a60",
+      "kit": "medieval-village-kit-ca0b43",
+      "triangles": 414,
+      "size_m": {
+        "x": 2,
+        "y": 0.22,
+        "z": 2
+      },
+      "origin_y": 0,
+      "credit": "Dirt Ground Tile by Polyfork (https://polyfork.dev/asset/dirt-ground-tile-da4a60), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/dirt-ground-tile-da4a60"
+    },
+    "stage0_grass_ground_tile": {
+      "stage": "stage0",
+      "stageLabel": "등불 마을",
+      "title": "Grass Ground Tile",
+      "file": "models/props/stage0/stage0_grass_ground_tile.glb",
+      "polyforkId": "grass-ground-tile-131ec0",
+      "kit": "medieval-village-kit-ca0b43",
+      "triangles": 386,
+      "size_m": {
+        "x": 2,
+        "y": 0.1,
+        "z": 2
+      },
+      "origin_y": 0,
+      "credit": "Grass Ground Tile by Polyfork (https://polyfork.dev/asset/grass-ground-tile-131ec0), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/grass-ground-tile-131ec0"
+    },
+    "stage0_haystack": {
+      "stage": "stage0",
+      "stageLabel": "등불 마을",
+      "title": "Haystack",
+      "file": "models/props/stage0/stage0_haystack.glb",
+      "polyforkId": "haystack-77b0dd",
+      "kit": "medieval-village-kit-ca0b43",
+      "triangles": 711,
+      "size_m": {
+        "x": 2.02,
+        "y": 1.85,
+        "z": 2.04
+      },
+      "origin_y": 0,
+      "credit": "Haystack by Polyfork (https://polyfork.dev/asset/haystack-77b0dd), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/haystack-77b0dd"
+    },
+    "stage0_two_story_house": {
+      "stage": "stage0",
+      "stageLabel": "등불 마을",
+      "title": "Two-Story House",
+      "file": "models/props/stage0/stage0_two_story_house.glb",
+      "polyforkId": "two-story-house-40f6dc",
+      "kit": "medieval-village-kit-ca0b43",
+      "triangles": 1554,
+      "size_m": {
+        "x": 5.7,
+        "y": 8.37,
+        "z": 7.66
+      },
+      "origin_y": 0,
+      "credit": "Two-Story House by Polyfork (https://polyfork.dev/asset/two-story-house-40f6dc), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/two-story-house-40f6dc"
+    },
+    "stage0_lamp_post": {
+      "stage": "stage0",
+      "stageLabel": "등불 마을",
+      "title": "Lamp Post",
+      "file": "models/props/stage0/stage0_lamp_post.glb",
+      "polyforkId": "lamp-post-c9e409",
+      "kit": "medieval-village-kit-ca0b43",
+      "triangles": 478,
+      "size_m": {
+        "x": 0.26,
+        "y": 2.2,
+        "z": 0.58
+      },
+      "origin_y": 0,
+      "credit": "Lamp Post by Polyfork (https://polyfork.dev/asset/lamp-post-c9e409), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/lamp-post-c9e409"
+    },
+    "stage0_market_stall": {
+      "stage": "stage0",
+      "stageLabel": "등불 마을",
+      "title": "Market Stall",
+      "file": "models/props/stage0/stage0_market_stall.glb",
+      "polyforkId": "market-stall-94937d",
+      "kit": "medieval-village-kit-ca0b43",
+      "triangles": 592,
+      "size_m": {
+        "x": 1.96,
+        "y": 2.02,
+        "z": 1.13
+      },
+      "origin_y": 0,
+      "credit": "Market Stall by Polyfork (https://polyfork.dev/asset/market-stall-94937d), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/market-stall-94937d"
+    },
+    "stage0_orchard_apple_tree": {
+      "stage": "stage0",
+      "stageLabel": "등불 마을",
+      "title": "Orchard Apple Tree",
+      "file": "models/props/stage0/stage0_orchard_apple_tree.glb",
+      "polyforkId": "orchard-apple-tree-b21f85",
+      "kit": "medieval-village-kit-ca0b43",
+      "triangles": 736,
+      "size_m": {
+        "x": 4.76,
+        "y": 3.64,
+        "z": 4.71
+      },
+      "origin_y": 0,
+      "credit": "Orchard Apple Tree by Polyfork (https://polyfork.dev/asset/orchard-apple-tree-b21f85), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/orchard-apple-tree-b21f85"
+    },
+    "stage0_path_stone_a": {
+      "stage": "stage0",
+      "stageLabel": "등불 마을",
+      "title": "Path Stone A",
+      "file": "models/props/stage0/stage0_path_stone_a.glb",
+      "polyforkId": "path-stone-a-aead48",
+      "kit": "medieval-village-kit-ca0b43",
+      "triangles": 80,
+      "size_m": {
+        "x": 0.9,
+        "y": 0.06,
+        "z": 0.75
+      },
+      "origin_y": 0,
+      "credit": "Path Stone A by Polyfork (https://polyfork.dev/asset/path-stone-a-aead48), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/path-stone-a-aead48"
+    },
+    "stage0_path_stone_b": {
+      "stage": "stage0",
+      "stageLabel": "등불 마을",
+      "title": "Path Stone B",
+      "file": "models/props/stage0/stage0_path_stone_b.glb",
+      "polyforkId": "path-stone-b-6ed75c",
+      "kit": "medieval-village-kit-ca0b43",
+      "triangles": 66,
+      "size_m": {
+        "x": 0.62,
+        "y": 0.05,
+        "z": 0.3
+      },
+      "origin_y": 0,
+      "credit": "Path Stone B by Polyfork (https://polyfork.dev/asset/path-stone-b-6ed75c), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/path-stone-b-6ed75c"
+    },
+    "stage0_quench_barrel": {
+      "stage": "stage0",
+      "stageLabel": "등불 마을",
+      "title": "Quench Barrel",
+      "file": "models/props/stage0/stage0_quench_barrel.glb",
+      "polyforkId": "quench-barrel-0c78fd",
+      "kit": "medieval-village-kit-ca0b43",
+      "triangles": 576,
+      "size_m": {
+        "x": 1.08,
+        "y": 0.7,
+        "z": 1.08
+      },
+      "origin_y": 0,
+      "credit": "Quench Barrel by Polyfork (https://polyfork.dev/asset/quench-barrel-0c78fd), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/quench-barrel-0c78fd"
+    },
+    "stage0_gable_roof_section": {
+      "stage": "stage0",
+      "stageLabel": "등불 마을",
+      "title": "Gable Roof Section",
+      "file": "models/props/stage0/stage0_gable_roof_section.glb",
+      "polyforkId": "gable-roof-section-0394a8",
+      "kit": "medieval-village-kit-ca0b43",
+      "triangles": 956,
+      "size_m": {
+        "x": 2.5,
+        "y": 1.16,
+        "z": 2.56
+      },
+      "origin_y": 0,
+      "credit": "Gable Roof Section by Polyfork (https://polyfork.dev/asset/gable-roof-section-0394a8), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/gable-roof-section-0394a8"
+    },
+    "stage0_hip_roof_corner_section": {
+      "stage": "stage0",
+      "stageLabel": "등불 마을",
+      "title": "Hip Roof Corner Section",
+      "file": "models/props/stage0/stage0_hip_roof_corner_section.glb",
+      "polyforkId": "hip-roof-corner-section-91a58f",
+      "kit": "medieval-village-kit-ca0b43",
+      "triangles": 779,
+      "size_m": {
+        "x": 2.25,
+        "y": 1.47,
+        "z": 2.25
+      },
+      "origin_y": 0,
+      "credit": "Hip Roof Corner Section by Polyfork (https://polyfork.dev/asset/hip-roof-corner-section-91a58f), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/hip-roof-corner-section-91a58f"
+    },
+    "stage0_grain_sack": {
+      "stage": "stage0",
+      "stageLabel": "등불 마을",
+      "title": "Grain Sack",
+      "file": "models/props/stage0/stage0_grain_sack.glb",
+      "polyforkId": "grain-sack-401d96",
+      "kit": "medieval-village-kit-ca0b43",
+      "triangles": 448,
+      "size_m": {
+        "x": 0.58,
+        "y": 0.73,
+        "z": 0.55
+      },
+      "origin_y": 0,
+      "credit": "Grain Sack by Polyfork (https://polyfork.dev/asset/grain-sack-401d96), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/grain-sack-401d96"
+    },
+    "stage0_signpost": {
+      "stage": "stage0",
+      "stageLabel": "등불 마을",
+      "title": "Signpost",
+      "file": "models/props/stage0/stage0_signpost.glb",
+      "polyforkId": "signpost-8287c3",
+      "kit": "medieval-village-kit-ca0b43",
+      "triangles": 780,
+      "size_m": {
+        "x": 2.06,
+        "y": 2.69,
+        "z": 0.25
+      },
+      "origin_y": 0,
+      "credit": "Signpost by Polyfork (https://polyfork.dev/asset/signpost-8287c3), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/signpost-8287c3"
+    },
+    "stage0_small_rock": {
+      "stage": "stage0",
+      "stageLabel": "등불 마을",
+      "title": "Small Rock",
+      "file": "models/props/stage0/stage0_small_rock.glb",
+      "polyforkId": "small-rock-d43710",
+      "kit": "medieval-village-kit-ca0b43",
+      "triangles": 80,
+      "size_m": {
+        "x": 0.52,
+        "y": 0.36,
+        "z": 0.46
+      },
+      "origin_y": 0,
+      "credit": "Small Rock by Polyfork (https://polyfork.dev/asset/small-rock-d43710), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/small-rock-d43710"
+    },
+    "stage0_low_stone_wall": {
+      "stage": "stage0",
+      "stageLabel": "등불 마을",
+      "title": "Low Stone Wall",
+      "file": "models/props/stage0/stage0_low_stone_wall.glb",
+      "polyforkId": "low-stone-wall-8a8ea3",
+      "kit": "medieval-village-kit-ca0b43",
+      "triangles": 732,
+      "size_m": {
+        "x": 2.05,
+        "y": 0.94,
+        "z": 0.5
+      },
+      "origin_y": 0,
+      "credit": "Low Stone Wall by Polyfork (https://polyfork.dev/asset/low-stone-wall-8a8ea3), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/low-stone-wall-8a8ea3"
+    },
+    "stage0_village_tavern": {
+      "stage": "stage0",
+      "stageLabel": "등불 마을",
+      "title": "Village Tavern",
+      "file": "models/props/stage0/stage0_village_tavern.glb",
+      "polyforkId": "village-tavern-4e94e3",
+      "kit": "medieval-village-kit-ca0b43",
+      "triangles": 1996,
+      "size_m": {
+        "x": 12.91,
+        "y": 11,
+        "z": 8.41
+      },
+      "origin_y": 0,
+      "credit": "Village Tavern by Polyfork (https://polyfork.dev/asset/village-tavern-4e94e3), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/village-tavern-4e94e3"
+    },
+    "stage0_medieval_village_terrain": {
+      "stage": "stage0",
+      "stageLabel": "등불 마을",
+      "title": "Medieval Village Terrain",
+      "file": "models/props/stage0/stage0_medieval_village_terrain.glb",
+      "polyforkId": "medieval-village-terrain-60051b",
+      "kit": "medieval-village-kit-ca0b43",
+      "triangles": 25328,
+      "size_m": {
+        "x": 46,
+        "y": 11.81,
+        "z": 50.5
+      },
+      "origin_y": -7.071,
+      "credit": "Medieval Village Terrain by Polyfork (https://polyfork.dev/asset/medieval-village-terrain-60051b), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/medieval-village-terrain-60051b"
+    },
+    "stage0_water_blob": {
+      "stage": "stage0",
+      "stageLabel": "등불 마을",
+      "title": "Water Blob",
+      "file": "models/props/stage0/stage0_water_blob.glb",
+      "polyforkId": "water-blob-e2cdf2",
+      "kit": "medieval-village-kit-ca0b43",
+      "triangles": 208,
+      "size_m": {
+        "x": 8,
+        "y": 0.04,
+        "z": 7.01
+      },
+      "origin_y": 0,
+      "credit": "Water Blob by Polyfork (https://polyfork.dev/asset/water-blob-e2cdf2), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/water-blob-e2cdf2"
+    },
+    "stage0_wall_torch_sconce": {
+      "stage": "stage0",
+      "stageLabel": "등불 마을",
+      "title": "Wall Torch Sconce",
+      "file": "models/props/stage0/stage0_wall_torch_sconce.glb",
+      "polyforkId": "wall-torch-sconce-6ddb52",
+      "kit": "medieval-village-kit-ca0b43",
+      "triangles": 457,
+      "size_m": {
+        "x": 0.2,
+        "y": 0.71,
+        "z": 0.44
+      },
+      "origin_y": 1.6,
+      "credit": "Wall Torch Sconce by Polyfork (https://polyfork.dev/asset/wall-torch-sconce-6ddb52), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/wall-torch-sconce-6ddb52"
+    },
+    "stage0_oak_tree": {
+      "stage": "stage0",
+      "stageLabel": "등불 마을",
+      "title": "Oak Tree",
+      "file": "models/props/stage0/stage0_oak_tree.glb",
+      "polyforkId": "oak-tree-50ee7c",
+      "kit": "medieval-village-kit-ca0b43",
+      "triangles": 686,
+      "size_m": {
+        "x": 5.14,
+        "y": 6.17,
+        "z": 4.22
+      },
+      "origin_y": 0,
+      "credit": "Oak Tree by Polyfork (https://polyfork.dev/asset/oak-tree-50ee7c), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/oak-tree-50ee7c"
+    },
+    "stage0_tree_stump": {
+      "stage": "stage0",
+      "stageLabel": "등불 마을",
+      "title": "Tree Stump",
+      "file": "models/props/stage0/stage0_tree_stump.glb",
+      "polyforkId": "tree-stump-8c0513",
+      "kit": "medieval-village-kit-ca0b43",
+      "triangles": 524,
+      "size_m": {
+        "x": 1.25,
+        "y": 1.32,
+        "z": 1.14
+      },
+      "origin_y": 0,
+      "credit": "Tree Stump by Polyfork (https://polyfork.dev/asset/tree-stump-8c0513), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/tree-stump-8c0513"
+    },
+    "stage0_wall_corner": {
+      "stage": "stage0",
+      "stageLabel": "등불 마을",
+      "title": "Wall Corner",
+      "file": "models/props/stage0/stage0_wall_corner.glb",
+      "polyforkId": "wall-corner-7d4e04",
+      "kit": "medieval-village-kit-ca0b43",
+      "triangles": 876,
+      "size_m": {
+        "x": 4,
+        "y": 3,
+        "z": 4
+      },
+      "origin_y": 0,
+      "credit": "Wall Corner by Polyfork (https://polyfork.dev/asset/wall-corner-7d4e04), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/wall-corner-7d4e04"
+    },
+    "stage0_wall_with_door": {
+      "stage": "stage0",
+      "stageLabel": "등불 마을",
+      "title": "Wall with Door",
+      "file": "models/props/stage0/stage0_wall_with_door.glb",
+      "polyforkId": "wall-with-door-f936e9",
+      "kit": "medieval-village-kit-ca0b43",
+      "triangles": 972,
+      "size_m": {
+        "x": 2,
+        "y": 3,
+        "z": 0.38
+      },
+      "origin_y": 0,
+      "credit": "Wall with Door by Polyfork (https://polyfork.dev/asset/wall-with-door-f936e9), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/wall-with-door-f936e9"
+    },
+    "stage0_wall_module": {
+      "stage": "stage0",
+      "stageLabel": "등불 마을",
+      "title": "Wall Module",
+      "file": "models/props/stage0/stage0_wall_module.glb",
+      "polyforkId": "wall-module-b92556",
+      "kit": "medieval-village-kit-ca0b43",
+      "triangles": 788,
+      "size_m": {
+        "x": 2,
+        "y": 3,
+        "z": 0.32
+      },
+      "origin_y": 0,
+      "credit": "Wall Module by Polyfork (https://polyfork.dev/asset/wall-module-b92556), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/wall-module-b92556"
+    },
+    "stage0_wall_with_window": {
+      "stage": "stage0",
+      "stageLabel": "등불 마을",
+      "title": "Wall with Window",
+      "file": "models/props/stage0/stage0_wall_with_window.glb",
+      "polyforkId": "wall-with-window-6dad8f",
+      "kit": "medieval-village-kit-ca0b43",
+      "triangles": 1388,
+      "size_m": {
+        "x": 4,
+        "y": 3,
+        "z": 0.55
+      },
+      "origin_y": 0,
+      "credit": "Wall with Window by Polyfork (https://polyfork.dev/asset/wall-with-window-6dad8f), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/wall-with-window-6dad8f"
+    },
+    "stage0_watchtower": {
+      "stage": "stage0",
+      "stageLabel": "등불 마을",
+      "title": "Watchtower",
+      "file": "models/props/stage0/stage0_watchtower.glb",
+      "polyforkId": "watchtower-140f78",
+      "kit": "medieval-village-kit-ca0b43",
+      "triangles": 1736,
+      "size_m": {
+        "x": 3.61,
+        "y": 9.45,
+        "z": 4.56
+      },
+      "origin_y": 0,
+      "credit": "Watchtower by Polyfork (https://polyfork.dev/asset/watchtower-140f78), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/watchtower-140f78"
+    },
+    "stage0_water_trough": {
+      "stage": "stage0",
+      "stageLabel": "등불 마을",
+      "title": "Water Trough",
+      "file": "models/props/stage0/stage0_water_trough.glb",
+      "polyforkId": "water-trough-318ee1",
+      "kit": "medieval-village-kit-ca0b43",
+      "triangles": 670,
+      "size_m": {
+        "x": 2.35,
+        "y": 0.65,
+        "z": 1.06
+      },
+      "origin_y": 0,
+      "credit": "Water Trough by Polyfork (https://polyfork.dev/asset/water-trough-318ee1), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/water-trough-318ee1"
+    },
+    "stage0_water_mill": {
+      "stage": "stage0",
+      "stageLabel": "등불 마을",
+      "title": "Water Mill",
+      "file": "models/props/stage0/stage0_water_mill.glb",
+      "polyforkId": "water-mill-b31972",
+      "kit": "medieval-village-kit-ca0b43",
+      "triangles": 1758,
+      "size_m": {
+        "x": 4,
+        "y": 7.89,
+        "z": 3.98
+      },
+      "origin_y": 0,
+      "credit": "Water Mill by Polyfork (https://polyfork.dev/asset/water-mill-b31972), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/water-mill-b31972"
+    },
+    "stage0_village_well": {
+      "stage": "stage0",
+      "stageLabel": "등불 마을",
+      "title": "Village Well",
+      "file": "models/props/stage0/stage0_village_well.glb",
+      "polyforkId": "village-well-f8e361",
+      "kit": "medieval-village-kit-ca0b43",
+      "triangles": 788,
+      "size_m": {
+        "x": 1.96,
+        "y": 2.56,
+        "z": 1.53
+      },
+      "origin_y": 0,
+      "credit": "Village Well by Polyfork (https://polyfork.dev/asset/village-well-f8e361), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/village-well-f8e361"
+    },
+    "stage0_wheat_plant": {
+      "stage": "stage0",
+      "stageLabel": "등불 마을",
+      "title": "Wheat Plant",
+      "file": "models/props/stage0/stage0_wheat_plant.glb",
+      "polyforkId": "wheat-plant-7f29a1",
+      "kit": "medieval-village-kit-ca0b43",
+      "triangles": 407,
+      "size_m": {
+        "x": 0.36,
+        "y": 0.9,
+        "z": 0.18
+      },
+      "origin_y": 0,
+      "credit": "Wheat Plant by Polyfork (https://polyfork.dev/asset/wheat-plant-7f29a1), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/wheat-plant-7f29a1"
+    },
+    "stage0_wheelbarrow": {
+      "stage": "stage0",
+      "stageLabel": "등불 마을",
+      "title": "Wheelbarrow",
+      "file": "models/props/stage0/stage0_wheelbarrow.glb",
+      "polyforkId": "wheelbarrow-13f422",
+      "kit": "medieval-village-kit-ca0b43",
+      "triangles": 1132,
+      "size_m": {
+        "x": 0.69,
+        "y": 0.87,
+        "z": 1.67
+      },
+      "origin_y": 0,
+      "credit": "Wheelbarrow by Polyfork (https://polyfork.dev/asset/wheelbarrow-13f422), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/wheelbarrow-13f422"
+    },
+    "stage0_windmill": {
+      "stage": "stage0",
+      "stageLabel": "등불 마을",
+      "title": "Windmill",
+      "file": "models/props/stage0/stage0_windmill.glb",
+      "polyforkId": "windmill-3aad49",
+      "kit": "medieval-village-kit-ca0b43",
+      "triangles": 1842,
+      "size_m": {
+        "x": 5.65,
+        "y": 9.6,
+        "z": 4.18
+      },
+      "origin_y": 0,
+      "credit": "Windmill by Polyfork (https://polyfork.dev/asset/windmill-3aad49), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/windmill-3aad49"
+    },
+    "stage1_birch_tree": {
+      "stage": "stage1",
+      "stageLabel": "속삭이는 숲",
+      "title": "Birch Tree",
+      "file": "models/props/stage1/stage1_birch_tree.glb",
+      "polyforkId": "birch-tree-181b33",
+      "kit": "nature-forest-kit-f29d6a",
+      "triangles": 619,
+      "size_m": {
+        "x": 3.01,
+        "y": 6.49,
+        "z": 2.1
+      },
+      "origin_y": 0,
+      "credit": "Birch Tree by Polyfork (https://polyfork.dev/asset/birch-tree-181b33), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/birch-tree-181b33"
+    },
+    "stage1_large_boulder": {
+      "stage": "stage1",
+      "stageLabel": "속삭이는 숲",
+      "title": "Large Boulder",
+      "file": "models/props/stage1/stage1_large_boulder.glb",
+      "polyforkId": "large-boulder-a29b99",
+      "kit": "nature-forest-kit-f29d6a",
+      "triangles": 566,
+      "size_m": {
+        "x": 2.2,
+        "y": 0.66,
+        "z": 1.39
+      },
+      "origin_y": 0,
+      "credit": "Large Boulder by Polyfork (https://polyfork.dev/asset/large-boulder-a29b99), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/large-boulder-a29b99"
+    },
+    "stage1_round_bush": {
+      "stage": "stage1",
+      "stageLabel": "속삭이는 숲",
+      "title": "Round Bush",
+      "file": "models/props/stage1/stage1_round_bush.glb",
+      "polyforkId": "round-bush-cd2ac0",
+      "kit": "nature-forest-kit-f29d6a",
+      "triangles": 573,
+      "size_m": {
+        "x": 1.27,
+        "y": 0.63,
+        "z": 0.87
+      },
+      "origin_y": 0,
+      "credit": "Round Bush by Polyfork (https://polyfork.dev/asset/round-bush-cd2ac0), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/round-bush-cd2ac0"
+    },
+    "stage1_cattail_reed": {
+      "stage": "stage1",
+      "stageLabel": "속삭이는 숲",
+      "title": "Cattail Reed",
+      "file": "models/props/stage1/stage1_cattail_reed.glb",
+      "polyforkId": "cattail-reed-6abbb3",
+      "kit": "nature-forest-kit-f29d6a",
+      "triangles": 388,
+      "size_m": {
+        "x": 0.39,
+        "y": 1.2,
+        "z": 0.29
+      },
+      "origin_y": 0,
+      "credit": "Cattail Reed by Polyfork (https://polyfork.dev/asset/cattail-reed-6abbb3), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/cattail-reed-6abbb3"
+    },
+    "stage1_dead_tree": {
+      "stage": "stage1",
+      "stageLabel": "속삭이는 숲",
+      "title": "Dead Tree",
+      "file": "models/props/stage1/stage1_dead_tree.glb",
+      "polyforkId": "dead-tree-6795fa",
+      "kit": "nature-forest-kit-f29d6a",
+      "triangles": 536,
+      "size_m": {
+        "x": 3.19,
+        "y": 5,
+        "z": 1.87
+      },
+      "origin_y": 0,
+      "credit": "Dead Tree by Polyfork (https://polyfork.dev/asset/dead-tree-6795fa), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/dead-tree-6795fa"
+    },
+    "stage1_dirt_terrain_blob": {
+      "stage": "stage1",
+      "stageLabel": "속삭이는 숲",
+      "title": "Dirt Terrain Blob",
+      "file": "models/props/stage1/stage1_dirt_terrain_blob.glb",
+      "polyforkId": "dirt-terrain-blob-94e829",
+      "kit": "nature-forest-kit-f29d6a",
+      "triangles": 364,
+      "size_m": {
+        "x": 7,
+        "y": 0.23,
+        "z": 5.83
+      },
+      "origin_y": -0.05,
+      "credit": "Dirt Terrain Blob by Polyfork (https://polyfork.dev/asset/dirt-terrain-blob-94e829), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/dirt-terrain-blob-94e829"
+    },
+    "stage1_dirt_trail_strip": {
+      "stage": "stage1",
+      "stageLabel": "속삭이는 숲",
+      "title": "Dirt Trail Strip",
+      "file": "models/props/stage1/stage1_dirt_trail_strip.glb",
+      "polyforkId": "dirt-trail-strip-1be7a6",
+      "kit": "nature-forest-kit-f29d6a",
+      "triangles": 112,
+      "size_m": {
+        "x": 1.41,
+        "y": 0.03,
+        "z": 3
+      },
+      "origin_y": -0.03,
+      "credit": "Dirt Trail Strip by Polyfork (https://polyfork.dev/asset/dirt-trail-strip-1be7a6), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/dirt-trail-strip-1be7a6"
+    },
+    "stage1_fallen_log": {
+      "stage": "stage1",
+      "stageLabel": "속삭이는 숲",
+      "title": "Fallen Log",
+      "file": "models/props/stage1/stage1_fallen_log.glb",
+      "polyforkId": "fallen-log-1685fb",
+      "kit": "nature-forest-kit-f29d6a",
+      "triangles": 484,
+      "size_m": {
+        "x": 3.09,
+        "y": 0.9,
+        "z": 0.7
+      },
+      "origin_y": 0,
+      "credit": "Fallen Log by Polyfork (https://polyfork.dev/asset/fallen-log-1685fb), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/fallen-log-1685fb"
+    },
+    "stage1_wooden_fence_gate": {
+      "stage": "stage1",
+      "stageLabel": "속삭이는 숲",
+      "title": "Wooden Fence Gate",
+      "file": "models/props/stage1/stage1_wooden_fence_gate.glb",
+      "polyforkId": "wooden-fence-gate-a8735f",
+      "kit": "nature-forest-kit-f29d6a",
+      "triangles": 408,
+      "size_m": {
+        "x": 2,
+        "y": 1.3,
+        "z": 0.32
+      },
+      "origin_y": 0,
+      "credit": "Wooden Fence Gate by Polyfork (https://polyfork.dev/asset/wooden-fence-gate-a8735f), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/wooden-fence-gate-a8735f"
+    },
+    "stage1_wooden_fence_section": {
+      "stage": "stage1",
+      "stageLabel": "속삭이는 숲",
+      "title": "Wooden Fence Section",
+      "file": "models/props/stage1/stage1_wooden_fence_section.glb",
+      "polyforkId": "wooden-fence-section-5f04b7",
+      "kit": "nature-forest-kit-f29d6a",
+      "triangles": 428,
+      "size_m": {
+        "x": 2,
+        "y": 1.1,
+        "z": 0.24
+      },
+      "origin_y": 0,
+      "credit": "Wooden Fence Section by Polyfork (https://polyfork.dev/asset/wooden-fence-section-5f04b7), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/wooden-fence-section-5f04b7"
+    },
+    "stage1_fern_plant": {
+      "stage": "stage1",
+      "stageLabel": "속삭이는 숲",
+      "title": "Fern Plant",
+      "file": "models/props/stage1/stage1_fern_plant.glb",
+      "polyforkId": "fern-plant-1559b8",
+      "kit": "nature-forest-kit-f29d6a",
+      "triangles": 802,
+      "size_m": {
+        "x": 1.02,
+        "y": 0.72,
+        "z": 0.97
+      },
+      "origin_y": 0,
+      "credit": "Fern Plant by Polyfork (https://polyfork.dev/asset/fern-plant-1559b8), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/fern-plant-1559b8"
+    },
+    "stage1_stone_fire_pit": {
+      "stage": "stage1",
+      "stageLabel": "속삭이는 숲",
+      "title": "Stone Fire Pit",
+      "file": "models/props/stage1/stage1_stone_fire_pit.glb",
+      "polyforkId": "stone-fire-pit-4136b0",
+      "kit": "nature-forest-kit-f29d6a",
+      "triangles": 584,
+      "size_m": {
+        "x": 1.21,
+        "y": 0.42,
+        "z": 1.16
+      },
+      "origin_y": 0,
+      "credit": "Stone Fire Pit by Polyfork (https://polyfork.dev/asset/stone-fire-pit-4136b0), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/stone-fire-pit-4136b0"
+    },
+    "stage1_firewood_stack": {
+      "stage": "stage1",
+      "stageLabel": "속삭이는 숲",
+      "title": "Firewood Stack",
+      "file": "models/props/stage1/stage1_firewood_stack.glb",
+      "polyforkId": "firewood-stack-8a2899",
+      "kit": "nature-forest-kit-f29d6a",
+      "triangles": 752,
+      "size_m": {
+        "x": 1.18,
+        "y": 0.76,
+        "z": 0.66
+      },
+      "origin_y": 0,
+      "credit": "Firewood Stack by Polyfork (https://polyfork.dev/asset/firewood-stack-8a2899), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/firewood-stack-8a2899"
+    },
+    "stage1_forest_deer": {
+      "stage": "stage1",
+      "stageLabel": "속삭이는 숲",
+      "title": "Forest Deer",
+      "file": "models/props/stage1/stage1_forest_deer.glb",
+      "polyforkId": "forest-deer-fe648d",
+      "kit": "nature-forest-kit-f29d6a",
+      "triangles": 2230,
+      "size_m": {
+        "x": 0.84,
+        "y": 2.12,
+        "z": 1.44
+      },
+      "origin_y": 0,
+      "credit": "Forest Deer by Polyfork (https://polyfork.dev/asset/forest-deer-fe648d), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/forest-deer-fe648d"
+    },
+    "stage1_forest_rabbit": {
+      "stage": "stage1",
+      "stageLabel": "속삭이는 숲",
+      "title": "Forest Rabbit",
+      "file": "models/props/stage1/stage1_forest_rabbit.glb",
+      "polyforkId": "forest-rabbit-ea2da0",
+      "kit": "nature-forest-kit-f29d6a",
+      "triangles": 2074,
+      "size_m": {
+        "x": 0.2,
+        "y": 0.37,
+        "z": 0.4
+      },
+      "origin_y": 0,
+      "credit": "Forest Rabbit by Polyfork (https://polyfork.dev/asset/forest-rabbit-ea2da0), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/forest-rabbit-ea2da0"
+    },
+    "stage1_grass_terrain_blob": {
+      "stage": "stage1",
+      "stageLabel": "속삭이는 숲",
+      "title": "Grass Terrain Blob",
+      "file": "models/props/stage1/stage1_grass_terrain_blob.glb",
+      "polyforkId": "grass-terrain-blob-c4f709",
+      "kit": "nature-forest-kit-f29d6a",
+      "triangles": 390,
+      "size_m": {
+        "x": 9,
+        "y": 0.5,
+        "z": 8.18
+      },
+      "origin_y": 0,
+      "credit": "Grass Terrain Blob by Polyfork (https://polyfork.dev/asset/grass-terrain-blob-c4f709), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/grass-terrain-blob-c4f709"
+    },
+    "stage1_grass_tuft": {
+      "stage": "stage1",
+      "stageLabel": "속삭이는 숲",
+      "title": "Grass Tuft",
+      "file": "models/props/stage1/stage1_grass_tuft.glb",
+      "polyforkId": "grass-tuft-a40a08",
+      "kit": "nature-forest-kit-f29d6a",
+      "triangles": 368,
+      "size_m": {
+        "x": 0.34,
+        "y": 0.35,
+        "z": 0.31
+      },
+      "origin_y": 0,
+      "credit": "Grass Tuft by Polyfork (https://polyfork.dev/asset/grass-tuft-a40a08), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/grass-tuft-a40a08"
+    },
+    "stage1_lantern_post": {
+      "stage": "stage1",
+      "stageLabel": "속삭이는 숲",
+      "title": "Lantern Post",
+      "file": "models/props/stage1/stage1_lantern_post.glb",
+      "polyforkId": "lantern-post-f47665",
+      "kit": "nature-forest-kit-f29d6a",
+      "triangles": 482,
+      "size_m": {
+        "x": 0.47,
+        "y": 2.4,
+        "z": 0.93
+      },
+      "origin_y": 0,
+      "credit": "Lantern Post by Polyfork (https://polyfork.dev/asset/lantern-post-f47665), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/lantern-post-f47665"
+    },
+    "stage1_lily_pad": {
+      "stage": "stage1",
+      "stageLabel": "속삭이는 숲",
+      "title": "Lily Pad",
+      "file": "models/props/stage1/stage1_lily_pad.glb",
+      "polyforkId": "lily-pad-86edbb",
+      "kit": "nature-forest-kit-f29d6a",
+      "triangles": 398,
+      "size_m": {
+        "x": 0.6,
+        "y": 0.04,
+        "z": 0.59
+      },
+      "origin_y": 0,
+      "credit": "Lily Pad by Polyfork (https://polyfork.dev/asset/lily-pad-86edbb), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/lily-pad-86edbb"
+    },
+    "stage1_log_plank_bridge": {
+      "stage": "stage1",
+      "stageLabel": "속삭이는 숲",
+      "title": "Log Plank Bridge",
+      "file": "models/props/stage1/stage1_log_plank_bridge.glb",
+      "polyforkId": "log-plank-bridge-a5f74f",
+      "kit": "nature-forest-kit-f29d6a",
+      "triangles": 480,
+      "size_m": {
+        "x": 4,
+        "y": 1.33,
+        "z": 1.72
+      },
+      "origin_y": 0,
+      "credit": "Log Plank Bridge by Polyfork (https://polyfork.dev/asset/log-plank-bridge-a5f74f), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/log-plank-bridge-a5f74f"
+    },
+    "stage1_maple_tree": {
+      "stage": "stage1",
+      "stageLabel": "속삭이는 숲",
+      "title": "Maple Tree",
+      "file": "models/props/stage1/stage1_maple_tree.glb",
+      "polyforkId": "maple-tree-65fa12",
+      "kit": "nature-forest-kit-f29d6a",
+      "triangles": 422,
+      "size_m": {
+        "x": 3.29,
+        "y": 6.43,
+        "z": 3.21
+      },
+      "origin_y": 0,
+      "credit": "Maple Tree by Polyfork (https://polyfork.dev/asset/maple-tree-65fa12), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/maple-tree-65fa12"
+    },
+    "stage1_toadstool": {
+      "stage": "stage1",
+      "stageLabel": "속삭이는 숲",
+      "title": "Toadstool",
+      "file": "models/props/stage1/stage1_toadstool.glb",
+      "polyforkId": "toadstool-257a4a",
+      "kit": "nature-forest-kit-f29d6a",
+      "triangles": 604,
+      "size_m": {
+        "x": 0.33,
+        "y": 0.35,
+        "z": 0.32
+      },
+      "origin_y": 0,
+      "credit": "Toadstool by Polyfork (https://polyfork.dev/asset/toadstool-257a4a), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/toadstool-257a4a"
+    },
+    "stage1_broadleaf_oak": {
+      "stage": "stage1",
+      "stageLabel": "속삭이는 숲",
+      "title": "Broadleaf Oak",
+      "file": "models/props/stage1/stage1_broadleaf_oak.glb",
+      "polyforkId": "broadleaf-oak-997c22",
+      "kit": "nature-forest-kit-f29d6a",
+      "triangles": 457,
+      "size_m": {
+        "x": 4.5,
+        "y": 6.98,
+        "z": 3.57
+      },
+      "origin_y": 0,
+      "credit": "Broadleaf Oak by Polyfork (https://polyfork.dev/asset/broadleaf-oak-997c22), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/broadleaf-oak-997c22"
+    },
+    "stage1_round_path_stone": {
+      "stage": "stage1",
+      "stageLabel": "속삭이는 숲",
+      "title": "Round Path Stone",
+      "file": "models/props/stage1/stage1_round_path_stone.glb",
+      "polyforkId": "round-path-stone-4130f3",
+      "kit": "nature-forest-kit-f29d6a",
+      "triangles": 52,
+      "size_m": {
+        "x": 0.7,
+        "y": 0.06,
+        "z": 0.57
+      },
+      "origin_y": 0,
+      "credit": "Round Path Stone by Polyfork (https://polyfork.dev/asset/round-path-stone-4130f3), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/round-path-stone-4130f3"
+    },
+    "stage1_slab_path_stone": {
+      "stage": "stage1",
+      "stageLabel": "속삭이는 숲",
+      "title": "Slab Path Stone",
+      "file": "models/props/stage1/stage1_slab_path_stone.glb",
+      "polyforkId": "slab-path-stone-e526f7",
+      "kit": "nature-forest-kit-f29d6a",
+      "triangles": 76,
+      "size_m": {
+        "x": 1.1,
+        "y": 0.06,
+        "z": 0.7
+      },
+      "origin_y": 0,
+      "credit": "Slab Path Stone by Polyfork (https://polyfork.dev/asset/slab-path-stone-e526f7), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/slab-path-stone-e526f7"
+    },
+    "stage1_tall_pine_tree": {
+      "stage": "stage1",
+      "stageLabel": "속삭이는 숲",
+      "title": "Tall Pine Tree",
+      "file": "models/props/stage1/stage1_tall_pine_tree.glb",
+      "polyforkId": "tall-pine-tree-ab4108",
+      "kit": "nature-forest-kit-f29d6a",
+      "triangles": 350,
+      "size_m": {
+        "x": 3.67,
+        "y": 9,
+        "z": 3.56
+      },
+      "origin_y": 0,
+      "credit": "Tall Pine Tree by Polyfork (https://polyfork.dev/asset/tall-pine-tree-ab4108), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/tall-pine-tree-ab4108"
+    },
+    "stage1_young_pine": {
+      "stage": "stage1",
+      "stageLabel": "속삭이는 숲",
+      "title": "Young Pine",
+      "file": "models/props/stage1/stage1_young_pine.glb",
+      "polyforkId": "young-pine-0d7695",
+      "kit": "nature-forest-kit-f29d6a",
+      "triangles": 270,
+      "size_m": {
+        "x": 1.84,
+        "y": 3,
+        "z": 1.87
+      },
+      "origin_y": 0,
+      "credit": "Young Pine by Polyfork (https://polyfork.dev/asset/young-pine-0d7695), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/young-pine-0d7695"
+    },
+    "stage1_red_fox": {
+      "stage": "stage1",
+      "stageLabel": "속삭이는 숲",
+      "title": "Red Fox",
+      "file": "models/props/stage1/stage1_red_fox.glb",
+      "polyforkId": "red-fox-5c3bc0",
+      "kit": "nature-forest-kit-f29d6a",
+      "triangles": 2280,
+      "size_m": {
+        "x": 0.38,
+        "y": 0.95,
+        "z": 1.47
+      },
+      "origin_y": 0,
+      "credit": "Red Fox by Polyfork (https://polyfork.dev/asset/red-fox-5c3bc0), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/red-fox-5c3bc0"
+    },
+    "stage1_medium_rock": {
+      "stage": "stage1",
+      "stageLabel": "속삭이는 숲",
+      "title": "Medium Rock",
+      "file": "models/props/stage1/stage1_medium_rock.glb",
+      "polyforkId": "medium-rock-e08405",
+      "kit": "nature-forest-kit-f29d6a",
+      "triangles": 374,
+      "size_m": {
+        "x": 1,
+        "y": 0.5,
+        "z": 0.95
+      },
+      "origin_y": 0,
+      "credit": "Medium Rock by Polyfork (https://polyfork.dev/asset/medium-rock-e08405), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/medium-rock-e08405"
+    },
+    "stage1_small_rock": {
+      "stage": "stage1",
+      "stageLabel": "속삭이는 숲",
+      "title": "Small Rock",
+      "file": "models/props/stage1/stage1_small_rock.glb",
+      "polyforkId": "small-rock-db33a7",
+      "kit": "nature-forest-kit-f29d6a",
+      "triangles": 202,
+      "size_m": {
+        "x": 0.35,
+        "y": 0.22,
+        "z": 0.26
+      },
+      "origin_y": 0,
+      "credit": "Small Rock by Polyfork (https://polyfork.dev/asset/small-rock-db33a7), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/small-rock-db33a7"
+    },
+    "stage1_rock_spire": {
+      "stage": "stage1",
+      "stageLabel": "속삭이는 숲",
+      "title": "Rock Spire",
+      "file": "models/props/stage1/stage1_rock_spire.glb",
+      "polyforkId": "rock-spire-13819c",
+      "kit": "nature-forest-kit-f29d6a",
+      "triangles": 378,
+      "size_m": {
+        "x": 1.29,
+        "y": 3.5,
+        "z": 1.46
+      },
+      "origin_y": 0,
+      "credit": "Rock Spire by Polyfork (https://polyfork.dev/asset/rock-spire-13819c), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/rock-spire-13819c"
+    },
+    "stage1_stone_well": {
+      "stage": "stage1",
+      "stageLabel": "속삭이는 숲",
+      "title": "Stone Well",
+      "file": "models/props/stage1/stage1_stone_well.glb",
+      "polyforkId": "stone-well-2b4717",
+      "kit": "nature-forest-kit-f29d6a",
+      "triangles": 608,
+      "size_m": {
+        "x": 1.57,
+        "y": 1.86,
+        "z": 1.6
+      },
+      "origin_y": 0,
+      "credit": "Stone Well by Polyfork (https://polyfork.dev/asset/stone-well-2b4717), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/stone-well-2b4717"
+    },
+    "stage1_nature_forest_terrain": {
+      "stage": "stage1",
+      "stageLabel": "속삭이는 숲",
+      "title": "Nature & Forest Terrain",
+      "file": "models/props/stage1/stage1_nature_forest_terrain.glb",
+      "polyforkId": "nature-forest-terrain-0e61f0",
+      "kit": "nature-forest-kit-f29d6a",
+      "triangles": 26540,
+      "size_m": {
+        "x": 92,
+        "y": 17.93,
+        "z": 101
+      },
+      "origin_y": -12.862,
+      "credit": "Nature & Forest Terrain by Polyfork (https://polyfork.dev/asset/nature-forest-terrain-0e61f0), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/nature-forest-terrain-0e61f0"
+    },
+    "stage1_trail_signpost": {
+      "stage": "stage1",
+      "stageLabel": "속삭이는 숲",
+      "title": "Trail Signpost",
+      "file": "models/props/stage1/stage1_trail_signpost.glb",
+      "polyforkId": "trail-signpost-bd29a7",
+      "kit": "nature-forest-kit-f29d6a",
+      "triangles": 420,
+      "size_m": {
+        "x": 1.15,
+        "y": 2,
+        "z": 1.16
+      },
+      "origin_y": 0,
+      "credit": "Trail Signpost by Polyfork (https://polyfork.dev/asset/trail-signpost-bd29a7), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/trail-signpost-bd29a7"
+    },
+    "stage1_tree_stump": {
+      "stage": "stage1",
+      "stageLabel": "속삭이는 숲",
+      "title": "Tree Stump",
+      "file": "models/props/stage1/stage1_tree_stump.glb",
+      "polyforkId": "tree-stump-ec3f48",
+      "kit": "nature-forest-kit-f29d6a",
+      "triangles": 505,
+      "size_m": {
+        "x": 0.82,
+        "y": 0.48,
+        "z": 0.72
+      },
+      "origin_y": 0,
+      "credit": "Tree Stump by Polyfork (https://polyfork.dev/asset/tree-stump-ec3f48), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/tree-stump-ec3f48"
+    },
+    "stage1_water_blob": {
+      "stage": "stage1",
+      "stageLabel": "속삭이는 숲",
+      "title": "Water Blob",
+      "file": "models/props/stage1/stage1_water_blob.glb",
+      "polyforkId": "water-blob-f266b8",
+      "kit": "nature-forest-kit-f29d6a",
+      "triangles": 320,
+      "size_m": {
+        "x": 8,
+        "y": 0.04,
+        "z": 6.8
+      },
+      "origin_y": 0,
+      "credit": "Water Blob by Polyfork (https://polyfork.dev/asset/water-blob-f266b8), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/water-blob-f266b8"
+    },
+    "stage1_wildflower": {
+      "stage": "stage1",
+      "stageLabel": "속삭이는 숲",
+      "title": "Wildflower",
+      "file": "models/props/stage1/stage1_wildflower.glb",
+      "polyforkId": "wildflower-68d3a1",
+      "kit": "nature-forest-kit-f29d6a",
+      "triangles": 405,
+      "size_m": {
+        "x": 0.15,
+        "y": 0.4,
+        "z": 0.15
+      },
+      "origin_y": 0,
+      "credit": "Wildflower by Polyfork (https://polyfork.dev/asset/wildflower-68d3a1), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/wildflower-68d3a1"
+    },
+    "stage1_wooden_barrel": {
+      "stage": "stage1",
+      "stageLabel": "속삭이는 숲",
+      "title": "Wooden Barrel",
+      "file": "models/props/stage1/stage1_wooden_barrel.glb",
+      "polyforkId": "wooden-barrel-ab50ca",
+      "kit": "nature-forest-kit-f29d6a",
+      "triangles": 540,
+      "size_m": {
+        "x": 0.6,
+        "y": 0.9,
+        "z": 0.58
+      },
+      "origin_y": 0,
+      "credit": "Wooden Barrel by Polyfork (https://polyfork.dev/asset/wooden-barrel-ab50ca), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/wooden-barrel-ab50ca"
+    },
+    "stage1_wooden_bench": {
+      "stage": "stage1",
+      "stageLabel": "속삭이는 숲",
+      "title": "Wooden Bench",
+      "file": "models/props/stage1/stage1_wooden_bench.glb",
+      "polyforkId": "wooden-bench-02e2c8",
+      "kit": "nature-forest-kit-f29d6a",
+      "triangles": 564,
+      "size_m": {
+        "x": 1.8,
+        "y": 0.9,
+        "z": 0.53
+      },
+      "origin_y": 0,
+      "credit": "Wooden Bench by Polyfork (https://polyfork.dev/asset/wooden-bench-02e2c8), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/wooden-bench-02e2c8"
+    },
+    "stage2_book_trolley": {
+      "stage": "stage2",
+      "stageLabel": "무너진 대도서관",
+      "title": "Book Trolley",
+      "file": "models/props/stage2/stage2_book_trolley.glb",
+      "polyforkId": "book-trolley-18b1e1",
+      "kit": "university-959b66",
+      "triangles": 678,
+      "size_m": {
+        "x": 1,
+        "y": 1.08,
+        "z": 0.5
+      },
+      "origin_y": 0,
+      "credit": "Book Trolley by Polyfork (https://polyfork.dev/asset/book-trolley-18b1e1), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/book-trolley-18b1e1"
+    },
+    "stage2_colonnade_run": {
+      "stage": "stage2",
+      "stageLabel": "무너진 대도서관",
+      "title": "Colonnade Run",
+      "file": "models/props/stage2/stage2_colonnade_run.glb",
+      "polyforkId": "colonnade-run-d765e3",
+      "kit": "university-959b66",
+      "triangles": 536,
+      "size_m": {
+        "x": 3,
+        "y": 3.5,
+        "z": 1
+      },
+      "origin_y": 0,
+      "credit": "Colonnade Run by Polyfork (https://polyfork.dev/asset/colonnade-run-d765e3), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/colonnade-run-d765e3"
+    },
+    "stage2_faculty_office_book_wall": {
+      "stage": "stage2",
+      "stageLabel": "무너진 대도서관",
+      "title": "Faculty Office Book Wall",
+      "file": "models/props/stage2/stage2_faculty_office_book_wall.glb",
+      "polyforkId": "faculty-office-book-wall-c2d532",
+      "kit": "university-959b66",
+      "triangles": 813,
+      "size_m": {
+        "x": 1,
+        "y": 2.1,
+        "z": 0.31
+      },
+      "origin_y": 0,
+      "credit": "Faculty Office Book Wall by Polyfork (https://polyfork.dev/asset/faculty-office-book-wall-c2d532), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/faculty-office-book-wall-c2d532"
+    },
+    "stage2_floor_tile": {
+      "stage": "stage2",
+      "stageLabel": "무너진 대도서관",
+      "title": "Floor Tile",
+      "file": "models/props/stage2/stage2_floor_tile.glb",
+      "polyforkId": "floor-tile-1x1m-terrazzo-a14ffa",
+      "kit": "university-959b66",
+      "triangles": 1488,
+      "size_m": {
+        "x": 1,
+        "y": 0.05,
+        "z": 1
+      },
+      "origin_y": 0,
+      "credit": "Floor Tile by Polyfork (https://polyfork.dev/asset/floor-tile-1x1m-terrazzo-a14ffa), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/floor-tile-1x1m-terrazzo-a14ffa"
+    },
+    "stage2_founder_s_statue": {
+      "stage": "stage2",
+      "stageLabel": "무너진 대도서관",
+      "title": "Founder's Statue",
+      "file": "models/props/stage2/stage2_founder_s_statue.glb",
+      "polyforkId": "founder-s-statue-71c269",
+      "kit": "university-959b66",
+      "triangles": 725,
+      "size_m": {
+        "x": 1.5,
+        "y": 4.01,
+        "z": 1.5
+      },
+      "origin_y": 0,
+      "credit": "Founder's Statue by Polyfork (https://polyfork.dev/asset/founder-s-statue-71c269), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/founder-s-statue-71c269"
+    },
+    "stage2_grand_stair_flight_between_levels": {
+      "stage": "stage2",
+      "stageLabel": "무너진 대도서관",
+      "title": "Grand Stair Flight (Between Levels)",
+      "file": "models/props/stage2/stage2_grand_stair_flight_between_levels.glb",
+      "polyforkId": "grand-stair-flight-between-343516",
+      "kit": "university-959b66",
+      "triangles": 1146,
+      "size_m": {
+        "x": 3,
+        "y": 3.18,
+        "z": 4
+      },
+      "origin_y": 0,
+      "credit": "Grand Stair Flight (Between Levels) by Polyfork (https://polyfork.dev/asset/grand-stair-flight-between-343516), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/grand-stair-flight-between-343516"
+    },
+    "stage2_issue_desk_with_gate": {
+      "stage": "stage2",
+      "stageLabel": "무너진 대도서관",
+      "title": "Issue Desk (with Gate)",
+      "file": "models/props/stage2/stage2_issue_desk_with_gate.glb",
+      "polyforkId": "issue-desk-with-gate-3ee2a9",
+      "kit": "university-959b66",
+      "triangles": 684,
+      "size_m": {
+        "x": 4,
+        "y": 2.34,
+        "z": 1.75
+      },
+      "origin_y": 0,
+      "credit": "Issue Desk (with Gate) by Polyfork (https://polyfork.dev/asset/issue-desk-with-gate-3ee2a9), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/issue-desk-with-gate-3ee2a9"
+    },
+    "stage2_lecturer_s_podium": {
+      "stage": "stage2",
+      "stageLabel": "무너진 대도서관",
+      "title": "Lecturer's Podium",
+      "file": "models/props/stage2/stage2_lecturer_s_podium.glb",
+      "polyforkId": "lecturer-s-podium-e77fe6",
+      "kit": "university-959b66",
+      "triangles": 174,
+      "size_m": {
+        "x": 1,
+        "y": 1.38,
+        "z": 0.5
+      },
+      "origin_y": 0,
+      "credit": "Lecturer's Podium by Polyfork (https://polyfork.dev/asset/lecturer-s-podium-e77fe6), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/lecturer-s-podium-e77fe6"
+    },
+    "stage2_library_book_stack_double_sided": {
+      "stage": "stage2",
+      "stageLabel": "무너진 대도서관",
+      "title": "Library Book Stack (Double-Sided)",
+      "file": "models/props/stage2/stage2_library_book_stack_double_sided.glb",
+      "polyforkId": "library-book-stack-double-ce8d7f",
+      "kit": "university-959b66",
+      "triangles": 1274,
+      "size_m": {
+        "x": 2,
+        "y": 1.85,
+        "z": 1
+      },
+      "origin_y": 0,
+      "credit": "Library Book Stack (Double-Sided) by Polyfork (https://polyfork.dev/asset/library-book-stack-double-ce8d7f), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/library-book-stack-double-ce8d7f"
+    },
+    "stage2_reading_table_lit_lamps": {
+      "stage": "stage2",
+      "stageLabel": "무너진 대도서관",
+      "title": "Reading Table (Lit Lamps)",
+      "file": "models/props/stage2/stage2_reading_table_lit_lamps.glb",
+      "polyforkId": "reading-table-lit-lamps-efeb3e",
+      "kit": "university-959b66",
+      "triangles": 598,
+      "size_m": {
+        "x": 3,
+        "y": 1.23,
+        "z": 1
+      },
+      "origin_y": 0,
+      "credit": "Reading Table (Lit Lamps) by Polyfork (https://polyfork.dev/asset/reading-table-lit-lamps-efeb3e), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/reading-table-lit-lamps-efeb3e"
+    },
+    "stage2_study_carrel": {
+      "stage": "stage2",
+      "stageLabel": "무너진 대도서관",
+      "title": "Study Carrel",
+      "file": "models/props/stage2/stage2_study_carrel.glb",
+      "polyforkId": "study-carrel-c2fa34",
+      "kit": "university-959b66",
+      "triangles": 312,
+      "size_m": {
+        "x": 1.5,
+        "y": 1.76,
+        "z": 1
+      },
+      "origin_y": 0,
+      "credit": "Study Carrel by Polyfork (https://polyfork.dev/asset/study-carrel-c2fa34), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/study-carrel-c2fa34"
+    },
+    "stage2_alchemy_workbench": {
+      "stage": "stage2",
+      "stageLabel": "무너진 대도서관",
+      "title": "Alchemy Workbench",
+      "file": "models/props/stage2/stage2_alchemy_workbench.glb",
+      "polyforkId": "alchemy-workbench-117b73",
+      "kit": "dungeon-crypt-c27d93",
+      "triangles": 658,
+      "size_m": {
+        "x": 2.02,
+        "y": 1.52,
+        "z": 0.7
+      },
+      "origin_y": 0,
+      "credit": "Alchemy Workbench by Polyfork (https://polyfork.dev/asset/alchemy-workbench-117b73), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/alchemy-workbench-117b73"
+    },
+    "stage2_bubbling_retort": {
+      "stage": "stage2",
+      "stageLabel": "무너진 대도서관",
+      "title": "Bubbling Retort",
+      "file": "models/props/stage2/stage2_bubbling_retort.glb",
+      "polyforkId": "bubbling-retort-4f9721",
+      "kit": "dungeon-crypt-c27d93",
+      "triangles": 753,
+      "size_m": {
+        "x": 0.31,
+        "y": 0.44,
+        "z": 0.22
+      },
+      "origin_y": 0,
+      "credit": "Bubbling Retort by Polyfork (https://polyfork.dev/asset/bubbling-retort-4f9721), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/bubbling-retort-4f9721"
+    },
+    "stage2_candle_spike_cluster": {
+      "stage": "stage2",
+      "stageLabel": "무너진 대도서관",
+      "title": "Candle Spike Cluster",
+      "file": "models/props/stage2/stage2_candle_spike_cluster.glb",
+      "polyforkId": "candle-spike-cluster-d7c566",
+      "kit": "dungeon-crypt-c27d93",
+      "triangles": 661,
+      "size_m": {
+        "x": 0.17,
+        "y": 0.42,
+        "z": 0.18
+      },
+      "origin_y": 0,
+      "credit": "Candle Spike Cluster by Polyfork (https://polyfork.dev/asset/candle-spike-cluster-d7c566), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/candle-spike-cluster-d7c566"
+    },
+    "stage2_cauldron_on_coals": {
+      "stage": "stage2",
+      "stageLabel": "무너진 대도서관",
+      "title": "Cauldron On Coals",
+      "file": "models/props/stage2/stage2_cauldron_on_coals.glb",
+      "polyforkId": "cauldron-on-coals-ddbab6",
+      "kit": "dungeon-crypt-c27d93",
+      "triangles": 755,
+      "size_m": {
+        "x": 1.33,
+        "y": 1.67,
+        "z": 1.29
+      },
+      "origin_y": 0,
+      "credit": "Cauldron On Coals by Polyfork (https://polyfork.dev/asset/cauldron-on-coals-ddbab6), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/cauldron-on-coals-ddbab6"
+    },
+    "stage2_chained_book_lectern": {
+      "stage": "stage2",
+      "stageLabel": "무너진 대도서관",
+      "title": "Chained Book Lectern",
+      "file": "models/props/stage2/stage2_chained_book_lectern.glb",
+      "polyforkId": "chained-book-lectern-381597",
+      "kit": "dungeon-crypt-c27d93",
+      "triangles": 724,
+      "size_m": {
+        "x": 0.5,
+        "y": 1.3,
+        "z": 0.47
+      },
+      "origin_y": 0,
+      "credit": "Chained Book Lectern by Polyfork (https://polyfork.dev/asset/chained-book-lectern-381597), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/chained-book-lectern-381597"
+    },
+    "stage2_clay_storage_pot": {
+      "stage": "stage2",
+      "stageLabel": "무너진 대도서관",
+      "title": "Clay Storage Pot",
+      "file": "models/props/stage2/stage2_clay_storage_pot.glb",
+      "polyforkId": "clay-storage-pot-626452",
+      "kit": "dungeon-crypt-c27d93",
+      "triangles": 406,
+      "size_m": {
+        "x": 0.48,
+        "y": 0.5,
+        "z": 0.39
+      },
+      "origin_y": 0,
+      "credit": "Clay Storage Pot by Polyfork (https://polyfork.dev/asset/clay-storage-pot-626452), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/clay-storage-pot-626452"
+    },
+    "stage2_dungeon_wall_module": {
+      "stage": "stage2",
+      "stageLabel": "무너진 대도서관",
+      "title": "Dungeon Wall Module",
+      "file": "models/props/stage2/stage2_dungeon_wall_module.glb",
+      "polyforkId": "dungeon-wall-module-a537b3",
+      "kit": "dungeon-crypt-c27d93",
+      "triangles": 958,
+      "size_m": {
+        "x": 2,
+        "y": 3,
+        "z": 0.4
+      },
+      "origin_y": 0,
+      "credit": "Dungeon Wall Module by Polyfork (https://polyfork.dev/asset/dungeon-wall-module-a537b3), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/dungeon-wall-module-a537b3"
+    },
+    "stage2_fallen_ashlar_block": {
+      "stage": "stage2",
+      "stageLabel": "무너진 대도서관",
+      "title": "Fallen Ashlar Block",
+      "file": "models/props/stage2/stage2_fallen_ashlar_block.glb",
+      "polyforkId": "fallen-ashlar-block-87824e",
+      "kit": "dungeon-crypt-c27d93",
+      "triangles": 474,
+      "size_m": {
+        "x": 0.65,
+        "y": 0.26,
+        "z": 0.29
+      },
+      "origin_y": 0,
+      "credit": "Fallen Ashlar Block by Polyfork (https://polyfork.dev/asset/fallen-ashlar-block-87824e), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/fallen-ashlar-block-87824e"
+    },
+    "stage2_flagstone_floor_tile": {
+      "stage": "stage2",
+      "stageLabel": "무너진 대도서관",
+      "title": "Flagstone Floor Tile",
+      "file": "models/props/stage2/stage2_flagstone_floor_tile.glb",
+      "polyforkId": "flagstone-floor-tile-2a04ea",
+      "kit": "dungeon-crypt-c27d93",
+      "triangles": 138,
+      "size_m": {
+        "x": 2,
+        "y": 0.05,
+        "z": 2
+      },
+      "origin_y": 0,
+      "credit": "Flagstone Floor Tile by Polyfork (https://polyfork.dev/asset/flagstone-floor-tile-2a04ea), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/flagstone-floor-tile-2a04ea"
+    },
+    "stage2_hooded_lantern": {
+      "stage": "stage2",
+      "stageLabel": "무너진 대도서관",
+      "title": "Hooded Lantern",
+      "file": "models/props/stage2/stage2_hooded_lantern.glb",
+      "polyforkId": "hooded-lantern-b60021",
+      "kit": "dungeon-crypt-c27d93",
+      "triangles": 597,
+      "size_m": {
+        "x": 0.17,
+        "y": 0.35,
+        "z": 0.21
+      },
+      "origin_y": 0,
+      "credit": "Hooded Lantern by Polyfork (https://polyfork.dev/asset/hooded-lantern-b60021), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/hooded-lantern-b60021"
+    },
+    "stage2_iron_bound_door": {
+      "stage": "stage2",
+      "stageLabel": "무너진 대도서관",
+      "title": "Iron-Bound Door",
+      "file": "models/props/stage2/stage2_iron_bound_door.glb",
+      "polyforkId": "iron-bound-door-e0e953",
+      "kit": "dungeon-crypt-c27d93",
+      "triangles": 768,
+      "size_m": {
+        "x": 1.5,
+        "y": 2.35,
+        "z": 0.38
+      },
+      "origin_y": 0,
+      "credit": "Iron-Bound Door by Polyfork (https://polyfork.dev/asset/iron-bound-door-e0e953), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/iron-bound-door-e0e953"
+    },
+    "stage2_iron_chandelier": {
+      "stage": "stage2",
+      "stageLabel": "무너진 대도서관",
+      "title": "Iron Chandelier",
+      "file": "models/props/stage2/stage2_iron_chandelier.glb",
+      "polyforkId": "iron-chandelier-1337dc",
+      "kit": "dungeon-crypt-c27d93",
+      "triangles": 754,
+      "size_m": {
+        "x": 1.2,
+        "y": 1.27,
+        "z": 1.17
+      },
+      "origin_y": 1.725,
+      "credit": "Iron Chandelier by Polyfork (https://polyfork.dev/asset/iron-chandelier-1337dc), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/iron-chandelier-1337dc"
+    },
+    "stage2_moss_patch": {
+      "stage": "stage2",
+      "stageLabel": "무너진 대도서관",
+      "title": "Moss Patch",
+      "file": "models/props/stage2/stage2_moss_patch.glb",
+      "polyforkId": "moss-patch-3ecaf4",
+      "kit": "dungeon-crypt-c27d93",
+      "triangles": 565,
+      "size_m": {
+        "x": 0.71,
+        "y": 0.08,
+        "z": 0.59
+      },
+      "origin_y": 0,
+      "credit": "Moss Patch by Polyfork (https://polyfork.dev/asset/moss-patch-3ecaf4), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/moss-patch-3ecaf4"
+    },
+    "stage2_oak_barrel": {
+      "stage": "stage2",
+      "stageLabel": "무너진 대도서관",
+      "title": "Oak Barrel",
+      "file": "models/props/stage2/stage2_oak_barrel.glb",
+      "polyforkId": "oak-barrel-b65311",
+      "kit": "dungeon-crypt-c27d93",
+      "triangles": 666,
+      "size_m": {
+        "x": 0.6,
+        "y": 0.91,
+        "z": 0.59
+      },
+      "origin_y": 0,
+      "credit": "Oak Barrel by Polyfork (https://polyfork.dev/asset/oak-barrel-b65311), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/oak-barrel-b65311"
+    },
+    "stage2_potion_bottle": {
+      "stage": "stage2",
+      "stageLabel": "무너진 대도서관",
+      "title": "Potion Bottle",
+      "file": "models/props/stage2/stage2_potion_bottle.glb",
+      "polyforkId": "potion-bottle-099ad7",
+      "kit": "dungeon-crypt-c27d93",
+      "triangles": 628,
+      "size_m": {
+        "x": 0.08,
+        "y": 0.18,
+        "z": 0.08
+      },
+      "origin_y": 0,
+      "credit": "Potion Bottle by Polyfork (https://polyfork.dev/asset/potion-bottle-099ad7), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/potion-bottle-099ad7"
+    },
+    "stage2_root_intrusion": {
+      "stage": "stage2",
+      "stageLabel": "무너진 대도서관",
+      "title": "Root Intrusion",
+      "file": "models/props/stage2/stage2_root_intrusion.glb",
+      "polyforkId": "root-intrusion-9f1eaa",
+      "kit": "dungeon-crypt-c27d93",
+      "triangles": 669,
+      "size_m": {
+        "x": 0.95,
+        "y": 1.43,
+        "z": 1.48
+      },
+      "origin_y": 0.85,
+      "credit": "Root Intrusion by Polyfork (https://polyfork.dev/asset/root-intrusion-9f1eaa), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/root-intrusion-9f1eaa"
+    },
+    "stage2_scroll_rack": {
+      "stage": "stage2",
+      "stageLabel": "무너진 대도서관",
+      "title": "Scroll Rack",
+      "file": "models/props/stage2/stage2_scroll_rack.glb",
+      "polyforkId": "scroll-rack-f465dd",
+      "kit": "dungeon-crypt-c27d93",
+      "triangles": 774,
+      "size_m": {
+        "x": 1.5,
+        "y": 1.8,
+        "z": 0.5
+      },
+      "origin_y": 0,
+      "credit": "Scroll Rack by Polyfork (https://polyfork.dev/asset/scroll-rack-f465dd), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/scroll-rack-f465dd"
+    },
+    "stage2_spiral_stair_shaft": {
+      "stage": "stage2",
+      "stageLabel": "무너진 대도서관",
+      "title": "Spiral Stair Shaft",
+      "file": "models/props/stage2/stage2_spiral_stair_shaft.glb",
+      "polyforkId": "spiral-stair-shaft-80de26",
+      "kit": "dungeon-crypt-c27d93",
+      "triangles": 1614,
+      "size_m": {
+        "x": 2,
+        "y": 3,
+        "z": 2
+      },
+      "origin_y": 0,
+      "credit": "Spiral Stair Shaft by Polyfork (https://polyfork.dev/asset/spiral-stair-shaft-80de26), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/spiral-stair-shaft-80de26"
+    },
+    "stage2_standing_brazier": {
+      "stage": "stage2",
+      "stageLabel": "무너진 대도서관",
+      "title": "Standing Brazier",
+      "file": "models/props/stage2/stage2_standing_brazier.glb",
+      "polyforkId": "standing-brazier-c9e4ee",
+      "kit": "dungeon-crypt-c27d93",
+      "triangles": 680,
+      "size_m": {
+        "x": 0.92,
+        "y": 1.11,
+        "z": 0.97
+      },
+      "origin_y": 0,
+      "credit": "Standing Brazier by Polyfork (https://polyfork.dev/asset/standing-brazier-c9e4ee), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/standing-brazier-c9e4ee"
+    },
+    "stage2_stone_stair_flight": {
+      "stage": "stage2",
+      "stageLabel": "무너진 대도서관",
+      "title": "Stone Stair Flight",
+      "file": "models/props/stage2/stage2_stone_stair_flight.glb",
+      "polyforkId": "stone-stair-flight-d621e2",
+      "kit": "dungeon-crypt-c27d93",
+      "triangles": 1012,
+      "size_m": {
+        "x": 2,
+        "y": 3,
+        "z": 4
+      },
+      "origin_y": 0,
+      "credit": "Stone Stair Flight by Polyfork (https://polyfork.dev/asset/stone-stair-flight-d621e2), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/stone-stair-flight-d621e2"
+    },
+    "stage2_timber_crate": {
+      "stage": "stage2",
+      "stageLabel": "무너진 대도서관",
+      "title": "Timber Crate",
+      "file": "models/props/stage2/stage2_timber_crate.glb",
+      "polyforkId": "timber-crate-ba0739",
+      "kit": "dungeon-crypt-c27d93",
+      "triangles": 588,
+      "size_m": {
+        "x": 0.79,
+        "y": 0.66,
+        "z": 0.79
+      },
+      "origin_y": 0,
+      "credit": "Timber Crate by Polyfork (https://polyfork.dev/asset/timber-crate-ba0739), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/timber-crate-ba0739"
+    },
+    "stage2_timber_trestle_table": {
+      "stage": "stage2",
+      "stageLabel": "무너진 대도서관",
+      "title": "Timber Trestle Table",
+      "file": "models/props/stage2/stage2_timber_trestle_table.glb",
+      "polyforkId": "timber-trestle-table-024d88",
+      "kit": "dungeon-crypt-c27d93",
+      "triangles": 540,
+      "size_m": {
+        "x": 1.6,
+        "y": 0.76,
+        "z": 0.7
+      },
+      "origin_y": 0,
+      "credit": "Timber Trestle Table by Polyfork (https://polyfork.dev/asset/timber-trestle-table-024d88), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/timber-trestle-table-024d88"
+    },
+    "stage2_wall_torch_bracket": {
+      "stage": "stage2",
+      "stageLabel": "무너진 대도서관",
+      "title": "Wall Torch Bracket",
+      "file": "models/props/stage2/stage2_wall_torch_bracket.glb",
+      "polyforkId": "wall-torch-bracket-f5ad14",
+      "kit": "dungeon-crypt-c27d93",
+      "triangles": 704,
+      "size_m": {
+        "x": 0.22,
+        "y": 0.63,
+        "z": 0.21
+      },
+      "origin_y": 2.1,
+      "credit": "Wall Torch Bracket by Polyfork (https://polyfork.dev/asset/wall-torch-bracket-f5ad14), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/wall-torch-bracket-f5ad14"
+    },
+    "stage2_iron_banded_strongbox": {
+      "stage": "stage2",
+      "stageLabel": "무너진 대도서관",
+      "title": "Iron-Banded Strongbox",
+      "file": "models/props/stage2/stage2_iron_banded_strongbox.glb",
+      "polyforkId": "iron-banded-strongbox-698383",
+      "kit": "dungeon-crypt-c27d93",
+      "triangles": 690,
+      "size_m": {
+        "x": 1,
+        "y": 0.55,
+        "z": 0.5
+      },
+      "origin_y": 0,
+      "credit": "Iron-Banded Strongbox by Polyfork (https://polyfork.dev/asset/iron-banded-strongbox-698383), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/iron-banded-strongbox-698383"
+    },
+    "stage2_bookshelf": {
+      "stage": "stage2",
+      "stageLabel": "무너진 대도서관",
+      "title": "Bookshelf",
+      "file": "models/props/stage2/stage2_bookshelf.glb",
+      "polyforkId": "bookshelf-5e881a",
+      "kit": null,
+      "triangles": 120,
+      "size_m": {
+        "x": 0.44,
+        "y": 0.4,
+        "z": 0.2
+      },
+      "origin_y": 0,
+      "credit": "Bookshelf by Polyfork (https://polyfork.dev/asset/bookshelf-5e881a), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/bookshelf-5e881a"
+    },
+    "stage2_alcove_bookcase": {
+      "stage": "stage2",
+      "stageLabel": "무너진 대도서관",
+      "title": "Alcove Bookcase",
+      "file": "models/props/stage2/stage2_alcove_bookcase.glb",
+      "polyforkId": "alcove-bookcase-83894d",
+      "kit": "open-plan-b2ebd3",
+      "triangles": 520,
+      "size_m": {
+        "x": 1,
+        "y": 2.2,
+        "z": 0.67
+      },
+      "origin_y": 0,
+      "credit": "Alcove Bookcase by Polyfork (https://polyfork.dev/asset/alcove-bookcase-83894d), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/alcove-bookcase-83894d"
+    },
+    "stage2_library_shelf_run": {
+      "stage": "stage2",
+      "stageLabel": "무너진 대도서관",
+      "title": "Library Shelf Run",
+      "file": "models/props/stage2/stage2_library_shelf_run.glb",
+      "polyforkId": "library-shelf-run-570904",
+      "kit": "school-456eda",
+      "triangles": 666,
+      "size_m": {
+        "x": 1,
+        "y": 1.5,
+        "z": 0.25
+      },
+      "origin_y": 0,
+      "credit": "Library Shelf Run by Polyfork (https://polyfork.dev/asset/library-shelf-run-570904), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/library-shelf-run-570904"
+    },
+    "stage3_alpine_chalet": {
+      "stage": "stage3",
+      "stageLabel": "얼어붙은 시계탑",
+      "title": "Alpine Chalet",
+      "file": "models/props/stage3/stage3_alpine_chalet.glb",
+      "polyforkId": "alpine-chalet-47d59e",
+      "kit": "alpine-and-snow-092f66",
+      "triangles": 1742,
+      "size_m": {
+        "x": 10,
+        "y": 7.42,
+        "z": 8
+      },
+      "origin_y": 0,
+      "credit": "Alpine Chalet by Polyfork (https://polyfork.dev/asset/alpine-chalet-47d59e), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/alpine-chalet-47d59e"
+    },
+    "stage3_alpine_fingerpost": {
+      "stage": "stage3",
+      "stageLabel": "얼어붙은 시계탑",
+      "title": "Alpine Fingerpost",
+      "file": "models/props/stage3/stage3_alpine_fingerpost.glb",
+      "polyforkId": "alpine-fingerpost-d47349",
+      "kit": "alpine-and-snow-092f66",
+      "triangles": 646,
+      "size_m": {
+        "x": 1.5,
+        "y": 2.46,
+        "z": 1.5
+      },
+      "origin_y": 0,
+      "credit": "Alpine Fingerpost by Polyfork (https://polyfork.dev/asset/alpine-fingerpost-d47349), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/alpine-fingerpost-d47349"
+    },
+    "stage3_alpine_bench": {
+      "stage": "stage3",
+      "stageLabel": "얼어붙은 시계탑",
+      "title": "Alpine Bench",
+      "file": "models/props/stage3/stage3_alpine_bench.glb",
+      "polyforkId": "alpine-bench-32fa62",
+      "kit": "alpine-and-snow-092f66",
+      "triangles": 740,
+      "size_m": {
+        "x": 2,
+        "y": 1.02,
+        "z": 0.71
+      },
+      "origin_y": 0,
+      "credit": "Alpine Bench by Polyfork (https://polyfork.dev/asset/alpine-bench-32fa62), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/alpine-bench-32fa62"
+    },
+    "stage3_bare_mountain_rowan": {
+      "stage": "stage3",
+      "stageLabel": "얼어붙은 시계탑",
+      "title": "Bare Mountain Rowan",
+      "file": "models/props/stage3/stage3_bare_mountain_rowan.glb",
+      "polyforkId": "bare-mountain-rowan-10e72e",
+      "kit": "alpine-and-snow-092f66",
+      "triangles": 990,
+      "size_m": {
+        "x": 4.37,
+        "y": 5.03,
+        "z": 4.3
+      },
+      "origin_y": 0,
+      "credit": "Bare Mountain Rowan by Polyfork (https://polyfork.dev/asset/bare-mountain-rowan-10e72e), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/bare-mountain-rowan-10e72e"
+    },
+    "stage3_boulder_field_cluster": {
+      "stage": "stage3",
+      "stageLabel": "얼어붙은 시계탑",
+      "title": "Boulder Field Cluster",
+      "file": "models/props/stage3/stage3_boulder_field_cluster.glb",
+      "polyforkId": "boulder-field-cluster-08e364",
+      "kit": "alpine-and-snow-092f66",
+      "triangles": 734,
+      "size_m": {
+        "x": 2.5,
+        "y": 1.45,
+        "z": 2
+      },
+      "origin_y": 0,
+      "credit": "Boulder Field Cluster by Polyfork (https://polyfork.dev/asset/boulder-field-cluster-08e364), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/boulder-field-cluster-08e364"
+    },
+    "stage3_cleared_fire_pit": {
+      "stage": "stage3",
+      "stageLabel": "얼어붙은 시계탑",
+      "title": "Cleared Fire Pit",
+      "file": "models/props/stage3/stage3_cleared_fire_pit.glb",
+      "polyforkId": "cleared-fire-pit-399cda",
+      "kit": "alpine-and-snow-092f66",
+      "triangles": 796,
+      "size_m": {
+        "x": 2,
+        "y": 1.15,
+        "z": 2
+      },
+      "origin_y": 0,
+      "credit": "Cleared Fire Pit by Polyfork (https://polyfork.dev/asset/cleared-fire-pit-399cda), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/cleared-fire-pit-399cda"
+    },
+    "stage3_cleared_stone_path_tile": {
+      "stage": "stage3",
+      "stageLabel": "얼어붙은 시계탑",
+      "title": "Cleared Stone Path Tile",
+      "file": "models/props/stage3/stage3_cleared_stone_path_tile.glb",
+      "polyforkId": "cleared-stone-path-tile-7e92bc",
+      "kit": "alpine-and-snow-092f66",
+      "triangles": 706,
+      "size_m": {
+        "x": 2,
+        "y": 0.11,
+        "z": 2
+      },
+      "origin_y": 0,
+      "credit": "Cleared Stone Path Tile by Polyfork (https://polyfork.dev/asset/cleared-stone-path-tile-7e92bc), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/cleared-stone-path-tile-7e92bc"
+    },
+    "stage3_deep_powder_tile": {
+      "stage": "stage3",
+      "stageLabel": "얼어붙은 시계탑",
+      "title": "Deep Powder Tile",
+      "file": "models/props/stage3/stage3_deep_powder_tile.glb",
+      "polyforkId": "deep-powder-tile-1fcec9",
+      "kit": "alpine-and-snow-092f66",
+      "triangles": 438,
+      "size_m": {
+        "x": 2,
+        "y": 0.1,
+        "z": 2
+      },
+      "origin_y": 0,
+      "credit": "Deep Powder Tile by Polyfork (https://polyfork.dev/asset/deep-powder-tile-1fcec9), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/deep-powder-tile-1fcec9"
+    },
+    "stage3_dwarf_pine_mat": {
+      "stage": "stage3",
+      "stageLabel": "얼어붙은 시계탑",
+      "title": "Dwarf Pine Mat",
+      "file": "models/props/stage3/stage3_dwarf_pine_mat.glb",
+      "polyforkId": "dwarf-pine-mat-faee77",
+      "kit": "alpine-and-snow-092f66",
+      "triangles": 798,
+      "size_m": {
+        "x": 2.5,
+        "y": 1.29,
+        "z": 2.5
+      },
+      "origin_y": 0,
+      "credit": "Dwarf Pine Mat by Polyfork (https://polyfork.dev/asset/dwarf-pine-mat-faee77), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/dwarf-pine-mat-faee77"
+    },
+    "stage3_frozen_water_trough": {
+      "stage": "stage3",
+      "stageLabel": "얼어붙은 시계탑",
+      "title": "Frozen Water Trough",
+      "file": "models/props/stage3/stage3_frozen_water_trough.glb",
+      "polyforkId": "frozen-water-trough-61c835",
+      "kit": "alpine-and-snow-092f66",
+      "triangles": 772,
+      "size_m": {
+        "x": 0.7,
+        "y": 0.91,
+        "z": 2
+      },
+      "origin_y": 0,
+      "credit": "Frozen Water Trough by Polyfork (https://polyfork.dev/asset/frozen-water-trough-61c835), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/frozen-water-trough-61c835"
+    },
+    "stage3_frozen_waterfall": {
+      "stage": "stage3",
+      "stageLabel": "얼어붙은 시계탑",
+      "title": "Frozen Waterfall",
+      "file": "models/props/stage3/stage3_frozen_waterfall.glb",
+      "polyforkId": "frozen-waterfall-5d1fc6",
+      "kit": "alpine-and-snow-092f66",
+      "triangles": 749,
+      "size_m": {
+        "x": 4.44,
+        "y": 3.99,
+        "z": 1.81
+      },
+      "origin_y": 0,
+      "credit": "Frozen Waterfall by Polyfork (https://polyfork.dev/asset/frozen-waterfall-5d1fc6), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/frozen-waterfall-5d1fc6"
+    },
+    "stage3_mountain_hare": {
+      "stage": "stage3",
+      "stageLabel": "얼어붙은 시계탑",
+      "title": "Mountain Hare",
+      "file": "models/props/stage3/stage3_mountain_hare.glb",
+      "polyforkId": "mountain-hare-d9c64c",
+      "kit": "alpine-and-snow-092f66",
+      "triangles": 2975,
+      "size_m": {
+        "x": 0.21,
+        "y": 0.53,
+        "z": 0.42
+      },
+      "origin_y": 0,
+      "credit": "Mountain Hare by Polyfork (https://polyfork.dev/asset/mountain-hare-d9c64c), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/mountain-hare-d9c64c"
+    },
+    "stage3_mountain_refuge_hut": {
+      "stage": "stage3",
+      "stageLabel": "얼어붙은 시계탑",
+      "title": "Mountain Refuge Hut",
+      "file": "models/props/stage3/stage3_mountain_refuge_hut.glb",
+      "polyforkId": "mountain-refuge-hut-32ab1e",
+      "kit": "alpine-and-snow-092f66",
+      "triangles": 1588,
+      "size_m": {
+        "x": 6,
+        "y": 4.41,
+        "z": 6
+      },
+      "origin_y": 0,
+      "credit": "Mountain Refuge Hut by Polyfork (https://polyfork.dev/asset/mountain-refuge-hut-32ab1e), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/mountain-refuge-hut-32ab1e"
+    },
+    "stage3_rock_outcrop": {
+      "stage": "stage3",
+      "stageLabel": "얼어붙은 시계탑",
+      "title": "Rock Outcrop",
+      "file": "models/props/stage3/stage3_rock_outcrop.glb",
+      "polyforkId": "rock-outcrop-158ac3",
+      "kit": "alpine-and-snow-092f66",
+      "triangles": 756,
+      "size_m": {
+        "x": 2.5,
+        "y": 2.05,
+        "z": 2.5
+      },
+      "origin_y": 0,
+      "credit": "Rock Outcrop by Polyfork (https://polyfork.dev/asset/rock-outcrop-158ac3), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/rock-outcrop-158ac3"
+    },
+    "stage3_scree_heap": {
+      "stage": "stage3",
+      "stageLabel": "얼어붙은 시계탑",
+      "title": "Scree Heap",
+      "file": "models/props/stage3/stage3_scree_heap.glb",
+      "polyforkId": "scree-heap-42cce5",
+      "kit": "alpine-and-snow-092f66",
+      "triangles": 674,
+      "size_m": {
+        "x": 2.5,
+        "y": 0.52,
+        "z": 2.5
+      },
+      "origin_y": 0,
+      "credit": "Scree Heap by Polyfork (https://polyfork.dev/asset/scree-heap-42cce5), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/scree-heap-42cce5"
+    },
+    "stage3_snow_capped_log_pile": {
+      "stage": "stage3",
+      "stageLabel": "얼어붙은 시계탑",
+      "title": "Snow-Capped Log Pile",
+      "file": "models/props/stage3/stage3_snow_capped_log_pile.glb",
+      "polyforkId": "snow-capped-log-pile-8719e7",
+      "kit": "alpine-and-snow-092f66",
+      "triangles": 734,
+      "size_m": {
+        "x": 2,
+        "y": 1.17,
+        "z": 1.5
+      },
+      "origin_y": 0,
+      "credit": "Snow-Capped Log Pile by Polyfork (https://polyfork.dev/asset/snow-capped-log-pile-8719e7), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/snow-capped-log-pile-8719e7"
+    },
+    "stage3_snow_fence_run": {
+      "stage": "stage3",
+      "stageLabel": "얼어붙은 시계탑",
+      "title": "Snow Fence Run",
+      "file": "models/props/stage3/stage3_snow_fence_run.glb",
+      "polyforkId": "snow-fence-run-55a09a",
+      "kit": "alpine-and-snow-092f66",
+      "triangles": 692,
+      "size_m": {
+        "x": 2,
+        "y": 1.67,
+        "z": 1.41
+      },
+      "origin_y": 0,
+      "credit": "Snow Fence Run by Polyfork (https://polyfork.dev/asset/snow-fence-run-55a09a), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/snow-fence-run-55a09a"
+    },
+    "stage3_snow_laden_spruce": {
+      "stage": "stage3",
+      "stageLabel": "얼어붙은 시계탑",
+      "title": "Snow-Laden Spruce",
+      "file": "models/props/stage3/stage3_snow_laden_spruce.glb",
+      "polyforkId": "snow-laden-spruce-36716e",
+      "kit": "alpine-and-snow-092f66",
+      "triangles": 765,
+      "size_m": {
+        "x": 3,
+        "y": 6.06,
+        "z": 3
+      },
+      "origin_y": 0,
+      "credit": "Snow-Laden Spruce by Polyfork (https://polyfork.dev/asset/snow-laden-spruce-36716e), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/snow-laden-spruce-36716e"
+    },
+    "stage3_stone_cairn": {
+      "stage": "stage3",
+      "stageLabel": "얼어붙은 시계탑",
+      "title": "Stone Cairn",
+      "file": "models/props/stage3/stage3_stone_cairn.glb",
+      "polyforkId": "stone-cairn-a9bf48",
+      "kit": "alpine-and-snow-092f66",
+      "triangles": 805,
+      "size_m": {
+        "x": 1,
+        "y": 1.37,
+        "z": 1
+      },
+      "origin_y": 0,
+      "credit": "Stone Cairn by Polyfork (https://polyfork.dev/asset/stone-cairn-a9bf48), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/stone-cairn-a9bf48"
+    },
+    "stage3_windblown_larch": {
+      "stage": "stage3",
+      "stageLabel": "얼어붙은 시계탑",
+      "title": "Windblown Larch",
+      "file": "models/props/stage3/stage3_windblown_larch.glb",
+      "polyforkId": "windblown-larch-abb99c",
+      "kit": "alpine-and-snow-092f66",
+      "triangles": 874,
+      "size_m": {
+        "x": 7.95,
+        "y": 7,
+        "z": 3.58
+      },
+      "origin_y": 0,
+      "credit": "Windblown Larch by Polyfork (https://polyfork.dev/asset/windblown-larch-abb99c), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/windblown-larch-abb99c"
+    },
+    "stage3_wayfinder_post": {
+      "stage": "stage3",
+      "stageLabel": "얼어붙은 시계탑",
+      "title": "Wayfinder Post",
+      "file": "models/props/stage3/stage3_wayfinder_post.glb",
+      "polyforkId": "wayfinder-post-961fcd",
+      "kit": "alpine-and-snow-092f66",
+      "triangles": 668,
+      "size_m": {
+        "x": 1.16,
+        "y": 2.67,
+        "z": 1
+      },
+      "origin_y": 0,
+      "credit": "Wayfinder Post by Polyfork (https://polyfork.dev/asset/wayfinder-post-961fcd), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/wayfinder-post-961fcd"
+    },
+    "stage3_wooden_toboggan": {
+      "stage": "stage3",
+      "stageLabel": "얼어붙은 시계탑",
+      "title": "Wooden Toboggan",
+      "file": "models/props/stage3/stage3_wooden_toboggan.glb",
+      "polyforkId": "wooden-toboggan-940bbc",
+      "kit": "alpine-and-snow-092f66",
+      "triangles": 806,
+      "size_m": {
+        "x": 0.49,
+        "y": 0.32,
+        "z": 1
+      },
+      "origin_y": 0,
+      "credit": "Wooden Toboggan by Polyfork (https://polyfork.dev/asset/wooden-toboggan-940bbc), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/wooden-toboggan-940bbc"
+    },
+    "stage3_damaged_time_core": {
+      "stage": "stage3",
+      "stageLabel": "얼어붙은 시계탑",
+      "title": "Damaged Time Core",
+      "file": "models/props/stage3/stage3_damaged_time_core.glb",
+      "polyforkId": "damaged-time-core-2fbf9b",
+      "kit": "chronos-hearth-kit-4827fd",
+      "triangles": 860,
+      "size_m": {
+        "x": 0.34,
+        "y": 0.4,
+        "z": 0.31
+      },
+      "origin_y": 0,
+      "credit": "Damaged Time Core by Polyfork (https://polyfork.dev/asset/damaged-time-core-2fbf9b), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/damaged-time-core-2fbf9b"
+    },
+    "stage3_time_core_stabilizer": {
+      "stage": "stage3",
+      "stageLabel": "얼어붙은 시계탑",
+      "title": "Time Core Stabilizer",
+      "file": "models/props/stage3/stage3_time_core_stabilizer.glb",
+      "polyforkId": "time-core-stabilizer-034ed1",
+      "kit": "chronos-hearth-kit-4827fd",
+      "triangles": 1647,
+      "size_m": {
+        "x": 1.5,
+        "y": 1.81,
+        "z": 1.49
+      },
+      "origin_y": 0,
+      "credit": "Time Core Stabilizer by Polyfork (https://polyfork.dev/asset/time-core-stabilizer-034ed1), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/time-core-stabilizer-034ed1"
+    },
+    "stage3_clock_tower": {
+      "stage": "stage3",
+      "stageLabel": "얼어붙은 시계탑",
+      "title": "Clock Tower",
+      "file": "models/props/stage3/stage3_clock_tower.glb",
+      "polyforkId": "clock-tower-752081",
+      "kit": "university-959b66",
+      "triangles": 1178,
+      "size_m": {
+        "x": 3,
+        "y": 12.8,
+        "z": 3
+      },
+      "origin_y": 0,
+      "credit": "Clock Tower by Polyfork (https://polyfork.dev/asset/clock-tower-752081), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/clock-tower-752081"
+    },
+    "stage3_gear_accent_ring": {
+      "stage": "stage3",
+      "stageLabel": "얼어붙은 시계탑",
+      "title": "Gear Accent Ring",
+      "file": "models/props/stage3/stage3_gear_accent_ring.glb",
+      "polyforkId": "gear-accent-ring-c680da",
+      "kit": "clockwork-hand-adornments-kit-3aeccc",
+      "triangles": 851,
+      "size_m": {
+        "x": 0.03,
+        "y": 0.03,
+        "z": 0.02
+      },
+      "origin_y": 0.016,
+      "credit": "Gear Accent Ring by Polyfork (https://polyfork.dev/asset/gear-accent-ring-c680da), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/gear-accent-ring-c680da"
+    },
+    "stage3_ice_chunk": {
+      "stage": "stage3",
+      "stageLabel": "얼어붙은 시계탑",
+      "title": "Ice Chunk",
+      "file": "models/props/stage3/stage3_ice_chunk.glb",
+      "polyforkId": "ice-chunk-b23ad7",
+      "kit": "space-base-kit-cf65de",
+      "triangles": 253,
+      "size_m": {
+        "x": 0.83,
+        "y": 0.88,
+        "z": 0.86
+      },
+      "origin_y": 0,
+      "credit": "Ice Chunk by Polyfork (https://polyfork.dev/asset/ice-chunk-b23ad7), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/ice-chunk-b23ad7"
+    },
+    "stage3_station_clock_post": {
+      "stage": "stage3",
+      "stageLabel": "얼어붙은 시계탑",
+      "title": "Station Clock Post",
+      "file": "models/props/stage3/stage3_station_clock_post.glb",
+      "polyforkId": "station-clock-post-eaaf63",
+      "kit": "countryside-railway-9b4c57",
+      "triangles": 880,
+      "size_m": {
+        "x": 1.29,
+        "y": 3.5,
+        "z": 0.35
+      },
+      "origin_y": 0,
+      "credit": "Station Clock Post by Polyfork (https://polyfork.dev/asset/station-clock-post-eaaf63), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/station-clock-post-eaaf63"
+    },
+    "stage4_broken_stone_column": {
+      "stage": "stage4",
+      "stageLabel": "망각의 심연",
+      "title": "Broken Stone Column",
+      "file": "models/props/stage4/stage4_broken_stone_column.glb",
+      "polyforkId": "broken-stone-column-c91287",
+      "kit": "dragons-lair-dark-dragon-782570",
+      "triangles": 700,
+      "size_m": {
+        "x": 2.17,
+        "y": 2.51,
+        "z": 1.65
+      },
+      "origin_y": -0.012,
+      "credit": "Broken Stone Column by Polyfork (https://polyfork.dev/asset/broken-stone-column-c91287), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/broken-stone-column-c91287"
+    },
+    "stage4_carved_roost_dais": {
+      "stage": "stage4",
+      "stageLabel": "망각의 심연",
+      "title": "Carved Roost Dais",
+      "file": "models/props/stage4/stage4_carved_roost_dais.glb",
+      "polyforkId": "carved-roost-dais-546bd9",
+      "kit": "dragons-lair-dark-dragon-782570",
+      "triangles": 1186,
+      "size_m": {
+        "x": 7.98,
+        "y": 0.8,
+        "z": 7.98
+      },
+      "origin_y": 0,
+      "credit": "Carved Roost Dais by Polyfork (https://polyfork.dev/asset/carved-roost-dais-546bd9), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/carved-roost-dais-546bd9"
+    },
+    "stage4_cave_overhang_arch": {
+      "stage": "stage4",
+      "stageLabel": "망각의 심연",
+      "title": "Cave Overhang Arch",
+      "file": "models/props/stage4/stage4_cave_overhang_arch.glb",
+      "polyforkId": "cave-overhang-arch-b3ef4e",
+      "kit": "dragons-lair-dark-dragon-782570",
+      "triangles": 788,
+      "size_m": {
+        "x": 25.31,
+        "y": 14.67,
+        "z": 9.87
+      },
+      "origin_y": 0,
+      "credit": "Cave Overhang Arch by Polyfork (https://polyfork.dev/asset/cave-overhang-arch-b3ef4e), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/cave-overhang-arch-b3ef4e"
+    },
+    "stage4_cliff_perch_ledge": {
+      "stage": "stage4",
+      "stageLabel": "망각의 심연",
+      "title": "Cliff Perch Ledge",
+      "file": "models/props/stage4/stage4_cliff_perch_ledge.glb",
+      "polyforkId": "cliff-perch-ledge-afb065",
+      "kit": "dragons-lair-dark-dragon-782570",
+      "triangles": 613,
+      "size_m": {
+        "x": 6.82,
+        "y": 5.63,
+        "z": 7.01
+      },
+      "origin_y": 0,
+      "credit": "Cliff Perch Ledge by Polyfork (https://polyfork.dev/asset/cliff-perch-ledge-afb065), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/cliff-perch-ledge-afb065"
+    },
+    "stage4_coiled_dragon_pillar": {
+      "stage": "stage4",
+      "stageLabel": "망각의 심연",
+      "title": "Coiled Dragon Pillar",
+      "file": "models/props/stage4/stage4_coiled_dragon_pillar.glb",
+      "polyforkId": "coiled-dragon-pillar-7d526a",
+      "kit": "dragons-lair-dark-dragon-782570",
+      "triangles": 1279,
+      "size_m": {
+        "x": 7,
+        "y": 9,
+        "z": 2.2
+      },
+      "origin_y": 0,
+      "credit": "Coiled Dragon Pillar by Polyfork (https://polyfork.dev/asset/coiled-dragon-pillar-7d526a), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/coiled-dragon-pillar-7d526a"
+    },
+    "stage4_crystal_shard": {
+      "stage": "stage4",
+      "stageLabel": "망각의 심연",
+      "title": "Crystal Shard",
+      "file": "models/props/stage4/stage4_crystal_shard.glb",
+      "polyforkId": "crystal-shard-9e0a83",
+      "kit": "dragons-lair-dark-dragon-782570",
+      "triangles": 208,
+      "size_m": {
+        "x": 0.39,
+        "y": 0.13,
+        "z": 0.14
+      },
+      "origin_y": 0,
+      "credit": "Crystal Shard by Polyfork (https://polyfork.dev/asset/crystal-shard-9e0a83), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/crystal-shard-9e0a83"
+    },
+    "stage4_crystal_veined_slab": {
+      "stage": "stage4",
+      "stageLabel": "망각의 심연",
+      "title": "Crystal-Veined Slab",
+      "file": "models/props/stage4/stage4_crystal_veined_slab.glb",
+      "polyforkId": "crystal-veined-slab-375a56",
+      "kit": "dragons-lair-dark-dragon-782570",
+      "triangles": 372,
+      "size_m": {
+        "x": 0.9,
+        "y": 0.06,
+        "z": 0.94
+      },
+      "origin_y": 0,
+      "credit": "Crystal-Veined Slab by Polyfork (https://polyfork.dev/asset/crystal-veined-slab-375a56), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/crystal-veined-slab-375a56"
+    },
+    "stage4_geode_boulder": {
+      "stage": "stage4",
+      "stageLabel": "망각의 심연",
+      "title": "Geode Boulder",
+      "file": "models/props/stage4/stage4_geode_boulder.glb",
+      "polyforkId": "geode-boulder-e8091d",
+      "kit": "dragons-lair-dark-dragon-782570",
+      "triangles": 589,
+      "size_m": {
+        "x": 1.61,
+        "y": 1.6,
+        "z": 0.87
+      },
+      "origin_y": 0,
+      "credit": "Geode Boulder by Polyfork (https://polyfork.dev/asset/geode-boulder-e8091d), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/geode-boulder-e8091d"
+    },
+    "stage4_glowing_crystal_cluster": {
+      "stage": "stage4",
+      "stageLabel": "망각의 심연",
+      "title": "Glowing Crystal Cluster",
+      "file": "models/props/stage4/stage4_glowing_crystal_cluster.glb",
+      "polyforkId": "lair-crystal-column-877d1a",
+      "kit": "dragons-lair-dark-dragon-782570",
+      "triangles": 512,
+      "size_m": {
+        "x": 1.51,
+        "y": 1.64,
+        "z": 1.13
+      },
+      "origin_y": 0,
+      "credit": "Glowing Crystal Cluster by Polyfork (https://polyfork.dev/asset/lair-crystal-column-877d1a), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/lair-crystal-column-877d1a"
+    },
+    "stage4_lair_stalagmite": {
+      "stage": "stage4",
+      "stageLabel": "망각의 심연",
+      "title": "Lair Stalagmite",
+      "file": "models/props/stage4/stage4_lair_stalagmite.glb",
+      "polyforkId": "lair-stalagmite-7d4d95",
+      "kit": "dragons-lair-dark-dragon-782570",
+      "triangles": 594,
+      "size_m": {
+        "x": 2.09,
+        "y": 3,
+        "z": 2.09
+      },
+      "origin_y": 0,
+      "credit": "Lair Stalagmite by Polyfork (https://polyfork.dev/asset/lair-stalagmite-7d4d95), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/lair-stalagmite-7d4d95"
+    },
+    "stage4_lair_stone_stair": {
+      "stage": "stage4",
+      "stageLabel": "망각의 심연",
+      "title": "Lair Stone Stair",
+      "file": "models/props/stage4/stage4_lair_stone_stair.glb",
+      "polyforkId": "lair-stone-stair-4e09d5",
+      "kit": "dragons-lair-dark-dragon-782570",
+      "triangles": 636,
+      "size_m": {
+        "x": 3,
+        "y": 2.7,
+        "z": 5
+      },
+      "origin_y": 0,
+      "credit": "Lair Stone Stair by Polyfork (https://polyfork.dev/asset/lair-stone-stair-4e09d5), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/lair-stone-stair-4e09d5"
+    },
+    "stage4_miasma_bladder_fungus": {
+      "stage": "stage4",
+      "stageLabel": "망각의 심연",
+      "title": "Miasma Bladder Fungus",
+      "file": "models/props/stage4/stage4_miasma_bladder_fungus.glb",
+      "polyforkId": "miasma-bladder-fungus-3f6439",
+      "kit": "dragons-lair-dark-dragon-782570",
+      "triangles": 756,
+      "size_m": {
+        "x": 0.72,
+        "y": 1.2,
+        "z": 0.74
+      },
+      "origin_y": 0,
+      "credit": "Miasma Bladder Fungus by Polyfork (https://polyfork.dev/asset/miasma-bladder-fungus-3f6439), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/miasma-bladder-fungus-3f6439"
+    },
+    "stage4_obsidian_fang_rock": {
+      "stage": "stage4",
+      "stageLabel": "망각의 심연",
+      "title": "Obsidian Fang Rock",
+      "file": "models/props/stage4/stage4_obsidian_fang_rock.glb",
+      "polyforkId": "obsidian-fang-rock-67e326",
+      "kit": "dragons-lair-dark-dragon-782570",
+      "triangles": 320,
+      "size_m": {
+        "x": 1.23,
+        "y": 2.9,
+        "z": 0.95
+      },
+      "origin_y": 0,
+      "credit": "Obsidian Fang Rock by Polyfork (https://polyfork.dev/asset/obsidian-fang-rock-67e326), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/obsidian-fang-rock-67e326"
+    },
+    "stage4_cave_rock_wall": {
+      "stage": "stage4",
+      "stageLabel": "망각의 심연",
+      "title": "Cave Rock Wall",
+      "file": "models/props/stage4/stage4_cave_rock_wall.glb",
+      "polyforkId": "ruined-lair-wall-176561",
+      "kit": "dragons-lair-dark-dragon-782570",
+      "triangles": 576,
+      "size_m": {
+        "x": 4,
+        "y": 6,
+        "z": 1.46
+      },
+      "origin_y": 0,
+      "credit": "Cave Rock Wall by Polyfork (https://polyfork.dev/asset/ruined-lair-wall-176561), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/ruined-lair-wall-176561"
+    },
+    "stage4_stalactite_cluster": {
+      "stage": "stage4",
+      "stageLabel": "망각의 심연",
+      "title": "Stalactite Cluster",
+      "file": "models/props/stage4/stage4_stalactite_cluster.glb",
+      "polyforkId": "stalactite-cluster-6cca9a",
+      "kit": "dragons-lair-dark-dragon-782570",
+      "triangles": 544,
+      "size_m": {
+        "x": 1.47,
+        "y": 1.8,
+        "z": 0.98
+      },
+      "origin_y": 2.2,
+      "credit": "Stalactite Cluster by Polyfork (https://polyfork.dev/asset/stalactite-cluster-6cca9a), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/stalactite-cluster-6cca9a"
+    },
+    "stage4_toxic_fog_bank": {
+      "stage": "stage4",
+      "stageLabel": "망각의 심연",
+      "title": "Toxic Fog Bank",
+      "file": "models/props/stage4/stage4_toxic_fog_bank.glb",
+      "polyforkId": "toxic-fog-bank-60e730",
+      "kit": "dragons-lair-dark-dragon-782570",
+      "triangles": 963,
+      "size_m": {
+        "x": 3.97,
+        "y": 0.97,
+        "z": 2.95
+      },
+      "origin_y": 0,
+      "credit": "Toxic Fog Bank by Polyfork (https://polyfork.dev/asset/toxic-fog-bank-60e730), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/toxic-fog-bank-60e730"
+    },
+    "stage4_flame_brazier": {
+      "stage": "stage4",
+      "stageLabel": "망각의 심연",
+      "title": "Flame Brazier",
+      "file": "models/props/stage4/stage4_flame_brazier.glb",
+      "polyforkId": "flame-brazier-bbf74a",
+      "kit": "dragons-lair-dark-dragon-782570",
+      "triangles": 876,
+      "size_m": {
+        "x": 0.85,
+        "y": 0.8,
+        "z": 0.85
+      },
+      "origin_y": 0,
+      "credit": "Flame Brazier by Polyfork (https://polyfork.dev/asset/flame-brazier-bbf74a), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/flame-brazier-bbf74a"
+    },
+    "stage4_brooding_hearthstone": {
+      "stage": "stage4",
+      "stageLabel": "망각의 심연",
+      "title": "Brooding Hearthstone",
+      "file": "models/props/stage4/stage4_brooding_hearthstone.glb",
+      "polyforkId": "brooding-hearthstone-7546be",
+      "kit": "dragons-lair-dark-dragon-782570",
+      "triangles": 818,
+      "size_m": {
+        "x": 0.8,
+        "y": 0.78,
+        "z": 0.64
+      },
+      "origin_y": 0,
+      "credit": "Brooding Hearthstone by Polyfork (https://polyfork.dev/asset/brooding-hearthstone-7546be), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/brooding-hearthstone-7546be"
+    },
+    "stage4_glowing_rune_stone": {
+      "stage": "stage4",
+      "stageLabel": "망각의 심연",
+      "title": "Glowing Rune Stone",
+      "file": "models/props/stage4/stage4_glowing_rune_stone.glb",
+      "polyforkId": "glowing-rune-stone-5a5558",
+      "kit": "dungeon-crypt-c27d93",
+      "triangles": 476,
+      "size_m": {
+        "x": 0.6,
+        "y": 0.5,
+        "z": 0.55
+      },
+      "origin_y": 0,
+      "credit": "Glowing Rune Stone by Polyfork (https://polyfork.dev/asset/glowing-rune-stone-5a5558), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/glowing-rune-stone-5a5558"
+    },
+    "stage4_barred_portcullis": {
+      "stage": "stage4",
+      "stageLabel": "망각의 심연",
+      "title": "Barred Portcullis",
+      "file": "models/props/stage4/stage4_barred_portcullis.glb",
+      "polyforkId": "barred-portcullis-2aa444",
+      "kit": "dungeon-crypt-c27d93",
+      "triangles": 590,
+      "size_m": {
+        "x": 2,
+        "y": 2.62,
+        "z": 0.4
+      },
+      "origin_y": 0,
+      "credit": "Barred Portcullis by Polyfork (https://polyfork.dev/asset/barred-portcullis-2aa444), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/barred-portcullis-2aa444"
+    },
+    "stage4_crypt_well_head": {
+      "stage": "stage4",
+      "stageLabel": "망각의 심연",
+      "title": "Crypt Well Head",
+      "file": "models/props/stage4/stage4_crypt_well_head.glb",
+      "polyforkId": "crypt-well-head-d368f3",
+      "kit": "dungeon-crypt-c27d93",
+      "triangles": 891,
+      "size_m": {
+        "x": 2,
+        "y": 1.38,
+        "z": 2
+      },
+      "origin_y": 0,
+      "credit": "Crypt Well Head by Polyfork (https://polyfork.dev/asset/crypt-well-head-d368f3), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/crypt-well-head-d368f3"
+    },
+    "stage4_standing_water_pool": {
+      "stage": "stage4",
+      "stageLabel": "망각의 심연",
+      "title": "Standing Water Pool",
+      "file": "models/props/stage4/stage4_standing_water_pool.glb",
+      "polyforkId": "standing-water-pool-daafcb",
+      "kit": "dungeon-crypt-c27d93",
+      "triangles": 379,
+      "size_m": {
+        "x": 1.4,
+        "y": 0.02,
+        "z": 1
+      },
+      "origin_y": 0,
+      "credit": "Standing Water Pool by Polyfork (https://polyfork.dev/asset/standing-water-pool-daafcb), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/standing-water-pool-daafcb"
+    },
+    "stage4_mushroom_cluster": {
+      "stage": "stage4",
+      "stageLabel": "망각의 심연",
+      "title": "Mushroom Cluster",
+      "file": "models/props/stage4/stage4_mushroom_cluster.glb",
+      "polyforkId": "mushroom-cluster-18dc1d",
+      "kit": "dungeon-crypt-c27d93",
+      "triangles": 587,
+      "size_m": {
+        "x": 0.39,
+        "y": 0.38,
+        "z": 0.29
+      },
+      "origin_y": 0,
+      "credit": "Mushroom Cluster by Polyfork (https://polyfork.dev/asset/mushroom-cluster-18dc1d), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/mushroom-cluster-18dc1d"
+    },
+    "stage4_trapdoor_pit": {
+      "stage": "stage4",
+      "stageLabel": "망각의 심연",
+      "title": "Trapdoor Pit",
+      "file": "models/props/stage4/stage4_trapdoor_pit.glb",
+      "polyforkId": "trapdoor-pit-8d9a78",
+      "kit": "dungeon-crypt-c27d93",
+      "triangles": 1470,
+      "size_m": {
+        "x": 2,
+        "y": 3.93,
+        "z": 2
+      },
+      "origin_y": 0,
+      "credit": "Trapdoor Pit by Polyfork (https://polyfork.dev/asset/trapdoor-pit-8d9a78), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/trapdoor-pit-8d9a78"
+    },
+    "stage4_drain_grate_tile": {
+      "stage": "stage4",
+      "stageLabel": "망각의 심연",
+      "title": "Drain Grate Tile",
+      "file": "models/props/stage4/stage4_drain_grate_tile.glb",
+      "polyforkId": "drain-grate-tile-5568d9",
+      "kit": "dungeon-crypt-c27d93",
+      "triangles": 658,
+      "size_m": {
+        "x": 2,
+        "y": 0.12,
+        "z": 2
+      },
+      "origin_y": 0,
+      "credit": "Drain Grate Tile by Polyfork (https://polyfork.dev/asset/drain-grate-tile-5568d9), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/drain-grate-tile-5568d9"
+    },
+    "stage4_portal": {
+      "stage": "stage4",
+      "stageLabel": "망각의 심연",
+      "title": "Portal",
+      "file": "models/props/stage4/stage4_portal.glb",
+      "polyforkId": "portal-60d5e6",
+      "kit": "grimlight-denizens-kit-a6dc02",
+      "triangles": 750,
+      "size_m": {
+        "x": 3.42,
+        "y": 4.02,
+        "z": 1.52
+      },
+      "origin_y": 0,
+      "credit": "Portal by Polyfork (https://polyfork.dev/asset/portal-60d5e6), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/portal-60d5e6"
+    },
+    "stage4_crystal_cluster": {
+      "stage": "stage4",
+      "stageLabel": "망각의 심연",
+      "title": "Crystal Cluster",
+      "file": "models/props/stage4/stage4_crystal_cluster.glb",
+      "polyforkId": "crystal-cluster-78f2d7",
+      "kit": "primal-future-armory-kit-d7c368",
+      "triangles": 390,
+      "size_m": {
+        "x": 0.35,
+        "y": 0.42,
+        "z": 0.31
+      },
+      "origin_y": 0,
+      "credit": "Crystal Cluster by Polyfork (https://polyfork.dev/asset/crystal-cluster-78f2d7), CC BY 4.0",
+      "page": "https://polyfork.dev/asset/crystal-cluster-78f2d7"
+    }
+  }
+}
