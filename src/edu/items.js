@@ -434,4 +434,29 @@ for (const kind of ['weapon', 'armor', 'jewelry', 'potion', 'scroll', 'gold']) {
   add(`drop_${kind}`, `바닥 드랍 (${{ weapon: '무기', armor: '방어구', jewelry: '장신구', potion: '물약', scroll: '두루마리', gold: '골드' }[kind]})`, '📦 바닥 드랍', 0.05, (k, g) => dropShape(k, g, kind), { seed: 480, scale: kind === 'weapon' ? 1 : 1.3 });
 }
 
+// ---- legendary items (unique look: tier-3 base + its own flair + orbiting sparks) -----------
+const LEG = '#ff9a2a';
+function legendary(base, flair) {
+  return (k, g) => {
+    base(k, g);
+    flair(k, g, glowMat(k, 'legendGlow', LEG, 2.2), glowMat(k, 'legendWhite', '#fff6d8', 2.6));
+    for (let i = 0; i < 3; i++) { const a = (i / 3) * Math.PI * 2; g.add(k.at(k.mesh(new k.THREE.OctahedronGeometry(0.022, 0), glowMat(k, 'legendSpark', '#ffd34a', 2.6)), Math.cos(a) * 0.16, 0.12 + i * 0.12, Math.sin(a) * 0.16)); }
+  };
+}
+const LEGENDS = [
+  ['legend_sword_dawnstar', '새벽별 검', '🗡️ 전설 무기', 0.25, legendary((k, g) => swordShape(k, g, 3), (k, g, glow, white) => { g.add(k.at(k.mesh(new k.THREE.OctahedronGeometry(0.07, 0), white), 0, 0.1, 0.05)); for (const s of [-1, 1]) g.add(k.at(k.rot(k.box(0.02, 0.18, 0.02, glow, 0), 0, 0, s * 0.8), s * 0.12, 0.16, 0)); })],
+  ['legend_shield_wisdom', '지혜의 방패', '🛡️ 전설 방패', 0.35, legendary((k, g) => shieldShape(k, g, 3), (k, g, glow) => { g.add(k.at(k.rot(k.mesh(new k.THREE.TorusGeometry(0.16, 0.02, 3, 16), glow), 0, 0, 0), 0, 0.04, 0.08)); })],
+  ['legend_greatsword_oblivion', '망각을 가르는 대검', '⚔️ 전설 무기', 0.3, legendary((k, g) => greatswordShape(k, g, 3), (k, g, glow) => { for (let i = 0; i < 4; i++) g.add(k.at(k.box(0.13, 0.03, 0.03, glow, 0), 0, 0.35 + i * 0.22, 0)); })],
+  ['legend_bow_oldroot', '올드루트의 활 (살아 있는 가지)', '🏹 전설 무기', 0.4, legendary((k, g) => bowShape(k, g, 3), (k, g, glow) => { const leaf = k.mat('legendLeaf', '#5ad86a', { emissive: '#3aa84a', emissiveIntensity: 0.6 }); for (const s of [-1, 1]) for (let i = 0; i < 2; i++) g.add(k.at(k.scl(k.ball(0.04, leaf, 0), 1, 0.4, 1.6), 0.03, s * (0.2 + i * 0.15), 0.02)); g.add(k.at(k.ball(0.03, glow, 0), 0, 0, 0.05)); })],
+  ['legend_staff_timekeeper', '시간지기의 지팡이', '🪄 전설 무기', 0.5, legendary((k, g) => staffShape(k, g, 3), (k, g, glow, white) => { g.add(k.at(k.rot(k.mesh(new k.THREE.TorusGeometry(0.11, 0.012, 3, 16), glow), Math.PI / 2, 0, 0), 0, 0.98, 0)); g.add(k.at(k.box(0.012, 0.08, 0.012, white, 0), 0, 1.01, 0.02)); })],
+  ['legend_book_forbidden', '봉인 풀린 금서', '📖 전설 보조무기', 0.3, legendary((k, g) => bookShape(k, g, 2), (k, g, glow) => { for (const s of [-1, 1]) g.add(k.at(k.box(0.24, 0.02, 0.02, glow, 0), 0, s * 0.08, 0.04)); })],
+  ['legend_helmet_lumi', '루미의 깃털 투구', '⛑️ 전설 투구', 0.3, legendary((k, g) => helmetShape(k, g, 3), (k, g, glow) => { for (let i = 0; i < 3; i++) g.add(k.at(k.rot(k.scl(k.cone(0.04, 0.2, k.mat('legendFeather', '#f6f2ff'), 4), 1, 1, 0.3), -0.3 - i * 0.2, 0, (i - 1) * 0.3), (i - 1) * 0.05, 0.25, -0.05)); g.add(k.at(k.ball(0.03, glow, 0), 0, 0.2, 0.15)); })],
+  ['legend_armor_lantern', '등불 수호 갑옷', '🥋 전설 갑옷', 0.35, legendary((k, g) => armorShape(k, g, 3), (k, g, glow) => { g.add(k.at(k.box(0.09, 0.11, 0.04, glow, 0), 0, 0.02, 0.15)); })],
+  ['legend_gloves_candle', '촛불 장갑', '🧤 전설 장갑', 0.25, legendary((k, g) => glovesShape(k, g, 3), (k, g, glow) => { for (const s of [-1, 1]) g.add(k.at(k.scl(k.ball(0.025, glow, 0), 1, 1.6, 1), s * 0.11, 0.15, 0)); })],
+  ['legend_boots_wind', '바람 장화', '👢 전설 신발', 0.12, legendary((k, g) => bootsShape(k, g, 3), (k, g, glow) => { for (const s of [-1, 1]) for (let i = 0; i < 2; i++) g.add(k.at(k.rot(k.scl(k.cone(0.03, 0.12, k.mat('legendWing', '#ffffff'), 3), 1, 1, 0.3), 0, 0, s * (1.2 + i * 0.3)), s * 0.18, 0.14 + i * 0.03, -0.03)); })],
+  ['legend_ring_starlight', '별빛 반지', '💍 전설 반지', 0.25, legendary((k, g) => ringShape(k, g, 4), (k, g, glow) => { g.add(k.at(k.rot(k.mesh(new k.THREE.TorusGeometry(0.075, 0.006, 3, 14), glow), 0, 0, 0), 0, 0, 0)); })],
+  ['legend_necklace_memory', '기억의 목걸이', '📿 전설 목걸이', 0.3, legendary((k, g) => necklaceShape(k, g, 3), (k, g, glow) => { g.add(k.at(k.mesh(new k.THREE.OctahedronGeometry(0.03, 0), glow), 0, -0.1, 0)); })],
+];
+for (const [name, label, role, hover, shape] of LEGENDS) add(name, label, role, hover, shape, { seed: 490, scale: name.includes('ring') || name.includes('necklace') ? 1.4 : 1 });
+
 export const EDU_ITEMS = list;

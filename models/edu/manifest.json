@@ -45,10 +45,314 @@
         "armR",
         "legL",
         "legR",
+        "potion",
+        "frags",
+        "weapon",
+        "shield"
+      ]
+    },
+    "starHunter": {
+      "label": "별사냥꾼",
+      "file": "characters/star_hunter.glb",
+      "triangles": 1396,
+      "clips": {
+        "idle": {
+          "seconds": 2,
+          "loop": true
+        },
+        "walk": {
+          "seconds": 0.8,
+          "loop": true
+        },
+        "attack": {
+          "seconds": 0.8,
+          "loop": false
+        },
+        "cast": {
+          "seconds": 0.9,
+          "loop": false
+        },
+        "hit": {
+          "seconds": 0.35,
+          "loop": false
+        },
+        "death": {
+          "seconds": 1.8,
+          "loop": false
+        },
+        "drink": {
+          "seconds": 1.2,
+          "loop": false
+        },
+        "victory": {
+          "seconds": 1.6,
+          "loop": false
+        }
+      },
+      "parts": [
+        "torso",
+        "head",
+        "armL",
+        "armR",
+        "legL",
+        "legR",
+        "potion",
+        "frags",
         "weapon",
         "shield",
+        "arrow",
+        "string",
+        "star"
+      ]
+    },
+    "sage": {
+      "label": "현자",
+      "file": "characters/sage.glb",
+      "triangles": 1594,
+      "clips": {
+        "idle": {
+          "seconds": 2,
+          "loop": true
+        },
+        "walk": {
+          "seconds": 0.8,
+          "loop": true
+        },
+        "attack": {
+          "seconds": 0.7,
+          "loop": false
+        },
+        "cast": {
+          "seconds": 1,
+          "loop": false
+        },
+        "hit": {
+          "seconds": 0.35,
+          "loop": false
+        },
+        "death": {
+          "seconds": 1.8,
+          "loop": false
+        },
+        "drink": {
+          "seconds": 1.2,
+          "loop": false
+        },
+        "victory": {
+          "seconds": 1.6,
+          "loop": false
+        }
+      },
+      "parts": [
+        "torso",
+        "head",
+        "armL",
+        "armR",
+        "legL",
+        "legR",
         "potion",
-        "frags"
+        "frags",
+        "weapon",
+        "shield",
+        "orb",
+        "cover",
+        "pages"
+      ]
+    },
+    "npcMerchant": {
+      "label": "상인 (상점)",
+      "file": "characters/npc_merchant.glb",
+      "triangles": 708,
+      "clips": {
+        "idle": {
+          "seconds": 3,
+          "loop": true
+        },
+        "talk": {
+          "seconds": 1.6,
+          "loop": true
+        },
+        "wave": {
+          "seconds": 1.4,
+          "loop": false
+        }
+      },
+      "parts": [
+        "torso",
+        "head",
+        "armL",
+        "armR",
+        "legL",
+        "legR",
+        "prop"
+      ]
+    },
+    "npcBlacksmith": {
+      "label": "대장장이",
+      "file": "characters/npc_blacksmith.glb",
+      "triangles": 570,
+      "clips": {
+        "idle": {
+          "seconds": 3,
+          "loop": true
+        },
+        "talk": {
+          "seconds": 1.6,
+          "loop": true
+        },
+        "wave": {
+          "seconds": 1.4,
+          "loop": false
+        }
+      },
+      "parts": [
+        "torso",
+        "head",
+        "armL",
+        "armR",
+        "legL",
+        "legR",
+        "prop"
+      ]
+    },
+    "npcStorekeeper": {
+      "label": "창고지기",
+      "file": "characters/npc_storekeeper.glb",
+      "triangles": 704,
+      "clips": {
+        "idle": {
+          "seconds": 3,
+          "loop": true
+        },
+        "talk": {
+          "seconds": 1.6,
+          "loop": true
+        },
+        "wave": {
+          "seconds": 1.4,
+          "loop": false
+        }
+      },
+      "parts": [
+        "torso",
+        "head",
+        "armL",
+        "armR",
+        "legL",
+        "legR",
+        "prop"
+      ]
+    },
+    "npcArchivist": {
+      "label": "기록관 (오답노트·학습 리포트)",
+      "file": "characters/npc_archivist.glb",
+      "triangles": 660,
+      "clips": {
+        "idle": {
+          "seconds": 3,
+          "loop": true
+        },
+        "talk": {
+          "seconds": 1.6,
+          "loop": true
+        },
+        "wave": {
+          "seconds": 1.4,
+          "loop": false
+        }
+      },
+      "parts": [
+        "torso",
+        "head",
+        "armL",
+        "armR",
+        "legL",
+        "legR",
+        "prop"
+      ]
+    },
+    "npcChief": {
+      "label": "마을 촌장 (퀘스트)",
+      "file": "characters/npc_chief.glb",
+      "triangles": 662,
+      "clips": {
+        "idle": {
+          "seconds": 3,
+          "loop": true
+        },
+        "talk": {
+          "seconds": 1.6,
+          "loop": true
+        },
+        "wave": {
+          "seconds": 1.4,
+          "loop": false
+        }
+      },
+      "parts": [
+        "torso",
+        "head",
+        "armL",
+        "armR",
+        "legL",
+        "legR",
+        "prop"
+      ]
+    },
+    "lumi": {
+      "label": "부엉이 루미 (퀴즈 마스코트)",
+      "file": "characters/mascot_lumi.glb",
+      "triangles": 1334,
+      "clips": {
+        "idle": {
+          "seconds": 3,
+          "loop": true
+        },
+        "fly": {
+          "seconds": 0.6,
+          "loop": true
+        },
+        "face_default": {
+          "seconds": 2.4,
+          "loop": true
+        },
+        "face_think": {
+          "seconds": 2.4,
+          "loop": true
+        },
+        "face_happy": {
+          "seconds": 1.2,
+          "loop": true
+        },
+        "face_sad": {
+          "seconds": 2.4,
+          "loop": true
+        },
+        "face_surprised": {
+          "seconds": 1.2,
+          "loop": true
+        },
+        "face_cheer": {
+          "seconds": 1,
+          "loop": true
+        }
+      },
+      "parts": [
+        "body",
+        "head",
+        "feet",
+        "beak",
+        "cap",
+        "wingL",
+        "wingR",
+        "eyeL",
+        "eyeR",
+        "pupilL",
+        "pupilR",
+        "lidL",
+        "lidR",
+        "browL",
+        "browR"
       ]
     }
   },
@@ -196,6 +500,635 @@
         "orb",
         "trail",
         "pop"
+      ]
+    },
+    "bookworm": {
+      "label": "책벌레 애벌레",
+      "file": "monsters/m04_bookworm.glb",
+      "triangles": 1472,
+      "clips": {
+        "idle": {
+          "seconds": 1.6,
+          "loop": true
+        },
+        "walk": {
+          "seconds": 0.8,
+          "loop": true
+        },
+        "attack": {
+          "seconds": 0.7,
+          "loop": false
+        },
+        "hit": {
+          "seconds": 0.35,
+          "loop": false
+        },
+        "death": {
+          "seconds": 1.3,
+          "loop": false
+        },
+        "spawn": {
+          "seconds": 1,
+          "loop": false
+        }
+      },
+      "parts": [
+        "body",
+        "head",
+        "ring",
+        "frags"
+      ]
+    },
+    "grimoire": {
+      "label": "날개 달린 마법서",
+      "file": "monsters/m05_grimoire.glb",
+      "triangles": 812,
+      "clips": {
+        "idle": {
+          "seconds": 1.2,
+          "loop": true
+        },
+        "fly": {
+          "seconds": 0.7,
+          "loop": true
+        },
+        "attack": {
+          "seconds": 0.9,
+          "loop": false
+        },
+        "hit": {
+          "seconds": 0.35,
+          "loop": false
+        },
+        "death": {
+          "seconds": 1.3,
+          "loop": false
+        },
+        "spawn": {
+          "seconds": 1,
+          "loop": false
+        }
+      },
+      "parts": [
+        "body",
+        "cover",
+        "wingL",
+        "wingR",
+        "pageOut",
+        "ring",
+        "frags"
+      ]
+    },
+    "inkGolem": {
+      "label": "잉크 골렘",
+      "file": "monsters/m06_inkgolem.glb",
+      "triangles": 582,
+      "clips": {
+        "idle": {
+          "seconds": 2.2,
+          "loop": true
+        },
+        "walk": {
+          "seconds": 1.4,
+          "loop": true
+        },
+        "attack": {
+          "seconds": 1.2,
+          "loop": false
+        },
+        "hit": {
+          "seconds": 0.35,
+          "loop": false
+        },
+        "death": {
+          "seconds": 1.3,
+          "loop": false
+        },
+        "spawn": {
+          "seconds": 1,
+          "loop": false
+        }
+      },
+      "parts": [
+        "body",
+        "legL",
+        "legR",
+        "armL",
+        "armR",
+        "torso",
+        "head",
+        "ring",
+        "frags"
+      ]
+    },
+    "clockMouse": {
+      "label": "태엽 쥐",
+      "file": "monsters/m07_clockmouse.glb",
+      "triangles": 938,
+      "clips": {
+        "idle": {
+          "seconds": 1,
+          "loop": true
+        },
+        "walk": {
+          "seconds": 0.3,
+          "loop": true
+        },
+        "attack": {
+          "seconds": 0.5,
+          "loop": false
+        },
+        "hit": {
+          "seconds": 0.35,
+          "loop": false
+        },
+        "death": {
+          "seconds": 1.3,
+          "loop": false
+        },
+        "spawn": {
+          "seconds": 1,
+          "loop": false
+        }
+      },
+      "parts": [
+        "body",
+        "wheelL",
+        "wheelR",
+        "head",
+        "windKey",
+        "tail",
+        "ring",
+        "frags"
+      ]
+    },
+    "snowGuard": {
+      "label": "눈사람 경비병",
+      "file": "monsters/m08_snowguard.glb",
+      "triangles": 982,
+      "clips": {
+        "idle": {
+          "seconds": 2,
+          "loop": true
+        },
+        "walk": {
+          "seconds": 1,
+          "loop": true
+        },
+        "attack": {
+          "seconds": 0.8,
+          "loop": false
+        },
+        "hit": {
+          "seconds": 0.35,
+          "loop": false
+        },
+        "death": {
+          "seconds": 1.3,
+          "loop": false
+        },
+        "spawn": {
+          "seconds": 1,
+          "loop": false
+        }
+      },
+      "parts": [
+        "body",
+        "armL",
+        "armR",
+        "torso",
+        "head",
+        "shield",
+        "spear",
+        "ring",
+        "frags"
+      ]
+    },
+    "pendulumBat": {
+      "label": "시계추 박쥐",
+      "file": "monsters/m09_pendulumbat.glb",
+      "triangles": 764,
+      "clips": {
+        "idle": {
+          "seconds": 1.2,
+          "loop": true
+        },
+        "fly": {
+          "seconds": 0.6,
+          "loop": true
+        },
+        "attack": {
+          "seconds": 1,
+          "loop": false
+        },
+        "hit": {
+          "seconds": 0.35,
+          "loop": false
+        },
+        "death": {
+          "seconds": 1.3,
+          "loop": false
+        },
+        "spawn": {
+          "seconds": 1,
+          "loop": false
+        }
+      },
+      "parts": [
+        "body",
+        "wingL",
+        "wingR",
+        "pend",
+        "ring",
+        "frags"
+      ]
+    },
+    "shadowEcho": {
+      "label": "그림자 메아리",
+      "file": "monsters/m10_shadowecho.glb",
+      "triangles": 616,
+      "clips": {
+        "idle": {
+          "seconds": 1.8,
+          "loop": true
+        },
+        "walk": {
+          "seconds": 1,
+          "loop": true
+        },
+        "attack": {
+          "seconds": 0.6,
+          "loop": false
+        },
+        "teleport": {
+          "seconds": 1,
+          "loop": false
+        },
+        "hit": {
+          "seconds": 0.35,
+          "loop": false
+        },
+        "death": {
+          "seconds": 1.3,
+          "loop": false
+        },
+        "spawn": {
+          "seconds": 1,
+          "loop": false
+        }
+      },
+      "parts": [
+        "body",
+        "armL",
+        "armR",
+        "head",
+        "wisps",
+        "ring",
+        "frags"
+      ]
+    },
+    "erasedKnight": {
+      "label": "지워진 기사",
+      "file": "monsters/m11_erasedknight.glb",
+      "triangles": 544,
+      "clips": {
+        "idle": {
+          "seconds": 2,
+          "loop": true
+        },
+        "walk": {
+          "seconds": 1,
+          "loop": true
+        },
+        "attack": {
+          "seconds": 0.8,
+          "loop": false
+        },
+        "flicker": {
+          "seconds": 1.2,
+          "loop": false
+        },
+        "hit": {
+          "seconds": 0.35,
+          "loop": false
+        },
+        "death": {
+          "seconds": 1.3,
+          "loop": false
+        },
+        "spawn": {
+          "seconds": 1,
+          "loop": false
+        }
+      },
+      "parts": [
+        "body",
+        "legL",
+        "legR",
+        "armL",
+        "armR",
+        "torso",
+        "head",
+        "blade",
+        "ring",
+        "frags"
+      ]
+    },
+    "oblivionEye": {
+      "label": "망각의 눈",
+      "file": "monsters/m12_oblivioneye.glb",
+      "triangles": 972,
+      "clips": {
+        "idle": {
+          "seconds": 3,
+          "loop": true
+        },
+        "fly": {
+          "seconds": 1.5,
+          "loop": true
+        },
+        "attack": {
+          "seconds": 1.4,
+          "loop": false
+        },
+        "summon": {
+          "seconds": 1.4,
+          "loop": false
+        },
+        "hit": {
+          "seconds": 0.35,
+          "loop": false
+        },
+        "death": {
+          "seconds": 1.3,
+          "loop": false
+        },
+        "spawn": {
+          "seconds": 1,
+          "loop": false
+        }
+      },
+      "parts": [
+        "body",
+        "iris",
+        "lid",
+        "rocks",
+        "beam",
+        "portal",
+        "ring",
+        "frags"
+      ]
+    },
+    "grimoirePage": {
+      "label": "마법서 페이지 (투사체)",
+      "file": "monsters/m05_grimoire_page.glb",
+      "triangles": 68,
+      "clips": {
+        "charge": {
+          "seconds": 0.3,
+          "loop": false
+        },
+        "fly": {
+          "seconds": 0.4,
+          "loop": true
+        },
+        "impact": {
+          "seconds": 0.5,
+          "loop": false
+        }
+      },
+      "parts": [
+        "page"
+      ]
+    }
+  },
+  "bosses": {
+    "oldroot": {
+      "label": "고목 수호자 올드루트",
+      "file": "monsters/b01_oldroot.glb",
+      "triangles": 1800,
+      "clips": {
+        "hit": {
+          "seconds": 0.4,
+          "loop": false
+        },
+        "death": {
+          "seconds": 2.6,
+          "loop": false
+        },
+        "intro": {
+          "seconds": 2.4,
+          "loop": false
+        },
+        "idle": {
+          "seconds": 3,
+          "loop": true
+        },
+        "walk": {
+          "seconds": 1.8,
+          "loop": true
+        },
+        "attack1": {
+          "seconds": 1.4,
+          "loop": false
+        },
+        "attack2": {
+          "seconds": 1.6,
+          "loop": false
+        },
+        "attack3": {
+          "seconds": 1.8,
+          "loop": false
+        },
+        "phase": {
+          "seconds": 1.6,
+          "loop": false
+        }
+      },
+      "parts": [
+        "body",
+        "rootL",
+        "rootR",
+        "armL",
+        "armR",
+        "face",
+        "brows",
+        "canopy",
+        "ring",
+        "frags"
+      ]
+    },
+    "forbiddenLord": {
+      "label": "금서의 군주",
+      "file": "monsters/b02_forbidden_lord.glb",
+      "triangles": 1432,
+      "clips": {
+        "hit": {
+          "seconds": 0.4,
+          "loop": false
+        },
+        "death": {
+          "seconds": 2.6,
+          "loop": false
+        },
+        "intro": {
+          "seconds": 2.4,
+          "loop": false
+        },
+        "idle": {
+          "seconds": 4,
+          "loop": true
+        },
+        "walk": {
+          "seconds": 2,
+          "loop": true
+        },
+        "attack1": {
+          "seconds": 2,
+          "loop": false
+        },
+        "attack2": {
+          "seconds": 1.4,
+          "loop": false
+        },
+        "attack3": {
+          "seconds": 1.6,
+          "loop": false
+        },
+        "phase": {
+          "seconds": 1.6,
+          "loop": false
+        }
+      },
+      "parts": [
+        "body",
+        "armL",
+        "armR",
+        "torso",
+        "head",
+        "cape",
+        "orbit",
+        "ring",
+        "frags"
+      ]
+    },
+    "timeKeeper": {
+      "label": "얼어붙은 시간지기",
+      "file": "monsters/b03_time_keeper.glb",
+      "triangles": 1572,
+      "clips": {
+        "hit": {
+          "seconds": 0.4,
+          "loop": false
+        },
+        "death": {
+          "seconds": 2.6,
+          "loop": false
+        },
+        "intro": {
+          "seconds": 2.4,
+          "loop": false
+        },
+        "idle": {
+          "seconds": 2,
+          "loop": true
+        },
+        "walk": {
+          "seconds": 1.6,
+          "loop": true
+        },
+        "attack1": {
+          "seconds": 1.6,
+          "loop": false
+        },
+        "attack2": {
+          "seconds": 1.4,
+          "loop": false
+        },
+        "attack3": {
+          "seconds": 1.3,
+          "loop": false
+        },
+        "phase": {
+          "seconds": 1.8,
+          "loop": false
+        }
+      },
+      "parts": [
+        "body",
+        "legL",
+        "legR",
+        "armL",
+        "armR",
+        "torso",
+        "head",
+        "hand",
+        "pend",
+        "ring",
+        "frags"
+      ]
+    },
+    "oblivionSource": {
+      "label": "망각의 근원",
+      "file": "monsters/b04_oblivion_source.glb",
+      "triangles": 1542,
+      "clips": {
+        "hit": {
+          "seconds": 0.4,
+          "loop": false
+        },
+        "death": {
+          "seconds": 2.6,
+          "loop": false
+        },
+        "intro": {
+          "seconds": 2.4,
+          "loop": false
+        },
+        "idle": {
+          "seconds": 3,
+          "loop": true
+        },
+        "walk": {
+          "seconds": 2.4,
+          "loop": true
+        },
+        "attack1": {
+          "seconds": 2.2,
+          "loop": false
+        },
+        "attack2": {
+          "seconds": 1.4,
+          "loop": false
+        },
+        "attack3": {
+          "seconds": 1.6,
+          "loop": false
+        },
+        "attack4": {
+          "seconds": 2.4,
+          "loop": false
+        },
+        "phase": {
+          "seconds": 2,
+          "loop": false
+        },
+        "phase3": {
+          "seconds": 2.2,
+          "loop": false
+        }
+      },
+      "parts": [
+        "body",
+        "core",
+        "eye",
+        "iris",
+        "lid",
+        "ribbons",
+        "halo",
+        "beam",
+        "ring",
+        "frags"
       ]
     }
   },
@@ -694,6 +1627,606 @@
         "item"
       ],
       "icon": "icons/items/gold_large.png"
+    },
+    "weapon_greatsword_t1": {
+      "label": "양손검 초급",
+      "file": "items/weapon_greatsword_t1.glb",
+      "triangles": 84,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/weapon_greatsword_t1.png"
+    },
+    "weapon_bow_t1": {
+      "label": "단궁",
+      "file": "items/weapon_bow_t1.glb",
+      "triangles": 160,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/weapon_bow_t1.png"
+    },
+    "weapon_staff_t1": {
+      "label": "지팡이 초급",
+      "file": "items/weapon_staff_t1.glb",
+      "triangles": 170,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/weapon_staff_t1.png"
+    },
+    "weapon_greatsword_t2": {
+      "label": "양손검 중급",
+      "file": "items/weapon_greatsword_t2.glb",
+      "triangles": 104,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/weapon_greatsword_t2.png"
+    },
+    "weapon_bow_t2": {
+      "label": "장궁",
+      "file": "items/weapon_bow_t2.glb",
+      "triangles": 180,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/weapon_bow_t2.png"
+    },
+    "weapon_staff_t2": {
+      "label": "지팡이 중급",
+      "file": "items/weapon_staff_t2.glb",
+      "triangles": 186,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/weapon_staff_t2.png"
+    },
+    "weapon_greatsword_t3": {
+      "label": "양손검 상급",
+      "file": "items/weapon_greatsword_t3.glb",
+      "triangles": 116,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/weapon_greatsword_t3.png"
+    },
+    "weapon_bow_t3": {
+      "label": "별빛 활",
+      "file": "items/weapon_bow_t3.glb",
+      "triangles": 196,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/weapon_bow_t3.png"
+    },
+    "weapon_staff_t3": {
+      "label": "지팡이 상급",
+      "file": "items/weapon_staff_t3.glb",
+      "triangles": 266,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/weapon_staff_t3.png"
+    },
+    "weapon_crossbow_t1": {
+      "label": "석궁 초급",
+      "file": "items/weapon_crossbow_t1.glb",
+      "triangles": 84,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/weapon_crossbow_t1.png"
+    },
+    "offhand_spellbook_t1": {
+      "label": "마법서 초급",
+      "file": "items/offhand_spellbook_t1.glb",
+      "triangles": 84,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/offhand_spellbook_t1.png"
+    },
+    "belt_t1": {
+      "label": "허리띠 초급",
+      "file": "items/belt_t1.glb",
+      "triangles": 120,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/belt_t1.png"
+    },
+    "weapon_crossbow_t2": {
+      "label": "석궁 중급",
+      "file": "items/weapon_crossbow_t2.glb",
+      "triangles": 104,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/weapon_crossbow_t2.png"
+    },
+    "offhand_spellbook_t2": {
+      "label": "마법서 중급",
+      "file": "items/offhand_spellbook_t2.glb",
+      "triangles": 84,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/offhand_spellbook_t2.png"
+    },
+    "belt_t2": {
+      "label": "허리띠 중급",
+      "file": "items/belt_t2.glb",
+      "triangles": 140,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/belt_t2.png"
+    },
+    "potion_spring": {
+      "label": "회복의 샘물 (체력+마나)",
+      "file": "items/potion_spring.glb",
+      "triangles": 208,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/potion_spring.png"
+    },
+    "scroll_return": {
+      "label": "마을 귀환 두루마리",
+      "file": "items/scroll_return.glb",
+      "triangles": 112,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/scroll_return.png"
+    },
+    "scroll_identify": {
+      "label": "감정 두루마리",
+      "file": "items/scroll_identify.glb",
+      "triangles": 112,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/scroll_identify.png"
+    },
+    "quiz_hint_feather": {
+      "label": "힌트 깃털 (오답 2개 제거)",
+      "file": "items/quiz_hint_feather.glb",
+      "triangles": 168,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/quiz_hint_feather.png"
+    },
+    "quiz_hourglass": {
+      "label": "시간의 모래시계 (+5초)",
+      "file": "items/quiz_hourglass.glb",
+      "triangles": 152,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/quiz_hourglass.png"
+    },
+    "quiz_second_chance": {
+      "label": "두 번째 기회 부적",
+      "file": "items/quiz_second_chance.glb",
+      "triangles": 160,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/quiz_second_chance.png"
+    },
+    "key": {
+      "label": "열쇠",
+      "file": "items/key.glb",
+      "triangles": 104,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/key.png"
+    },
+    "drop_weapon": {
+      "label": "바닥 드랍 (무기)",
+      "file": "items/drop_weapon.glb",
+      "triangles": 84,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/drop_weapon.png"
+    },
+    "drop_armor": {
+      "label": "바닥 드랍 (방어구)",
+      "file": "items/drop_armor.glb",
+      "triangles": 32,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/drop_armor.png"
+    },
+    "drop_jewelry": {
+      "label": "바닥 드랍 (장신구)",
+      "file": "items/drop_jewelry.glb",
+      "triangles": 32,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/drop_jewelry.png"
+    },
+    "drop_potion": {
+      "label": "바닥 드랍 (물약)",
+      "file": "items/drop_potion.glb",
+      "triangles": 162,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/drop_potion.png"
+    },
+    "drop_scroll": {
+      "label": "바닥 드랍 (두루마리)",
+      "file": "items/drop_scroll.glb",
+      "triangles": 112,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/drop_scroll.png"
+    },
+    "drop_gold": {
+      "label": "바닥 드랍 (골드)",
+      "file": "items/drop_gold.glb",
+      "triangles": 96,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/drop_gold.png"
+    },
+    "legend_sword_dawnstar": {
+      "label": "새벽별 검",
+      "file": "items/legend_sword_dawnstar.glb",
+      "triangles": 188,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/legend_sword_dawnstar.png"
+    },
+    "legend_shield_wisdom": {
+      "label": "지혜의 방패",
+      "file": "items/legend_shield_wisdom.glb",
+      "triangles": 200,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/legend_shield_wisdom.png"
+    },
+    "legend_greatsword_oblivion": {
+      "label": "망각을 가르는 대검",
+      "file": "items/legend_greatsword_oblivion.glb",
+      "triangles": 188,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/legend_greatsword_oblivion.png"
+    },
+    "legend_bow_oldroot": {
+      "label": "올드루트의 활 (살아 있는 가지)",
+      "file": "items/legend_bow_oldroot.glb",
+      "triangles": 320,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/legend_bow_oldroot.png"
+    },
+    "legend_staff_timekeeper": {
+      "label": "시간지기의 지팡이",
+      "file": "items/legend_staff_timekeeper.glb",
+      "triangles": 398,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/legend_staff_timekeeper.png"
+    },
+    "legend_book_forbidden": {
+      "label": "봉인 풀린 금서",
+      "file": "items/legend_book_forbidden.glb",
+      "triangles": 132,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/legend_book_forbidden.png"
+    },
+    "legend_helmet_lumi": {
+      "label": "루미의 깃털 투구",
+      "file": "items/legend_helmet_lumi.glb",
+      "triangles": 284,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/legend_helmet_lumi.png"
+    },
+    "legend_armor_lantern": {
+      "label": "등불 수호 갑옷",
+      "file": "items/legend_armor_lantern.glb",
+      "triangles": 248,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/legend_armor_lantern.png"
+    },
+    "legend_gloves_candle": {
+      "label": "촛불 장갑",
+      "file": "items/legend_gloves_candle.glb",
+      "triangles": 256,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/legend_gloves_candle.png"
+    },
+    "legend_boots_wind": {
+      "label": "바람 장화",
+      "file": "items/legend_boots_wind.glb",
+      "triangles": 168,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/legend_boots_wind.png"
+    },
+    "legend_ring_starlight": {
+      "label": "별빛 반지",
+      "file": "items/legend_ring_starlight.glb",
+      "triangles": 272,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/legend_ring_starlight.png"
+    },
+    "legend_necklace_memory": {
+      "label": "기억의 목걸이",
+      "file": "items/legend_necklace_memory.glb",
+      "triangles": 172,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/legend_necklace_memory.png"
     }
   },
   "props": {
@@ -1264,6 +2797,810 @@
         "fx",
         "ring",
         "arrows"
+      ]
+    },
+    "fx_boss_root_spike": {
+      "label": "보스: 뿌리 솟구치기",
+      "file": "vfx/fx_boss_root_spike.glb",
+      "triangles": 158,
+      "clips": {
+        "play": {
+          "seconds": 1.4,
+          "loop": false
+        }
+      },
+      "parts": [
+        "fx",
+        "spikes",
+        "warn"
+      ]
+    },
+    "fx_boss_page_storm": {
+      "label": "보스: 페이지 폭풍 (반복)",
+      "file": "vfx/fx_boss_page_storm.glb",
+      "triangles": 256,
+      "clips": {
+        "play": {
+          "seconds": 1.6,
+          "loop": true
+        }
+      },
+      "parts": [
+        "fx",
+        "storm"
+      ]
+    },
+    "fx_boss_ink_pool": {
+      "label": "보스: 잉크 웅덩이 (떨어져서 퍼짐)",
+      "file": "vfx/fx_boss_ink_pool.glb",
+      "triangles": 216,
+      "clips": {
+        "play": {
+          "seconds": 3,
+          "loop": false
+        }
+      },
+      "parts": [
+        "fx",
+        "drop",
+        "pool"
+      ]
+    },
+    "fx_boss_time_zone": {
+      "label": "보스: 시간 정지 영역 (반복)",
+      "file": "vfx/fx_boss_time_zone.glb",
+      "triangles": 408,
+      "clips": {
+        "play": {
+          "seconds": 2,
+          "loop": true
+        }
+      },
+      "parts": [
+        "fx",
+        "zone",
+        "hands"
+      ]
+    },
+    "fx_boss_shadow_spikes": {
+      "label": "최종 보스: 그림자 가시",
+      "file": "vfx/fx_boss_shadow_spikes.glb",
+      "triangles": 164,
+      "clips": {
+        "play": {
+          "seconds": 1.4,
+          "loop": false
+        }
+      },
+      "parts": [
+        "fx",
+        "spikes",
+        "warn"
+      ]
+    },
+    "fx_arrow": {
+      "label": "화살 (별사냥꾼 기본 공격)",
+      "file": "vfx/fx_arrow.glb",
+      "triangles": 260,
+      "clips": {
+        "fly": {
+          "seconds": 0.5,
+          "loop": true
+        },
+        "impact": {
+          "seconds": 0.6,
+          "loop": false
+        }
+      },
+      "parts": [
+        "trail",
+        "shot",
+        "boom"
+      ]
+    },
+    "fx_magic_bolt": {
+      "label": "마력탄 (현자 기본 공격)",
+      "file": "vfx/fx_magic_bolt.glb",
+      "triangles": 384,
+      "clips": {
+        "fly": {
+          "seconds": 0.5,
+          "loop": true
+        },
+        "impact": {
+          "seconds": 0.6,
+          "loop": false
+        }
+      },
+      "parts": [
+        "trail",
+        "shot",
+        "boom"
+      ]
+    },
+    "fx_status_burn": {
+      "label": "상태 이상: 화상",
+      "file": "vfx/fx_status_burn.glb",
+      "triangles": 60,
+      "clips": {
+        "play": {
+          "seconds": 1.2,
+          "loop": true
+        }
+      },
+      "parts": [
+        "motes"
+      ]
+    },
+    "fx_status_freeze": {
+      "label": "상태 이상: 빙결",
+      "file": "vfx/fx_status_freeze.glb",
+      "triangles": 60,
+      "clips": {
+        "play": {
+          "seconds": 2,
+          "loop": true
+        }
+      },
+      "parts": [
+        "ice"
+      ]
+    },
+    "fx_status_poison": {
+      "label": "상태 이상: 중독",
+      "file": "vfx/fx_status_poison.glb",
+      "triangles": 120,
+      "clips": {
+        "play": {
+          "seconds": 1.2,
+          "loop": true
+        }
+      },
+      "parts": [
+        "motes"
+      ]
+    },
+    "fx_status_stun": {
+      "label": "상태 이상: 기절 (머리 위 별)",
+      "file": "vfx/fx_status_stun.glb",
+      "triangles": 32,
+      "clips": {
+        "play": {
+          "seconds": 1.2,
+          "loop": true
+        }
+      },
+      "parts": [
+        "stars"
+      ]
+    },
+    "fx_portal": {
+      "label": "마을 포탈",
+      "file": "vfx/fx_portal.glb",
+      "triangles": 572,
+      "clips": {
+        "play": {
+          "seconds": 2,
+          "loop": true
+        }
+      },
+      "parts": [
+        "portal",
+        "swirl"
+      ]
+    },
+    "fx_elite_giant": {
+      "label": "엘리트: 거대화 (몬스터를 1.5배로 키우고 함께 사용)",
+      "file": "vfx/fx_elite_giant.glb",
+      "triangles": 144,
+      "clips": {
+        "play": {
+          "seconds": 1.2,
+          "loop": true
+        }
+      },
+      "parts": [
+        "ring",
+        "arrows"
+      ]
+    },
+    "fx_elite_haste": {
+      "label": "엘리트: 신속 (잔상)",
+      "file": "vfx/fx_elite_haste.glb",
+      "triangles": 180,
+      "clips": {
+        "play": {
+          "seconds": 0.6,
+          "loop": true
+        }
+      },
+      "parts": [
+        "streaks",
+        "ring"
+      ]
+    },
+    "fx_elite_fire": {
+      "label": "엘리트: 화염 오라 (발밑 불꽃 링)",
+      "file": "vfx/fx_elite_fire.glb",
+      "triangles": 220,
+      "clips": {
+        "play": {
+          "seconds": 1.2,
+          "loop": true
+        }
+      },
+      "parts": [
+        "fire"
+      ]
+    },
+    "fx_elite_frost": {
+      "label": "엘리트: 냉기 (얼음 결정 오라)",
+      "file": "vfx/fx_elite_frost.glb",
+      "triangles": 168,
+      "clips": {
+        "play": {
+          "seconds": 3,
+          "loop": true
+        }
+      },
+      "parts": [
+        "crystals"
+      ]
+    },
+    "fx_elite_split": {
+      "label": "엘리트: 분열 (처치하면 2마리로 나뉜다는 표시)",
+      "file": "vfx/fx_elite_split.glb",
+      "triangles": 172,
+      "clips": {
+        "play": {
+          "seconds": 1.2,
+          "loop": true
+        }
+      },
+      "parts": [
+        "mark",
+        "ring"
+      ]
+    },
+    "fx_elite_shield": {
+      "label": "엘리트: 보호막 (반투명 구체)",
+      "file": "vfx/fx_elite_shield.glb",
+      "triangles": 512,
+      "clips": {
+        "play": {
+          "seconds": 2,
+          "loop": true
+        }
+      },
+      "parts": [
+        "bubble"
+      ]
+    }
+  },
+  "skills": {
+    "skill_knight_whirlwind": {
+      "label": "회전베기 (근접)",
+      "file": "vfx/skills/skill_knight_whirlwind.glb",
+      "triangles": 552,
+      "clips": {
+        "cast": {
+          "seconds": 0.5,
+          "loop": false
+        },
+        "play": {
+          "seconds": 0.8,
+          "loop": false
+        }
+      },
+      "parts": [
+        "castRing",
+        "castSparks",
+        "arc"
+      ]
+    },
+    "skill_knight_shield_charge": {
+      "label": "방패 돌진 (이동)",
+      "file": "vfx/skills/skill_knight_shield_charge.glb",
+      "triangles": 342,
+      "clips": {
+        "cast": {
+          "seconds": 0.5,
+          "loop": false
+        },
+        "play": {
+          "seconds": 0.6,
+          "loop": false
+        }
+      },
+      "parts": [
+        "castRing",
+        "castSparks",
+        "dash"
+      ]
+    },
+    "skill_knight_ground_slam": {
+      "label": "대지 강타 (범위)",
+      "file": "vfx/skills/skill_knight_ground_slam.glb",
+      "triangles": 544,
+      "clips": {
+        "cast": {
+          "seconds": 0.5,
+          "loop": false
+        },
+        "play": {
+          "seconds": 1,
+          "loop": false
+        }
+      },
+      "parts": [
+        "castRing",
+        "castSparks",
+        "wave",
+        "rocks",
+        "crack"
+      ]
+    },
+    "skill_knight_war_cry": {
+      "label": "수호의 함성 (버프) (버프)",
+      "file": "vfx/skills/skill_knight_war_cry.glb",
+      "triangles": 720,
+      "clips": {
+        "cast": {
+          "seconds": 0.5,
+          "loop": false
+        },
+        "play": {
+          "seconds": 1.2,
+          "loop": true
+        }
+      },
+      "parts": [
+        "castRing",
+        "castSparks",
+        "shout",
+        "aura"
+      ]
+    },
+    "skill_knight_counter_stance": {
+      "label": "반격 태세 (버프)",
+      "file": "vfx/skills/skill_knight_counter_stance.glb",
+      "triangles": 240,
+      "clips": {
+        "cast": {
+          "seconds": 0.5,
+          "loop": false
+        },
+        "play": {
+          "seconds": 2,
+          "loop": true
+        }
+      },
+      "parts": [
+        "castRing",
+        "castSparks",
+        "guard"
+      ]
+    },
+    "skill_knight_light_blade": {
+      "label": "빛의 검 (근접)",
+      "file": "vfx/skills/skill_knight_light_blade.glb",
+      "triangles": 228,
+      "clips": {
+        "cast": {
+          "seconds": 0.5,
+          "loop": false
+        },
+        "play": {
+          "seconds": 1,
+          "loop": false
+        }
+      },
+      "parts": [
+        "castRing",
+        "castSparks",
+        "blade"
+      ]
+    },
+    "skill_knight_taunt": {
+      "label": "도발 (버프)",
+      "file": "vfx/skills/skill_knight_taunt.glb",
+      "triangles": 336,
+      "clips": {
+        "cast": {
+          "seconds": 0.5,
+          "loop": false
+        },
+        "play": {
+          "seconds": 1,
+          "loop": true
+        }
+      },
+      "parts": [
+        "castRing",
+        "castSparks",
+        "mark",
+        "pulse"
+      ]
+    },
+    "skill_knight_sanctuary": {
+      "label": "성역 (범위)",
+      "file": "vfx/skills/skill_knight_sanctuary.glb",
+      "triangles": 528,
+      "clips": {
+        "cast": {
+          "seconds": 0.5,
+          "loop": false
+        },
+        "play": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "castRing",
+        "castSparks",
+        "holy"
+      ]
+    },
+    "skill_hunter_multi_shot": {
+      "label": "다중 사격 (투사체)",
+      "file": "vfx/skills/skill_hunter_multi_shot.glb",
+      "triangles": 596,
+      "clips": {
+        "cast": {
+          "seconds": 0.5,
+          "loop": false
+        },
+        "fly": {
+          "seconds": 0.5,
+          "loop": true
+        },
+        "impact": {
+          "seconds": 0.6,
+          "loop": false
+        }
+      },
+      "parts": [
+        "castRing",
+        "castSparks",
+        "trail",
+        "shot",
+        "boom"
+      ]
+    },
+    "skill_hunter_piercing_arrow": {
+      "label": "관통 화살 (투사체)",
+      "file": "vfx/skills/skill_hunter_piercing_arrow.glb",
+      "triangles": 524,
+      "clips": {
+        "cast": {
+          "seconds": 0.5,
+          "loop": false
+        },
+        "fly": {
+          "seconds": 0.5,
+          "loop": true
+        },
+        "impact": {
+          "seconds": 0.6,
+          "loop": false
+        }
+      },
+      "parts": [
+        "castRing",
+        "castSparks",
+        "trail",
+        "shot",
+        "boom"
+      ]
+    },
+    "skill_hunter_trap": {
+      "label": "덫 설치 (범위)",
+      "file": "vfx/skills/skill_hunter_trap.glb",
+      "triangles": 448,
+      "clips": {
+        "cast": {
+          "seconds": 0.5,
+          "loop": false
+        },
+        "play": {
+          "seconds": 1,
+          "loop": false
+        }
+      },
+      "parts": [
+        "castRing",
+        "castSparks",
+        "jaws",
+        "net"
+      ]
+    },
+    "skill_hunter_roll": {
+      "label": "구르기 (이동)",
+      "file": "vfx/skills/skill_hunter_roll.glb",
+      "triangles": 312,
+      "clips": {
+        "cast": {
+          "seconds": 0.5,
+          "loop": false
+        },
+        "play": {
+          "seconds": 0.7,
+          "loop": false
+        }
+      },
+      "parts": [
+        "castRing",
+        "castSparks",
+        "dust"
+      ]
+    },
+    "skill_hunter_poison_arrow": {
+      "label": "독화살 (투사체)",
+      "file": "vfx/skills/skill_hunter_poison_arrow.glb",
+      "triangles": 512,
+      "clips": {
+        "cast": {
+          "seconds": 0.5,
+          "loop": false
+        },
+        "fly": {
+          "seconds": 0.5,
+          "loop": true
+        },
+        "impact": {
+          "seconds": 0.6,
+          "loop": false
+        }
+      },
+      "parts": [
+        "castRing",
+        "castSparks",
+        "trail",
+        "shot",
+        "boom"
+      ]
+    },
+    "skill_hunter_arrow_rain": {
+      "label": "화살비 (범위)",
+      "file": "vfx/skills/skill_hunter_arrow_rain.glb",
+      "triangles": 744,
+      "clips": {
+        "cast": {
+          "seconds": 0.5,
+          "loop": false
+        },
+        "play": {
+          "seconds": 0.8,
+          "loop": true
+        }
+      },
+      "parts": [
+        "castRing",
+        "castSparks",
+        "rain",
+        "mark"
+      ]
+    },
+    "skill_hunter_hawk": {
+      "label": "매 소환 (버프)",
+      "file": "vfx/skills/skill_hunter_hawk.glb",
+      "triangles": 460,
+      "clips": {
+        "cast": {
+          "seconds": 0.5,
+          "loop": false
+        },
+        "play": {
+          "seconds": 2,
+          "loop": true
+        }
+      },
+      "parts": [
+        "castRing",
+        "castSparks",
+        "orbit",
+        "hawk"
+      ]
+    },
+    "skill_hunter_snipe": {
+      "label": "저격 (투사체)",
+      "file": "vfx/skills/skill_hunter_snipe.glb",
+      "triangles": 472,
+      "clips": {
+        "cast": {
+          "seconds": 0.5,
+          "loop": false
+        },
+        "fly": {
+          "seconds": 0.5,
+          "loop": true
+        },
+        "impact": {
+          "seconds": 0.6,
+          "loop": false
+        }
+      },
+      "parts": [
+        "castRing",
+        "castSparks",
+        "trail",
+        "shot",
+        "boom"
+      ]
+    },
+    "skill_sage_fireball": {
+      "label": "화염구 (투사체)",
+      "file": "vfx/skills/skill_sage_fireball.glb",
+      "triangles": 626,
+      "clips": {
+        "cast": {
+          "seconds": 0.5,
+          "loop": false
+        },
+        "fly": {
+          "seconds": 0.5,
+          "loop": true
+        },
+        "impact": {
+          "seconds": 0.6,
+          "loop": false
+        }
+      },
+      "parts": [
+        "castRing",
+        "castSparks",
+        "trail",
+        "shot",
+        "boom"
+      ]
+    },
+    "skill_sage_ice_spear": {
+      "label": "얼음 창 (투사체)",
+      "file": "vfx/skills/skill_sage_ice_spear.glb",
+      "triangles": 450,
+      "clips": {
+        "cast": {
+          "seconds": 0.5,
+          "loop": false
+        },
+        "fly": {
+          "seconds": 0.5,
+          "loop": true
+        },
+        "impact": {
+          "seconds": 0.6,
+          "loop": false
+        }
+      },
+      "parts": [
+        "castRing",
+        "castSparks",
+        "trail",
+        "shot",
+        "boom"
+      ]
+    },
+    "skill_sage_chain_lightning": {
+      "label": "연쇄 번개 (범위)",
+      "file": "vfx/skills/skill_sage_chain_lightning.glb",
+      "triangles": 288,
+      "clips": {
+        "cast": {
+          "seconds": 0.5,
+          "loop": false
+        },
+        "play": {
+          "seconds": 0.6,
+          "loop": false
+        }
+      },
+      "parts": [
+        "castRing",
+        "castSparks",
+        "bolt"
+      ]
+    },
+    "skill_sage_teleport": {
+      "label": "순간이동 (이동)",
+      "file": "vfx/skills/skill_sage_teleport.glb",
+      "triangles": 296,
+      "clips": {
+        "cast": {
+          "seconds": 0.5,
+          "loop": false
+        },
+        "play": {
+          "seconds": 0.8,
+          "loop": false
+        }
+      },
+      "parts": [
+        "castRing",
+        "castSparks",
+        "poof"
+      ]
+    },
+    "skill_sage_mana_shield": {
+      "label": "마나 보호막 (버프)",
+      "file": "vfx/skills/skill_sage_mana_shield.glb",
+      "triangles": 704,
+      "clips": {
+        "cast": {
+          "seconds": 0.5,
+          "loop": false
+        },
+        "play": {
+          "seconds": 2,
+          "loop": true
+        }
+      },
+      "parts": [
+        "castRing",
+        "castSparks",
+        "bubble"
+      ]
+    },
+    "skill_sage_fire_wall": {
+      "label": "화염 벽 (범위)",
+      "file": "vfx/skills/skill_sage_fire_wall.glb",
+      "triangles": 372,
+      "clips": {
+        "cast": {
+          "seconds": 0.5,
+          "loop": false
+        },
+        "play": {
+          "seconds": 0.9,
+          "loop": true
+        }
+      },
+      "parts": [
+        "castRing",
+        "castSparks",
+        "wall"
+      ]
+    },
+    "skill_sage_blizzard": {
+      "label": "눈보라 (범위)",
+      "file": "vfx/skills/skill_sage_blizzard.glb",
+      "triangles": 440,
+      "clips": {
+        "cast": {
+          "seconds": 0.5,
+          "loop": false
+        },
+        "play": {
+          "seconds": 1.6,
+          "loop": true
+        }
+      },
+      "parts": [
+        "castRing",
+        "castSparks",
+        "storm"
+      ]
+    },
+    "skill_sage_meteor": {
+      "label": "유성 (범위)",
+      "file": "vfx/skills/skill_sage_meteor.glb",
+      "triangles": 512,
+      "clips": {
+        "cast": {
+          "seconds": 0.5,
+          "loop": false
+        },
+        "play": {
+          "seconds": 1.8,
+          "loop": false
+        }
+      },
+      "parts": [
+        "castRing",
+        "castSparks",
+        "rock",
+        "mark",
+        "blast"
       ]
     }
   }

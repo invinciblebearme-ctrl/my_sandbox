@@ -410,6 +410,7 @@ window.__icon = (cat, key, px = 128) => {
   obj.updateMatrixWorld(true);
   const raw = new THREE.Box3().setFromObject(obj).getSize(new THREE.Vector3());
   if (item && raw.y > 2.5 * Math.max(raw.x, raw.z)) { // long items (swords) lie diagonally, like classic icons
+    if (raw.z > raw.x * 1.5 || /(^|_)bow/.test(key)) item.rotation.y = Math.PI / 2; // bows: show the curve, not the edge
     item.rotation.z = -Math.PI / 4;
     obj.updateMatrixWorld(true);
   }
