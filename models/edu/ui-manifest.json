@@ -1,0 +1,877 @@
+[
+  {
+    "file": "ui/quiz/quiz_panel.png",
+    "w": 192,
+    "h": 192,
+    "slice": [
+      48,
+      48,
+      48,
+      48
+    ],
+    "note": "9-slice 퀴즈 팝업 패널 (양피지)"
+  },
+  {
+    "file": "ui/quiz/quiz_choice_normal.png",
+    "w": 420,
+    "h": 84,
+    "slice": [
+      24,
+      28,
+      24,
+      28
+    ],
+    "note": "보기 버튼 (9-slice, 글자는 게임에서)"
+  },
+  {
+    "file": "ui/quiz/quiz_choice_hover.png",
+    "w": 420,
+    "h": 84,
+    "slice": [
+      24,
+      28,
+      24,
+      28
+    ],
+    "note": "보기 버튼 (9-slice, 글자는 게임에서)"
+  },
+  {
+    "file": "ui/quiz/quiz_choice_correct.png",
+    "w": 420,
+    "h": 84,
+    "slice": [
+      24,
+      28,
+      24,
+      28
+    ],
+    "note": "보기 버튼 (9-slice, 글자는 게임에서)"
+  },
+  {
+    "file": "ui/quiz/quiz_choice_wrong.png",
+    "w": 420,
+    "h": 84,
+    "slice": [
+      24,
+      28,
+      24,
+      28
+    ],
+    "note": "보기 버튼 (9-slice, 글자는 게임에서)"
+  },
+  {
+    "file": "ui/quiz/quiz_ox_o_normal.png",
+    "w": 140,
+    "h": 140
+  },
+  {
+    "file": "ui/quiz/quiz_ox_o_hover.png",
+    "w": 140,
+    "h": 140
+  },
+  {
+    "file": "ui/quiz/quiz_ox_o_correct.png",
+    "w": 140,
+    "h": 140
+  },
+  {
+    "file": "ui/quiz/quiz_ox_o_wrong.png",
+    "w": 140,
+    "h": 140
+  },
+  {
+    "file": "ui/quiz/quiz_ox_x_normal.png",
+    "w": 140,
+    "h": 140
+  },
+  {
+    "file": "ui/quiz/quiz_ox_x_hover.png",
+    "w": 140,
+    "h": 140
+  },
+  {
+    "file": "ui/quiz/quiz_ox_x_correct.png",
+    "w": 140,
+    "h": 140
+  },
+  {
+    "file": "ui/quiz/quiz_ox_x_wrong.png",
+    "w": 140,
+    "h": 140
+  },
+  {
+    "file": "ui/quiz/keypad_0_normal.png",
+    "w": 96,
+    "h": 96
+  },
+  {
+    "file": "ui/quiz/keypad_0_pressed.png",
+    "w": 96,
+    "h": 96
+  },
+  {
+    "file": "ui/quiz/keypad_1_normal.png",
+    "w": 96,
+    "h": 96
+  },
+  {
+    "file": "ui/quiz/keypad_1_pressed.png",
+    "w": 96,
+    "h": 96
+  },
+  {
+    "file": "ui/quiz/keypad_2_normal.png",
+    "w": 96,
+    "h": 96
+  },
+  {
+    "file": "ui/quiz/keypad_2_pressed.png",
+    "w": 96,
+    "h": 96
+  },
+  {
+    "file": "ui/quiz/keypad_3_normal.png",
+    "w": 96,
+    "h": 96
+  },
+  {
+    "file": "ui/quiz/keypad_3_pressed.png",
+    "w": 96,
+    "h": 96
+  },
+  {
+    "file": "ui/quiz/keypad_4_normal.png",
+    "w": 96,
+    "h": 96
+  },
+  {
+    "file": "ui/quiz/keypad_4_pressed.png",
+    "w": 96,
+    "h": 96
+  },
+  {
+    "file": "ui/quiz/keypad_5_normal.png",
+    "w": 96,
+    "h": 96
+  },
+  {
+    "file": "ui/quiz/keypad_5_pressed.png",
+    "w": 96,
+    "h": 96
+  },
+  {
+    "file": "ui/quiz/keypad_6_normal.png",
+    "w": 96,
+    "h": 96
+  },
+  {
+    "file": "ui/quiz/keypad_6_pressed.png",
+    "w": 96,
+    "h": 96
+  },
+  {
+    "file": "ui/quiz/keypad_7_normal.png",
+    "w": 96,
+    "h": 96
+  },
+  {
+    "file": "ui/quiz/keypad_7_pressed.png",
+    "w": 96,
+    "h": 96
+  },
+  {
+    "file": "ui/quiz/keypad_8_normal.png",
+    "w": 96,
+    "h": 96
+  },
+  {
+    "file": "ui/quiz/keypad_8_pressed.png",
+    "w": 96,
+    "h": 96
+  },
+  {
+    "file": "ui/quiz/keypad_9_normal.png",
+    "w": 96,
+    "h": 96
+  },
+  {
+    "file": "ui/quiz/keypad_9_pressed.png",
+    "w": 96,
+    "h": 96
+  },
+  {
+    "file": "ui/quiz/keypad_del_normal.png",
+    "w": 96,
+    "h": 96
+  },
+  {
+    "file": "ui/quiz/keypad_del_pressed.png",
+    "w": 96,
+    "h": 96
+  },
+  {
+    "file": "ui/quiz/keypad_ok_normal.png",
+    "w": 96,
+    "h": 96
+  },
+  {
+    "file": "ui/quiz/keypad_ok_pressed.png",
+    "w": 96,
+    "h": 96
+  },
+  {
+    "file": "ui/quiz/timer_ring_bg.png",
+    "w": 128,
+    "h": 128,
+    "note": "원형 타이머 배경"
+  },
+  {
+    "file": "ui/quiz/timer_ring_fill.png",
+    "w": 128,
+    "h": 128,
+    "note": "남은 시간 비율만큼 원호를 잘라서(마스크) 표시"
+  },
+  {
+    "file": "ui/quiz/timer_hourglass.png",
+    "w": 64,
+    "h": 64
+  },
+  {
+    "file": "ui/quiz/action_attack.png",
+    "w": 80,
+    "h": 80,
+    "note": "이 퀴즈가 무엇을 위한 것인지 (공격·마법·물약·상자·귀환)"
+  },
+  {
+    "file": "ui/quiz/action_magic.png",
+    "w": 80,
+    "h": 80,
+    "note": "이 퀴즈가 무엇을 위한 것인지 (공격·마법·물약·상자·귀환)"
+  },
+  {
+    "file": "ui/quiz/action_potion.png",
+    "w": 80,
+    "h": 80,
+    "note": "이 퀴즈가 무엇을 위한 것인지 (공격·마법·물약·상자·귀환)"
+  },
+  {
+    "file": "ui/quiz/action_chest.png",
+    "w": 80,
+    "h": 80,
+    "note": "이 퀴즈가 무엇을 위한 것인지 (공격·마법·물약·상자·귀환)"
+  },
+  {
+    "file": "ui/quiz/action_return.png",
+    "w": 80,
+    "h": 80,
+    "note": "이 퀴즈가 무엇을 위한 것인지 (공격·마법·물약·상자·귀환)"
+  },
+  {
+    "file": "ui/quiz/judge_perfect.png",
+    "w": 320,
+    "h": 120,
+    "frames": 6,
+    "note": "판정 텍스트 애니메이션 6프레임 (가로 스트립)"
+  },
+  {
+    "file": "ui/quiz/judge_good.png",
+    "w": 320,
+    "h": 120,
+    "frames": 6,
+    "note": "판정 텍스트 애니메이션 6프레임 (가로 스트립)"
+  },
+  {
+    "file": "ui/quiz/judge_safe.png",
+    "w": 320,
+    "h": 120,
+    "frames": 6,
+    "note": "판정 텍스트 애니메이션 6프레임 (가로 스트립)"
+  },
+  {
+    "file": "ui/quiz/judge_miss.png",
+    "w": 320,
+    "h": 120,
+    "frames": 6,
+    "note": "판정 텍스트 애니메이션 6프레임 (가로 스트립)"
+  },
+  {
+    "file": "ui/quiz/fx_correct.png",
+    "w": 192,
+    "h": 192,
+    "frames": 8,
+    "note": "정답 반짝임 폭발 8프레임"
+  },
+  {
+    "file": "ui/quiz/fx_wrong_crack.png",
+    "w": 512,
+    "h": 288,
+    "frames": 6,
+    "note": "오답: 금 간 유리 오버레이 6프레임 (화면 흔들림은 코드로)"
+  },
+  {
+    "file": "ui/quiz/combo_digits.png",
+    "w": 64,
+    "h": 80,
+    "frames": 12,
+    "note": "콤보 숫자 0~9, x, ! (가로 스트립 12칸)"
+  },
+  {
+    "file": "ui/quiz/combo_flame.png",
+    "w": 96,
+    "h": 128,
+    "frames": 6,
+    "note": "콤보 숫자 뒤 불꽃 루프 6프레임"
+  },
+  {
+    "file": "ui/quiz/focus_gauge_frame.png",
+    "w": 420,
+    "h": 48,
+    "slice": [
+      44,
+      22,
+      22,
+      22
+    ],
+    "note": "집중 게이지 틀 (왼쪽 책 아이콘)"
+  },
+  {
+    "file": "ui/quiz/focus_gauge_fill.png",
+    "w": 360,
+    "h": 24,
+    "note": "가로로 잘라서 채움"
+  },
+  {
+    "file": "ui/quiz/focus_gauge_glow.png",
+    "w": 360,
+    "h": 24,
+    "frames": 6,
+    "note": "게이지가 가득 찼을 때 지나가는 빛 6프레임"
+  },
+  {
+    "file": "ui/quiz/fx_wisdom_burst.png",
+    "w": 256,
+    "h": 256,
+    "frames": 12,
+    "note": "\"지혜 폭발\" 화면 전체 빛 폭발 12프레임 (화면 크기로 늘려서)"
+  },
+  {
+    "file": "ui/quiz/quiz_explain_panel.png",
+    "w": 192,
+    "h": 192,
+    "slice": [
+      44,
+      44,
+      44,
+      44
+    ],
+    "note": "해설 창 (9-slice)"
+  },
+  {
+    "file": "ui/quiz/explain_ribbon_correct.png",
+    "w": 320,
+    "h": 72
+  },
+  {
+    "file": "ui/quiz/explain_ribbon_wrong.png",
+    "w": 320,
+    "h": 72
+  },
+  {
+    "file": "ui/quiz/explain_ribbon_answer.png",
+    "w": 320,
+    "h": 72
+  },
+  {
+    "file": "ui/quiz/notebook_panel.png",
+    "w": 1024,
+    "h": 640,
+    "note": "오답노트 책 배경 (오른쪽 탭 4개 = 과목)"
+  },
+  {
+    "file": "ui/quiz/report_panel.png",
+    "w": 1024,
+    "h": 640,
+    "note": "학습 리포트 배경 (그래프 눈금 포함, 값은 게임에서 그림)"
+  },
+  {
+    "file": "ui/quiz/report_bar_math.png",
+    "w": 48,
+    "h": 256,
+    "note": "과목별 막대 (세로로 잘라서 사용)"
+  },
+  {
+    "file": "ui/quiz/report_bar_english.png",
+    "w": 48,
+    "h": 256,
+    "note": "과목별 막대 (세로로 잘라서 사용)"
+  },
+  {
+    "file": "ui/quiz/report_bar_korean.png",
+    "w": 48,
+    "h": 256,
+    "note": "과목별 막대 (세로로 잘라서 사용)"
+  },
+  {
+    "file": "ui/quiz/report_bar_science.png",
+    "w": 48,
+    "h": 256,
+    "note": "과목별 막대 (세로로 잘라서 사용)"
+  },
+  {
+    "file": "ui/quiz/report_bar_social.png",
+    "w": 48,
+    "h": 256,
+    "note": "과목별 막대 (세로로 잘라서 사용)"
+  },
+  {
+    "file": "ui/quiz/subject_math.png",
+    "w": 80,
+    "h": 80,
+    "note": "과목 아이콘 (수학·영어·국어·과학·사회)"
+  },
+  {
+    "file": "ui/quiz/subject_english.png",
+    "w": 80,
+    "h": 80,
+    "note": "과목 아이콘 (수학·영어·국어·과학·사회)"
+  },
+  {
+    "file": "ui/quiz/subject_korean.png",
+    "w": 80,
+    "h": 80,
+    "note": "과목 아이콘 (수학·영어·국어·과학·사회)"
+  },
+  {
+    "file": "ui/quiz/subject_science.png",
+    "w": 80,
+    "h": 80,
+    "note": "과목 아이콘 (수학·영어·국어·과학·사회)"
+  },
+  {
+    "file": "ui/quiz/subject_social.png",
+    "w": 80,
+    "h": 80,
+    "note": "과목 아이콘 (수학·영어·국어·과학·사회)"
+  },
+  {
+    "file": "ui/hud/orb_hp_fill.png",
+    "w": 160,
+    "h": 160,
+    "note": "체력·마나 구슬 내용물 (아래에서부터 세로로 잘라 채움)"
+  },
+  {
+    "file": "ui/hud/orb_mp_fill.png",
+    "w": 160,
+    "h": 160,
+    "note": "체력·마나 구슬 내용물 (아래에서부터 세로로 잘라 채움)"
+  },
+  {
+    "file": "ui/hud/orb_frame.png",
+    "w": 160,
+    "h": 160,
+    "note": "구슬 틀 (내용물 위에 겹침)"
+  },
+  {
+    "file": "ui/hud/orb_empty.png",
+    "w": 160,
+    "h": 160
+  },
+  {
+    "file": "ui/hud/exp_bar_frame.png",
+    "w": 640,
+    "h": 28,
+    "slice": [
+      14,
+      14,
+      14,
+      14
+    ]
+  },
+  {
+    "file": "ui/hud/exp_bar_fill.png",
+    "w": 620,
+    "h": 18
+  },
+  {
+    "file": "ui/hud/skill_slot.png",
+    "w": 72,
+    "h": 72,
+    "note": "스킬바 칸 (6칸, 아이콘은 icons/skills)"
+  },
+  {
+    "file": "ui/hud/skill_cooldown.png",
+    "w": 64,
+    "h": 64,
+    "note": "재사용 대기 덮개 (원형으로 잘라 표시)"
+  },
+  {
+    "file": "ui/hud/potion_slot.png",
+    "w": 64,
+    "h": 64,
+    "note": "물약 벨트 칸 (4칸)"
+  },
+  {
+    "file": "ui/hud/key_badge.png",
+    "w": 28,
+    "h": 28,
+    "note": "단축키 숫자 배지 (숫자는 게임에서)"
+  },
+  {
+    "file": "ui/hud/monster_hp_normal_frame.png",
+    "w": 96,
+    "h": 16,
+    "slice": [
+      8,
+      8,
+      8,
+      8
+    ]
+  },
+  {
+    "file": "ui/hud/monster_hp_normal_fill.png",
+    "w": 88,
+    "h": 10
+  },
+  {
+    "file": "ui/hud/monster_hp_elite_frame.png",
+    "w": 128,
+    "h": 16,
+    "slice": [
+      8,
+      8,
+      8,
+      8
+    ]
+  },
+  {
+    "file": "ui/hud/monster_hp_elite_fill.png",
+    "w": 120,
+    "h": 10
+  },
+  {
+    "file": "ui/hud/monster_hp_boss_frame.png",
+    "w": 720,
+    "h": 40,
+    "slice": [
+      20,
+      20,
+      20,
+      20
+    ]
+  },
+  {
+    "file": "ui/hud/monster_hp_boss_fill.png",
+    "w": 712,
+    "h": 28
+  },
+  {
+    "file": "ui/hud/panel_dark.png",
+    "w": 192,
+    "h": 192,
+    "slice": [
+      40,
+      40,
+      40,
+      40
+    ],
+    "note": "공용 어두운 패널 (인벤토리·상점·창고·캐릭터 정보·스킬 트리)"
+  },
+  {
+    "file": "ui/hud/panel_title.png",
+    "w": 360,
+    "h": 64,
+    "slice": [
+      20,
+      20,
+      20,
+      20
+    ],
+    "note": "창 제목 띠"
+  },
+  {
+    "file": "ui/hud/slot_empty.png",
+    "w": 56,
+    "h": 56,
+    "note": "인벤토리 격자 칸 (10 x 4)"
+  },
+  {
+    "file": "ui/hud/slot_common.png",
+    "w": 56,
+    "h": 56,
+    "note": "등급 배경 (아이템 아이콘 뒤)"
+  },
+  {
+    "file": "ui/hud/slot_magic.png",
+    "w": 56,
+    "h": 56,
+    "note": "등급 배경 (아이템 아이콘 뒤)"
+  },
+  {
+    "file": "ui/hud/slot_rare.png",
+    "w": 56,
+    "h": 56,
+    "note": "등급 배경 (아이템 아이콘 뒤)"
+  },
+  {
+    "file": "ui/hud/slot_legendary.png",
+    "w": 56,
+    "h": 56,
+    "note": "등급 배경 (아이템 아이콘 뒤)"
+  },
+  {
+    "file": "ui/hud/slot_legendary_glow.png",
+    "w": 64,
+    "h": 64,
+    "frames": 8,
+    "note": "전설 아이템 빛나는 테두리 8프레임"
+  },
+  {
+    "file": "ui/hud/equip_helmet.png",
+    "w": 56,
+    "h": 56,
+    "note": "장비 칸 실루엣 (투구·갑옷·장갑·신발·허리띠·반지·목걸이·무기·보조무기·부적)"
+  },
+  {
+    "file": "ui/hud/equip_armor.png",
+    "w": 56,
+    "h": 56,
+    "note": "장비 칸 실루엣 (투구·갑옷·장갑·신발·허리띠·반지·목걸이·무기·보조무기·부적)"
+  },
+  {
+    "file": "ui/hud/equip_gloves.png",
+    "w": 56,
+    "h": 56,
+    "note": "장비 칸 실루엣 (투구·갑옷·장갑·신발·허리띠·반지·목걸이·무기·보조무기·부적)"
+  },
+  {
+    "file": "ui/hud/equip_boots.png",
+    "w": 56,
+    "h": 56,
+    "note": "장비 칸 실루엣 (투구·갑옷·장갑·신발·허리띠·반지·목걸이·무기·보조무기·부적)"
+  },
+  {
+    "file": "ui/hud/equip_belt.png",
+    "w": 56,
+    "h": 56,
+    "note": "장비 칸 실루엣 (투구·갑옷·장갑·신발·허리띠·반지·목걸이·무기·보조무기·부적)"
+  },
+  {
+    "file": "ui/hud/equip_ring.png",
+    "w": 56,
+    "h": 56,
+    "note": "장비 칸 실루엣 (투구·갑옷·장갑·신발·허리띠·반지·목걸이·무기·보조무기·부적)"
+  },
+  {
+    "file": "ui/hud/equip_necklace.png",
+    "w": 56,
+    "h": 56,
+    "note": "장비 칸 실루엣 (투구·갑옷·장갑·신발·허리띠·반지·목걸이·무기·보조무기·부적)"
+  },
+  {
+    "file": "ui/hud/equip_weapon.png",
+    "w": 56,
+    "h": 56,
+    "note": "장비 칸 실루엣 (투구·갑옷·장갑·신발·허리띠·반지·목걸이·무기·보조무기·부적)"
+  },
+  {
+    "file": "ui/hud/equip_offhand.png",
+    "w": 56,
+    "h": 56,
+    "note": "장비 칸 실루엣 (투구·갑옷·장갑·신발·허리띠·반지·목걸이·무기·보조무기·부적)"
+  },
+  {
+    "file": "ui/hud/equip_amulet.png",
+    "w": 56,
+    "h": 56,
+    "note": "장비 칸 실루엣 (투구·갑옷·장갑·신발·허리띠·반지·목걸이·무기·보조무기·부적)"
+  },
+  {
+    "file": "ui/hud/tooltip_common.png",
+    "w": 128,
+    "h": 128,
+    "slice": [
+      40,
+      16,
+      16,
+      16
+    ],
+    "note": "툴팁 9-slice (등급별 테두리, 위쪽 이름 띠)"
+  },
+  {
+    "file": "ui/hud/tooltip_magic.png",
+    "w": 128,
+    "h": 128,
+    "slice": [
+      40,
+      16,
+      16,
+      16
+    ],
+    "note": "툴팁 9-slice (등급별 테두리, 위쪽 이름 띠)"
+  },
+  {
+    "file": "ui/hud/tooltip_rare.png",
+    "w": 128,
+    "h": 128,
+    "slice": [
+      40,
+      16,
+      16,
+      16
+    ],
+    "note": "툴팁 9-slice (등급별 테두리, 위쪽 이름 띠)"
+  },
+  {
+    "file": "ui/hud/tooltip_legendary.png",
+    "w": 128,
+    "h": 128,
+    "slice": [
+      40,
+      16,
+      16,
+      16
+    ],
+    "note": "툴팁 9-slice (등급별 테두리, 위쪽 이름 띠)"
+  },
+  {
+    "file": "ui/hud/button_normal.png",
+    "w": 240,
+    "h": 72,
+    "slice": [
+      24,
+      28,
+      24,
+      28
+    ],
+    "note": "공용 버튼 9-slice"
+  },
+  {
+    "file": "ui/hud/button_hover.png",
+    "w": 240,
+    "h": 72,
+    "slice": [
+      24,
+      28,
+      24,
+      28
+    ],
+    "note": "공용 버튼 9-slice"
+  },
+  {
+    "file": "ui/hud/button_pressed.png",
+    "w": 240,
+    "h": 72,
+    "slice": [
+      24,
+      28,
+      24,
+      28
+    ],
+    "note": "공용 버튼 9-slice"
+  },
+  {
+    "file": "ui/hud/button_disabled.png",
+    "w": 240,
+    "h": 72,
+    "slice": [
+      24,
+      28,
+      24,
+      28
+    ],
+    "note": "공용 버튼 9-slice"
+  },
+  {
+    "file": "ui/hud/minimap_frame.png",
+    "w": 220,
+    "h": 220,
+    "note": "미니맵 원형 틀"
+  },
+  {
+    "file": "ui/hud/minimap_player.png",
+    "w": 24,
+    "h": 24
+  },
+  {
+    "file": "ui/hud/minimap_stairs.png",
+    "w": 24,
+    "h": 24
+  },
+  {
+    "file": "ui/hud/minimap_boss.png",
+    "w": 24,
+    "h": 24
+  },
+  {
+    "file": "ui/hud/minimap_npc.png",
+    "w": 24,
+    "h": 24
+  },
+  {
+    "file": "ui/hud/minimap_chest.png",
+    "w": 24,
+    "h": 24
+  },
+  {
+    "file": "ui/hud/minimap_portal.png",
+    "w": 24,
+    "h": 24
+  },
+  {
+    "file": "ui/hud/cursor_default.png",
+    "w": 32,
+    "h": 32,
+    "note": "마우스 커서 (핫스팟: default 3,2 / 나머지 가운데)"
+  },
+  {
+    "file": "ui/hud/cursor_attack.png",
+    "w": 32,
+    "h": 32,
+    "note": "마우스 커서 (핫스팟: default 3,2 / 나머지 가운데)"
+  },
+  {
+    "file": "ui/hud/cursor_pickup.png",
+    "w": 32,
+    "h": 32,
+    "note": "마우스 커서 (핫스팟: default 3,2 / 나머지 가운데)"
+  },
+  {
+    "file": "ui/hud/cursor_talk.png",
+    "w": 32,
+    "h": 32,
+    "note": "마우스 커서 (핫스팟: default 3,2 / 나머지 가운데)"
+  },
+  {
+    "file": "ui/hud/damage_digits_normal.png",
+    "w": 32,
+    "h": 40,
+    "frames": 12,
+    "note": "데미지 숫자 비트맵 폰트: 0~9, +, ! (가로 12칸, 직접 그린 픽셀 숫자)"
+  },
+  {
+    "file": "ui/hud/damage_digits_crit.png",
+    "w": 32,
+    "h": 40,
+    "frames": 12,
+    "note": "데미지 숫자 비트맵 폰트: 0~9, +, ! (가로 12칸, 직접 그린 픽셀 숫자)"
+  },
+  {
+    "file": "ui/hud/damage_digits_heal.png",
+    "w": 32,
+    "h": 40,
+    "frames": 12,
+    "note": "데미지 숫자 비트맵 폰트: 0~9, +, ! (가로 12칸, 직접 그린 픽셀 숫자)"
+  },
+  {
+    "file": "ui/hud/damage_digits_mana.png",
+    "w": 32,
+    "h": 40,
+    "frames": 12,
+    "note": "데미지 숫자 비트맵 폰트: 0~9, +, ! (가로 12칸, 직접 그린 픽셀 숫자)"
+  },
+  {
+    "file": "ui/title/logo.png",
+    "w": 1024,
+    "h": 360
+  }
+]

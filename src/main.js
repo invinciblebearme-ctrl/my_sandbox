@@ -426,6 +426,89 @@ window.__icon = (cat, key, px = 128) => {
   disposeMonster(obj);
   return iconRenderer.domElement.toDataURL('image/png');
 };
+// General render: one edu model posed at clip/time, from a camera, into a w x h PNG.
+// opts: { w, h, clip, t, cam: [x,y,z,tx,ty,tz] | 'fit' | 'head', bg: '#rrggbb' | null, params }
+let shotRenderer;
+window.__render = (cat, key, opts = {}) => {
+  const { w = 256, h = 256, clip, t = 0, cam = 'fit', bg = null, params = {}, fov = 30 } = opts;
+  shotRenderer ??= new THREE.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: true });
+  shotRenderer.setPixelRatio(1);
+  shotRenderer.setSize(w, h);
+  const d = THEMES.edu[cat][key];
+  const obj = d.build({ ...d.defaults, ...params });
+  const s = new THREE.Scene();
+  s.add(new THREE.HemisphereLight('#ffffff', '#55606a', 2.0));
+  const key1 = new THREE.DirectionalLight('#fff4e0', 2.4); key1.position.set(2, 4, 3); s.add(key1);
+  const back = new THREE.DirectionalLight('#9ad0ff', 1.4); back.position.set(-3, 2, -2); s.add(back);
+  s.add(obj);
+  if (clip) setPose(obj, t, clip);
+  obj.updateMatrixWorld(true);
+  const camera = new THREE.PerspectiveCamera(fov, w / h, 0.01, 100);
+  if (cam === 'fit' || cam === 'head') {
+    const target = cam === 'head' ? obj.getObjectByName('head') : null;
+    // frame only the parts that are visible in this pose (hidden parts sit at ~0 scale)
+    const box = new THREE.Box3();
+    const ws = new THREE.Vector3();
+    (target ?? obj).traverse((m) => { if (m.isMesh && m.getWorldScale(ws).x > 0.02) box.expandByObject(m); });
+    if (box.isEmpty()) box.setFromObject(target ?? obj);
+    if (target) box.expandByScalar(0.08);
+    const c = box.getCenter(new THREE.Vector3());
+    const rad = box.getSize(new THREE.Vector3()).length() / 2;
+    const dir = cam === 'head' ? new THREE.Vector3(0.35, 0.1, 1).normalize() : new THREE.Vector3(0.55, 0.35, 1).normalize();
+    camera.position.copy(c).addScaledVector(dir, rad / Math.sin((fov / 2) * Math.PI / 180) * (cam === 'head' ? 0.75 : 0.95));
+    camera.lookAt(c);
+  } else {
+    camera.position.set(cam[0], cam[1], cam[2]);
+    camera.lookAt(cam[3], cam[4], cam[5]);
+  }
+  shotRenderer.setClearColor(bg ?? 0x000000, bg ? 1 : 0);
+  shotRenderer.render(s, camera);
+  disposeMonster(obj);
+  return shotRenderer.domElement.toDataURL('image/png');
+};
+// Scene render for illustrations: several edu models on a ground disc with fog.
+// items: [{ cat, key, clip, t, pos: [x,y,z], rotY, scale, params }]
+// opts: { w, h, cam: [x,y,z,tx,ty,tz], sky, ground, fog: [near, far], fov, lights: [{ pos, color, intensity, range }] }
+window.__renderScene = (items, opts = {}) => {
+  const { w = 1920, h = 1080, cam = [0, 2, 8, 0, 1, 0], sky = '#1d3a40', ground: gcol = '#3f7a4a', fog = [8, 30], fov = 40, lights = [] } = opts;
+  shotRenderer ??= new THREE.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: true });
+  shotRenderer.setPixelRatio(1);
+  shotRenderer.setSize(w, h);
+  shotRenderer.shadowMap.enabled = true;
+  const s = new THREE.Scene();
+  s.background = new THREE.Color(sky);
+  s.fog = new THREE.Fog(sky, fog[0], fog[1]);
+  s.add(new THREE.HemisphereLight('#d8f0ff', '#2a3a3a', 1.4));
+  const sunL = new THREE.DirectionalLight('#ffe8c0', 2.2); sunL.position.set(4, 8, 5); sunL.castShadow = true; sunL.shadow.mapSize.set(2048, 2048);
+  Object.assign(sunL.shadow.camera, { left: -12, right: 12, top: 12, bottom: -12 });
+  s.add(sunL);
+  const rimL = new THREE.DirectionalLight('#8ad8ff', 1.2); rimL.position.set(-4, 3, -5); s.add(rimL);
+  for (const l of lights) { const pl = new THREE.PointLight(l.color, l.intensity ?? 4, l.range ?? 6); pl.position.set(...l.pos); s.add(pl); }
+  const g = new THREE.Mesh(new THREE.CircleGeometry(40, 48).rotateX(-Math.PI / 2), new THREE.MeshStandardMaterial({ color: gcol, flatShading: true }));
+  g.receiveShadow = true;
+  s.add(g);
+  const built = [];
+  for (const it of items) {
+    const d = THEMES.edu[it.cat][it.key];
+    const o = d.build({ ...d.defaults, ...(it.params ?? {}) });
+    o.traverse((m) => { if (m.isMesh) m.castShadow = m.receiveShadow = true; });
+    if (it.clip) setPose(o, it.t ?? 0, it.clip);
+    o.position.set(...(it.pos ?? [0, 0, 0]));
+    o.rotation.y = it.rotY ?? 0;
+    if (it.scale) o.scale.multiplyScalar(it.scale);
+    s.add(o);
+    built.push(o);
+  }
+  const camera = new THREE.PerspectiveCamera(fov, w / h, 0.05, 200);
+  camera.position.set(cam[0], cam[1], cam[2]);
+  camera.lookAt(cam[3], cam[4], cam[5]);
+  shotRenderer.setClearColor(sky, 1);
+  shotRenderer.render(s, camera);
+  built.forEach(disposeMonster);
+  g.geometry.dispose();
+  shotRenderer.shadowMap.enabled = false;
+  return shotRenderer.domElement.toDataURL('image/png');
+};
 window.__setHorror = (v) => { view.horror = v; applyTheme(); rebuild(); if (view.gallery) setGallery(true); };
 
 // ---- Skill demo: show the projectile a clip launches (healing fireball, dragon palm) ----
