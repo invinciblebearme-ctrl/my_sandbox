@@ -9,6 +9,7 @@ import { EDU_NPCS, lumi } from './npcs.js';
 import { EDU_ITEMS } from './items.js';
 import { FOREST_ALL, FOREST_PROPS } from './forest.js';
 import { EDU_VFX } from './vfx.js';
+import { EDU_SKILLS, EDU_BASIC_PROJECTILES, EDU_STATUS, EDU_ELITE } from './skills.js';
 
 export default {
   label: '📚 [교육 ARPG] 속삭이는 숲',
@@ -29,5 +30,6 @@ export default {
   bosses: EDU_BOSSES,
   items: EDU_ITEMS,
   props: FOREST_ALL,
-  vfx: EDU_VFX,
+  vfx: { ...EDU_VFX, ...EDU_BASIC_PROJECTILES, ...EDU_STATUS, ...EDU_ELITE },
+  skills: EDU_SKILLS,
 };
