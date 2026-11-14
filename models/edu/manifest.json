@@ -1,0 +1,1270 @@
+{
+  "characters": {
+    "warrior": {
+      "label": "수호기사",
+      "file": "characters/warrior.glb",
+      "triangles": 1670,
+      "clips": {
+        "idle": {
+          "seconds": 2,
+          "loop": true
+        },
+        "walk": {
+          "seconds": 0.8,
+          "loop": true
+        },
+        "attack": {
+          "seconds": 0.6,
+          "loop": false
+        },
+        "cast": {
+          "seconds": 0.9,
+          "loop": false
+        },
+        "hit": {
+          "seconds": 0.35,
+          "loop": false
+        },
+        "death": {
+          "seconds": 1.8,
+          "loop": false
+        },
+        "drink": {
+          "seconds": 1.2,
+          "loop": false
+        },
+        "victory": {
+          "seconds": 1.6,
+          "loop": false
+        }
+      },
+      "parts": [
+        "torso",
+        "head",
+        "armL",
+        "armR",
+        "legL",
+        "legR",
+        "weapon",
+        "shield",
+        "potion",
+        "frags"
+      ]
+    }
+  },
+  "monsters": {
+    "inkSlime": {
+      "label": "잉크 슬라임",
+      "file": "monsters/m01_inkslime.glb",
+      "triangles": 1488,
+      "clips": {
+        "idle": {
+          "seconds": 1.6,
+          "loop": true
+        },
+        "walk": {
+          "seconds": 0.7,
+          "loop": true
+        },
+        "attack": {
+          "seconds": 0.8,
+          "loop": false
+        },
+        "hit": {
+          "seconds": 0.35,
+          "loop": false
+        },
+        "death": {
+          "seconds": 1.2,
+          "loop": false
+        },
+        "spawn": {
+          "seconds": 1,
+          "loop": false
+        }
+      },
+      "parts": [
+        "blob",
+        "eyes",
+        "shadow",
+        "splash",
+        "ring",
+        "frags"
+      ]
+    },
+    "acornSoldier": {
+      "label": "가시 도토리병사",
+      "file": "monsters/m02_acornsoldier.glb",
+      "triangles": 1453,
+      "clips": {
+        "idle": {
+          "seconds": 1.4,
+          "loop": true
+        },
+        "walk": {
+          "seconds": 0.45,
+          "loop": true
+        },
+        "attack": {
+          "seconds": 0.6,
+          "loop": false
+        },
+        "hit": {
+          "seconds": 0.35,
+          "loop": false
+        },
+        "death": {
+          "seconds": 1.3,
+          "loop": false
+        },
+        "spawn": {
+          "seconds": 0.9,
+          "loop": false
+        }
+      },
+      "parts": [
+        "nut",
+        "head",
+        "armL",
+        "armR",
+        "legL",
+        "legR",
+        "spear",
+        "ring",
+        "frags"
+      ]
+    },
+    "fireflySpirit": {
+      "label": "반딧불 정령",
+      "file": "monsters/m03_firefly.glb",
+      "triangles": 1492,
+      "clips": {
+        "idle": {
+          "seconds": 1.2,
+          "loop": true
+        },
+        "fly": {
+          "seconds": 0.8,
+          "loop": true
+        },
+        "attack": {
+          "seconds": 0.9,
+          "loop": false
+        },
+        "hit": {
+          "seconds": 0.4,
+          "loop": false
+        },
+        "death": {
+          "seconds": 1.3,
+          "loop": false
+        },
+        "spawn": {
+          "seconds": 1,
+          "loop": false
+        }
+      },
+      "parts": [
+        "core",
+        "wingL",
+        "wingR",
+        "lamp",
+        "charge",
+        "ring",
+        "frags"
+      ]
+    },
+    "fireflyOrb": {
+      "label": "반딧불 빛 구슬 (투사체)",
+      "file": "monsters/m03_firefly_orb.glb",
+      "triangles": 292,
+      "clips": {
+        "charge": {
+          "seconds": 0.4,
+          "loop": false
+        },
+        "fly": {
+          "seconds": 0.5,
+          "loop": true
+        },
+        "impact": {
+          "seconds": 0.5,
+          "loop": false
+        }
+      },
+      "parts": [
+        "orb",
+        "trail",
+        "pop"
+      ]
+    }
+  },
+  "items": {
+    "weapon_sword_t1": {
+      "label": "한손검 초급",
+      "file": "items/weapon_sword_t1.glb",
+      "triangles": 84,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/weapon_sword_t1.png"
+    },
+    "shield_t1": {
+      "label": "원형 방패 초급",
+      "file": "items/shield_t1.glb",
+      "triangles": 204,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/shield_t1.png"
+    },
+    "helmet_t1": {
+      "label": "투구 초급",
+      "file": "items/helmet_t1.glb",
+      "triangles": 112,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/helmet_t1.png"
+    },
+    "armor_t1": {
+      "label": "천 갑옷",
+      "file": "items/armor_t1.glb",
+      "triangles": 84,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/armor_t1.png"
+    },
+    "gloves_t1": {
+      "label": "장갑 초급",
+      "file": "items/gloves_t1.glb",
+      "triangles": 168,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/gloves_t1.png"
+    },
+    "boots_t1": {
+      "label": "신발 초급",
+      "file": "items/boots_t1.glb",
+      "triangles": 96,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/boots_t1.png"
+    },
+    "weapon_sword_t2": {
+      "label": "한손검 중급",
+      "file": "items/weapon_sword_t2.glb",
+      "triangles": 104,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/weapon_sword_t2.png"
+    },
+    "shield_t2": {
+      "label": "카이트 방패 중급",
+      "file": "items/shield_t2.glb",
+      "triangles": 80,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/shield_t2.png"
+    },
+    "helmet_t2": {
+      "label": "투구 중급",
+      "file": "items/helmet_t2.glb",
+      "triangles": 136,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/helmet_t2.png"
+    },
+    "armor_t2": {
+      "label": "가죽 갑옷",
+      "file": "items/armor_t2.glb",
+      "triangles": 208,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/armor_t2.png"
+    },
+    "gloves_t2": {
+      "label": "장갑 중급",
+      "file": "items/gloves_t2.glb",
+      "triangles": 168,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/gloves_t2.png"
+    },
+    "boots_t2": {
+      "label": "신발 중급",
+      "file": "items/boots_t2.glb",
+      "triangles": 96,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/boots_t2.png"
+    },
+    "weapon_sword_t3": {
+      "label": "한손검 상급",
+      "file": "items/weapon_sword_t3.glb",
+      "triangles": 132,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/weapon_sword_t3.png"
+    },
+    "shield_t3": {
+      "label": "카이트 방패 상급",
+      "file": "items/shield_t3.glb",
+      "triangles": 80,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/shield_t3.png"
+    },
+    "helmet_t3": {
+      "label": "투구 상급",
+      "file": "items/helmet_t3.glb",
+      "triangles": 216,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/helmet_t3.png"
+    },
+    "armor_t3": {
+      "label": "판금 갑옷",
+      "file": "items/armor_t3.glb",
+      "triangles": 212,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/armor_t3.png"
+    },
+    "gloves_t3": {
+      "label": "장갑 상급",
+      "file": "items/gloves_t3.glb",
+      "triangles": 192,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/gloves_t3.png"
+    },
+    "boots_t3": {
+      "label": "신발 상급",
+      "file": "items/boots_t3.glb",
+      "triangles": 120,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/boots_t3.png"
+    },
+    "ring_t1": {
+      "label": "반지 1단계",
+      "file": "items/ring_t1.glb",
+      "triangles": 96,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/ring_t1.png"
+    },
+    "ring_t2": {
+      "label": "반지 2단계",
+      "file": "items/ring_t2.glb",
+      "triangles": 116,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/ring_t2.png"
+    },
+    "ring_t3": {
+      "label": "반지 3단계",
+      "file": "items/ring_t3.glb",
+      "triangles": 116,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/ring_t3.png"
+    },
+    "ring_t4": {
+      "label": "반지 4단계",
+      "file": "items/ring_t4.glb",
+      "triangles": 164,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/ring_t4.png"
+    },
+    "necklace_t1": {
+      "label": "목걸이 초급",
+      "file": "items/necklace_t1.glb",
+      "triangles": 104,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/necklace_t1.png"
+    },
+    "necklace_t2": {
+      "label": "목걸이 중급",
+      "file": "items/necklace_t2.glb",
+      "triangles": 128,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/necklace_t2.png"
+    },
+    "necklace_t3": {
+      "label": "목걸이 상급",
+      "file": "items/necklace_t3.glb",
+      "triangles": 140,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/necklace_t3.png"
+    },
+    "potion_hp_s": {
+      "label": "체력 물약 (소)",
+      "file": "items/potion_hp_s.glb",
+      "triangles": 228,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/potion_hp_s.png"
+    },
+    "potion_hp_m": {
+      "label": "체력 물약 (중)",
+      "file": "items/potion_hp_m.glb",
+      "triangles": 162,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/potion_hp_m.png"
+    },
+    "potion_hp_l": {
+      "label": "체력 물약 (대)",
+      "file": "items/potion_hp_l.glb",
+      "triangles": 208,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/potion_hp_l.png"
+    },
+    "potion_mp_s": {
+      "label": "마나 물약 (소)",
+      "file": "items/potion_mp_s.glb",
+      "triangles": 228,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/potion_mp_s.png"
+    },
+    "potion_mp_m": {
+      "label": "마나 물약 (중)",
+      "file": "items/potion_mp_m.glb",
+      "triangles": 162,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/potion_mp_m.png"
+    },
+    "potion_mp_l": {
+      "label": "마나 물약 (대)",
+      "file": "items/potion_mp_l.glb",
+      "triangles": 208,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/potion_mp_l.png"
+    },
+    "gold_small": {
+      "label": "골드 (소량)",
+      "file": "items/gold_small.glb",
+      "triangles": 96,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/gold_small.png"
+    },
+    "gold_large": {
+      "label": "골드 (다량)",
+      "file": "items/gold_large.glb",
+      "triangles": 464,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "item"
+      ],
+      "icon": "icons/items/gold_large.png"
+    }
+  },
+  "props": {
+    "stage1_floor_01": {
+      "label": "풀밭",
+      "file": "props/stage1_floor_01.glb",
+      "triangles": 60,
+      "clips": {},
+      "parts": []
+    },
+    "stage1_floor_02": {
+      "label": "짙은 풀밭",
+      "file": "props/stage1_floor_02.glb",
+      "triangles": 120,
+      "clips": {},
+      "parts": []
+    },
+    "stage1_floor_03": {
+      "label": "돌길",
+      "file": "props/stage1_floor_03.glb",
+      "triangles": 132,
+      "clips": {},
+      "parts": []
+    },
+    "stage1_floor_04": {
+      "label": "갈라진 땅",
+      "file": "props/stage1_floor_04.glb",
+      "triangles": 96,
+      "clips": {},
+      "parts": []
+    },
+    "stage1_floor_05": {
+      "label": "이끼 낀 땅",
+      "file": "props/stage1_floor_05.glb",
+      "triangles": 140,
+      "clips": {},
+      "parts": []
+    },
+    "stage1_floor_06": {
+      "label": "낙엽 바닥",
+      "file": "props/stage1_floor_06.glb",
+      "triangles": 156,
+      "clips": {},
+      "parts": []
+    },
+    "stage1_wall_straight": {
+      "label": "벽 (직선)",
+      "file": "props/stage1_wall_straight.glb",
+      "triangles": 160,
+      "clips": {},
+      "parts": []
+    },
+    "stage1_wall_straight_02": {
+      "label": "벽 (직선, 뿌리)",
+      "file": "props/stage1_wall_straight_02.glb",
+      "triangles": 200,
+      "clips": {},
+      "parts": []
+    },
+    "stage1_wall_corner": {
+      "label": "벽 (모서리: +X, +Z)",
+      "file": "props/stage1_wall_corner.glb",
+      "triangles": 248,
+      "clips": {},
+      "parts": []
+    },
+    "stage1_wall_tee": {
+      "label": "벽 (T자)",
+      "file": "props/stage1_wall_tee.glb",
+      "triangles": 272,
+      "clips": {},
+      "parts": []
+    },
+    "stage1_wall_end": {
+      "label": "벽 (끝)",
+      "file": "props/stage1_wall_end.glb",
+      "triangles": 184,
+      "clips": {},
+      "parts": []
+    },
+    "stage1_wall_pillar": {
+      "label": "벽 기둥",
+      "file": "props/stage1_wall_pillar.glb",
+      "triangles": 48,
+      "clips": {},
+      "parts": []
+    },
+    "stage1_wall_door": {
+      "label": "벽 (문 프레임)",
+      "file": "props/stage1_wall_door.glb",
+      "triangles": 92,
+      "clips": {},
+      "parts": []
+    },
+    "stage1_tree_01": {
+      "label": "둥근 나무",
+      "file": "props/stage1_tree_01.glb",
+      "triangles": 304,
+      "clips": {
+        "idle": {
+          "seconds": 3,
+          "loop": true
+        }
+      },
+      "parts": [
+        "canopy"
+      ]
+    },
+    "stage1_tree_02": {
+      "label": "속삭이는 나무 (청록 잎)",
+      "file": "props/stage1_tree_02.glb",
+      "triangles": 126,
+      "clips": {
+        "idle": {
+          "seconds": 3,
+          "loop": true
+        }
+      },
+      "parts": [
+        "canopy"
+      ]
+    },
+    "stage1_stump": {
+      "label": "그루터기",
+      "file": "props/stage1_stump.glb",
+      "triangles": 84,
+      "clips": {},
+      "parts": []
+    },
+    "stage1_rock_01": {
+      "label": "바위",
+      "file": "props/stage1_rock_01.glb",
+      "triangles": 100,
+      "clips": {},
+      "parts": []
+    },
+    "stage1_rock_02": {
+      "label": "작은 바위 무리",
+      "file": "props/stage1_rock_02.glb",
+      "triangles": 60,
+      "clips": {},
+      "parts": []
+    },
+    "stage1_bush": {
+      "label": "덤불",
+      "file": "props/stage1_bush.glb",
+      "triangles": 320,
+      "clips": {},
+      "parts": []
+    },
+    "stage1_log": {
+      "label": "쓰러진 통나무",
+      "file": "props/stage1_log.glb",
+      "triangles": 104,
+      "clips": {},
+      "parts": []
+    },
+    "stage1_rune_stone": {
+      "label": "글자 비석 (지식의 돌)",
+      "file": "props/stage1_rune_stone.glb",
+      "triangles": 116,
+      "clips": {
+        "idle": {
+          "seconds": 2.5,
+          "loop": true
+        }
+      },
+      "parts": [
+        "glyphs"
+      ]
+    },
+    "stage1_signpost": {
+      "label": "표지판",
+      "file": "props/stage1_signpost.glb",
+      "triangles": 44,
+      "clips": {},
+      "parts": []
+    },
+    "stage1_mushroom_glow": {
+      "label": "빛나는 버섯 (조명)",
+      "file": "props/stage1_mushroom_glow.glb",
+      "triangles": 165,
+      "clips": {
+        "idle": {
+          "seconds": 2,
+          "loop": true
+        }
+      },
+      "parts": [
+        "glow"
+      ],
+      "light": {
+        "at": [
+          0,
+          0.4,
+          0
+        ],
+        "color": "#5ae8ff",
+        "intensity": 1.2,
+        "range": 3
+      }
+    },
+    "stage1_lantern_post": {
+      "label": "등불 기둥 (조명)",
+      "file": "props/stage1_lantern_post.glb",
+      "triangles": 104,
+      "clips": {
+        "idle": {
+          "seconds": 1.3,
+          "loop": true
+        }
+      },
+      "parts": [
+        "flame"
+      ],
+      "light": {
+        "at": [
+          0.3,
+          1.24,
+          0
+        ],
+        "color": "#ffc36a",
+        "intensity": 1.6,
+        "range": 5
+      }
+    },
+    "stage1_crystal": {
+      "label": "빛 수정 (조명)",
+      "file": "props/stage1_crystal.glb",
+      "triangles": 52,
+      "clips": {
+        "idle": {
+          "seconds": 2.6,
+          "loop": true
+        }
+      },
+      "parts": [
+        "glow"
+      ],
+      "light": {
+        "at": [
+          0,
+          0.5,
+          0
+        ],
+        "color": "#9a8aff",
+        "intensity": 1.2,
+        "range": 4
+      }
+    },
+    "stage1_candle_stand": {
+      "label": "촛대 (조명)",
+      "file": "props/stage1_candle_stand.glb",
+      "triangles": 120,
+      "clips": {
+        "idle": {
+          "seconds": 1,
+          "loop": true
+        }
+      },
+      "parts": [
+        "flame"
+      ],
+      "light": {
+        "at": [
+          0,
+          1.15,
+          0
+        ],
+        "color": "#ffb46a",
+        "intensity": 1,
+        "range": 3.5
+      }
+    },
+    "stage1_deco_grass": {
+      "label": "풀 무더기",
+      "file": "props/stage1_deco_grass.glb",
+      "triangles": 36,
+      "clips": {},
+      "parts": []
+    },
+    "stage1_deco_pebbles": {
+      "label": "조약돌",
+      "file": "props/stage1_deco_pebbles.glb",
+      "triangles": 100,
+      "clips": {},
+      "parts": []
+    },
+    "stage1_deco_flowers": {
+      "label": "꽃",
+      "file": "props/stage1_deco_flowers.glb",
+      "triangles": 128,
+      "clips": {},
+      "parts": []
+    },
+    "stage1_deco_paper": {
+      "label": "종이 조각 (지워진 지식)",
+      "file": "props/stage1_deco_paper.glb",
+      "triangles": 96,
+      "clips": {},
+      "parts": []
+    },
+    "stage1_deco_leaves": {
+      "label": "낙엽",
+      "file": "props/stage1_deco_leaves.glb",
+      "triangles": 84,
+      "clips": {},
+      "parts": []
+    },
+    "stage1_chest": {
+      "label": "보물상자 (닫힘 → 열림)",
+      "file": "props/stage1_chest.glb",
+      "triangles": 204,
+      "clips": {
+        "idle": {
+          "seconds": 2,
+          "loop": true
+        },
+        "open": {
+          "seconds": 1,
+          "loop": false
+        },
+        "opened": {
+          "seconds": 2,
+          "loop": true
+        }
+      },
+      "parts": [
+        "lid",
+        "light",
+        "sparkle"
+      ]
+    },
+    "stage1_door_locked": {
+      "label": "잠긴 문 (열쇠)",
+      "file": "props/stage1_door_locked.glb",
+      "triangles": 296,
+      "clips": {
+        "idle": {
+          "seconds": 2,
+          "loop": true
+        },
+        "open": {
+          "seconds": 1.4,
+          "loop": false
+        }
+      },
+      "parts": [
+        "doorL",
+        "doorR",
+        "lock"
+      ]
+    },
+    "stage1_stairs_down": {
+      "label": "다음 층 계단 (빛 기둥)",
+      "file": "props/stage1_stairs_down.glb",
+      "triangles": 284,
+      "clips": {
+        "idle": {
+          "seconds": 2.4,
+          "loop": true
+        }
+      },
+      "parts": [
+        "beam"
+      ],
+      "light": {
+        "at": [
+          0,
+          0.6,
+          0
+        ],
+        "color": "#8ad8ff",
+        "intensity": 1.4,
+        "range": 4
+      }
+    },
+    "stage1_pot": {
+      "label": "파괴 가능한 항아리",
+      "file": "props/stage1_pot.glb",
+      "triangles": 240,
+      "clips": {
+        "break": {
+          "seconds": 0.8,
+          "loop": false
+        }
+      },
+      "parts": [
+        "pot",
+        "shards"
+      ]
+    }
+  },
+  "vfx": {
+    "fx_hit_spark": {
+      "label": "기본 타격 스파크",
+      "file": "vfx/fx_hit_spark.glb",
+      "triangles": 68,
+      "clips": {
+        "play": {
+          "seconds": 0.3,
+          "loop": false
+        }
+      },
+      "parts": [
+        "fx",
+        "rays",
+        "core"
+      ]
+    },
+    "fx_crit": {
+      "label": "치명타 타격",
+      "file": "vfx/fx_crit.glb",
+      "triangles": 204,
+      "clips": {
+        "play": {
+          "seconds": 0.45,
+          "loop": false
+        }
+      },
+      "parts": [
+        "fx",
+        "rays",
+        "rays2",
+        "ring"
+      ]
+    },
+    "fx_dissolve": {
+      "label": "몬스터 소멸 (빛 조각 + 글자)",
+      "file": "vfx/fx_dissolve.glb",
+      "triangles": 364,
+      "clips": {
+        "play": {
+          "seconds": 1,
+          "loop": false
+        }
+      },
+      "parts": [
+        "fx",
+        "frags",
+        "flash"
+      ]
+    },
+    "fx_levelup": {
+      "label": "레벨업 빛 기둥",
+      "file": "vfx/fx_levelup.glb",
+      "triangles": 460,
+      "clips": {
+        "play": {
+          "seconds": 1.6,
+          "loop": false
+        }
+      },
+      "parts": [
+        "fx",
+        "beam",
+        "rings",
+        "stars"
+      ]
+    },
+    "fx_heal_hp": {
+      "label": "물약 회복 (체력)",
+      "file": "vfx/fx_heal_hp.glb",
+      "triangles": 224,
+      "clips": {
+        "play": {
+          "seconds": 1.2,
+          "loop": false
+        }
+      },
+      "parts": [
+        "fx",
+        "motes",
+        "ring"
+      ]
+    },
+    "fx_heal_mp": {
+      "label": "물약 회복 (마나)",
+      "file": "vfx/fx_heal_mp.glb",
+      "triangles": 160,
+      "clips": {
+        "play": {
+          "seconds": 1.2,
+          "loop": false
+        }
+      },
+      "parts": [
+        "fx",
+        "motes",
+        "ring"
+      ]
+    },
+    "fx_loot_beam_common": {
+      "label": "아이템 빛 기둥 (일반)",
+      "file": "vfx/fx_loot_beam_common.glb",
+      "triangles": 128,
+      "clips": {
+        "play": {
+          "seconds": 1.6,
+          "loop": true
+        }
+      },
+      "parts": [
+        "fx",
+        "beam",
+        "ring"
+      ]
+    },
+    "fx_loot_beam_magic": {
+      "label": "아이템 빛 기둥 (마법)",
+      "file": "vfx/fx_loot_beam_magic.glb",
+      "triangles": 128,
+      "clips": {
+        "play": {
+          "seconds": 1.6,
+          "loop": true
+        }
+      },
+      "parts": [
+        "fx",
+        "beam",
+        "ring"
+      ]
+    },
+    "fx_loot_beam_rare": {
+      "label": "아이템 빛 기둥 (희귀)",
+      "file": "vfx/fx_loot_beam_rare.glb",
+      "triangles": 128,
+      "clips": {
+        "play": {
+          "seconds": 1.6,
+          "loop": true
+        }
+      },
+      "parts": [
+        "fx",
+        "beam",
+        "ring"
+      ]
+    },
+    "fx_loot_beam_legendary": {
+      "label": "아이템 빛 기둥 (전설)",
+      "file": "vfx/fx_loot_beam_legendary.glb",
+      "triangles": 128,
+      "clips": {
+        "play": {
+          "seconds": 1.6,
+          "loop": true
+        }
+      },
+      "parts": [
+        "fx",
+        "beam",
+        "ring"
+      ]
+    },
+    "fx_click_marker": {
+      "label": "발밑 클릭 표시",
+      "file": "vfx/fx_click_marker.glb",
+      "triangles": 120,
+      "clips": {
+        "play": {
+          "seconds": 0.5,
+          "loop": false
+        }
+      },
+      "parts": [
+        "fx",
+        "ring",
+        "arrows"
+      ]
+    }
+  }
+}

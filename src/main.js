@@ -68,10 +68,11 @@ let params = {};
 let current = null;
 let gallery = [];
 const theme = () => THEMES[view.theme];
+const horrorOf = () => theme().env.horror ?? view.horror; // the edu set is always cute
 // magic items are shared by every stage: listed with each theme's own items
-const allItems = (t = view.theme) => ({ ...(THEMES[t]?.items ?? {}), ...MAGIC_ITEMS });
+const allItems = (t = view.theme) => (THEMES[t]?.standalone ? THEMES[t].items : { ...(THEMES[t]?.items ?? {}), ...MAGIC_ITEMS });
 const entries = () => (view.category === 'players' ? PLAYERS
-  : view.category === 'items' ? { ...allItems(), ...MAGIC_EFFECTS, ...WUXIA_EFFECTS } : theme()[view.category] ?? {});
+  : view.category === 'items' ? (theme().standalone ? allItems() : { ...allItems(), ...MAGIC_EFFECTS, ...WUXIA_EFFECTS }) : theme()[view.category] ?? {});
 const def = () => entries()[view.monster];
 
 function build(d, p) {
@@ -112,6 +113,7 @@ function setGallery(on) {
   gallery.forEach((m) => { scene.remove(m); disposeMonster(m); });
   gallery = [];
   if (current) current.visible = !on;
+  props.visible = !(on && theme().standalone); // edu galleries: no scenery in the way
   if (on) {
     const list = Object.values(entries());
     const items = view.category === 'items'; // items are small: line them up closer
@@ -123,9 +125,15 @@ function setGallery(on) {
         const gun = d.holds ?? Object.keys(themeItems).find((key) => build(themeItems[key], { ...themeItems[key].defaults }).userData.itemInfo.kind === 'ranged');
         if (gun) holdItem(m, d.theme, gun);
       }
-      const x = i - (list.length - 1) / 2;
-      m.position.set(x * (items ? 0.9 : 1.45), 0, -Math.abs(x) * (items ? 0 : 0.3));
-      m.rotation.y = -x * 0.08;
+      if (list.length > 12) { // long lists (edu tiles, items): a grid of rows going back
+        const cols = 8;
+        const gap = items ? 0.8 : 1.6;
+        m.position.set((i % cols - (cols - 1) / 2) * gap, 0, -Math.floor(i / cols) * gap);
+      } else {
+        const x = i - (list.length - 1) / 2;
+        m.position.set(x * (items ? 0.9 : 1.45), 0, -Math.abs(x) * (items ? 0 : 0.3));
+        m.rotation.y = -x * 0.08;
+      }
       scene.add(m);
       gallery.push(m);
     });
@@ -145,7 +153,7 @@ function setGallery(on) {
 
 function applyFog() {
   const [near, far] = theme().env.fog;
-  const close = 1 - view.horror * 0.45; // thicker fog at night
+  const close = 1 - horrorOf() * 0.45; // thicker fog at night
   scene.fog.near = (view.gallery ? near + 5 : near) * close;
   scene.fog.far = (view.gallery ? far + 8 : far) * close;
 }
@@ -173,7 +181,7 @@ async function loadKit() {
 // Theme lighting, pushed toward a moonlit night as the horror level goes up.
 function applyLighting() {
   const env = theme().env;
-  const h = view.horror;
+  const h = horrorOf();
   const night = (c, target, amount) => new THREE.Color(c).lerp(new THREE.Color(target), amount);
   const sky = night(env.sky, '#141826', h * 0.85);
   scene.background = sky;
@@ -194,7 +202,7 @@ function applyTheme() {
   applyLighting();
   props.traverse((o) => { if (o.isMesh) o.geometry.dispose(); });
   props.clear();
-  env.props?.(createKit(1, 1, view.horror), props);
+  env.props?.(createKit(1, 1, horrorOf()), props);
   loadKit();
 }
 
@@ -258,11 +266,11 @@ function selectMonster(key) {
 
 function selectTheme(key) {
   view.theme = key;
-  if (!Object.keys(entries()).length) { view.category = 'monsters'; categoryCtrl?.updateDisplay(); }
+  if (!Object.keys(entries()).length || (theme().standalone && view.category === 'players')) { view.category = 'monsters'; categoryCtrl?.updateDisplay(); }
   const keys = Object.keys(entries());
   const opts = Object.fromEntries(keys.map((k) => [`${entries()[k].role} ${entries()[k].label}`, k]));
   monsterCtrl?.destroy();
-  monsterCtrl = gui.add(view, 'monster', opts).name({ items: '아이템', players: '캐릭터' }[view.category] ?? '괴물').onChange(selectMonster);
+  monsterCtrl = gui.add(view, 'monster', opts).name({ items: '아이템', players: '캐릭터', characters: '캐릭터', props: '타일·소품', vfx: '효과' }[view.category] ?? '괴물').onChange(selectMonster);
   monsterCtrl.domElement.parentElement.insertBefore(monsterCtrl.domElement, categoryCtrl.domElement.nextSibling);
   applyTheme();
   selectMonster(keys[0]);
@@ -271,7 +279,7 @@ function selectTheme(key) {
 
 const themeOpts = Object.fromEntries(Object.entries(THEMES).map(([k, t]) => [t.label, k]));
 const themeCtrl = gui.add(view, 'theme', themeOpts).name('테마').onChange(selectTheme);
-categoryCtrl = gui.add(view, 'category', { '괴물': 'monsters', '플레이어 아이템': 'items', '플레이어 캐릭터': 'players' }).name('종류')
+categoryCtrl = gui.add(view, 'category', { '괴물': 'monsters', '플레이어 아이템': 'items', '플레이어 캐릭터': 'players', '[교육 ARPG] 캐릭터': 'characters', '[교육 ARPG] 타일·소품': 'props', '[교육 ARPG] 효과': 'vfx' }).name('종류')
   .onChange(() => selectTheme(view.theme));
 let heldCtrl;
 gui.add(view, 'animate').name('재생');
@@ -329,7 +337,7 @@ setGallery(false);
 // hooks for scripts / tests
 window.__view = view;
 window.__list = () => ({
-  ...Object.fromEntries(Object.entries(THEMES).map(([t, th]) => [t, {
+  ...Object.fromEntries(Object.entries(THEMES).filter(([, th]) => !th.standalone).map(([t, th]) => [t, {
     monsters: Object.keys(th.monsters), items: Object.keys(th.items ?? {}),
   }])),
   magic: { effects: Object.keys(MAGIC_EFFECTS), items: Object.keys(MAGIC_ITEMS) },
@@ -344,7 +352,7 @@ const manifestOf = (t, items) => Object.fromEntries(Object.entries(items).map(([
   return [k, { label: d.label, kind: info.kind, file: `${t}/items/${k}.glb`, playerHold: info.player.hold, playerUse: info.player.use, playerMove: info.player.move }];
 }));
 window.__itemManifest = () => ({
-  ...Object.fromEntries(Object.entries(THEMES).filter(([, th]) => th.items).map(([t, th]) => [t, manifestOf(t, th.items)])),
+  ...Object.fromEntries(Object.entries(THEMES).filter(([, th]) => th.items && !th.standalone).map(([t, th]) => [t, manifestOf(t, th.items)])),
   magic: {
     ...manifestOf('magic', MAGIC_ITEMS),
     healingFireball: { label: MAGIC_EFFECTS.healingFireball.label, kind: 'projectile', file: 'magic/healingFireball.glb', spawnAt: 'castPoint', releaseTime: CAST_RELEASE },
@@ -364,6 +372,58 @@ window.__select = (t, m, cat = 'monsters') => {
 window.__exportGLB = (t, m, cat = 'monsters') => {
   const d = cat === 'players' ? PLAYERS[m] : t === 'magic' || t === 'wuxia' ? { ...MAGIC_ITEMS, ...MAGIC_EFFECTS, ...WUXIA_EFFECTS }[m] : THEMES[t][cat][m];
   return exportGLB(build(d, { ...d.defaults }));
+};
+// ---- educational ARPG set: list, manifest and item icons --------------------------------
+const EDU_CATS = ['characters', 'monsters', 'items', 'props', 'vfx'];
+window.__eduList = () => Object.fromEntries(EDU_CATS.map((c) => [c, Object.keys(THEMES.edu[c])]));
+window.__eduManifest = () => Object.fromEntries(EDU_CATS.map((c) => [c, Object.fromEntries(Object.entries(THEMES.edu[c]).map(([key, d]) => {
+  const o = d.build({ ...d.defaults });
+  const { clips, animations, rig } = o.userData;
+  let tris = 0;
+  o.traverse((m) => { if (m.isMesh) tris += (m.geometry.index ? m.geometry.index.count : m.geometry.attributes.position.count) / 3; });
+  const entry = {
+    label: d.label, file: d.file, triangles: Math.round(tris),
+    clips: Object.fromEntries(Object.entries(clips).map(([c, a]) => [c, { seconds: animations[a].duration, loop: animations[a].loop !== false }])),
+    parts: Object.keys(rig).filter((n) => rig[n]?.isObject3D),
+  };
+  if (d.light) entry.light = d.light;
+  if (o.userData.eduItem) entry.icon = o.userData.eduItem.icon;
+  disposeMonster(o);
+  return [key, entry];
+}))]));
+window.__exportEdu = (cat, key) => { const d = THEMES.edu[cat][key]; return exportGLB(d.build({ ...d.defaults })); };
+// Transparent PNG icon of an item (3/4 view, fitted to the frame).
+let iconRenderer;
+window.__icon = (cat, key, px = 128) => {
+  iconRenderer ??= new THREE.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: true });
+  iconRenderer.setPixelRatio(1);
+  iconRenderer.setSize(px, px);
+  const d = THEMES.edu[cat][key];
+  const obj = d.build({ ...d.defaults });
+  const s = new THREE.Scene();
+  s.add(new THREE.HemisphereLight('#ffffff', '#55606a', 2.2));
+  const key1 = new THREE.DirectionalLight('#fff4e0', 2.4); key1.position.set(2, 4, 3); s.add(key1);
+  const back = new THREE.DirectionalLight('#9ad0ff', 1.2); back.position.set(-3, 1, -2); s.add(back);
+  const item = obj.getObjectByName('item');
+  if (item) item.position.y = 0; // no hover offset in the icon
+  s.add(obj);
+  obj.updateMatrixWorld(true);
+  const raw = new THREE.Box3().setFromObject(obj).getSize(new THREE.Vector3());
+  if (item && raw.y > 2.5 * Math.max(raw.x, raw.z)) { // long items (swords) lie diagonally, like classic icons
+    item.rotation.z = -Math.PI / 4;
+    obj.updateMatrixWorld(true);
+  }
+  const box = new THREE.Box3().setFromObject(obj);
+  const center = box.getCenter(new THREE.Vector3());
+  const radius = box.getSize(new THREE.Vector3()).length() / 2;
+  const cam = new THREE.PerspectiveCamera(30, 1, 0.01, 50);
+  const dir = new THREE.Vector3(0.55, 0.45, 1).normalize();
+  cam.position.copy(center).addScaledVector(dir, radius / Math.sin((15 * Math.PI) / 180) * 0.92);
+  cam.lookAt(center);
+  iconRenderer.setClearColor(0x000000, 0);
+  iconRenderer.render(s, cam);
+  disposeMonster(obj);
+  return iconRenderer.domElement.toDataURL('image/png');
 };
 window.__setHorror = (v) => { view.horror = v; applyTheme(); rebuild(); if (view.gallery) setGallery(true); };
 
